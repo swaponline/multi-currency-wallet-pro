@@ -1,0 +1,232 @@
+/**
+ * Styles
+ * =========================================== */
+ 
+@font-face {
+	font-family: 'Swap';
+	src: url('../webfonts/swap.eot');
+	src: url('../webfonts/swap.eot#iefix') format('embedded-opentype'),
+		 url('../webfonts/swap.woff2') format('woff2'),
+		 url('../webfonts/swap.woff') format('woff'),
+		 url('../webfonts/swap.ttf') format('truetype'),
+		 url('../webfonts/swap.svg#swap') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+.dashicons-swap-logo,
+.dashicons-swap-logo:before {
+	font-family: 'Swap';
+}
+.dashicons-swap-logo:before {
+	content: '\e815';
+}
+
+/* Admin Form */
+.wp-mcwallet-widget-form {
+	clear: both;
+}
+.wp-mcwallet-widget-form-field {
+	margin: 1.5em 0;
+}
+.wp-mcwallet-widget-form-field label {
+	font-weight: 600;
+	line-height: 1.5;
+	padding-bottom: .5em;
+	display: block;
+}
+.wp-mcwallet-widget-form input {
+	line-height: 1.5;
+	margin: 0;
+}
+
+/* Admin Panel */
+.mcwallet-welcome-panel {
+	padding-bottom: 20px;
+}
+.mcwallet-shortcode-panel-row {
+	padding-top: 15px;
+}
+.mcwallet-shortcode-panel-row input[readonly] {
+	background-color: #fff;
+}
+.mcwallet-shortcode-panel-row > p:first-child {
+	margin-top: 0;
+}
+
+/* Tabs */
+.mcwallet-nav-tabs {
+	margin-left: -5px;
+}
+.mcwallet-nav-tabs .nav-tab-active,
+.mcwallet-nav-tabs .nav-tab-active:focus,
+.mcwallet-nav-tabs .nav-tab-active:focus:active,
+.mcwallet-nav-tabs .nav-tab-active:hover {
+    border-bottom: 1px solid #fff;
+    background: #fff;
+	outline: none;
+}
+.mcwallet-panel-tab:not(.panel-tab-active) {
+	display: none;
+}
+
+/** Tokens list */
+.wp-list-tokens {
+	counter-reset: tokencount;
+	margin-top: 10px;
+}
+.wp-list-tokens thead td,
+.wp-list-tokens tfoot td {
+	padding-left: 15px;
+	padding-right: 15px;
+	font-weight: bold;
+}
+.wp-list-tokens tbody .item {
+	transition: all .3s;
+}
+.wp-list-tokens tbody .item > * {
+	padding: 15px;
+	vertical-align: middle;
+}
+.wp-list-tokens tbody .item .item-count {
+	counter-increment: tokencount;
+}
+.wp-list-tokens tbody .item .item-count > span:before {
+	content: counter( tokencount);
+}
+.wp-list-tokens .item-count {
+	width: 20px;
+}
+.wp-list-tokens .item-address {
+	white-space: nowrap;
+}
+.wp-list-tokens .item-action {
+	width: 20px;
+	text-align: center;
+}
+.wp-list-tokens tbody .item-empty:not(:first-child),
+.wp-list-tokens tbody .item-empty:not(:last-child) {
+	display: none;
+}
+.wp-list-tokens tbody .item .item-icon {
+	width: 50px;
+}
+.wp-list-tokens tbody .item .item-icon > a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	border-radius: 50%;
+	background-color: #23282d;
+	transition: all .3s;
+}
+.wp-list-tokens tbody .item .item-icon > a {
+	background-color: #3e454d;
+}
+.wp-list-tokens tbody .item .item-icon img {
+	display: block;
+	max-width: 24px;
+	width: auto;
+	max-height: 24px;
+	height: auto;
+	margin: 0 auto;
+}
+.wp-list-tokens tbody .item .item-icon .token-letter {
+	font-weight: bold;
+	color: #fff;
+	font-size: 20px;
+	display: block;
+	text-align: center;
+	line-height: 40px;
+}
+.wp-list-tokens tbody .item.removing {
+	background-color: #faafaa;
+}
+.mcwallet-form-inline {
+	display: flex;
+}
+.mcwallet-form-inline > .button {
+	margin-left: 5px;
+}
+.wp-list-tokens tbody .item-adding {
+	background-color: #e3fce6;
+}
+.wp-list-tokens tbody .item-fade {
+	opacity: 0;
+}
+.mcwallet-add-token + .spinner,
+.mcwallet-update-options + .spinner {
+	float: none;
+}
+.mcwallet-welcome-panel .welcome-panel-content {
+	margin-right: 13px;
+}
+.wrap .mcwallet-welcome-panel h2.nav-tab-wrapper {
+	padding-top: 0;
+}
+.mcwallet-welcome-panel h3 {
+	font-size: 1.3em;
+}
+.mcwallet-button-url.disabled {
+	pointer-events: none;
+}
+.wp-mcwallet-widget-form .mcwallet-open-modal {
+	padding: 8px 30px;
+	font-size: 16px;
+}
+
+/* Notice */
+.wrap > .mcwallet-notice {
+	position: fixed;
+	top: 40px;
+	z-index: 101;
+}
+.mcwallet-notice.notice-success {
+	background-color: #d4e6d5;
+}
+.mcwallet-notice.notice-error {
+	background-color: #eed4d4;
+}
+
+/* Color Picker */
+.wp-mcwallet-widget-form .wp-picker-clear,
+.wp-mcwallet-widget-form .wp-picker-input-wrap label {
+	vertical-align: middle;
+}
+
+/* Modal */
+.toplevel_page_mcwallet #TB_window {
+	width: 980px !important;
+	max-width: 100% !important;
+	height: auto !important;
+	max-height: 100% !important;
+	margin-top: auto !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	top: 30px !important;
+	transform: translateX(-50%);
+}
+.toplevel_page_mcwallet #TB_ajaxContent {
+	width: 980px !important;
+	max-width: 100% !important;
+	height: auto !important;
+	max-height: 100% !important;
+	box-sizing: border-box;
+}
+
+.toplevel_page_mcwallet #TB_iframeContent {
+	width: 100% !important;
+	height: calc(100vh - 90px) !important;
+}
+
+/**
+ * Edit Banner
+ */
+.post-type-mcwallet_banner .mcwallet-form-table .large-text {
+    width: 100%;
+}
+.post-type-mcwallet_banner #misc-publishing-actions,
+.post-type-mcwallet_banner #minor-publishing-actions {
+    display: none;
+}
