@@ -13,18 +13,18 @@
  */
 
 /* If this file is called directly, abort. */
-defined( 'ABSPATH' ) or die( 'Soarele luceste!' );
+defined( 'ABSPATH' ) || die( 'Soarele luceste!' );
 
 /* Define Plugin Constants */
 define( 'MCWALLET_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MCWALLET_URL', plugin_dir_url( __FILE__ ) );
 define( 'MCWALLET_VER', '1.0.7' );
-define( 'MCWALLET_BUILD_VER' , '907e76v1' );
+define( 'MCWALLET_BUILD_VER', 'e3e588v1' );
 
 /**
  * Run function if plugin active
  */
-function mcwallet_plugin_active(){
+function mcwallet_plugin_active() {
 	return true;
 };
 
@@ -36,7 +36,7 @@ require MCWALLET_PATH . 'includes/init.php';
 /**
  * On activation plugin
  */
-function mcwallet_register_activation_hook(){
+function mcwallet_register_activation_hook() {
 	mcwallet_add_rewrite_rules();
 	flush_rewrite_rules();
 }
