@@ -161,6 +161,7 @@
 		var tokensFee = thisParent.find('[name="tokens_fee"]').val();
         var tokensMin = thisParent.find('[name="tokens_min"]').val();
         var fiatCurrency = thisParent.find('[name="fiat_currency"]').val();
+        var fiatGatewayUrl = thisParent.find('[name="fiat_gateway_url"]').val();
         
         var codeHead   = thisParent.find( '[name="mcwallet_head_code"]' ).val();
         var codeBody   = thisParent.find( '[name="mcwallet_body_code"]' ).val();
@@ -196,7 +197,8 @@
 			islogged: isLogged,
             codeHead: codeHead,
             codeBody: codeBody,
-            codeFooter: codeFooter
+            codeFooter: codeFooter,
+            fiatGatewayUrl: fiatGatewayUrl
 		};
 		
 		mcwalletSpinner(thisBtn);

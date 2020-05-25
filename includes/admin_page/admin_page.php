@@ -268,10 +268,18 @@ function mcwallet_page(){
 								<td>
 									<select type="text" name="fiat_currency" class="regular-text">
                                         <?php foreach( mcwallet_get_valutes() as $key => $valute ) { ?>
-                                            <option value="<?php echo esc_attr( $key ); ?>" <?php selected( get_option( 'fiat_currency' ), $key ); ?>><?php echo esc_attr( $valute ); ?></option>
+                                            <option value="<?php echo esc_attr( $key ); ?>" <?php selected( get_option( 'fiat_currency', 'USD' ), $key ); ?>><?php echo esc_attr( $valute ); ?></option>
                                         <?php } ?>
                                     </select>
                                     <!-- https://noxon.wpmix.net/worldCurrencyPrices.php -->
+								</td>
+							</tr>
+                            <tr>
+								<th scope="row">
+									<label><?php esc_html_e( 'Fiat Gateway Url', 'multi-currency-wallet' );?></label>
+								</th>
+								<td>
+									<input name="fiat_gateway_url" type="text" class="large-text" value="<?php echo esc_attr( get_option( 'fiat_gateway_url', 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}') );?>">
 								</td>
 							</tr>
 							<tr>

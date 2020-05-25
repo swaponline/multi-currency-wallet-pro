@@ -283,7 +283,7 @@ function mcwallet_inline_script(){
     endif;
     wp_reset_postdata();
     
-    $script .= 'window.buyViaCreditCardLink = "https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}";' . "\n\n";
+    $script .= 'window.buyViaCreditCardLink = "' . get_option( 'fiat_gateway_url', 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}' ) . '";' . "\n\n";
 
 	return $script;
 }
