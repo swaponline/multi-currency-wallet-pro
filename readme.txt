@@ -12,7 +12,7 @@ Simplest Multi-currency wallet for WordPress.
 
 == Description ==
 
-Simplest Multi-currency wallet for WordPress.
+Simplest Multi-currency wallet for WordPress. Check premium version https://codecanyon.net/item/multicurrency-crypto-wallet-and-exchange-widgets-for-wordpress/23532064
 
 We use this 3rd party services:
 https://etherscan.io/ - free public blockchain explorer. they provide information for user balances (Ethereum cryptoccurrency and ER20 assets);
