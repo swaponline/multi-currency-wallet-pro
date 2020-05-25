@@ -67,6 +67,7 @@ function mcwallet_do_settings_sections(){
 					wp_editor( $how_deposit_content, 'howdeposit', array(
 						'textarea_name' => 'howdeposit',
 						'textarea_rows' => 10,
+                        'quicktags'     => false
 					) );
 					?>
 				</td>
@@ -81,6 +82,7 @@ function mcwallet_do_settings_sections(){
 					wp_editor( $how_deposit_content, 'howwithdraw', array(
 						'textarea_name' => 'howwithdraw',
 						'textarea_rows' => 10,
+                        'quicktags'     => false
 					) );
 					?>
 				</td>
