@@ -3,23 +3,23 @@
  */
 (function( $ ){
 	"use strict";
-	
+
 	/**
 	 * Tabs
 	 */
 	$('.mcwallet-nav-tabs > a').on( 'click', function(e) {
 		e.preventDefault();
-    	var tab = $(this).attr('href');
+		var tab = $(this).attr('href');
 		// set active navigation tab
 		$('.mcwallet-nav-tabs > a').removeClass('nav-tab-active');
 		$(this).addClass('nav-tab-active');
 
 		// set active tab from content
-    	$('.mcwallet-panel-tab').removeClass('panel-tab-active');
-    	$(tab).addClass('panel-tab-active');
+		$('.mcwallet-panel-tab').removeClass('panel-tab-active');
+		$(tab).addClass('panel-tab-active');
 
 	});
-	
+
 	/**
 	 * Notices
 	 */
@@ -34,14 +34,14 @@
 			});
 		},6000);
 	}
-	
+
 	/**
 	 * Spinner
 	 */
 	function mcwalletSpinner( button ){
 		button.next('.spinner').toggleClass('is-active');
 	}
-	
+
 	/** 
 	 * Add token
 	 */
@@ -57,9 +57,9 @@
 		var howWithdraw = window.tinyMCE.get('howwithdraw').getContent();
 		
 		mcwalletSpinner(thisBtn);
-	
+
 		if ( tokenAddress ){
-	
+
 			var data = {
 				action: 'mcwallet_add_token',
 				nonce: mcwallet.nonce,
@@ -104,9 +104,9 @@
 			mcwalletNotice( mcwallet.notices.empty, 'error');
 			mcwalletSpinner(thisBtn);
 		}
-		
+
 	});
-	
+
 	/**
 	 * Remove token
 	 */
@@ -124,7 +124,7 @@
 			};
 
 			$.post( ajaxurl, data, function(response) {
-	
+
 				if( response == 'true') {
 					thisItem.addClass('removing');
 					thisItem.fadeOut( function(){
@@ -138,7 +138,6 @@
 
 			});
 		}
-		
 	});
 
 	/**
@@ -146,27 +145,27 @@
 	 */
 	$('.mcwallet-update-options').on('click',function(e){
 		e.preventDefault();
-		var thisBtn = $(this);
-		var thisParent = $('.mcwallet-form-options');
-		var logoUrl  = thisParent.find('[name="logo_url"]').val();
-		var pageSlug = thisParent.find('[name="page_slug"]').val();
-		var pageHome = thisParent.find('[name="is_home"]');
-		var pageAccess = thisParent.find('[name="is_logged"]');
-		var btcFee = thisParent.find('[name="btc_fee"]').val();
-        var btcMin = thisParent.find('[name="btc_min"]').val();
-		var btcFeeAddress = thisParent.find('[name="btc_fee_address"]').val();
-		var ethFee = thisParent.find('[name="eth_fee"]').val();
-        var ethMin = thisParent.find('[name="eth_min"]').val();
-		var ethFeeAddress = thisParent.find('[name="eth_fee_address"]').val();
-		var tokensFee = thisParent.find('[name="tokens_fee"]').val();
-        var tokensMin = thisParent.find('[name="tokens_min"]').val();
-        var fiatCurrency = thisParent.find('[name="fiat_currency"]').val();
-        var fiatGatewayUrl = thisParent.find('[name="fiat_gateway_url"]').val();
-        
-        var codeHead   = thisParent.find( '[name="mcwallet_head_code"]' ).val();
-        var codeBody   = thisParent.find( '[name="mcwallet_body_code"]' ).val();
-        var codeFooter = thisParent.find( '[name="mcwallet_footer_code"]' ).val();
-        
+		var thisBtn        = $(this);
+		var thisParent     = $('.mcwallet-form-options');
+		var logoUrl        = thisParent.find('[name="logo_url"]').val();
+		var pageTitle      = thisParent.find('[name="mcwallet_page_title"]').val();
+		var pageSlug       = thisParent.find('[name="page_slug"]').val();
+		var pageHome       = thisParent.find('[name="is_home"]');
+		var pageAccess     = thisParent.find('[name="is_logged"]');
+		var btcFee         = thisParent.find('[name="btc_fee"]').val();
+		var btcMin         = thisParent.find('[name="btc_min"]').val();
+		var btcFeeAddress  = thisParent.find('[name="btc_fee_address"]').val();
+		var ethFee         = thisParent.find('[name="eth_fee"]').val();
+		var ethMin         = thisParent.find('[name="eth_min"]').val();
+		var ethFeeAddress  = thisParent.find('[name="eth_fee_address"]').val();
+		var tokensFee      = thisParent.find('[name="tokens_fee"]').val();
+		var tokensMin      = thisParent.find('[name="tokens_min"]').val();
+		var fiatCurrency   = thisParent.find('[name="fiat_currency"]').val();
+		var fiatGatewayUrl = thisParent.find('[name="fiat_gateway_url"]').val();
+		var codeHead       = thisParent.find( '[name="mcwallet_head_code"]' ).val();
+		var codeBody       = thisParent.find( '[name="mcwallet_body_code"]' ).val();
+		var codeFooter     = thisParent.find( '[name="mcwallet_footer_code"]' ).val();
+		
 
 		var ishome = 'false';
 		var isLogged = 'false';
@@ -183,24 +182,25 @@
 			action: 'mcwallet_update_options',
 			nonce: mcwallet.nonce,
 			url: logoUrl,
+			pageTitle: pageTitle,
 			slug: pageSlug,
 			btcFee: btcFee,
-            btcMin: btcMin,
+			btcMin: btcMin,
 			btcFeeAddress: btcFeeAddress,
 			ethFee: ethFee,
-            ethMin: ethMin,
+			ethMin: ethMin,
 			ethFeeAddress: ethFeeAddress,
 			tokensFee: tokensFee,
-            tokensMin: tokensMin,
-            fiatCurrency: fiatCurrency,
+			tokensMin: tokensMin,
+			fiatCurrency: fiatCurrency,
 			ishome: ishome,
 			islogged: isLogged,
-            codeHead: codeHead,
-            codeBody: codeBody,
-            codeFooter: codeFooter,
-            fiatGatewayUrl: fiatGatewayUrl
+			codeHead: codeHead,
+			codeBody: codeBody,
+			codeFooter: codeFooter,
+			fiatGatewayUrl: fiatGatewayUrl
 		};
-		
+
 		mcwalletSpinner(thisBtn);
 
 		$.post( ajaxurl, data, function(response) {
@@ -225,9 +225,9 @@
 	 */
 	$('body').on('click', '.mcwallet-load-icon', function(e){
 		e.preventDefault();
- 
-    	var button = $(this),
-    		custom_uploader = wp.media({
+
+		var button = $(this),
+			custom_uploader = wp.media({
 				title: mcwallet.uploader.title,
 				library : {
 					type : 'image'
@@ -242,15 +242,15 @@
 		})
 		.open();
 	});
-	
+
 	/**
 	 * Select/Upload logo
 	 */
 	$('body').on('click', '.mcwallet-load-logo', function(e){
 		e.preventDefault();
- 
-    	var button = $(this),
-    		custom_uploader = wp.media({
+
+		var button = $(this),
+			custom_uploader = wp.media({
 				title: mcwallet.uploader.title,
 				library : {
 					type : 'image'
@@ -265,16 +265,16 @@
 		})
 		.open();
 	});
-    
-    /**
+	
+	/**
 	 * Select/Upload Image
 	 */
 	$('body').on('click', '.mcwallet-load-image', function(e){
 		e.preventDefault();
  
-    	var button = $(this),
-            input = button.prev(),
-    		custom_uploader = wp.media({
+		var button = $(this),
+			input = button.prev(),
+			custom_uploader = wp.media({
 				title: mcwallet.uploader.title,
 				library : {
 					type : 'image'

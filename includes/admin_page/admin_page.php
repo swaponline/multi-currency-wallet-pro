@@ -2,8 +2,8 @@
 /**
  * Multi Currency Wallet Menu Page
  */
-function mcwallet_menu_page(){
-	$menu_page = add_menu_page( 
+function mcwallet_menu_page() {
+	$menu_page = add_menu_page(
 		esc_html__( 'Multi Currency Wallet', 'multi-currency-wallet' ),
 		esc_html__( 'MCWallet', 'multi-currency-wallet' ),
 		'manage_options',
@@ -16,30 +16,30 @@ function mcwallet_menu_page(){
 add_action( 'admin_menu', 'mcwallet_menu_page' );
 
 /**
-   Widget Page
+ * Widget Page
  */
-function mcwallet_page(){
-	
+function mcwallet_page() {
+
 	$erc20tokens = get_option('mcwallet_tokens');
-	
+
 ?>
 
 <div class="wrap">
-	<h2><?php echo get_admin_page_title();?></h2>
+	<h2><?php echo get_admin_page_title(); ?></h2>
 	<div class="notice mcwallet-notice hide-all"><p></p></div>
-	
+
 	<div class="welcome-panel mcwallet-welcome-panel">
 		<div class="welcome-panel-content">
-				
+
 			<h2 class="nav-tab-wrapper mcwallet-nav-tabs wp-clearfix">
-				<a href="#mcwallet-tab-1" class="nav-tab nav-tab-active"><?php esc_html_e( 'Tokens list', 'multi-currency-wallet' );?></a>
-				<a href="#mcwallet-tab-2" class="nav-tab"><?php esc_html_e( 'Options', 'multi-currency-wallet' );?></a>
-                <a href="#mcwallet-tab-3" class="nav-tab"><?php esc_html_e( 'Custom HTML', 'multi-currency-wallet' );?></a>
+				<a href="#mcwallet-tab-1" class="nav-tab nav-tab-active"><?php esc_html_e( 'Tokens list', 'multi-currency-wallet' ); ?></a>
+				<a href="#mcwallet-tab-2" class="nav-tab"><?php esc_html_e( 'Options', 'multi-currency-wallet' ); ?></a>
+				<a href="#mcwallet-tab-3" class="nav-tab"><?php esc_html_e( 'Custom HTML', 'multi-currency-wallet' ); ?></a>
 			</h2><!-- .nav-tab-wrapper -->
-				
+
 			<div class="welcome-panel-column-container mcwallet-panel-tab panel-tab-active" id="mcwallet-tab-1">
 				<div class="mcwallet-shortcode-panel-row">
-					
+
 					<table class="wp-list-table widefat striped wp-list-tokens">
 						<thead>
 							<tr>
@@ -47,28 +47,28 @@ function mcwallet_page(){
 									<span>#</span>
 								</td>
 								<td class="item-icon">
-									<span><?php esc_html_e( 'Icon', 'multi-currency-wallet' );?></span>
+									<span><?php esc_html_e( 'Icon', 'multi-currency-wallet' ); ?></span>
 								</td>
 								<td class="item-name">
-									<span><?php esc_html_e( 'Token name', 'multi-currency-wallet' );?></span>
+									<span><?php esc_html_e( 'Token name', 'multi-currency-wallet' ); ?></span>
 								</td>
 								<td class="item-symbol">
-									<span><?php esc_html_e( 'Token symbol', 'multi-currency-wallet' );?></span>
+									<span><?php esc_html_e( 'Token symbol', 'multi-currency-wallet' ); ?></span>
 								</td>
 								<td class="item-decimals">
-									<span><?php esc_html_e( 'Decimals', 'multi-currency-wallet' );?></span>
+									<span><?php esc_html_e( 'Decimals', 'multi-currency-wallet' ); ?></span>
 								</td>
 								<td class="item-address">
-									<span><?php esc_html_e( 'ERC20 contract address', 'multi-currency-wallet' );?></span>
+									<span><?php esc_html_e( 'ERC20 contract address', 'multi-currency-wallet' ); ?></span>
 								</td>
 								<td class="item-action">
-									<span><?php esc_html_e( 'Action', 'multi-currency-wallet' );?></span>
+									<span><?php esc_html_e( 'Action', 'multi-currency-wallet' ); ?></span>
 								</td>
 							</tr>
 						</thead>
 						<tbody>
 							<?php if ( $erc20tokens ) { ?>
-								<?php foreach( $erc20tokens as $name => $token ) { 
+								<?php foreach( $erc20tokens as $name => $token ) {
 									$img = '<span class="token-letter">' . mcwallet_token_letter( $token['name'] ) . '</span>';
 									if ( mcwallet_remote_image_file_exists( $token['icon'] ) ) {
 										$img = '<img src="' . esc_attr( $token['icon'] ) . '" alt="' . esc_attr( $name ) . '">';
@@ -77,7 +77,6 @@ function mcwallet_page(){
 									if ( isset( $token['bg'] ) ) {
 										$token_bg = $token['bg'];
 									}
-										
 								?>
 								<tr class="item">
 									<th class="item-count">
@@ -140,7 +139,7 @@ function mcwallet_page(){
 							</tr>
 						</tfoot>
 					</table><!-- .wp-list-tokens -->
-						
+
 				</div><!-- .mcwallet-shortcode-panel-row -->
 
 				<div class="mcwallet-shortcode-panel-row">
@@ -153,14 +152,22 @@ function mcwallet_page(){
 				</div><!-- .mcwallet-shortcode-panel-row -->
 
 			</div><!-- .mcwallet-panel-tab -->
-				
+
 			<div class="welcome-panel-column-container mcwallet-panel-tab mcwallet-form-options" id="mcwallet-tab-2">
 				<div class="mcwallet-shortcode-panel-row">
-						
+
 					<h3><?php esc_html_e( 'Options', 'multi-currency-wallet' );?></h3>
 
 					<table class="form-table">
 						<tbody>
+							<tr>
+								<th scope="row">
+									<label><?php esc_html_e( 'Wallet front page title', 'multi-currency-wallet' );?></label>
+								</th>
+								<td>
+									<input name="mcwallet_page_title" type="text" class="regular-text" value="<?php echo esc_attr( get_option( 'mcwallet_page_title', esc_html__( 'Hot Wallet with p2p exchange', 'multi-currency-wallet' ) ) );?>">
+								</td>
+							</tr>
 							<tr>
 								<th scope="row">
 									<label><?php esc_html_e( 'Logo url', 'multi-currency-wallet' );?></label>
@@ -261,20 +268,20 @@ function mcwallet_page(){
 									<p class="description"><?php esc_html_e( 'Address the same as Ethereum', 'multi-currency-wallet' );?></p>
 								</td>
 							</tr>
-                            <tr>
+							<tr>
 								<th scope="row">
 									<label><?php esc_html_e( 'Default fiat currency', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
 									<select type="text" name="fiat_currency" class="regular-text">
-                                        <?php foreach( mcwallet_get_valutes() as $key => $valute ) { ?>
-                                            <option value="<?php echo esc_attr( $key ); ?>" <?php selected( get_option( 'fiat_currency', 'USD' ), $key ); ?>><?php echo esc_attr( $valute ); ?></option>
-                                        <?php } ?>
-                                    </select>
-                                    <!-- https://noxon.wpmix.net/worldCurrencyPrices.php -->
+										<?php foreach( mcwallet_get_valutes() as $key => $valute ) { ?>
+											<option value="<?php echo esc_attr( $key ); ?>" <?php selected( get_option( 'fiat_currency', 'USD' ), $key ); ?>><?php echo esc_attr( $valute ); ?></option>
+										<?php } ?>
+									</select>
+									<!-- https://noxon.wpmix.net/worldCurrencyPrices.php -->
 								</td>
 							</tr>
-                            <tr>
+							<tr>
 								<th scope="row">
 									<label><?php esc_html_e( 'Fiat Gateway Url', 'multi-currency-wallet' );?></label>
 								</th>
@@ -293,8 +300,8 @@ function mcwallet_page(){
 							</tr>
 						</tbody>
 					</table><!-- .form-table -->
-		
-					<hr>	
+
+					<hr>
 
 					<h3><?php esc_html_e( 'For use', 'multi-currency-wallet' );?></h3>
 						
@@ -331,13 +338,13 @@ function mcwallet_page(){
 							</tr>
 						</tbody>
 					</table><!-- .form-table -->
-	
+
 				</div><!-- .mcwallet-shortcode-panel-row -->
 			</div><!-- .mcwallet-panel-tab -->
-            
-            <div class="welcome-panel-column-container mcwallet-panel-tab mcwallet-form-options" id="mcwallet-tab-3">
+			
+			<div class="welcome-panel-column-container mcwallet-panel-tab mcwallet-form-options" id="mcwallet-tab-3">
 				<div class="mcwallet-shortcode-panel-row">
-						
+
 					<h3><?php esc_html_e( 'Custom code', 'multi-currency-wallet' );?></h3>
 
 					<table class="form-table">
@@ -347,7 +354,7 @@ function mcwallet_page(){
 									<label><?php esc_html_e( 'Before close tag &lt;/head&gt;', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
-                                    <textarea name="mcwallet_head_code" class="large-text" rows="10"><?php echo get_option( 'mcwallet_head_code' );?></textarea>
+									<textarea name="mcwallet_head_code" class="large-text" rows="10"><?php echo get_option( 'mcwallet_head_code' );?></textarea>
 								</td>
 							</tr>
 							<tr>
@@ -355,18 +362,18 @@ function mcwallet_page(){
 									<label><?php esc_html_e( 'After open tag &lt;body&gt;', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
-                                    <textarea name="mcwallet_body_code" class="large-text" rows="10"><?php echo get_option( 'mcwallet_body_code' );?></textarea>
+									<textarea name="mcwallet_body_code" class="large-text" rows="10"><?php echo get_option( 'mcwallet_body_code' );?></textarea>
 								</td>
 							</tr>
-                            <tr>
+							<tr>
 								<th scope="row">
 									<label><?php esc_html_e( 'Before close tag &lt;/body&gt;', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
-                                    <textarea name="mcwallet_footer_code" class="large-text" rows="10"><?php echo get_option( 'mcwallet_footer_code' );?></textarea>
+									<textarea name="mcwallet_footer_code" class="large-text" rows="10"><?php echo get_option( 'mcwallet_footer_code' );?></textarea>
 								</td>
 							</tr>
-                            <tr>
+							<tr>
 								<th scope="row"></th>
 								<td>
 									<?php
@@ -377,13 +384,13 @@ function mcwallet_page(){
 							</tr>
 						</tbody>
 					</table><!-- .form-table -->
-	
+
 				</div><!-- .mcwallet-shortcode-panel-row -->
 			</div><!-- .mcwallet-panel-tab -->
-				
+
 		</div><!-- .welcome-panel-content -->
 	</div><!-- .welcome-panel -->
-		
+
 <?php
 }
 

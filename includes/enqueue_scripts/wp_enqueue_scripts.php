@@ -192,25 +192,34 @@ function mcwallet_inline_script(){
 
 	}
 
-	$script .= 'window.prerenderReady = false;' . "\n\n";
-
-	$script .= 'window.CUSTOM_LOGO = false;' . "\n\n";
-
-	$script .= 'window.logoUrl = \'' . mcwallet_logo_url() . '\';' . "\n\n";
-
-	$script .= 'window.publicUrl = \'' . MCWALLET_URL . 'vendors/swap/\';' . "\n\n";
-
 	$default_fiat = 'USD';
 	if ( get_option( 'fiat_currency' ) ) {
 		$default_fiat = get_option( 'fiat_currency' );
 	}
-	$script .= 'window.DEFAULT_FIAT = \'' . $default_fiat . '\';' . "\n\n";
 
 	$is_user_loggedin = 'false';
 	if ( is_user_logged_in() && get_option( 'mcwallet_is_logged' ) == 'true' ) {
 		$is_user_loggedin = 'true';
 	}
-	$script .= 'window.isUserRegisteredAndLoggedIn = ' . $is_user_loggedin . ';' . "\n\n";
+
+	$window_arr = array(
+		'prerenderReady'              => 'false',
+		'CUSTOM_LOGO'                 => 'false',
+		'logoUrl'                     => mcwallet_logo_url(),
+		'publicUrl'                   => MCWALLET_URL . 'vendors/swap/',
+		'defaultWindowTitle'          => get_option( 'mcwallet_page_title', esc_html__( 'Hot Wallet with p2p exchange', 'multi-currency-wallet' ) ),
+		'DEFAULT_FIAT'                => $default_fiat,
+		'isUserRegisteredAndLoggedIn' => $is_user_loggedin,
+	);
+
+
+	foreach ( $window_arr as $var => $value ) {
+		if ( $value != 'true' && $value != 'false' ) {
+			$value = '\'' . $value . '\'';
+		}
+		$script .= 'window.' . $var . ' = ' . $value . ';' . "\n";
+	}
+	$script .= "\n";
 
 	$fees = array();
 
