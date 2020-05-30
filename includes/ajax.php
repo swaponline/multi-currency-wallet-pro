@@ -74,6 +74,7 @@ function mcwallet_add_token() {
 				</td>
 				<td class="item-action">
 					<a href="#" class="button-link-delete mcwallet-btn-remove" data-name="' . esc_attr( $key) . '"><span class="dashicons dashicons-trash"></span></a>
+
 				</td>
 			</tr>';
 

@@ -132,6 +132,36 @@ function mcwallet_add_rewrite_rules() {
 add_action('init', 'mcwallet_add_rewrite_rules');
 
 /**
+ * Add rewrite rule
+ */
+function mcwallet_default_token() {
+    $token = array(
+        'usdt'        => array(
+            'name'        => 'TetherUSD',
+            'symbol'      => 'usdt',
+            'address'     => '0xdac17f958d2ee523a2206206994597c13d831ec7',
+            'decimals'    => '6',
+            'icon'        => '',
+            'bg'          => '',
+            'howdeposit'  => '',
+            'howwithdraw' => '',
+        ),
+    );
+    return $token;
+}
+
+/**
+ * Add rewrite rule
+ */
+function mcwallet_add_default_token() {
+	if ( false !== get_option( 'mcwallet_tokens' ) ) {
+        return;
+    }
+    $token = mcwallet_default_token();
+    update_option( 'mcwallet_tokens', $token );
+}
+
+/**
  * Include template
  */
 function mcwallet_include_template( $template ) {
@@ -346,6 +376,7 @@ function mcwallet_get_valutes() {
 		'ZAR' => esc_html__( 'South African rand', 'multi-currency-wallet' ),
 		'ZMW' => esc_html__( 'Zambian kwacha', 'multi-currency-wallet' ),
 		'ZWB' => esc_html__( 'Zimbabwean bonds', 'multi-currency-wallet' ),
+
 	);
 
 	return $valutes;

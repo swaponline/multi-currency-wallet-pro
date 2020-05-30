@@ -149,12 +149,19 @@ function mcwallet_inline_build_script() {
 function mcwallet_inline_script(){
 
 	$script = '';
-	if ( get_option( 'mcwallet_tokens' ) ) {
+    
+    $tokens = get_option( 'mcwallet_tokens' );
+    
+    if ( false !== $tokens && empty( $tokens ) ) {
+        $tokens = mcwallet_default_token();
+    }
+    
+	if ( $tokens ) {
 		$script = "window.widgetERC20Tokens = {" . "\n";
 		$i     = 0;
-		$count = count( get_option( 'mcwallet_tokens' ) );
+		$count = count( $tokens );
 
-		foreach( get_option('mcwallet_tokens') as $name => $token ) {
+		foreach( $tokens as $name => $token ) {
 			$i++;
 			$separator = '';
 			if ( $count != $i ) {
@@ -210,8 +217,8 @@ function mcwallet_inline_script(){
 		'defaultWindowTitle'          => get_option( 'mcwallet_page_title', esc_html__( 'Hot Wallet with p2p exchange', 'multi-currency-wallet' ) ),
 		'DEFAULT_FIAT'                => $default_fiat,
 		'isUserRegisteredAndLoggedIn' => $is_user_loggedin,
+        'buyViaCreditCardLink'        => get_option( 'fiat_gateway_url', 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}' ),
 	);
-
 
 	foreach ( $window_arr as $var => $value ) {
 		if ( $value != 'true' && $value != 'false' ) {
@@ -292,8 +299,6 @@ function mcwallet_inline_script(){
 
 	endif;
 	wp_reset_postdata();
-
-	$script .= 'window.buyViaCreditCardLink = "' . get_option( 'fiat_gateway_url', 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}' ) . '";' . "\n\n";
 
 	return $script;
 }

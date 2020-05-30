@@ -39,6 +39,7 @@ require MCWALLET_PATH . 'includes/init.php';
 function mcwallet_register_activation_hook() {
 	mcwallet_add_rewrite_rules();
 	flush_rewrite_rules();
+    mcwallet_add_default_token();
 }
 register_activation_hook( __FILE__, 'mcwallet_register_activation_hook' );
 
