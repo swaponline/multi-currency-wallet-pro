@@ -185,7 +185,7 @@ function mcwallet_page() {
 								</th>
 								<td>
 									<code><?php echo esc_url( home_url('/') );?></code>
-									<input name="page_slug" type="text" value="<?php echo esc_attr( get_option('mcwallet_slug') );?>" class="regular-text code mcwallet-page-slug" <?php disabled( get_option( 'mcwallet_is_home' ), 'true' ); ?>>
+									<input name="page_slug" type="text" value="<?php echo esc_attr( mcwallet_page_slug() );?>" class="regular-text code mcwallet-page-slug" <?php disabled( get_option( 'mcwallet_is_home' ), 'true' ); ?>>
 									<code>/</code>
 									<a href="<?php echo mcwallet_page_url();?>" class="button mcwallet-button-url<?php if( get_option( 'mcwallet_is_home' ) ) { echo ' disabled';}?>" target="_blank"><?php esc_html_e( 'View page', 'multi-currency-wallet' );?></a>
 								</td>
@@ -224,6 +224,7 @@ function mcwallet_page() {
 									<label><?php esc_html_e( 'Bitcoin', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
+
 									<input name="btc_fee" type="text" value="<?php echo esc_attr( get_option('btc_fee') );?>" class="tiny-text textright"> % <input name="btc_min" type="text" value="<?php echo esc_attr( get_option('btc_min') );?>" size="7" class="textright" placeholder="0.001"> <?php esc_html_e( 'min.', 'multi-currency-wallet' ); ?>
 								</td>
 							</tr>
