@@ -15,10 +15,11 @@ function mcwallet_enqueue_scripts() {
 	/* Register Scripts */
 	wp_register_script( 'swiper', MCWALLET_URL . 'assets/js/swiper.min.js', array(), '4.5.1', true );
 	wp_register_script( 'mcwallet-vendor', MCWALLET_URL . 'vendors/swap/vendor.js', array( 'react-dom', 'swiper' ), MCWALLET_BUILD_VER, true );
-	wp_register_script( 'mcwallet-app', MCWALLET_URL . 'vendors/swap/app.js', array( 'mcwallet-vendor' ), esc_attr( MCWALLET_BUILD_VER ), true );
+	//wp_register_script( 'mcwallet-app', MCWALLET_URL . 'vendors/swap/app.js', array( 'mcwallet-vendor' ), esc_attr( MCWALLET_BUILD_VER ), true );
 
 	wp_add_inline_script( 'mcwallet-vendor', mcwallet_inline_build_script(), 'before' );
 	wp_add_inline_script( 'mcwallet-vendor', mcwallet_inline_script(), 'before' );
+    wp_add_inline_script( 'mcwallet-vendor', mcwallet_app_script(), 'after' );
 
 }
 add_action( 'wp_loaded', 'mcwallet_enqueue_scripts' );
@@ -45,7 +46,7 @@ add_action( 'mcwallet_head', 'mcwallet_print_head_styles' );
  * Page Print Scripts
  */
 function mcwallet_print_scripts_widget_footer() {
-	wp_print_scripts( 'mcwallet-app' );
+	wp_print_scripts( 'mcwallet-vendor' );
 }
 add_action( 'mcwallet_footer', 'mcwallet_print_scripts_widget_footer' );
 
@@ -302,6 +303,28 @@ function mcwallet_inline_script(){
 
 	return $script;
 }
+
+/**
+ * Inline app scripts
+ */
+function mcwallet_app_script(){
+   
+    $app = file_get_contents( MCWALLET_URL . 'vendors/swap/app.js' );
+    $strings = get_option( 'mcwallet_strings' );
+    if ( $strings ) {
+        foreach( $strings as $string ) {
+            $key   = '"' . $string[0] . '"';
+            $value = '"' . $string[1] . '"';
+            $replacements[ $key ] = $value;
+        }
+        if ( $replacements ) {
+            $app = str_replace( array_keys( $replacements ), $replacements, $app );   
+        }
+    }
+    
+    return $app;
+}
+
 
 /**
  * Register Google fonts.

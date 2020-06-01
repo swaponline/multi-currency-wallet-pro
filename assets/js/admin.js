@@ -165,7 +165,13 @@
 		var codeHead       = thisParent.find( '[name="mcwallet_head_code"]' ).val();
 		var codeBody       = thisParent.find( '[name="mcwallet_body_code"]' ).val();
 		var codeFooter     = thisParent.find( '[name="mcwallet_footer_code"]' ).val();
-		
+        
+        // click handler
+
+        var strings = '';
+        if ( $('.mcwallet-string-input').length ) {
+             strings = $('.mcwallet-string-input').serializeArray();
+        }
 
 		var ishome = 'false';
 		var isLogged = 'false';
@@ -198,7 +204,8 @@
 			codeHead: codeHead,
 			codeBody: codeBody,
 			codeFooter: codeFooter,
-			fiatGatewayUrl: fiatGatewayUrl
+			fiatGatewayUrl: fiatGatewayUrl,
+            strings: strings,
 		};
 
 		mcwalletSpinner(thisBtn);
@@ -289,6 +296,46 @@
 		})
 		.open();
 	});
+    
+    /**
+	 * Add String
+	 */
+	$('body').on('click', '.mcwallet-add-string', function(e){
+		e.preventDefault();
+        
+        if ( $('.mcwallet-strings-empty-row').length ) {
+            $('.mcwallet-strings-empty-row').remove();
+        }
+        
+        var count = $('.mcwallet-strings-row').length;
+        
+        var rowString = '<div class="mcwallet-strings-row">' +
+                            '<div class="mcwallet-string-col">' +
+                                '<input type="text" name="string_' + count + '" class="large-text mcwallet-string-input" value="">' + 
+                            '</div>' +
+                            '<div class="mcwallet-string-col">' +
+                                 '<input type="text" name="string_' + count + '" class="large-text mcwallet-string-input" value="">' + 
+                            '</div>' +
+                            '<div class="mcwallet-string-action">' +
+                                '<a href="#" class="button-link-delete mcwallet-remove-string"><span class="dashicons dashicons-trash"></span></a>' +
+                            '</div>' +
+                        '</div>';
+         count++;
+        $('.mcwallet-strings-body').append( rowString );
+	});
+    
+    /**
+	 * Add String
+	 */
+    $('body').on('click', '.mcwallet-remove-string', function(e){
+		e.preventDefault();
+        if ( ! $('.mcwallet-strings-row').length ) {
+            var emptyString = '<div class="mcwallet-strings-empty-row">no strings</div>';
+            $('.mcwallet-strings-body').append( emptyString );
+        }
+        $(this).parents('.mcwallet-strings-row').remove();
+	});
+    
 	
 	/**
 	 * Enable/Disable edit url

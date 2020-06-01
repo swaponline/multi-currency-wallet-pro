@@ -230,3 +230,36 @@
 .post-type-mcwallet_banner #minor-publishing-actions {
     display: none;
 }
+
+/**
+ * String Replacement
+ */
+.mcwallet-strings-header {
+    display: flex;
+    margin-bottom: 15px;
+}
+.mcwallet-strings-header h3 {
+    flex: auto;
+}
+.mcwallet-strings-row {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: center;
+}
+.mcwallet-strings-row .mcwallet-string-col {
+    flex: auto;
+}
+.mcwallet-strings-row .mcwallet-string-action a {
+    text-decoration: none;
+}
+.mcwallet-strings-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 25px;
+}
+.mcwallet-strings-empty-row {
+    padding: 10px;
+    margin-bottom: 15px;
+    margin-right: 25px;
+    background-color: #f1f1f1;
+}
