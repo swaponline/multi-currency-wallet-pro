@@ -226,7 +226,7 @@ function mcwallet_page() {
 								</th>
 								<td>
 
-									<input name="btc_fee" type="text" value="<?php echo esc_attr( get_option('btc_fee') );?>" class="tiny-text textright"> % <input name="btc_min" type="text" value="<?php echo esc_attr( get_option('btc_min') );?>" size="7" class="textright" placeholder="0.001"> <?php esc_html_e( 'min.', 'multi-currency-wallet' ); ?>
+									<input name="btc_fee" type="text" value="<?php echo esc_attr( get_option('btc_fee') );?>" class="tiny-text textright"> %, no less than <input name="btc_min" type="text" value="<?php echo esc_attr( get_option('btc_min') );?>" size="7" class="textright" placeholder="0.001"> <?php esc_html_e( 'BTC', 'multi-currency-wallet' ); ?>
 								</td>
 							</tr>
 							<tr>
@@ -242,7 +242,7 @@ function mcwallet_page() {
 									<label><?php esc_html_e( 'Ethereum', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
-									<input name="eth_fee" type="text" value="<?php echo esc_attr( get_option('eth_fee') );?>" class="tiny-text textright"> % <input name="eth_min" type="text" value="<?php echo esc_attr( get_option('eth_min') );?>" size="7" class="textright" placeholder="0.001"> <?php esc_html_e( 'min.', 'multi-currency-wallet' ); ?>
+									<input name="eth_fee" type="text" value="<?php echo esc_attr( get_option('eth_fee') );?>" class="tiny-text textright"> %, no less than <input name="eth_min" type="text" value="<?php echo esc_attr( get_option('eth_min') );?>" size="7" class="textright" placeholder="0.001"> <?php esc_html_e( 'ETH', 'multi-currency-wallet' ); ?>
 								</td>
 							</tr>
 							<tr>
@@ -258,7 +258,7 @@ function mcwallet_page() {
 									<label><?php esc_html_e( 'Other tokens', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
-									<input name="tokens_fee" type="text" value="<?php echo esc_attr( get_option('tokens_fee') );?>" class="tiny-text textright"> % <input name="tokens_min" type="text" value="<?php echo esc_attr( get_option('tokens_min') );?>" size="7" class="textright" placeholder="0.001"> <?php esc_html_e( 'min.', 'multi-currency-wallet' ); ?>
+									<input name="tokens_fee" type="text" value="<?php echo esc_attr( get_option('tokens_fee') );?>" class="tiny-text textright"> %, no less than <input name="tokens_min" type="text" value="<?php echo esc_attr( get_option('tokens_min') );?>" size="7" class="textright" placeholder="0.001"> <?php esc_html_e( 'Tokens', 'multi-currency-wallet' ); ?>
 								</td>
 							</tr>
 							<tr>
