@@ -65,7 +65,7 @@ function mcwallet_plugin_info( $res, $action, $args ) {
 		$res = new stdClass();
 
 		$res->name           = $remote->name;
-		$res->slug           = $plugin_slug;
+		$res->slug           = mcwallet_plugin_slug();
 		$res->version        = $remote->version;
 		$res->tested         = $remote->tested;
 		$res->requires       = $remote->requires;
