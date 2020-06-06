@@ -58,7 +58,7 @@ function mcwallet_plugin_info( $res, $action, $args ) {
 		);
 
 		if ( ! is_wp_error( $remote ) && isset( $remote['response']['code'] ) && $remote['response']['code'] == 200 && ! empty( $remote['body'] ) ) {
-			set_transient( mcwallet_transient_slug(), $remote, 43200 ); // 12 hours cache
+			set_transient( mcwallet_transient_slug(), $remote, HOUR_IN_SECONDS );
 		}
 
 	}

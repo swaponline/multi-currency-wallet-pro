@@ -1,7 +1,7 @@
 {
 	"name" : "Multi Currency Wallet Pro",
 	"version" : "1.0.7",
-	"download_url" : "https://growup.wpmix.net/wp-content/plugins/multi-currency-wallet-pro/info.json",
+	"download_url" : "https://growup.wpmix.net/wp-content/plugins/multi-currency-wallet-pro/multi-currency-wallet-pro.zip",
 	"requires" : "5.2",
 	"tested" : "5.4.1",
 	"requires_php" : "5.3",
