@@ -430,18 +430,21 @@ function mcwallet_page() {
 						</span>
 						<button class="button button-secondary mcwallet-add-string"><?php esc_html_e( 'Add string', 'multi-currency-wallet' ); ?></button>
 					</div>
-					<div class="mcwallet-strings-info">
-						<?php esc_html_e( 'How it works:',  'multi-currency-wallet' );?> <a href="https://youtu.be/NB1bvM7ZE3w" target="_blank">https://youtu.be/NB1bvM7ZE3w</a>
-					</div>
 				</div>
 
 			</div><!-- .mcwallet-shortcode-panel-row -->
 		</div><!-- .mcwallet-panel-tab -->
 
-		<?php mcwallet_info_bar_markup(); ?>
-
 	</div><!-- .welcome-panel-content -->
 
+	<div class="mcwallet-info-bar">
+		<?php
+			$filename = MCWALLET_PATH . 'multi-currency-wallet-pro.php';
+			$update_time = date("F d, Y - H:i", filemtime( $filename ) );
+
+			printf( esc_html__( 'Plugin version: %s | Build version: %s | Updated: %s', 'multi-currency-wallet' ), MCWALLET_VER, MCWALLET_BUILD_VER, $update_time );
+		?>
+	</div>
 </div><!-- .welcome-panel -->
 
 	<?php

@@ -196,23 +196,25 @@ function mcwallet_update_options() {
 		$slug             = 'mcwallet';
 		$is_home          = 'false';
 		$is_logged        = 'false';
-
-		$strings = array();
-		$replacements = array();
-		if ( isset( $_POST['strings'] ) ) {
-			$strings = $_POST['strings'];
-		}
-
-		if ( $strings ) {
-			foreach ( $strings as $string ) {
-				$id = esc_attr( $string['name'] );
-				$value = $string['value'];
-				if ( $value ) {
-					$value = trim( esc_attr( wp_strip_all_tags( $value ) ) );
-					$replacements[ $id ][] =  $value;
-				}
-			}
-		}
+        
+        $strings = array();
+        $replacements = array();
+        if ( isset( $_POST['strings'] ) ) {
+            $strings = $_POST['strings'];
+        }
+        
+       // print_r($strings);
+        if ( $strings ) {
+            foreach ( $strings as $string ) {
+                $id = esc_attr( $string['name'] );
+                $value = $string['value'];
+                if ( $value ) {
+                     $replacements[ $id ][] = esc_attr( $value );
+                }
+            }
+        }
+        
+       // print_r($replacements);
 
 		if ( untrailingslashit( $_POST['slug'] ) ) {
 			$slug = untrailingslashit( sanitize_title( $_POST['slug'] ) );
@@ -234,8 +236,8 @@ function mcwallet_update_options() {
 		update_option( 'mcwallet_head_code', $code_head );
 		update_option( 'mcwallet_body_code', $code_body );
 		update_option( 'mcwallet_footer_code', $code_footer );
-		
-		update_option( 'mcwallet_strings', $replacements );
+        
+        update_option( 'mcwallet_strings', $replacements );
 
 		if ( $_POST['ishome'] == 'true' ) {
 			update_option( 'mcwallet_is_home', sanitize_text_field( $_POST['ishome'] ) );
@@ -268,7 +270,7 @@ function mcwallet_update_options() {
 		'thickbox' => esc_attr( mcwallet_thickbox_url() ),
 		'ishome'   => $is_home,
 		'islogged' => $is_logged,
-		'strings'  => $replacements,
+        'strings'  => $replacements,
 	);
 
 	wp_send_json( $result_arr );
