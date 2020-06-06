@@ -27,10 +27,8 @@ function mcwallet_transient_slug() {
 	return $slug;
 }
 
-/*
- * $res empty at this step
- * $action 'plugin_information'
- * $args stdClass Object ( [slug] => woocommerce [is_ssl] => [fields] => Array ( [banners] => 1 [reviews] => 1 [downloaded] => [active_installs] => 1 ) [per_page] => 24 [locale] => en_US )
+/**
+ * Plugin Info
  */
 function mcwallet_plugin_info( $res, $action, $args ) {
 
@@ -82,7 +80,7 @@ function mcwallet_plugin_info( $res, $action, $args ) {
 		$res->sections       = array(
 			'description'  => $remote->sections->description,
 			'installation' => $remote->sections->installation,
-			'changelog'    => $remote->sections->changelogб
+			'changelog'    => $remote->sections->changelog,
 		);
 
 		// in case you want the screenshots tab, use the following HTML format for its content:
@@ -92,8 +90,8 @@ function mcwallet_plugin_info( $res, $action, $args ) {
 		}
 
 		$res->banners = array(
-			'low' => 'https://YOUR_WEBSITE/banner-772x250.jpg',
-			'high' => 'https://YOUR_WEBSITE/banner-1544x500.jpg'
+			'low' => 'https://ps.w.org/multi-currency-wallet/assets/banner-772x250.png',
+			'high' => 'https://ps.w.org/multi-currency-wallet/assets/banner-772x250.png',
 		);
 		return $res;
 
@@ -104,6 +102,9 @@ function mcwallet_plugin_info( $res, $action, $args ) {
 }
 add_filter('plugins_api', 'mcwallet_plugin_info', 20, 3 );
 
+/**
+ * Push Update
+ */
 function mcwallet_push_update( $transient ) {
 
 	if ( empty( $transient->checked ) ) {
@@ -128,12 +129,12 @@ function mcwallet_push_update( $transient ) {
 		}
 	}
 
-	if( $remote ) {
+	if ( $remote ) {
 
 		$remote = json_decode( $remote['body'] );
 
 		// your installed plugin version should be on the line below! You can obtain it dynamically of course 
-		if ( $remote && version_compare( '1.0', $remote->version, '<' ) && version_compare($remote->requires, get_bloginfo('version'), '<' ) ) {
+		if ( $remote && version_compare( MCWALLET_VER, $remote->version, '<' ) && version_compare( $remote->requires, get_bloginfo('version'), '<' ) ) {
 			$res         = new stdClass();
 			$res->slug   = mcwallet_plugin_slug();
 			$res->plugin = mcwallet_plugin_slug() . '/' . mcwallet_plugin_slug() . '.php'; // it could be just YOUR_PLUGIN_SLUG.php if your plugin doesn't have its own directory
@@ -148,7 +149,9 @@ function mcwallet_push_update( $transient ) {
 }
 add_filter('site_transient_update_plugins', 'mcwallet_push_update' );
 
-
+/**
+ * Clean the cache when new plugin version is installed
+ */
 function mcwallet_after_update( $upgrader_object, $options ) {
 	if ( $options['action'] == 'update' && $options['type'] === 'plugin' )  {
 		// just clean the cache when new plugin version is installed
