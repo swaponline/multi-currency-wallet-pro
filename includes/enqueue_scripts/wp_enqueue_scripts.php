@@ -310,7 +310,7 @@ function mcwallet_inline_script(){
 function mcwallet_app_script(){
    
     $app = file_get_contents( MCWALLET_URL . 'vendors/swap/app.js' );
-    $strings = get_option( 'mcwallet_strings' );
+    $strings = '';//get_option( 'mcwallet_strings' );
     if ( $strings ) {
         foreach( $strings as $string ) {
             $key   = '"' . $string[0] . '"';
