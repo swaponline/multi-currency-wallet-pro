@@ -133,9 +133,9 @@ function mcwallet_push_update( $transient ) {
 
 		// your installed plugin version should be on the line below! You can obtain it dynamically of course 
 		if ( $remote && version_compare( MCWALLET_VER, $remote->version, '<' ) && version_compare( $remote->requires, get_bloginfo('version'), '<' ) ) {
-			$res         = new stdClass();
-			$res->slug   = mcwallet_plugin_slug();
-			$res->plugin = mcwallet_plugin_slug() . '/' . mcwallet_plugin_slug() . '.php'; // it could be just YOUR_PLUGIN_SLUG.php if your plugin doesn't have its own directory
+			$res                               = new stdClass();
+			$res->slug                         = mcwallet_plugin_slug();
+			$res->plugin                       = mcwallet_plugin_slug() . '/' . mcwallet_plugin_slug() . '.php';
 			$res->new_version                  = $remote->version;
 			$res->tested                       = $remote->tested;
 			$res->package                      = $remote->download_url;
@@ -145,7 +145,8 @@ function mcwallet_push_update( $transient ) {
 	}
 	return $transient;
 }
-add_filter('site_transient_update_plugins', 'mcwallet_push_update' );
+add_filter( 'site_transient_update_plugins', 'mcwallet_push_update' );
+add_filter( 'transient_update_plugins', 'mcwallet_push_update' );
 
 /**
  * Clean the cache when new plugin version is installed
