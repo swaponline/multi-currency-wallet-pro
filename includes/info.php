@@ -160,7 +160,7 @@ function mcwallet_after_update( $upgrader_object, $options ) {
 add_action( 'upgrader_process_complete', 'mcwallet_after_update', 10, 2 );
 
 /**
- * Run code on the admin widgets page
+ * Force check update
  */
 function mcwallet_update_force_check() {
 	if ( ! isset( $_GET['force-check'] ) ) {
