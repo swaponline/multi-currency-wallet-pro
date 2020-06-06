@@ -46,14 +46,12 @@ function mcwallet_plugin_info( $res, $action, $args ) {
 	if ( false == $remote = get_transient( mcwallet_transient_slug() ) ) {
 
 		// info.json is the file with the actual plugin information on your server.
-		$remote = wp_remote_get( mcwallet_info_url(),
-			array(
+		$remote = wp_remote_get( mcwallet_info_url(), array(
 				'timeout' => 10,
 				'headers' => array(
 					'Accept' => 'application/json',
 				),
-			),
-		);
+		) );
 
 		if ( ! is_wp_error( $remote ) && isset( $remote['response']['code'] ) && $remote['response']['code'] == 200 && ! empty( $remote['body'] ) ) {
 			set_transient( mcwallet_transient_slug(), $remote, HOUR_IN_SECONDS );
