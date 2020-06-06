@@ -61,8 +61,8 @@
 .mcwallet-nav-tabs .nav-tab-active:focus,
 .mcwallet-nav-tabs .nav-tab-active:focus:active,
 .mcwallet-nav-tabs .nav-tab-active:hover {
-    border-bottom: 1px solid #fff;
-    background: #fff;
+	border-bottom: 1px solid #fff;
+	background: #fff;
 	outline: none;
 }
 .mcwallet-panel-tab:not(.panel-tab-active) {
@@ -188,6 +188,15 @@
 .mcwallet-notice.notice-error {
 	background-color: #eed4d4;
 }
+.mcwallet-info-bar {
+	text-align: right;
+	padding: 10px 20px;
+	margin: 15px -10px -20px;
+	background: #f1f1f1;
+	border-top: 1px solid #ccd0d4;
+	font-style: italic;
+	color: #555d66;
+}
 
 /* Color Picker */
 .wp-mcwallet-widget-form .wp-picker-clear,
@@ -224,42 +233,42 @@
  * Edit Banner
  */
 .post-type-mcwallet_banner .mcwallet-form-table .large-text {
-    width: 100%;
+	width: 100%;
 }
 .post-type-mcwallet_banner #misc-publishing-actions,
 .post-type-mcwallet_banner #minor-publishing-actions {
-    display: none;
+	display: none;
 }
 
 /**
  * String Replacement
  */
 .mcwallet-strings-header {
-    display: flex;
-    margin-bottom: 15px;
+	display: flex;
+	margin-bottom: 15px;
 }
 .mcwallet-strings-header h3 {
-    flex: auto;
+	flex: auto;
 }
 .mcwallet-strings-row {
-    display: flex;
-    margin-bottom: 15px;
-    align-items: center;
+	display: flex;
+	margin-bottom: 15px;
+	align-items: center;
 }
 .mcwallet-strings-row .mcwallet-string-col {
-    flex: auto;
+	flex: auto;
 }
 .mcwallet-strings-row .mcwallet-string-action a {
-    text-decoration: none;
+	text-decoration: none;
 }
 .mcwallet-strings-footer {
-    display: flex;
-    justify-content: space-between;
-    padding-right: 25px;
+	display: flex;
+	justify-content: space-between;
+	padding-right: 25px;
 }
 .mcwallet-strings-empty-row {
-    padding: 10px;
-    margin-bottom: 15px;
-    margin-right: 25px;
-    background-color: #f1f1f1;
+	padding: 10px;
+	margin-bottom: 15px;
+	margin-right: 25px;
+	background-color: #f1f1f1;
 }

@@ -35,7 +35,7 @@ function mcwallet_page() {
 				<a href="#mcwallet-tab-1" class="nav-tab nav-tab-active"><?php esc_html_e( 'Tokens list', 'multi-currency-wallet' ); ?></a>
 				<a href="#mcwallet-tab-2" class="nav-tab"><?php esc_html_e( 'Options', 'multi-currency-wallet' ); ?></a>
 				<a href="#mcwallet-tab-3" class="nav-tab"><?php esc_html_e( 'Custom HTML', 'multi-currency-wallet' ); ?></a>
-                <a href="#mcwallet-tab-4" class="nav-tab"><?php esc_html_e( 'Strings Editor', 'multi-currency-wallet' ); ?></a>
+				<a href="#mcwallet-tab-4" class="nav-tab"><?php esc_html_e( 'Strings Editor', 'multi-currency-wallet' ); ?></a>
 			</h2><!-- .nav-tab-wrapper -->
 
 			<div class="welcome-panel-column-container mcwallet-panel-tab panel-tab-active" id="mcwallet-tab-1">
@@ -335,7 +335,7 @@ function mcwallet_page() {
 								</th>
 								<td>
 									<a href="<?php echo mcwallet_thickbox_url();?>" class="button thickbox mcwallet-button-thickbox" title="<?php esc_attr_e( 'MCWallet Widget Demo', 'multi-currency-wallet' );?>"><?php esc_html_e( 'See Modal Widget Demo', 'mcwallet' );?></a>
-									<a href="<?php echo mcwallet_page_url();?>" class="button mcwallet-button-url" target="_blank"><?php esc_html_e( 'View page', 'multi-currency-wallet' );?></a>
+									<a href="<?php echo mcwallet_page_url(); ?>" class="button mcwallet-button-url" target="_blank"><?php esc_html_e( 'View page', 'multi-currency-wallet' ); ?></a>
 								</td>
 							</tr>
 						</tbody>
@@ -343,11 +343,11 @@ function mcwallet_page() {
 
 				</div><!-- .mcwallet-shortcode-panel-row -->
 			</div><!-- .mcwallet-panel-tab -->
-			
+
 			<div class="welcome-panel-column-container mcwallet-panel-tab mcwallet-form-options" id="mcwallet-tab-3">
 				<div class="mcwallet-shortcode-panel-row">
 
-					<h3><?php esc_html_e( 'Custom code', 'multi-currency-wallet' );?></h3>
+					<h3><?php esc_html_e( 'Custom code', 'multi-currency-wallet' ); ?></h3>
 
 					<table class="form-table">
 						<tbody>
@@ -356,7 +356,7 @@ function mcwallet_page() {
 									<label><?php esc_html_e( 'Before close tag &lt;/head&gt;', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
-									<textarea name="mcwallet_head_code" class="large-text" rows="10"><?php echo get_option( 'mcwallet_head_code' );?></textarea>
+									<textarea name="mcwallet_head_code" class="large-text" rows="10"><?php echo get_option( 'mcwallet_head_code' ); ?></textarea>
 								</td>
 							</tr>
 							<tr>
@@ -364,15 +364,15 @@ function mcwallet_page() {
 									<label><?php esc_html_e( 'After open tag &lt;body&gt;', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
-									<textarea name="mcwallet_body_code" class="large-text" rows="10"><?php echo get_option( 'mcwallet_body_code' );?></textarea>
+									<textarea name="mcwallet_body_code" class="large-text" rows="10"><?php echo get_option( 'mcwallet_body_code' ); ?></textarea>
 								</td>
 							</tr>
 							<tr>
 								<th scope="row">
-									<label><?php esc_html_e( 'Before close tag &lt;/body&gt;', 'multi-currency-wallet' );?></label>
+									<label><?php esc_html_e( 'Before close tag &lt;/body&gt;', 'multi-currency-wallet' ); ?></label>
 								</th>
 								<td>
-									<textarea name="mcwallet_footer_code" class="large-text" rows="10"><?php echo get_option( 'mcwallet_footer_code' );?></textarea>
+									<textarea name="mcwallet_footer_code" class="large-text" rows="10"><?php echo get_option( 'mcwallet_footer_code' ); ?></textarea>
 								</td>
 							</tr>
 							<tr>
@@ -389,59 +389,65 @@ function mcwallet_page() {
 
 				</div><!-- .mcwallet-shortcode-panel-row -->
 			</div><!-- .mcwallet-panel-tab -->
-            
-            <div class="welcome-panel-column-container mcwallet-panel-tab mcwallet-form-options" id="mcwallet-tab-4">
-                    
-                    <div class="mcwallet-strings-section">
-                        <div class="mcwallet-strings-header">
-                            <h3><?php esc_html_e( 'Original String', 'multi-currency-wallet' );?></h3>
-                            <h3><?php esc_html_e( 'Replacement String', 'multi-currency-wallet' );?></h3>
-                        </div>
 
-                        <div class="mcwallet-strings-body">
-                            <?php 
-                            $strings = get_option( 'mcwallet_strings');
- 
-                            if ( $strings ) { 
-                                foreach ( $strings as $key => $string ) {?>
-                                <div class="mcwallet-strings-row">
-                                    <div class="mcwallet-string-col">
-                                        <input type="text" name="<?php echo esc_attr( $key ); ?>" class="large-text mcwallet-string-input" value="<?php echo esc_attr( $string[0] ); ?>">
-                                    </div>
-                                    <div class="mcwallet-string-col">
-                                        <input type="text" name="<?php echo esc_attr( $key ); ?>" class="large-text mcwallet-string-input" value="<?php echo esc_attr( $string[1] ); ?>">
-                                    </div>
-                                    <div class="mcwallet-string-action">
-                                        <a href="#" class="button-link-delete mcwallet-remove-string"><span class="dashicons dashicons-trash"></span></a>
-                                    </div>
-                                </div>
-                            <?php }
-                            } else { ?>
-                                <div class="mcwallet-strings-empty-row"><?php esc_html_e( 'no strings', 'multi-currency-wallet' ); ?></div>
-                            <?php } ?>
-                        </div>
-                        <div class="mcwallet-strings-footer">
-                            <span>
-                                <?php
-                                    submit_button( esc_attr__( 'Update options', 'multi-currency-wallet' ), 'primary mcwallet-update-options', 'mcwallet-update-options', false );
-                                ?>
-                                <span class="spinner"></span>								
-                            </span>
-                            <button class="button button-secondary mcwallet-add-string"><?php esc_html_e( 'Add string', 'multi-currency-wallet' ); ?></button>
-                        </div>
-                    </div>
+			<div class="welcome-panel-column-container mcwallet-panel-tab mcwallet-form-options" id="mcwallet-tab-4">
 
-					
+				<div class="mcwallet-strings-section">
+					<div class="mcwallet-strings-header">
+						<h3><?php esc_html_e( 'Original String', 'multi-currency-wallet' ); ?></h3>
+						<h3><?php esc_html_e( 'Replacement String', 'multi-currency-wallet' ); ?></h3>
+					</div>
 
-					
+					<div class="mcwallet-strings-body">
+						<?php
+						$strings = get_option( 'mcwallet_strings');
 
-				</div><!-- .mcwallet-shortcode-panel-row -->
-			</div><!-- .mcwallet-panel-tab -->
+						if ( $strings ) {
+							foreach ( $strings as $key => $string ) {
+								?>
+							<div class="mcwallet-strings-row">
+								<div class="mcwallet-string-col">
+									<input type="text" name="<?php echo esc_attr( $key ); ?>" class="large-text mcwallet-string-input" value="<?php echo esc_attr( $string[0] ); ?>">
+								</div>
+								<div class="mcwallet-string-col">
+									<input type="text" name="<?php echo esc_attr( $key ); ?>" class="large-text mcwallet-string-input" value="<?php echo esc_attr( $string[1] ); ?>">
+								</div>
+								<div class="mcwallet-string-action">
+									<a href="#" class="button-link-delete mcwallet-remove-string"><span class="dashicons dashicons-trash"></span></a>
+								</div>
+							</div>
+						<?php }
+						} else { ?>
+							<div class="mcwallet-strings-empty-row"><?php esc_html_e( 'no strings', 'multi-currency-wallet' ); ?></div>
+						<?php } ?>
+					</div>
+					<div class="mcwallet-strings-footer">
+						<span>
+							<?php
+								submit_button( esc_attr__( 'Update options', 'multi-currency-wallet' ), 'primary mcwallet-update-options', 'mcwallet-update-options', false );
+							?>
+							<span class="spinner"></span>
+						</span>
+						<button class="button button-secondary mcwallet-add-string"><?php esc_html_e( 'Add string', 'multi-currency-wallet' ); ?></button>
+					</div>
+				</div>
 
-		</div><!-- .welcome-panel-content -->
-	</div><!-- .welcome-panel -->
+			</div><!-- .mcwallet-shortcode-panel-row -->
+		</div><!-- .mcwallet-panel-tab -->
 
-<?php
+	</div><!-- .welcome-panel-content -->
+
+	<div class="mcwallet-info-bar">
+		<?php
+			$filename = MCWALLET_PATH . 'multi-currency-wallet-pro.php';
+			$update_time = date("F d, Y - H:i", filemtime( $filename ) );
+
+			printf( esc_html__( 'Plugin version: %s | Build version: %s | Updated: %s', 'multi-currency-wallet' ), MCWALLET_VER, MCWALLET_BUILD_VER, $update_time );
+		?>
+	</div>
+</div><!-- .welcome-panel -->
+
+	<?php
 }
 
 /**

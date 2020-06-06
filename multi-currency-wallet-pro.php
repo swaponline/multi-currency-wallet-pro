@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || die( 'Soarele luceste!' );
 define( 'MCWALLET_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MCWALLET_URL', plugin_dir_url( __FILE__ ) );
 define( 'MCWALLET_VER', '1.0.7' );
-define( 'MCWALLET_BUILD_VER', '6fa163' );
+define( 'MCWALLET_BUILD_VER', '6fa1631' );
 
 /**
  * Run function if plugin active
@@ -39,7 +39,7 @@ require MCWALLET_PATH . 'includes/init.php';
 function mcwallet_register_activation_hook() {
 	mcwallet_add_rewrite_rules();
 	flush_rewrite_rules();
-    mcwallet_add_default_token();
+	mcwallet_add_default_token();
 }
 register_activation_hook( __FILE__, 'mcwallet_register_activation_hook' );
 
