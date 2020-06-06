@@ -23,7 +23,7 @@ function mcwallet_plugin_slug() {
  * Plugin Update Transitien Slug
  */
 function mcwallet_transient_slug() {
-	$slug = 'mcwallet_upgrade_' . mcwallet_plugin_slug;
+	$slug = 'mcwallet_upgrade_' . mcwallet_plugin_slug();
 	return $slug;
 }
 
@@ -48,11 +48,13 @@ function mcwallet_plugin_info( $res, $action, $args ) {
 	if ( false == $remote = get_transient( mcwallet_transient_slug() ) ) {
 
 		// info.json is the file with the actual plugin information on your server.
-		$remote = wp_remote_get( mcwallet_info_url(), array(
-			'timeout' => 10,
-			'headers' => array(
-				'Accept' => 'application/json',
-			) ),
+		$remote = wp_remote_get( mcwallet_info_url(),
+			array(
+				'timeout' => 10,
+				'headers' => array(
+					'Accept' => 'application/json',
+				),
+			),
 		);
 
 		if ( ! is_wp_error( $remote ) && isset( $remote['response']['code'] ) && $remote['response']['code'] == 200 && ! empty( $remote['body'] ) ) {
@@ -66,22 +68,21 @@ function mcwallet_plugin_info( $res, $action, $args ) {
 		$remote = json_decode( $remote['body'] );
 		$res = new stdClass();
 
-		$res->name = $remote->name;
-		$res->slug = $plugin_slug;
-		$res->version = $remote->version;
-		$res->tested = $remote->tested;
-		$res->requires = $remote->requires;
-		$res->author = 'Ion Burdianov';
+		$res->name           = $remote->name;
+		$res->slug           = $plugin_slug;
+		$res->version        = $remote->version;
+		$res->tested         = $remote->tested;
+		$res->requires       = $remote->requires;
+		$res->author         = 'Ion Burdianov';
 		$res->author_profile = 'https://profiles.wordpress.org/burdianov/';
-		$res->download_link = $remote->download_url;
-		$res->trunk = $remote->download_url;
-		$res->requires_php = '5.3';
-		$res->last_updated = $remote->last_updated;
-		$res->sections = array(
-			'description' => $remote->sections->description,
+		$res->download_link  = $remote->download_url;
+		$res->trunk          = $remote->download_url;
+		$res->requires_php   = $remote->requires_php;
+		$res->last_updated   = $remote->last_updated;
+		$res->sections       = array(
+			'description'  => $remote->sections->description,
 			'installation' => $remote->sections->installation,
-			'changelog' => $remote->sections->changelog
-			// you can add your custom sections (tabs) here
+			'changelog'    => $remote->sections->changelogб
 		);
 
 		// in case you want the screenshots tab, use the following HTML format for its content:
@@ -102,11 +103,6 @@ function mcwallet_plugin_info( $res, $action, $args ) {
 
 }
 add_filter('plugins_api', 'mcwallet_plugin_info', 20, 3 );
-
-
-
-
-
 
 function mcwallet_push_update( $transient ) {
 
@@ -141,9 +137,9 @@ function mcwallet_push_update( $transient ) {
 			$res         = new stdClass();
 			$res->slug   = mcwallet_plugin_slug();
 			$res->plugin = mcwallet_plugin_slug() . '/' . mcwallet_plugin_slug() . '.php'; // it could be just YOUR_PLUGIN_SLUG.php if your plugin doesn't have its own directory
-			$res->new_version = $remote->version;
-			$res->tested = $remote->tested;
-			$res->package = $remote->download_url;
+			$res->new_version                  = $remote->version;
+			$res->tested                       = $remote->tested;
+			$res->package                      = $remote->download_url;
 			$transient->response[$res->plugin] = $res;
 			//$transient->checked[$res->plugin] = $remote->version;
 		}

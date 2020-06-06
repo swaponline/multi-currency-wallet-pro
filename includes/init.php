@@ -64,4 +64,3 @@ require MCWALLET_PATH . 'includes/banners.php';
  * Banners
  */
 require MCWALLET_PATH . 'includes/info.php';
-
