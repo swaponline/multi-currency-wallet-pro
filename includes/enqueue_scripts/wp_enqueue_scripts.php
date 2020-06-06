@@ -8,18 +8,17 @@ function mcwallet_enqueue_scripts() {
 	wp_register_style( 'mcwallet-bootstrap', MCWALLET_URL . 'assets/css/bootstrap.min.css', false, '4.3.1' );
 	wp_register_style( 'fontawesome', MCWALLET_URL . 'assets/css/fontawesome.min.css', false, '5.7.21' );
 	wp_register_style( 'swiper', MCWALLET_URL . 'assets/css/swiper.min.css', false, '4.5.1' );
-	wp_register_style( 'mcwallet-style', MCWALLET_URL . 'assets/css/style.css', false, MCWALLET_BUILD_VER );
+	wp_register_style( 'mcwallet-style', MCWALLET_URL . 'assets/css/style.css', false, MCWALLET_VER . '-' . MCWALLET_BUILD_VER );
 	/* Google Fonts */
-	wp_register_style( 'mcwallet-google-fonts', mcwallet_fonts_url(), array(), MCWALLET_BUILD_VER );
-	wp_register_style( 'mcwallet-app', MCWALLET_URL . 'vendors/swap/app.css', false, MCWALLET_BUILD_VER );
+	wp_register_style( 'mcwallet-google-fonts', mcwallet_fonts_url(), array(), MCWALLET_VER . '-' . MCWALLET_BUILD_VER );
+	wp_register_style( 'mcwallet-app', MCWALLET_URL . 'vendors/swap/app.css', false, MCWALLET_VER . '-' . MCWALLET_BUILD_VER );
 	/* Register Scripts */
 	wp_register_script( 'swiper', MCWALLET_URL . 'assets/js/swiper.min.js', array(), '4.5.1', true );
-	wp_register_script( 'mcwallet-vendor', MCWALLET_URL . 'vendors/swap/vendor.js', array( 'react-dom', 'swiper' ), MCWALLET_BUILD_VER, true );
-	//wp_register_script( 'mcwallet-app', MCWALLET_URL . 'vendors/swap/app.js', array( 'mcwallet-vendor' ), esc_attr( MCWALLET_BUILD_VER ), true );
+	wp_register_script( 'mcwallet-vendor', MCWALLET_URL . 'vendors/swap/vendor.js', array( 'react-dom', 'swiper' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );
 
 	wp_add_inline_script( 'mcwallet-vendor', mcwallet_inline_build_script(), 'before' );
 	wp_add_inline_script( 'mcwallet-vendor', mcwallet_inline_script(), 'before' );
-    wp_add_inline_script( 'mcwallet-vendor', mcwallet_app_script(), 'after' );
+	wp_add_inline_script( 'mcwallet-vendor', mcwallet_app_script(), 'after' );
 
 }
 add_action( 'wp_loaded', 'mcwallet_enqueue_scripts' );
@@ -138,7 +137,7 @@ function mcwallet_inline_build_script() {
 	if (localStorage.length === 0) {
 	  information.innerText = "' . esc_html__( 'Please wait while the application is loading,\n it may take one minute...', 'multi-currency-wallet' ) . '";
 	}
-	
+
 	';
 
 	return $script;
@@ -150,13 +149,13 @@ function mcwallet_inline_build_script() {
 function mcwallet_inline_script(){
 
 	$script = '';
-    
-    $tokens = get_option( 'mcwallet_tokens' );
-    
-    if ( false !== $tokens && empty( $tokens ) ) {
-        $tokens = mcwallet_default_token();
-    }
-    
+	
+	$tokens = get_option( 'mcwallet_tokens' );
+	
+	if ( false !== $tokens && empty( $tokens ) ) {
+		$tokens = mcwallet_default_token();
+	}
+	
 	if ( $tokens ) {
 		$script = "window.widgetERC20Tokens = {" . "\n";
 		$i     = 0;
@@ -218,7 +217,7 @@ function mcwallet_inline_script(){
 		'defaultWindowTitle'          => get_option( 'mcwallet_page_title', esc_html__( 'Hot Wallet with p2p exchange', 'multi-currency-wallet' ) ),
 		'DEFAULT_FIAT'                => $default_fiat,
 		'isUserRegisteredAndLoggedIn' => $is_user_loggedin,
-        'buyViaCreditCardLink'        => get_option( 'fiat_gateway_url', 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}' ),
+		'buyViaCreditCardLink'        => get_option( 'fiat_gateway_url', 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}' ),
 	);
 
 	foreach ( $window_arr as $var => $value ) {
@@ -309,20 +308,20 @@ function mcwallet_inline_script(){
  */
 function mcwallet_app_script(){
    
-    $app = file_get_contents( MCWALLET_URL . 'vendors/swap/app.js' );
-    $strings = get_option( 'mcwallet_strings' );
-    if ( $strings ) {
-        foreach( $strings as $string ) {
-            $key   = '"' . $string[0] . '"';
-            $value = '"' . $string[1] . '"';
-            $replacements[ $key ] = $value;
-        }
-        if ( $replacements ) {
-            $app = str_replace( array_keys( $replacements ), $replacements, $app );   
-        }
-    }
-    
-    return $app;
+	$app = file_get_contents( MCWALLET_URL . 'vendors/swap/app.js' );
+	$strings = get_option( 'mcwallet_strings' );
+	if ( $strings ) {
+		foreach( $strings as $string ) {
+			$key   = '"' . $string[0] . '"';
+			$value = '"' . $string[1] . '"';
+			$replacements[ $key ] = $value;
+		}
+		if ( $replacements ) {
+			$app = str_replace( array_keys( $replacements ), $replacements, $app );   
+		}
+	}
+	
+	return $app;
 }
 
 
