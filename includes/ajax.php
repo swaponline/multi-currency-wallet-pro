@@ -208,8 +208,8 @@ function mcwallet_update_options() {
 				$id = esc_attr( $string['name'] );
 				$value = $string['value'];
 				if ( $value ) {
-					$value = wp_strip_all_tags( wp_specialchars_decode( $value ) );
-					$replacements[ $id ][] = esc_attr( trim( preg_replace('/[^A-Za-z0-9 .,-]/', '', $value ) ) );
+					$value = trim( esc_attr( wp_strip_all_tags( $value ) ) );
+					$replacements[ $id ][] =  $value;
 				}
 			}
 		}

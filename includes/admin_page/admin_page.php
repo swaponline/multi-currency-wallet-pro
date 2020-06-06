@@ -430,6 +430,9 @@ function mcwallet_page() {
 						</span>
 						<button class="button button-secondary mcwallet-add-string"><?php esc_html_e( 'Add string', 'multi-currency-wallet' ); ?></button>
 					</div>
+					<div class="mcwallet-strings-info">
+						<?php esc_html_e( 'How it works:',  'multi-currency-wallet' );?> <a href="https://youtu.be/NB1bvM7ZE3w" target="_blank">https://youtu.be/NB1bvM7ZE3w</a>
+					</div>
 				</div>
 
 			</div><!-- .mcwallet-shortcode-panel-row -->
