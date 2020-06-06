@@ -8,13 +8,13 @@ function mcwallet_enqueue_scripts() {
 	wp_register_style( 'mcwallet-bootstrap', MCWALLET_URL . 'assets/css/bootstrap.min.css', false, '4.3.1' );
 	wp_register_style( 'fontawesome', MCWALLET_URL . 'assets/css/fontawesome.min.css', false, '5.7.21' );
 	wp_register_style( 'swiper', MCWALLET_URL . 'assets/css/swiper.min.css', false, '4.5.1' );
-	wp_register_style( 'mcwallet-style', MCWALLET_URL . 'assets/css/style.css', false, MCWALLET_BUILD_VER );
+	wp_register_style( 'mcwallet-style', MCWALLET_URL . 'assets/css/style.css', false, MCWALLET_VER . '-' . MCWALLET_BUILD_VER );
 	/* Google Fonts */
-	wp_register_style( 'mcwallet-google-fonts', mcwallet_fonts_url(), array(), MCWALLET_BUILD_VER );
-	wp_register_style( 'mcwallet-app', MCWALLET_URL . 'vendors/swap/app.css', false, MCWALLET_BUILD_VER );
+	wp_register_style( 'mcwallet-google-fonts', mcwallet_fonts_url(), array(), MCWALLET_VER . '-' . MCWALLET_BUILD_VER );
+	wp_register_style( 'mcwallet-app', MCWALLET_URL . 'vendors/swap/app.css', false, MCWALLET_VER . '-' . MCWALLET_BUILD_VER );
 	/* Register Scripts */
 	wp_register_script( 'swiper', MCWALLET_URL . 'assets/js/swiper.min.js', array(), '4.5.1', true );
-	wp_register_script( 'mcwallet-vendor', MCWALLET_URL . 'vendors/swap/vendor.js', array( 'react-dom', 'swiper' ), MCWALLET_BUILD_VER, true );
+	wp_register_script( 'mcwallet-vendor', MCWALLET_URL . 'vendors/swap/vendor.js', array( 'react-dom', 'swiper' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );
 	//wp_register_script( 'mcwallet-app', MCWALLET_URL . 'vendors/swap/app.js', array( 'mcwallet-vendor' ), esc_attr( MCWALLET_BUILD_VER ), true );
 
 	wp_add_inline_script( 'mcwallet-vendor', mcwallet_inline_build_script(), 'before' );
@@ -310,7 +310,7 @@ function mcwallet_inline_script(){
 function mcwallet_app_script(){
    
     $app = file_get_contents( MCWALLET_URL . 'vendors/swap/app.js' );
-    $strings = get_option( 'mcwallet_strings' );
+    $strings = '';//get_option( 'mcwallet_strings' );
     if ( $strings ) {
         foreach( $strings as $string ) {
             $key   = '"' . $string[0] . '"';

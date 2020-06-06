@@ -21,9 +21,14 @@ require MCWALLET_PATH . 'includes/admin_page/admin_page.php';
 /**
  * Ajax
  */
-if( wp_doing_ajax() ){
+if ( wp_doing_ajax() ) {
 	require MCWALLET_PATH . 'includes/ajax.php';
 }
+
+/**
+ * Tags
+ */
+require MCWALLET_PATH . 'includes/tags.php';
 
 /**
  * Widget Admin Enqueue Scripts
@@ -54,3 +59,8 @@ require MCWALLET_PATH . 'includes/tinymce.php';
  * Banners
  */
 require MCWALLET_PATH . 'includes/banners.php';
+
+/**
+ * Banners
+ */
+require MCWALLET_PATH . 'includes/info.php';
