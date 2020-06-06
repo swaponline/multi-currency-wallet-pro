@@ -119,7 +119,7 @@ function mcwallet_push_update( $transient ) {
 				'headers' => array(
 					'Accept' => 'application/json',
 				),
-			),
+			)
 		);
 
 		if ( ! is_wp_error( $remote ) && isset( $remote['response']['code'] ) && $remote['response']['code'] == 200 && ! empty ( $remote['body'] ) ) {
