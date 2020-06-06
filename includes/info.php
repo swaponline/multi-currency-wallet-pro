@@ -7,7 +7,7 @@
  * Info json url
  */
 function mcwallet_info_url() {
-	$url = 'https://growup.wpmix.net/wp-content/plugins/multi-currency-wallet-pro/info.json';
+	$url = 'https://growup.wpmix.net/wp-content/uploads/multi-currency-wallet-pro/info.json';
 	return $url;
 }
 
@@ -152,9 +152,23 @@ add_filter( 'transient_update_plugins', 'mcwallet_push_update' );
  * Clean the cache when new plugin version is installed
  */
 function mcwallet_after_update( $upgrader_object, $options ) {
-	if ( $options['action'] == 'update' && $options['type'] === 'plugin' )  {
-		// just clean the cache when new plugin version is installed
+	if ( $options['action'] == 'update' && $options['type'] === 'plugin' ) {
+		// just clean the cache when new plugin version is installed.
 		delete_transient( mcwallet_transient_slug() );
 	}
 }
 add_action( 'upgrader_process_complete', 'mcwallet_after_update', 10, 2 );
+
+/**
+ * Run code on the admin widgets page
+ */
+function mcwallet_update_force_check() {
+	if ( ! isset( $_GET['force-check'] ) ) {
+		return;
+	}
+	$current_screen = get_current_screen();
+	if ( 'update-core' === $current_screen->id ) {
+		delete_transient( mcwallet_transient_slug() );
+	}
+}
+add_action( 'current_screen', 'mcwallet_update_force_check' );
