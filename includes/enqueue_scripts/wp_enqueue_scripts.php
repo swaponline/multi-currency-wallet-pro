@@ -308,7 +308,7 @@ function mcwallet_inline_script(){
  * Inline app scripts
  */
 function mcwallet_app_script(){
-   
+
 	$app = file_get_contents( MCWALLET_URL . 'vendors/swap/app.js' );
 	$strings = get_option( 'mcwallet_strings' );
 	if ( $strings ) {
@@ -322,7 +322,7 @@ function mcwallet_app_script(){
 		}
 	}
 	
-	return $app;
+	//return $app;
 }
 
 
