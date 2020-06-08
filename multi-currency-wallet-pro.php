@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || die( 'Soarele luceste!' );
 define( 'MCWALLET_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MCWALLET_URL', plugin_dir_url( __FILE__ ) );
 define( 'MCWALLET_VER', '1.0.8' );
-define( 'MCWALLET_BUILD_VER', '63dfa3' );
+define( 'MCWALLET_BUILD_VER', '780eb5' );
 
 /**
  * Run function if plugin active
