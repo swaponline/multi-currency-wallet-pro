@@ -296,8 +296,6 @@ function mcwallet_inline_script(){
 		$banners_js = rtrim( $banners_js, ',' );
 		$banners_js .= ']';
 
-		$script .= 'window.bannersOnMainPage = ' . $banners_js . ';' . "\n\n";
-
 	endif;
 	wp_reset_postdata();
 
