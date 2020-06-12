@@ -150,9 +150,9 @@ function mcwallet_inline_build_script() {
 function mcwallet_inline_script(){
 
 	$script = '';
-	
+
 	$tokens = get_option( 'mcwallet_tokens' );
-	
+
 	if ( false !== $tokens && empty( $tokens ) ) {
 		$tokens = mcwallet_default_token();
 	}
@@ -300,6 +300,8 @@ function mcwallet_inline_script(){
 	wp_reset_postdata();
 
 	$script .= 'window.bannersOnMainPage = ' . $banners_js . ';' . "\n\n";
+
+	$script .= 'window.widgetName = \'' . get_bloginfo() . '\';' . "\n\n";
 
 	return $script;
 }
