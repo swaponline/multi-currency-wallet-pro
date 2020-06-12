@@ -205,6 +205,13 @@ function mcwallet_wp_site_icon() {
 add_action( 'mcwallet_head', 'mcwallet_wp_site_icon' );
 
 /**
+ * Disable admin use info
+ */
+function mcwallet_show_admin_use() {
+	return false;
+}
+
+/**
  * Get valutes
  */ 
 function mcwallet_get_valutes() {

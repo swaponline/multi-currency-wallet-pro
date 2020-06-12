@@ -303,43 +303,47 @@ function mcwallet_page() {
 						</tbody>
 					</table><!-- .form-table -->
 
-					<hr>
+					<?php if ( mcwallet_show_admin_use() ) { ?>
 
-					<h3><?php esc_html_e( 'For use', 'multi-currency-wallet' );?></h3>
-						
-					<table class="form-table">
-						<tbody>
-							<tr>
-								<th scope="row">
-									<label><?php esc_html_e( 'Page url', 'multi-currency-wallet' );?></label>
-								</th>
-								<td>
-									<input type="text" onfocus="this.select();" readonly="readonly" class="large-text mcwallet-page-url" value="<?php echo esc_attr( mcwallet_page_url() );?>">
-									<p class="desciption"><em><?php esc_html_e( 'Direct link to widget page', 'multi-currency-wallet');?></em></p>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label><?php esc_html_e( 'Shortcode', 'multi-currency-wallet' );?></label>
-								</th>
-								<td>
-									<input type="text" onfocus="this.select();" readonly="readonly" class="regular-text" value="[mcwallet_widget]">
-									<p class="desciption"><em><?php esc_html_e( 'Copy and paste this shortcode in your page content.', 'multi-currency-wallet');?></em></p><br>
-									<input type="text" onfocus="this.select();" readonly="readonly" class="regular-text" value="<?php echo esc_html( '<?php echo do_shortcode( \'[mcwallet_widget]\' );?>' );?>">
-									<p class="desciption"><em><?php esc_html_e( 'Or add this code to the place of the template where you need to display widget.', 'multi-currency-wallet');?></em><br></p>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label><?php esc_html_e( 'Demo', 'multi-currency-wallet' );?></label>
-								</th>
-								<td>
-									<a href="<?php echo mcwallet_thickbox_url();?>" class="button thickbox mcwallet-button-thickbox" title="<?php esc_attr_e( 'MCWallet Widget Demo', 'multi-currency-wallet' );?>"><?php esc_html_e( 'See Modal Widget Demo', 'mcwallet' );?></a>
-									<a href="<?php echo mcwallet_page_url(); ?>" class="button mcwallet-button-url" target="_blank"><?php esc_html_e( 'View page', 'multi-currency-wallet' ); ?></a>
-								</td>
-							</tr>
-						</tbody>
-					</table><!-- .form-table -->
+						<hr>
+
+						<h3><?php esc_html_e( 'For use', 'multi-currency-wallet' );?></h3>
+							
+						<table class="form-table">
+							<tbody>
+								<tr>
+									<th scope="row">
+										<label><?php esc_html_e( 'Page url', 'multi-currency-wallet' );?></label>
+									</th>
+									<td>
+										<input type="text" onfocus="this.select();" readonly="readonly" class="large-text mcwallet-page-url" value="<?php echo esc_attr( mcwallet_page_url() );?>">
+										<p class="desciption"><em><?php esc_html_e( 'Direct link to widget page', 'multi-currency-wallet');?></em></p>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">
+										<label><?php esc_html_e( 'Shortcode', 'multi-currency-wallet' );?></label>
+									</th>
+									<td>
+										<input type="text" onfocus="this.select();" readonly="readonly" class="regular-text" value="[mcwallet_widget]">
+										<p class="desciption"><em><?php esc_html_e( 'Copy and paste this shortcode in your page content.', 'multi-currency-wallet');?></em></p><br>
+										<input type="text" onfocus="this.select();" readonly="readonly" class="regular-text" value="<?php echo esc_html( '<?php echo do_shortcode( \'[mcwallet_widget]\' );?>' );?>">
+										<p class="desciption"><em><?php esc_html_e( 'Or add this code to the place of the template where you need to display widget.', 'multi-currency-wallet');?></em><br></p>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">
+										<label><?php esc_html_e( 'Demo', 'multi-currency-wallet' );?></label>
+									</th>
+									<td>
+										<a href="<?php echo mcwallet_thickbox_url();?>" class="button thickbox mcwallet-button-thickbox" title="<?php esc_attr_e( 'MCWallet Widget Demo', 'multi-currency-wallet' );?>"><?php esc_html_e( 'See Modal Widget Demo', 'mcwallet' );?></a>
+										<a href="<?php echo mcwallet_page_url(); ?>" class="button mcwallet-button-url" target="_blank"><?php esc_html_e( 'View page', 'multi-currency-wallet' ); ?></a>
+									</td>
+								</tr>
+							</tbody>
+						</table><!-- .form-table -->
+
+					<?php } ?>
 
 				</div><!-- .mcwallet-shortcode-panel-row -->
 			</div><!-- .mcwallet-panel-tab -->
