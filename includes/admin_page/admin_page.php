@@ -308,12 +308,12 @@ function mcwallet_page() {
 						<hr>
 
 						<h3><?php esc_html_e( 'For use', 'multi-currency-wallet' );?></h3>
-							
+
 						<table class="form-table">
 							<tbody>
 								<tr>
 									<th scope="row">
-										<label><?php esc_html_e( 'Page url', 'multi-currency-wallet' );?></label>
+										<label><?php esc_html_e( 'Page url', 'multi-currency-wallet' ); ?></label>
 									</th>
 									<td>
 										<input type="text" onfocus="this.select();" readonly="readonly" class="large-text mcwallet-page-url" value="<?php echo esc_attr( mcwallet_page_url() );?>">
@@ -322,7 +322,7 @@ function mcwallet_page() {
 								</tr>
 								<tr>
 									<th scope="row">
-										<label><?php esc_html_e( 'Shortcode', 'multi-currency-wallet' );?></label>
+										<label><?php esc_html_e( 'Shortcode', 'multi-currency-wallet' ); ?></label>
 									</th>
 									<td>
 										<input type="text" onfocus="this.select();" readonly="readonly" class="regular-text" value="[mcwallet_widget]">
