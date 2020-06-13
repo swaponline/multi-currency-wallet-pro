@@ -1,6 +1,6 @@
 <?php
 /**
- * Widget Enqueue Scripts
+ * Enqueue Scripts
  */
 function mcwallet_enqueue_scripts() {
 
@@ -15,11 +15,10 @@ function mcwallet_enqueue_scripts() {
 	/* Register Scripts */
 	wp_register_script( 'swiper', MCWALLET_URL . 'assets/js/swiper.min.js', array(), '4.5.1', true );
 	wp_register_script( 'mcwallet-vendor', MCWALLET_URL . 'vendors/swap/vendor.js', array( 'react-dom', 'swiper' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );
-	//wp_register_script( 'mcwallet-app', MCWALLET_URL . 'vendors/swap/app.js', array( 'mcwallet-vendor' ), esc_attr( MCWALLET_BUILD_VER ), true );
+	wp_register_script( 'mcwallet-app', MCWALLET_URL . 'includes/enqueue_scripts/load-app.php', array( 'mcwallet-vendor' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );
 
 	wp_add_inline_script( 'mcwallet-vendor', mcwallet_inline_build_script(), 'before' );
 	wp_add_inline_script( 'mcwallet-vendor', mcwallet_inline_script(), 'before' );
-	wp_add_inline_script( 'mcwallet-vendor', mcwallet_app_script(), 'after' );
 
 }
 add_action( 'wp_loaded', 'mcwallet_enqueue_scripts' );
@@ -37,7 +36,7 @@ function mcwallet_print_head_styles() {
 	wp_print_styles( 'mcwallet-google-fonts' );
 	wp_print_styles( 'mcwallet-app' );
 	echo '<script>' . "\n";
-	echo '	var isWidgetBuild = "true";' . "\n";
+	echo '  var isWidgetBuild = "true";' . "\n";
 	echo '</script>' . "\n";
 }
 add_action( 'mcwallet_head', 'mcwallet_print_head_styles' );
@@ -46,9 +45,23 @@ add_action( 'mcwallet_head', 'mcwallet_print_head_styles' );
  * Page Print Scripts
  */
 function mcwallet_print_scripts_widget_footer() {
-	wp_print_scripts( 'mcwallet-vendor' );
+	wp_print_scripts( 'mcwallet-app' );
 }
 add_action( 'mcwallet_footer', 'mcwallet_print_scripts_widget_footer' );
+
+/**
+ * Unset wp-polyfill script
+ *
+ * @param array $scripts Scripts.
+ */
+function mcwallet_print_scripts_array( $scripts ) {
+	if ( in_array( 'wp-polyfill', $scripts ) ) {
+		$key = array_search( 'wp-polyfill', $scripts );
+		unset( $scripts[ $key ] );
+	}
+	return $scripts;
+}
+add_filter( 'print_scripts_array', 'mcwallet_print_scripts_array');
 
 /**
  * Swap Head Metas
@@ -66,7 +79,7 @@ function mcwallet_head_meta() {
  */
 function mcwallet_inline_build_script() {
 
-	$script = '	const getNavigatorLanguage = () => {
+	$script = ' const getNavigatorLanguage = () => {
 		if (navigator.languages && navigator.languages.length) {
 			return navigator.languages[0];
 		} else {
@@ -186,7 +199,7 @@ function mcwallet_inline_script(){
 			if ( isset( $token['howwithdraw'] ) ) {
 				$how_withdraw = $token['howwithdraw'];
 			}
-			$script .= "	" . $symbol . ": {
+			$script .= "    " . $symbol . ": {
 		address: '" . $address . "',
 		decimals: " . $decimals . ",
 		fullName: '" . $fullname . "',
@@ -219,6 +232,7 @@ function mcwallet_inline_script(){
 		'DEFAULT_FIAT'                => $default_fiat,
 		'isUserRegisteredAndLoggedIn' => $is_user_loggedin,
 		'buyViaCreditCardLink'        => get_option( 'fiat_gateway_url', 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}' ),
+		'logoutUrl'                   => wp_logout_url( mcwallet_page_url() ),
 	);
 
 	foreach ( $window_arr as $var => $value ) {
@@ -305,28 +319,6 @@ function mcwallet_inline_script(){
 
 	return $script;
 }
-
-/**
- * Inline app scripts
- */
-function mcwallet_app_script() {
-
-	$app = file_get_contents( MCWALLET_URL . 'vendors/swap/app.js' );
-	$strings = get_option( 'mcwallet_strings' );
-	if ( $strings ) {
-		foreach ( $strings as $string ) {
-			$key                  = '"' . $string[0] . '"';
-			$value                = '"' . $string[1] . '"';
-			$replacements[ $key ] = $value;
-		}
-		if ( $replacements ) {
-			$app = str_replace( array_keys( $replacements ), $replacements, $app );
-		}
-	}
-
-	return $app;
-}
-
 
 /**
  * Register Google fonts.
