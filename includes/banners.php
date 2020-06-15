@@ -62,8 +62,8 @@ add_filter('months_dropdown_results', '__return_empty_array');
  * Remove date from posts column
  */
 function mcwallet_remove_date_column( $columns ) {
-    unset( $columns['date'] );
-    return $columns;
+	unset( $columns['date'] );
+	return $columns;
 }
 add_filter( 'manage_mcwallet_banner_posts_columns', 'mcwallet_remove_date_column' );
 
@@ -71,10 +71,10 @@ add_filter( 'manage_mcwallet_banner_posts_columns', 'mcwallet_remove_date_column
  * Remove quick edit
  */
 function remove_quick_edit( $actions, $post ) {
-    if ( 'mcwallet_banner' == $post->post_type ) {
-        unset( $actions['inline hide-if-no-js'] );
-    }
-    return $actions;
+	if ( 'mcwallet_banner' == $post->post_type ) {
+		unset( $actions['inline hide-if-no-js'] );
+	}
+	return $actions;
 }
 add_filter( 'post_row_actions', 'remove_quick_edit', 10, 2 );
 
@@ -106,42 +106,42 @@ class MCWallet_Banner_Meta_Box {
 			esc_html__( 'Banner Details', 'multi-currency-wallet' ),
 			array( $this, 'render_metabox' ),
 			'mcwallet_banner',
-            'normal',
-            'high'
+			'normal',
+			'high'
 		);
 
 	}
 
 	public function render_metabox( $post ) {
-        
-        /* Add nonce for security and authentication */
+		
+		/* Add nonce for security and authentication */
 		wp_nonce_field( 'banner_meta_action', 'banner_meta_nonce' );
 
 		// Retrieve an existing value from the database.
-        $banner_text  = get_post_meta( $post->ID, 'banner_text', true );
-        $banner_url   = get_post_meta( $post->ID, 'banner_url', true );
+		$banner_text  = get_post_meta( $post->ID, 'banner_text', true );
+		$banner_url   = get_post_meta( $post->ID, 'banner_url', true );
 		$banner_icon  = get_post_meta( $post->ID, 'banner_icon', true );
 		$banner_image = get_post_meta( $post->ID, 'banner_image', true );
-        $banner_color = get_post_meta( $post->ID, 'banner_color', true );
+		$banner_color = get_post_meta( $post->ID, 'banner_color', true );
 
 		// Set default values.
-        if( empty( $banner_text ) ) $banner_text = '';
-        if( empty( $banner_url ) ) $banner_url = '';
+		if( empty( $banner_text ) ) $banner_text = '';
+		if( empty( $banner_url ) ) $banner_url = '';
 		if( empty( $banner_icon ) ) $banner_icon = '';
 		if( empty( $banner_image ) ) $banner_image = '';
-        if( empty( $banner_color ) ) $banner_color = '#1f2d48';
+		if( empty( $banner_color ) ) $banner_color = '#1f2d48';
 
 		// Form fields.
 		echo '<table class="form-table mcwallet-form-table">';
-        
-        echo '	<tr>';
+		
+		echo '	<tr>';
 		echo '		<th><label>' . esc_html__( 'Banner Text', 'multi-currency-wallet' ) . '</label></th>';
 		echo '		<td>';
 		echo '			<input type="text" name="banner_text" class="large-text" value="' . esc_attr( $banner_text ) . '">';
 		echo '		</td>';
 		echo '	</tr>';
-        
-        echo '	<tr>';
+		
+		echo '	<tr>';
 		echo '		<th><label>' . esc_html__( 'Banner Url', 'multi-currency-wallet' ) . '</label></th>';
 		echo '		<td>';
 		echo '			<input type="text" name="banner_url" class="large-text" value="' . esc_attr( $banner_url ) . '">';
@@ -151,30 +151,30 @@ class MCWallet_Banner_Meta_Box {
 		echo '	<tr>';
 		echo '		<th><label>' . esc_html__( 'Banner Icon', 'multi-currency-wallet' ) . '</label></th>';
 		echo '		<td>
-                        <div class="mcwallet-form-inline">
-                            <input name="banner_icon" type="text" class="large-text mcwallet-input-image" value="' . esc_attr( $banner_icon ) . '">
-                            <button class="button button-secondary mcwallet-load-image">' . esc_html__( 'Add Image', 'multi-currency-wallet' ) . '</button>
-                        </div>
-		          </td>';
+						<div class="mcwallet-form-inline">
+							<input name="banner_icon" type="text" class="large-text mcwallet-input-image" value="' . esc_attr( $banner_icon ) . '">
+							<button class="button button-secondary mcwallet-load-image">' . esc_html__( 'Add Image', 'multi-currency-wallet' ) . '</button>
+						</div>
+				  </td>';
 		echo '	</tr>';
 
 		echo '	<tr>';
 		echo '		<th><label>' . esc_html__( 'Background Image', 'multi-currency-wallet' ) . '</label></th>';
 		echo '		<td>
-                        <div class="mcwallet-form-inline">
-                            <input name="banner_image" type="text" class="large-text mcwallet-input-image" value="' . esc_attr( $banner_image ) . '">
-                            <button class="button button-secondary mcwallet-load-image">' . esc_html__( 'Add Image', 'multi-currency-wallet' ) . '</button>
-                        </div>
-                    </td>';
+						<div class="mcwallet-form-inline">
+							<input name="banner_image" type="text" class="large-text mcwallet-input-image" value="' . esc_attr( $banner_image ) . '">
+							<button class="button button-secondary mcwallet-load-image">' . esc_html__( 'Add Image', 'multi-currency-wallet' ) . '</button>
+						</div>
+					</td>';
 		echo '	</tr>';
-        
-        echo '	<tr>';
+		
+		echo '	<tr>';
 		echo '		<th><label>' . esc_html__( 'Background Color', 'multi-currency-wallet' ) . '</label></th>';
 		echo '		<td>
-                        <div class="mcwallet-form-inline">
-                            <input name="banner_color" class="mcwallet-icon-bg" type="text" value="' . esc_attr( $banner_color ) . '">
-                        </div>
-                    </td>';
+						<div class="mcwallet-form-inline">
+							<input name="banner_color" class="mcwallet-icon-bg" type="text" value="' . esc_attr( $banner_color ) . '">
+						</div>
+					</td>';
 		echo '	</tr>';
 
 		echo '</table>';
@@ -182,8 +182,8 @@ class MCWallet_Banner_Meta_Box {
 	}
 
 	public function save_metabox( $post_id, $post ) {
-        
-        /* Add nonce for security and authentication */
+		
+		/* Add nonce for security and authentication */
 		$nonce_name   = isset( $_POST['banner_meta_nonce'] ) ? $_POST['banner_meta_nonce'] : '';
 		$nonce_action = 'banner_meta_action';
 
@@ -204,21 +204,70 @@ class MCWallet_Banner_Meta_Box {
 			return;
 
 		/* Sanitize user input */
-        $banner_text  = isset( $_POST[ 'banner_text' ] ) ? sanitize_text_field( $_POST[ 'banner_text' ] ) : '';
-        $banner_url   = isset( $_POST[ 'banner_url' ] ) ? sanitize_text_field( $_POST[ 'banner_url' ] ) : '';
+		$banner_text  = isset( $_POST[ 'banner_text' ] ) ? sanitize_text_field( $_POST[ 'banner_text' ] ) : '';
+		$banner_url   = isset( $_POST[ 'banner_url' ] ) ? sanitize_text_field( $_POST[ 'banner_url' ] ) : '';
 		$banner_icon  = isset( $_POST[ 'banner_icon' ] ) ? sanitize_text_field( $_POST[ 'banner_icon' ] ) : '';
 		$banner_image = isset( $_POST[ 'banner_image' ] ) ? sanitize_text_field( $_POST[ 'banner_image' ] ) : '';
-        $banner_color = isset( $_POST[ 'banner_color' ] ) ? sanitize_hex_color( $_POST[ 'banner_color' ] ) : '';
+		$banner_color = isset( $_POST[ 'banner_color' ] ) ? sanitize_hex_color( $_POST[ 'banner_color' ] ) : '';
 
 		/* Update the meta field in the database */
-        update_post_meta( $post_id, 'banner_text', $banner_text );
-        update_post_meta( $post_id, 'banner_url', $banner_url );
+		update_post_meta( $post_id, 'banner_text', $banner_text );
+		update_post_meta( $post_id, 'banner_url', $banner_url );
 		update_post_meta( $post_id, 'banner_icon', $banner_icon );
 		update_post_meta( $post_id, 'banner_image', $banner_image );
-        update_post_meta( $post_id, 'banner_color', $banner_color );
+		update_post_meta( $post_id, 'banner_color', $banner_color );
 
 	}
 
 }
 
 new MCWallet_Banner_Meta_Box;
+
+/**
+ * Add default banners
+ */
+function mcwallet_add_default_banners() {
+
+	if ( get_option( 'mcwallet_version' ) ) {
+		return;
+	}
+
+	$banners = get_posts( array( 'post_type'   => 'mcwallet_banner' ) );
+	if ( ! empty( $banners ) ) {
+		return;
+	}
+
+	$posts = [
+		[
+			'post_title'  => 'Try BTC/USDT AtomicSwap exchange',
+			'post_type'   => 'mcwallet_banner',
+			'post_status' => 'publish',
+			'post_author' => 1,
+			'meta_input'  => [
+				'banner_text' => 'Try BTC/USDT AtomicSwap exchange',
+				'banner_url' => '/exchange/usdt-to-btc',
+				'banner_icon' => 'https://screenshots.wpmix.net/chrome_MTTeS0mbkL3n2WjS0U6gL2x5l9iID93U.png',
+				'banner_image' => '',
+				'banner_color' => '#1f2d48',
+			],
+		],
+		[
+			'post_title'  => 'Buy bitcoin using VISA/MC',
+			'post_type'   => 'mcwallet_banner',
+			'post_status' => 'publish',
+			'post_author' => 1,
+			'meta_input'  => [
+				'banner_text' => 'Deposit using VISA/MC',
+				'banner_url' => 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}',
+				'banner_icon' => 'https://growup.wpmix.net/wp-content/uploads/2020/05/pngflow.com_.png',
+				'banner_image' => '',
+				'banner_color' => '#2aa2d6',
+			],
+		],
+	];
+
+	foreach ( $posts as $post ) {
+		wp_insert_post(  wp_slash( $post ) );
+	}
+
+}

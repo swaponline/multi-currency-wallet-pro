@@ -68,11 +68,11 @@ add_filter( 'print_scripts_array', 'mcwallet_print_scripts_array');
  */
 function mcwallet_head_meta() {
 	$meta  = '<meta name="viewport" content="width=device-width, initial-scale=1" />' . "\n";
-    // Disable google translate.
-    $meta .= '<meta name="google" content="notranslate" />' . "\n";
-    $meta .= '<meta name="mobile-web-app-capable" content="yes">' . "\n";
-    $meta .= '<meta name="theme-color" content="#fff">' . "\n";
-    $meta .= '<meta name="application-name" content="swap.online">' . "\n";
+	// Disable google translate.
+	$meta .= '<meta name="google" content="notranslate" />' . "\n";
+	$meta .= '<meta name="mobile-web-app-capable" content="yes">' . "\n";
+	$meta .= '<meta name="theme-color" content="#fff">' . "\n";
+	$meta .= '<meta name="application-name" content="swap.online">' . "\n";
 	return $meta;
 }
 
@@ -224,11 +224,11 @@ function mcwallet_inline_script(){
 	if ( is_user_logged_in() && get_option( 'mcwallet_is_logged' ) == 'true' ) {
 		$is_user_loggedin = 'true';
 	}
-    
-    $show_howitworks = 0;
-    if ( get_option( 'show_howitworks' ) ) {
-        $show_howitworks = 1;
-    }
+
+	$show_howitworks = 0;
+	if ( get_option( 'show_howitworks' ) ) {
+		$show_howitworks = 1;
+	}
 
 	$window_arr = array(
 		'prerenderReady'               => 'false',
@@ -240,12 +240,12 @@ function mcwallet_inline_script(){
 		'isUserRegisteredAndLoggedIn'  => $is_user_loggedin,
 		'buyViaCreditCardLink'         => get_option( 'fiat_gateway_url', 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}' ),
 		'logoutUrl'                    => wp_logout_url( mcwallet_page_url() ),
-        'showHowItWorksOnExchangePage' => $show_howitworks,
-        'widgetName'                   => get_bloginfo(),
+		'showHowItWorksOnExchangePage' => $show_howitworks,
+		'widgetName'                   => get_bloginfo(),
 	);
 
 	foreach ( $window_arr as $var => $value ) {
-		if ( $value != 'true' && $value != 'false' ) {
+		if ( $value != 'true' && $value != 'false' && $value != '1' && 'false' && $value != '0' ) {
 			$value = '\'' . $value . '\'';
 		}
 		$script .= 'window.' . $var . ' = ' . $value . ';' . "\n";

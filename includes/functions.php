@@ -135,19 +135,19 @@ add_action('init', 'mcwallet_add_rewrite_rules');
  * Add rewrite rule
  */
 function mcwallet_default_token() {
-    $token = array(
-        'usdt'        => array(
-            'name'        => 'TetherUSD',
-            'symbol'      => 'usdt',
-            'address'     => '0xdac17f958d2ee523a2206206994597c13d831ec7',
-            'decimals'    => '6',
-            'icon'        => '',
-            'bg'          => '',
-            'howdeposit'  => '',
-            'howwithdraw' => '',
-        ),
-    );
-    return $token;
+	$token = array(
+		'usdt'        => array(
+			'name'        => 'TetherUSD',
+			'symbol'      => 'usdt',
+			'address'     => '0xdac17f958d2ee523a2206206994597c13d831ec7',
+			'decimals'    => '6',
+			'icon'        => '',
+			'bg'          => '',
+			'howdeposit'  => '',
+			'howwithdraw' => '',
+		),
+	);
+	return $token;
 }
 
 /**
@@ -155,10 +155,10 @@ function mcwallet_default_token() {
  */
 function mcwallet_add_default_token() {
 	if ( false !== get_option( 'mcwallet_tokens' ) ) {
-        return;
-    }
-    $token = mcwallet_default_token();
-    update_option( 'mcwallet_tokens', $token );
+		return;
+	}
+	$token = mcwallet_default_token();
+	update_option( 'mcwallet_tokens', $token );
 }
 
 /**
@@ -209,6 +209,13 @@ add_action( 'mcwallet_head', 'mcwallet_wp_site_icon' );
  */
 function mcwallet_show_admin_use() {
 	return false;
+}
+
+/**
+ * Update plugin db version
+ */
+function mcwallet_update_version() {
+	update_option( 'mcwallet_version', MCWALLET_VER );
 }
 
 /**
