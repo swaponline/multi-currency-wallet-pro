@@ -37,11 +37,11 @@ require MCWALLET_PATH . 'includes/init.php';
  * On activation plugin
  */
 function mcwallet_register_activation_hook() {
-	mcwallet_update_version();
 	mcwallet_add_rewrite_rules();
 	flush_rewrite_rules();
 	mcwallet_add_default_token();
 	mcwallet_add_default_banners();
+	mcwallet_update_version();
 }
 register_activation_hook( __FILE__, 'mcwallet_register_activation_hook' );
 
