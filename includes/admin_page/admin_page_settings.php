@@ -59,7 +59,7 @@ function mcwallet_do_settings_sections(){
 			</tr>
 			<tr>
 				<th scope="row">
-					<label><?php esc_html_e( 'How To Deposit', 'multi-currency-wallet' );?></label>
+					<label><?php esc_html_e( 'How To Deposit (optional)', 'multi-currency-wallet' );?></label>
 				</th>
 				<td>
 					<?php
@@ -74,7 +74,7 @@ function mcwallet_do_settings_sections(){
 			</tr>
 			<tr>
 				<th scope="row">
-					<label><?php esc_html_e( 'How To Withdraw', 'multi-currency-wallet' );?></label>
+					<label><?php esc_html_e( 'How To Withdraw  (optional)', 'multi-currency-wallet' );?></label>
 				</th>
 				<td>
 					<?php
