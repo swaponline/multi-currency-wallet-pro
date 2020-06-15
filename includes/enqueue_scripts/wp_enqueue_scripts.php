@@ -67,10 +67,12 @@ add_filter( 'print_scripts_array', 'mcwallet_print_scripts_array');
  * Swap Head Metas
  */
 function mcwallet_head_meta() {
-	$meta = '<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#fff">
-<meta name="application-name" content="swap.online">' . "\n";
+	$meta = '<meta name="viewport" content="width=device-width, initial-scale=1" />' . "\n";
+	// Disable google translate.
+	$meta .= '<meta name="google" content="notranslate" />' . "\n";
+	$meta .= '<meta name="mobile-web-app-capable" content="yes">' . "\n";
+	$meta .= '<meta name="theme-color" content="#fff">' . "\n";
+	$meta .= '<meta name="application-name" content="swap.online">' . "\n";
 	return $meta;
 }
 
