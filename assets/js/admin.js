@@ -147,34 +147,36 @@
 		e.preventDefault();
 		var thisBtn        = $(this);
 		var thisParent     = $('.mcwallet-form-options');
-		var logoUrl        = thisParent.find('[name="logo_url"]').val();
-		var pageTitle      = thisParent.find('[name="mcwallet_page_title"]').val();
-		var pageSlug       = thisParent.find('[name="page_slug"]').val();
-		var pageHome       = thisParent.find('[name="is_home"]');
-		var pageAccess     = thisParent.find('[name="is_logged"]');
-		var btcFee         = thisParent.find('[name="btc_fee"]').val();
-		var btcMin         = thisParent.find('[name="btc_min"]').val();
-		var btcFeeAddress  = thisParent.find('[name="btc_fee_address"]').val();
-		var ethFee         = thisParent.find('[name="eth_fee"]').val();
-		var ethMin         = thisParent.find('[name="eth_min"]').val();
-		var ethFeeAddress  = thisParent.find('[name="eth_fee_address"]').val();
-		var tokensFee      = thisParent.find('[name="tokens_fee"]').val();
-		var tokensMin      = thisParent.find('[name="tokens_min"]').val();
-		var fiatCurrency   = thisParent.find('[name="fiat_currency"]').val();
-		var fiatGatewayUrl = thisParent.find('[name="fiat_gateway_url"]').val();
+		var logoUrl        = thisParent.find( '[name="logo_url"]' ).val();
+		var pageTitle      = thisParent.find( '[name="mcwallet_page_title"]' ).val();
+		var pageSlug       = thisParent.find( '[name="page_slug"]' ).val();
+		var pageHome       = thisParent.find( '[name="is_home"]' );
+		var pageAccess     = thisParent.find( '[name="is_logged"]' );
+		var btcFee         = thisParent.find( '[name="btc_fee"]' ).val();
+		var btcMin         = thisParent.find( '[name="btc_min"]' ).val();
+		var btcFeeAddress  = thisParent.find( '[name="btc_fee_address"]' ).val();
+		var ethFee         = thisParent.find( '[name="eth_fee"]' ).val();
+		var ethMin         = thisParent.find( '[name="eth_min"]' ).val();
+		var ethFeeAddress  = thisParent.find( '[name="eth_fee_address"]' ).val();
+		var tokensFee      = thisParent.find( '[name="tokens_fee"]' ).val();
+		var tokensMin      = thisParent.find( '[name="tokens_min"]' ).val();
+		var fiatCurrency   = thisParent.find( '[name="fiat_currency"]' ).val();
+		var fiatGatewayUrl = thisParent.find( '[name="fiat_gateway_url"]' ).val();
+		var showHowitworks = thisParent.find( '[name="show_howitworks"]' );
 		var codeHead       = thisParent.find( '[name="mcwallet_head_code"]' ).val();
 		var codeBody       = thisParent.find( '[name="mcwallet_body_code"]' ).val();
 		var codeFooter     = thisParent.find( '[name="mcwallet_footer_code"]' ).val();
-        
-        // click handler
+		
+		// click handler
 
-        var strings = '';
-        if ( $('.mcwallet-string-input').length ) {
-             strings = $('.mcwallet-string-input').serializeArray();
-        }
+		var strings = '';
+		if ( $('.mcwallet-string-input').length ) {
+			 strings = $('.mcwallet-string-input').serializeArray();
+		}
 
 		var ishome = 'false';
 		var isLogged = 'false';
+		var isHowitworks = 'false';
 		
 		if ( pageHome.is(':checked') ) {
 			ishome = 'true';
@@ -182,6 +184,10 @@
 		
 		if ( pageAccess.is(':checked') ) {
 			isLogged = 'true';
+		}
+		
+		if ( showHowitworks.is(':checked') ) {
+			isHowitworks = 'true';
 		}
 
 		var data = {
@@ -205,7 +211,8 @@
 			codeBody: codeBody,
 			codeFooter: codeFooter,
 			fiatGatewayUrl: fiatGatewayUrl,
-            strings: strings,
+			isHowitworks: isHowitworks,
+			strings: strings,
 		};
 
 		mcwalletSpinner(thisBtn);
@@ -296,46 +303,46 @@
 		})
 		.open();
 	});
-    
-    /**
+	
+	/**
 	 * Add String
 	 */
 	$('body').on('click', '.mcwallet-add-string', function(e){
 		e.preventDefault();
-        
-        if ( $('.mcwallet-strings-empty-row').length ) {
-            $('.mcwallet-strings-empty-row').remove();
-        }
-        
-        var count = $('.mcwallet-strings-row').length;
-        
-        var rowString = '<div class="mcwallet-strings-row">' +
-                            '<div class="mcwallet-string-col">' +
-                                '<input type="text" name="string_' + count + '" class="large-text mcwallet-string-input" value="">' + 
-                            '</div>' +
-                            '<div class="mcwallet-string-col">' +
-                                 '<input type="text" name="string_' + count + '" class="large-text mcwallet-string-input" value="">' + 
-                            '</div>' +
-                            '<div class="mcwallet-string-action">' +
-                                '<a href="#" class="button-link-delete mcwallet-remove-string"><span class="dashicons dashicons-trash"></span></a>' +
-                            '</div>' +
-                        '</div>';
-         count++;
-        $('.mcwallet-strings-body').append( rowString );
+		
+		if ( $('.mcwallet-strings-empty-row').length ) {
+			$('.mcwallet-strings-empty-row').remove();
+		}
+		
+		var count = $('.mcwallet-strings-row').length;
+		
+		var rowString = '<div class="mcwallet-strings-row">' +
+							'<div class="mcwallet-string-col">' +
+								'<input type="text" name="string_' + count + '" class="large-text mcwallet-string-input" value="">' + 
+							'</div>' +
+							'<div class="mcwallet-string-col">' +
+								 '<input type="text" name="string_' + count + '" class="large-text mcwallet-string-input" value="">' + 
+							'</div>' +
+							'<div class="mcwallet-string-action">' +
+								'<a href="#" class="button-link-delete mcwallet-remove-string"><span class="dashicons dashicons-trash"></span></a>' +
+							'</div>' +
+						'</div>';
+		 count++;
+		$('.mcwallet-strings-body').append( rowString );
 	});
-    
-    /**
+	
+	/**
 	 * Add String
 	 */
-    $('body').on('click', '.mcwallet-remove-string', function(e){
+	$('body').on('click', '.mcwallet-remove-string', function(e){
 		e.preventDefault();
-        if ( ! $('.mcwallet-strings-row').length ) {
-            var emptyString = '<div class="mcwallet-strings-empty-row">no strings</div>';
-            $('.mcwallet-strings-body').append( emptyString );
-        }
-        $(this).parents('.mcwallet-strings-row').remove();
+		if ( ! $('.mcwallet-strings-row').length ) {
+			var emptyString = '<div class="mcwallet-strings-empty-row">no strings</div>';
+			$('.mcwallet-strings-body').append( emptyString );
+		}
+		$(this).parents('.mcwallet-strings-row').remove();
 	});
-    
+	
 	
 	/**
 	 * Enable/Disable edit url

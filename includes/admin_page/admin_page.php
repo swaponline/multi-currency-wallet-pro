@@ -290,8 +290,26 @@ function mcwallet_page() {
 								<td>
 									<input name="fiat_gateway_url" type="text" class="large-text" value="<?php echo esc_attr( get_option( 'fiat_gateway_url', 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}') );?>">
 								</td>
-							</tr>
+                            </tr>
+						</tbody>
+					</table><!-- .form-table -->
+                    
+                    <h3><?php esc_html_e( 'Custom Options', 'multi-currency-wallet' );?></h3>
+
+					<table class="form-table">
+						<tbody>
 							<tr>
+								<th scope="row">
+									<label><?php esc_html_e( 'Show "How it works" block', 'multi-currency-wallet' );?></label>
+								</th>
+								<td>
+									<label for="mcwallet_show_howitworks">
+										<input name="show_howitworks" type="checkbox" id="mcwallet_show_howitworks" value="true" <?php checked( 'true', get_option( 'show_howitworks' ) ); ?>>
+                                        <?php esc_html_e( 'Show "How it works" block on Exchange page', 'multi-currency-wallet' );?>
+									</label>
+								</td>
+							</tr>
+                            <tr>
 								<th scope="row"></th>
 								<td>
 									<?php
@@ -300,7 +318,7 @@ function mcwallet_page() {
 									<span class="spinner"></span>
 								</td>
 							</tr>
-						</tbody>
+                        </tbody>
 					</table><!-- .form-table -->
 
 					<?php if ( mcwallet_show_admin_use() ) { ?>

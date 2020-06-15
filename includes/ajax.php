@@ -234,7 +234,7 @@ function mcwallet_update_options() {
 		update_option( 'mcwallet_head_code', $code_head );
 		update_option( 'mcwallet_body_code', $code_body );
 		update_option( 'mcwallet_footer_code', $code_footer );
-		
+
 		update_option( 'mcwallet_strings', $replacements );
 
 		if ( $_POST['ishome'] == 'true' ) {
@@ -251,6 +251,12 @@ function mcwallet_update_options() {
 		} else {
 			delete_option( 'mcwallet_is_logged' );
 			update_option( 'users_can_register', false );
+		}
+
+		if ( $_POST['isHowitworks'] == 'true' ) {
+			update_option( 'show_howitworks', sanitize_text_field( $_POST['isHowitworks'] ) );
+		} else {
+			delete_option( 'show_howitworks' );
 		}
 
 		$result = esc_attr( mcwallet_page_url() );

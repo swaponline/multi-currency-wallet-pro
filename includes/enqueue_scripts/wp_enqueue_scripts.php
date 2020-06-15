@@ -67,12 +67,12 @@ add_filter( 'print_scripts_array', 'mcwallet_print_scripts_array');
  * Swap Head Metas
  */
 function mcwallet_head_meta() {
-	$meta = '<meta name="viewport" content="width=device-width, initial-scale=1" />' . "\n";
-	// Disable google translate.
-	$meta .= '<meta name="google" content="notranslate" />' . "\n";
-	$meta .= '<meta name="mobile-web-app-capable" content="yes">' . "\n";
-	$meta .= '<meta name="theme-color" content="#fff">' . "\n";
-	$meta .= '<meta name="application-name" content="swap.online">' . "\n";
+	$meta  = '<meta name="viewport" content="width=device-width, initial-scale=1" />' . "\n";
+    // Disable google translate.
+    $meta .= '<meta name="google" content="notranslate" />' . "\n";
+    $meta .= '<meta name="mobile-web-app-capable" content="yes">' . "\n";
+    $meta .= '<meta name="theme-color" content="#fff">' . "\n";
+    $meta .= '<meta name="application-name" content="swap.online">' . "\n";
 	return $meta;
 }
 
@@ -224,17 +224,24 @@ function mcwallet_inline_script(){
 	if ( is_user_logged_in() && get_option( 'mcwallet_is_logged' ) == 'true' ) {
 		$is_user_loggedin = 'true';
 	}
+    
+    $show_howitworks = 0;
+    if ( get_option( 'show_howitworks' ) ) {
+        $show_howitworks = 1;
+    }
 
 	$window_arr = array(
-		'prerenderReady'              => 'false',
-		'CUSTOM_LOGO'                 => 'false',
-		'logoUrl'                     => mcwallet_logo_url(),
-		'publicUrl'                   => MCWALLET_URL . 'vendors/swap/',
-		'defaultWindowTitle'          => get_option( 'mcwallet_page_title', esc_html__( 'Hot Wallet with p2p exchange', 'multi-currency-wallet' ) ),
-		'DEFAULT_FIAT'                => $default_fiat,
-		'isUserRegisteredAndLoggedIn' => $is_user_loggedin,
-		'buyViaCreditCardLink'        => get_option( 'fiat_gateway_url', 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}' ),
-		'logoutUrl'                   => wp_logout_url( mcwallet_page_url() ),
+		'prerenderReady'               => 'false',
+		'CUSTOM_LOGO'                  => 'false',
+		'logoUrl'                      => mcwallet_logo_url(),
+		'publicUrl'                    => MCWALLET_URL . 'vendors/swap/',
+		'defaultWindowTitle'           => get_option( 'mcwallet_page_title', esc_html__( 'Hot Wallet with p2p exchange', 'multi-currency-wallet' ) ),
+		'DEFAULT_FIAT'                 => $default_fiat,
+		'isUserRegisteredAndLoggedIn'  => $is_user_loggedin,
+		'buyViaCreditCardLink'         => get_option( 'fiat_gateway_url', 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}' ),
+		'logoutUrl'                    => wp_logout_url( mcwallet_page_url() ),
+        'showHowItWorksOnExchangePage' => $show_howitworks,
+        'widgetName'                   => get_bloginfo(),
 	);
 
 	foreach ( $window_arr as $var => $value ) {
@@ -316,8 +323,6 @@ function mcwallet_inline_script(){
 	wp_reset_postdata();
 
 	$script .= 'window.bannersOnMainPage = ' . $banners_js . ';' . "\n\n";
-
-	$script .= 'window.widgetName = \'' . get_bloginfo() . '\';' . "\n\n";
 
 	return $script;
 }
