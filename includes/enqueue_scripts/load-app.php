@@ -3,7 +3,13 @@
  * Load app scripts
  */
 
-require_once dirname( __FILE__, 6 ) . '/wp-load.php';
+if ( version_compare( PHP_VERSION, '7.0.0' ) >= 0) {
+	$path_levels = dirname( __FILE__, 6 ) . '/';
+} else {
+	$path_levels = dirname( __FILE__ ) . '../../../../../../';
+}
+
+require_once $path_levels . 'wp-load.php';
 
 $path = MCWALLET_PATH . 'vendors/swap/app.js';
 
