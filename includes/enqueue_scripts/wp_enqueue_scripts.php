@@ -233,6 +233,7 @@ function mcwallet_inline_script(){
 	$window_arr = array(
 		'prerenderReady'               => 'false',
 		'CUSTOM_LOGO'                  => 'false',
+		'LOGO_REDIRECT_LINK'           => mcwallet_get_logo_redirect_link(),
 		'logoUrl'                      => mcwallet_logo_url(),
 		'publicUrl'                    => MCWALLET_URL . 'vendors/swap/',
 		'defaultWindowTitle'           => get_option( 'mcwallet_page_title', esc_html__( 'Hot Wallet with p2p exchange', 'multi-currency-wallet' ) ),

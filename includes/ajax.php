@@ -179,6 +179,7 @@ function mcwallet_update_options() {
 	if ( isset( $_POST['url'] ) && isset( $_POST['slug'] ) ) {
 
 		$url              = sanitize_text_field( $_POST['url'] );
+        $logo_link         = sanitize_text_field( $_POST['logoLink'] );
 		$page_title       = sanitize_text_field( $_POST['pageTitle'] );
 		$btc_fee          = sanitize_text_field( $_POST['btcFee'] );
 		$btc_min          = sanitize_text_field( $_POST['btcMin'] );
@@ -219,6 +220,7 @@ function mcwallet_update_options() {
 		}
 
 		update_option( 'mcwallet_logo', $url );
+        update_option( 'mcwallet_logo_link', $logo_link );
 		update_option( 'mcwallet_page_title', $page_title );
 		update_option( 'mcwallet_slug', $slug );
 		update_option( 'btc_fee', $btc_fee );

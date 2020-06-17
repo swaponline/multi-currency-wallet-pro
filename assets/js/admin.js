@@ -148,6 +148,7 @@
 		var thisBtn        = $(this);
 		var thisParent     = $('.mcwallet-form-options');
 		var logoUrl        = thisParent.find( '[name="logo_url"]' ).val();
+        var logoLink       = thisParent.find( '[name="logo_link"]' ).val();
 		var pageTitle      = thisParent.find( '[name="mcwallet_page_title"]' ).val();
 		var pageSlug       = thisParent.find( '[name="page_slug"]' ).val();
 		var pageHome       = thisParent.find( '[name="is_home"]' );
@@ -194,6 +195,7 @@
 			action: 'mcwallet_update_options',
 			nonce: mcwallet.nonce,
 			url: logoUrl,
+            logoLink: logoLink,
 			pageTitle: pageTitle,
 			slug: pageSlug,
 			btcFee: btcFee,

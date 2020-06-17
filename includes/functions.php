@@ -219,11 +219,19 @@ function mcwallet_update_version() {
 }
 
 /**
+ * Get logo redirect link
+ */
+function mcwallet_get_logo_redirect_link() {
+	$logo_redirect_link = esc_attr( get_option('mcwallet_logo_link', get_home_url( '/' ) ) );
+	return $logo_redirect_link;
+}
+
+/**
  * Get valutes
  */ 
 function mcwallet_get_valutes() {
 
-	 $valutes = array(
+	$valutes = array(
 		'USD' => esc_html__( 'US dollar', 'multi-currency-wallet' ),
 		'EUR' => esc_html__( 'Euro', 'multi-currency-wallet' ),
 		'JPY' => esc_html__( 'Japanese', 'multi-currency-wallet' ),
