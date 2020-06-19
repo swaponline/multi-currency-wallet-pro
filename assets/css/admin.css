@@ -4,12 +4,7 @@
  
 @font-face {
 	font-family: 'Swap';
-	src: url('../webfonts/swap.eot');
-	src: url('../webfonts/swap.eot#iefix') format('embedded-opentype'),
-		 url('../webfonts/swap.woff2') format('woff2'),
-		 url('../webfonts/swap.woff') format('woff'),
-		 url('../webfonts/swap.ttf') format('truetype'),
-		 url('../webfonts/swap.svg#swap') format('svg');
+	src: url('../webfonts/swap.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
