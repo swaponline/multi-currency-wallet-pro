@@ -183,12 +183,16 @@ function mcwallet_inline_script(){
 			if ( $count != $i ) {
 				$separator = ',';
 			}
-			$name = strtolower( $name );
-			$address = $token['address'];
+			$name     = strtolower( $name );
+			$address  = $token['address'];
 			$decimals = $token['decimals'];
 			$fullname = $token['name'];
-			$symbol = strtolower( $token['symbol'] );
-			$icon = $token['icon'];
+			$symbol   = strtolower( $token['symbol'] );
+			$icon     = $token['icon'];
+			$rate     = '';
+			if ( isset( $token['rate'] ) ) {
+				$rate = $token['rate'];
+			}
 			$icon_bg = '';
 			if ( isset( $token['bg'] ) ) {
 				$icon_bg = $token['bg'];
@@ -206,6 +210,7 @@ function mcwallet_inline_script(){
 		decimals: " . $decimals . ",
 		fullName: '" . $fullname . "',
 		icon: '" . $icon . "',
+        customEcxchangeRate: '" . $rate . "',
 		iconBgColor: '" . $icon_bg . "',
 		howToDeposit: '" . wp_specialchars_decode( $how_deposit ) . "',
 		howToWithdraw: '" . wp_specialchars_decode( $how_withdraw ) . "',

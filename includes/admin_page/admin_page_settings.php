@@ -13,7 +13,7 @@ add_action( 'admin_init', 'mcwallet_register_settings' );
 /**
  * Widget Do Setting Sectios
  */
-function mcwallet_do_settings_sections(){
+function mcwallet_do_settings_sections() {
 	?>
 
 	<h3><?php esc_html_e( 'Add new token', 'multi-currency-wallet' );?></h3>
@@ -36,6 +36,15 @@ function mcwallet_do_settings_sections(){
 				<td>
 					<input name="name" type="text" class="regular-text">
 					<p class="description"><?php esc_html_e( 'If the field is empty then the token name will be substituted automatically', 'multi-currency-wallet' );?></p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">
+					<label><?php esc_html_e( 'Custom exchange rate', 'multi-currency-wallet' );?></label>
+				</th>
+				<td>
+					<input name="rate" type="number" value="" size="7" class="textright" placeholder="0">
+					<p class="description"><?php esc_html_e( 'Custom exchange rate', 'multi-currency-wallet' );?> <a href="https://screenshots.wpmix.net/chrome_vnv8OIFJ4oZ9QfCxrLM6CjQ05HG02mFG.png" target="_blank">(?)</a></p>
 				</td>
 			</tr>
 			<tr>
@@ -67,7 +76,7 @@ function mcwallet_do_settings_sections(){
 					wp_editor( $how_deposit_content, 'howdeposit', array(
 						'textarea_name' => 'howdeposit',
 						'textarea_rows' => 10,
-                        'quicktags'     => false
+						'quicktags'     => false
 					) );
 					?>
 				</td>
@@ -82,7 +91,7 @@ function mcwallet_do_settings_sections(){
 					wp_editor( $how_deposit_content, 'howwithdraw', array(
 						'textarea_name' => 'howwithdraw',
 						'textarea_rows' => 10,
-                        'quicktags'     => false
+						'quicktags'     => false
 					) );
 					?>
 				</td>

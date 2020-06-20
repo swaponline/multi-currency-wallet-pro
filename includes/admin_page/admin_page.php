@@ -62,6 +62,9 @@ function mcwallet_page() {
 								<td class="item-address">
 									<span><?php esc_html_e( 'ERC20 contract address', 'multi-currency-wallet' ); ?></span>
 								</td>
+								<td class="item-echange-rate">
+									<span><?php esc_html_e( 'Exchange Rate', 'multi-currency-wallet' ); ?></span>
+								</td>
 								<td class="item-action">
 									<span><?php esc_html_e( 'Action', 'multi-currency-wallet' ); ?></span>
 								</td>
@@ -78,14 +81,18 @@ function mcwallet_page() {
 									if ( isset( $token['bg'] ) ) {
 										$token_bg = $token['bg'];
 									}
+									$token_rate = '';
+									if ( isset( $token['rate'] ) && $token['rate'] ) {
+										$token_rate = $token['rate'];
+									}
 								?>
 								<tr class="item">
 									<th class="item-count">
 										<span></span>
 									</th>
 									<td class="item-icon">
-										<a href="<?php echo esc_url( mcwallet_page_url() ) . '#/' . esc_url( $name );?>-wallet" target="_blank" style="background-color: <?php echo esc_attr( $token_bg );?>">
-											<?php echo wp_kses_post( $img );?>
+										<a href="<?php echo esc_url( mcwallet_page_url() ) . '#/' . esc_url( $name );?>-wallet" target="_blank" style="background-color: <?php echo esc_attr( $token_bg ); ?>">
+											<?php echo wp_kses_post( $img ); ?>
 										</a>
 									</td>
 									<td class="item-name">
@@ -99,6 +106,9 @@ function mcwallet_page() {
 									</td>
 									<td class="item-address">
 										<code><?php echo esc_html( $token['address'] );?></code>
+									</td>
+									<td class="item-exchange-rate">
+										<span><?php echo esc_html( $token_rate );?></span>
 									</td>
 									<td class="item-action">
 										<a href="#" class="button-link-delete mcwallet-remove-token" data-name="<?php echo esc_html( $name );?>"><span class="dashicons dashicons-trash"></span></a>
@@ -133,6 +143,9 @@ function mcwallet_page() {
 								</td>
 								<td class="item-address">
 									<span><?php esc_html_e( 'ERC20 contract address', 'multi-currency-wallet' );?></span>
+								</td>
+								<td class="item-echange-rate">
+									<span><?php esc_html_e( 'Exchange Rate', 'multi-currency-wallet' ); ?></span>
 								</td>
 								<td class="item-action">
 									<span><?php esc_html_e( 'Action', 'multi-currency-wallet' );?></span>
@@ -223,7 +236,7 @@ function mcwallet_page() {
 							</tr>
 						</tbody>
 					</table><!-- .form-table -->
-					
+
 					<h3><?php esc_html_e( 'Transaction fees', 'multi-currency-wallet' );?></h3>
 
 					<table class="form-table">
@@ -301,7 +314,7 @@ function mcwallet_page() {
 							</tr>
 						</tbody>
 					</table><!-- .form-table -->
-					
+
 					<h3><?php esc_html_e( 'Custom Options', 'multi-currency-wallet' );?></h3>
 
 					<table class="form-table">

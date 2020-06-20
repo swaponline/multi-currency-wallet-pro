@@ -39,11 +39,12 @@ function mcwallet_add_token() {
 			if ( $custom_name ) {
 				$name = $custom_name;
 			}
-			$symbol = mcwallet_hex_to_string( mcwallet_get_remote_result( 'symbol', $address ) );
-			$decimals = mcwallet_hex_to_number( mcwallet_get_remote_result( 'decimals', $address ) );
-			$icon = sanitize_text_field( $_POST['icon'] );
-			$icon_bg = sanitize_hex_color( $_POST['bg'] );
-			$how_deposit = esc_html( wp_kses_post( wp_unslash( $_POST['howdeposit'] ) ) );
+			$symbol       = mcwallet_hex_to_string( mcwallet_get_remote_result( 'symbol', $address ) );
+			$decimals     = mcwallet_hex_to_number( mcwallet_get_remote_result( 'decimals', $address ) );
+			$icon         = sanitize_text_field( $_POST['icon'] );
+            $rate         = sanitize_text_field( $_POST['rate'] );
+			$icon_bg      = sanitize_hex_color( $_POST['bg'] );
+			$how_deposit  = esc_html( wp_kses_post( wp_unslash( $_POST['howdeposit'] ) ) );
 			$how_withdraw = esc_html( wp_kses_post( wp_unslash( $_POST['howwithdraw'] ) ) );
 
 			$img = '<span class="token-letter">' . mcwallet_token_letter( $name ) . '</span>';
@@ -72,6 +73,9 @@ function mcwallet_add_token() {
 				<td class="item-address">
 					<code>' . esc_html( $address ) . '</code>
 				</td>
+                <td class="item-echange-rate">
+					<span>' . esc_html( $rate ) . '</span>
+				</td>
 				<td class="item-action">
 					<a href="#" class="button-link-delete mcwallet-btn-remove" data-name="' . esc_attr( $key) . '"><span class="dashicons dashicons-trash"></span></a>
 
@@ -79,13 +83,14 @@ function mcwallet_add_token() {
 			</tr>';
 
 			$token[ $key ] = array(
-				'name'     => $name,
-				'symbol'   => $symbol,
-				'address'  => $address,
-				'decimals' => $decimals,
-				'icon'     => $icon,
-				'bg'       => $icon_bg,
-				'howdeposit' => $how_deposit,
+				'name'        => $name,
+				'symbol'      => $symbol,
+				'address'     => $address,
+				'decimals'    => $decimals,
+				'icon'        => $icon,
+                'rate'        => $rate,
+				'bg'          => $icon_bg,
+				'howdeposit'  => $how_deposit,
 				'howwithdraw' => $how_withdraw,
 			);
 
@@ -99,6 +104,7 @@ function mcwallet_add_token() {
 					'address'  => $address,
 					'decimals' => $decimals,
 					'icon'     => $icon,
+                    'rate'     => $rate,
 					'bg'       => $icon_bg,
 					'howdeposit' => $how_deposit,
 					'howwithdraw' => $how_withdraw,

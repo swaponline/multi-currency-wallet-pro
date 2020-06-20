@@ -52,6 +52,7 @@
 		var tokenAddress = thisForm.find('[name="address"]').val();
 		var tokenName = thisForm.find('[name="name"]').val();
 		var tokenIcon = thisForm.find('[name="icon"]').val();
+        var tokenRate = thisForm.find('[name="rate"]').val();
 		var iconBg = thisForm.find('.mcwallet-icon-bg').val();
 		var howDeposit = window.tinyMCE.get('howdeposit').getContent();
 		var howWithdraw = window.tinyMCE.get('howwithdraw').getContent();
@@ -66,6 +67,7 @@
 				address: tokenAddress,
 				name: tokenName,
 				icon: tokenIcon,
+                rate: tokenRate,
 				bg: iconBg,
 				howdeposit: howDeposit,
 				howwithdraw: howWithdraw,

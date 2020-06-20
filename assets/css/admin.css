@@ -94,6 +94,11 @@
 .wp-list-tokens .item-address {
 	white-space: nowrap;
 }
+.wp-list-tokens .item-echange-rate {
+	width: 100px;
+	text-align: center;
+    white-space: nowrap;
+}
 .wp-list-tokens .item-action {
 	width: 20px;
 	text-align: center;
