@@ -50,20 +50,6 @@ function mcwallet_print_scripts_widget_footer() {
 add_action( 'mcwallet_footer', 'mcwallet_print_scripts_widget_footer' );
 
 /**
- * Unset wp-polyfill script
- *
- * @param array $scripts Scripts.
- */
-function mcwallet_print_scripts_array( $scripts ) {
-	if ( in_array( 'wp-polyfill', $scripts ) ) {
-		$key = array_search( 'wp-polyfill', $scripts );
-		unset( $scripts[ $key ] );
-	}
-	return $scripts;
-}
-add_filter( 'print_scripts_array', 'mcwallet_print_scripts_array');
-
-/**
  * Swap Head Metas
  */
 function mcwallet_head_meta() {
