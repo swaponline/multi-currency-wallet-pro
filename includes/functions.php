@@ -34,9 +34,22 @@ function mcwallet_page_url(){
  */
 function mcwallet_logo_url(){
 	$logo_url = MCWALLET_URL . 'assets/images/logo.svg';
-	if( get_option('mcwallet_logo') ) {
-		$logo_url = get_option('mcwallet_logo');
+	if ( get_option( 'mcwallet_logo' ) ) {
+		$logo_url = get_option( 'mcwallet_logo' );
 	}
+	return esc_url( $logo_url );
+}
+
+/**
+ * Dark Logo Url
+ */
+function mcwallet_dark_logo_url(){
+	$logo_url = MCWALLET_URL . 'assets/images/logo.svg';
+	if ( get_option( 'mcwallet_dark_logo' ) ) {
+		$logo_url = get_option( 'mcwallet_dark_logo' );
+	} elseif ( get_option( 'mcwallet_logo' ) ) {
+        $logo_url = get_option( 'mcwallet_logo' );
+    }
 	return esc_url( $logo_url );
 }
 

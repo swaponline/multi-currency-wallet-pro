@@ -150,6 +150,7 @@
 		var thisBtn        = $(this);
 		var thisParent     = $('.mcwallet-form-options');
 		var logoUrl        = thisParent.find( '[name="logo_url"]' ).val();
+        var darkLogoUrl    = thisParent.find( '[name="dark_logo_url"]' ).val();
         var logoLink       = thisParent.find( '[name="logo_link"]' ).val();
 		var pageTitle      = thisParent.find( '[name="mcwallet_page_title"]' ).val();
 		var pageSlug       = thisParent.find( '[name="page_slug"]' ).val();
@@ -197,6 +198,7 @@
 			action: 'mcwallet_update_options',
 			nonce: mcwallet.nonce,
 			url: logoUrl,
+            darkLogoUrl: darkLogoUrl,
             logoLink: logoLink,
 			pageTitle: pageTitle,
 			slug: pageSlug,
@@ -280,6 +282,29 @@
 		}).on('select', function() {
 			var attachment = custom_uploader.state().get('selection').first().toJSON();
 			$('.mcwallet-input-logo').val( attachment.url );
+		})
+		.open();
+	});
+    
+    /**
+	 * Select/Upload dark logo
+	 */
+	$('body').on('click', '.mcwallet-load-dark-logo', function(e){
+		e.preventDefault();
+
+		var button = $(this),
+			custom_uploader = wp.media({
+				title: mcwallet.uploader.title,
+				library : {
+					type : 'image'
+				},
+			button: {
+				text: mcwallet.uploader.button
+			},
+			multiple: false
+		}).on('select', function() {
+			var attachment = custom_uploader.state().get('selection').first().toJSON();
+			$('.mcwallet-input-dark-logo').val( attachment.url );
 		})
 		.open();
 	});

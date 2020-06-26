@@ -188,8 +188,19 @@ function mcwallet_page() {
 								</th>
 								<td>
 									<div class="mcwallet-form-inline">
-										<input name="logo_url" type="text" value="<?php echo esc_attr( get_option('mcwallet_logo') );?>" class="large-text mcwallet-input-logo">
+										<input name="logo_url" type="text" value="<?php echo esc_attr( mcwallet_logo_url() );?>" class="large-text mcwallet-input-logo">
 										<button class="button button-secondary mcwallet-load-logo"><?php esc_html_e( 'Upload logo', 'multi-currency-wallet');?></button>
+									</div>
+								</td>
+							</tr>
+                            <tr>
+								<th scope="row">
+									<label><?php esc_html_e( 'Dark Logo url', 'multi-currency-wallet' );?></label>
+								</th>
+								<td>
+									<div class="mcwallet-form-inline">
+										<input name="dark_logo_url" type="text" value="<?php echo esc_attr( mcwallet_dark_logo_url() );?>" class="large-text mcwallet-input-dark-logo">
+										<button class="button button-secondary mcwallet-load-dark-logo"><?php esc_html_e( 'Upload logo', 'multi-currency-wallet');?></button>
 									</div>
 								</td>
 							</tr>
