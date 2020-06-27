@@ -19,7 +19,7 @@ if ( get_option( 'mcwallet_is_logged' ) && ! is_user_logged_in() ){
 
 	<div id="root">
 		<!-- Loader before any JS -->
-		<div class="overlay">
+		<div id="wrapper_element" class="overlay">
 			<div class="center">
 				<div id="loader" class="loader">
 					<img id="loaderImg" src="<?php echo mcwallet_logo_url();?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) );?>">

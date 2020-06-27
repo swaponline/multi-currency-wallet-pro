@@ -116,20 +116,28 @@ function mcwallet_inline_build_script() {
 	}
 
 	var advice = document.getElementById("beforeJSTip");
+
+	const wrapper = document.getElementById("wrapper_element");
+
+	if (window.localStorage.getItem("isDark")) {
+		wrapper.classList.add("dark");
+	} else {
+		wrapper.classList.remove("dark");
+	}
 	var lang = getCookie("mylang");
 
 	// detect browser lang
 	if (!lang) {
-	  var browserLang = getNavigatorLanguage();
-	  lang = browserLang.indexOf("ru") > -1 ? "ru" : "en";
-	  setCookie("mylang", lang);
+		var browserLang = getNavigatorLanguage();
+		lang = browserLang.indexOf("ru") > -1 ? "ru" : "en";
+		setCookie("mylang", lang);
 	}
 
 	const locale = lang.toLowerCase();
 	const locationName = lang.toUpperCase();
 
 	advice.innerText = "' . esc_html__( 'Do not forget to save your private keys!', 'multi-currency-wallet' ) . '";
-	  
+
 	var information = document.getElementById("usersInform");
 
 	if ((locationName === "ru" || (locale === "ru" && locationName !== "en")) && localStorage.length === 0) {
