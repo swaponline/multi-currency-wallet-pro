@@ -5,7 +5,7 @@ body {
 	min-height: 670px;
 }
 .darkTheme {
-	  background-color: #222427;
+	background-color: #222427;
 }
 .overlay {
 	display: flex;
@@ -29,6 +29,12 @@ body {
 }
 .loader img {
 	width: 150px;
+}
+.overlay.dark .loader .logo-light {
+	display: none;
+}
+.overlay:not(.dark) .loader .logo-dark {
+	display: none;
 }
 .text {
 	margin-top: 20px;
