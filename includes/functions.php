@@ -200,17 +200,6 @@ if ( get_option( 'mcwallet_is_home' ) ) {
 }
 
 /**
- * Add page title
- */
-function mcwallet_wp_title( $title ) {
-	if( get_query_var( 'mcwallet_page' ) ) {
-		return get_option( 'mcwallet_page_title', esc_html__( 'Hot Wallet with p2p exchange', 'multi-currency-wallet' ) );
-	}
-	return $title;
-}
-add_filter( 'wp_title', 'mcwallet_wp_title' );
-
-/**
  * Add favicon
  */
 function mcwallet_wp_site_icon() {

@@ -21,7 +21,7 @@ function mcwallet_enqueue_scripts() {
 	wp_add_inline_script( 'mcwallet-vendor', mcwallet_inline_script(), 'before' );
 
 }
-add_action( 'wp_loaded', 'mcwallet_enqueue_scripts' );
+//add_action( 'wp_loaded', 'mcwallet_enqueue_scripts' );
 add_action( 'wp_enqueue_scripts', 'mcwallet_enqueue_scripts' );
 
 /**
@@ -76,69 +76,69 @@ function mcwallet_inline_build_script() {
 	};
 
 	function setCookie(name, value, options) {
-	  options = options || {};
-	  var expires = options.expires;
-	  if (typeof expires == "number" && expires) {
-		var d = new Date();
-		d.setTime(d.getTime() + expires * 1000);
-		expires = options.expires = d;
-	  }
-	  if (expires && expires.toUTCString) {
-		options.expires = expires.toUTCString();
-	  }
-
-	  value = encodeURIComponent(value);
-	  var updatedCookie = name + "=" + value;
-
-	  for (var propName in options) {
-		updatedCookie += "; " + propName;
-		var propValue = options[propName];
-		if (propValue !== true) {
-		  updatedCookie += "=" + propValue;
+		options = options || {};
+		var expires = options.expires;
+		if (typeof expires == "number" && expires) {
+			var d = new Date();
+			d.setTime(d.getTime() + expires * 1000);
+			expires = options.expires = d;
 		}
-	  }
-	  document.cookie = updatedCookie;
+		if (expires && expires.toUTCString) {
+			options.expires = expires.toUTCString();
+		}
+
+		value = encodeURIComponent(value);
+		var updatedCookie = name + "=" + value;
+
+		for (var propName in options) {
+			updatedCookie += "; " + propName;
+			var propValue = options[propName];
+			if (propValue !== true) {
+				updatedCookie += "=" + propValue;
+			}
+		}
+		document.cookie = updatedCookie;
 	}
 
 	function getCookie(cname) {
-	  var name = cname + "=";
-	  var ca = document.cookie.split(";");
-	  for (var i = 0; i < ca.length; i++) {
-		var c = ca[i];
-		while (c.charAt(0) == " ") {
-		  c = c.substring(1);
+		var name = cname + "=";
+		var ca = document.cookie.split(";");
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == " ") {
+			  c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
 		}
-		if (c.indexOf(name) == 0) {
-		  return c.substring(name.length, c.length);
-		}
-	  }
-	  return "";
+		return "";
 	}
 
 	var advice = document.getElementById("beforeJSTip");
-    
-    const wrapper = document.getElementById("wrapper_element");
 
-      if (window.localStorage.getItem("isDark")) {
-        wrapper.classList.add("dark");
-      } else {
-        wrapper.classList.remove("dark");
-      }
-      
+	const wrapper = document.getElementById("wrapper_element");
+
+	if ( window.localStorage.getItem("isDark") ) {
+		wrapper.classList.add("dark");
+	} else {
+		wrapper.classList.remove("dark");
+	}
+
 	var lang = getCookie("mylang");
 
 	// detect browser lang
 	if (!lang) {
-	  var browserLang = getNavigatorLanguage();
-	  lang = browserLang.indexOf("ru") > -1 ? "ru" : "en";
-	  setCookie("mylang", lang);
+		var browserLang = getNavigatorLanguage();
+		lang = browserLang.indexOf("ru") > -1 ? "ru" : "en";
+		setCookie("mylang", lang);
 	}
 
 	const locale = lang.toLowerCase();
 	const locationName = lang.toUpperCase();
 
 	advice.innerText = "' . esc_html__( 'Do not forget to save your private keys!', 'multi-currency-wallet' ) . '";
-	  
+
 	var information = document.getElementById("usersInform");
 
 	if ((locationName === "ru" || (locale === "ru" && locationName !== "en")) && localStorage.length === 0) {
@@ -148,7 +148,7 @@ function mcwallet_inline_build_script() {
 	if (localStorage.length === 0) {
 	  information.innerText = "' . esc_html__( 'Please wait while the application is loading,\n it may take one minute...', 'multi-currency-wallet' ) . '";
 	}
-	
+
 	';
 
 	return $script;
@@ -157,7 +157,7 @@ function mcwallet_inline_build_script() {
 /**
  * Inline scripts
  */
-function mcwallet_inline_script(){
+function mcwallet_inline_script() {
 
 	$script = '';
 
@@ -169,10 +169,10 @@ function mcwallet_inline_script(){
 
 	if ( $tokens ) {
 		$script = "window.widgetERC20Tokens = {" . "\n";
-		$i     = 0;
-		$count = count( $tokens );
+		$i      = 0;
+		$count  = count( $tokens );
 
-		foreach( $tokens as $name => $token ) {
+		foreach ( $tokens as $name => $token ) {
 			$i++;
 			$separator = '';
 			if ( $count != $i ) {
@@ -205,7 +205,7 @@ function mcwallet_inline_script(){
 		decimals: " . $decimals . ",
 		fullName: '" . $fullname . "',
 		icon: '" . $icon . "',
-        customEcxchangeRate: '" . $rate . "',
+		customEcxchangeRate: '" . $rate . "',
 		iconBgColor: '" . $icon_bg . "',
 		howToDeposit: '" . wp_specialchars_decode( $how_deposit ) . "',
 		howToWithdraw: '" . wp_specialchars_decode( $how_withdraw ) . "',
@@ -235,7 +235,7 @@ function mcwallet_inline_script(){
 		'CUSTOM_LOGO'                  => 'false',
 		'LOGO_REDIRECT_LINK'           => mcwallet_get_logo_redirect_link(),
 		'logoUrl'                      => mcwallet_logo_url(),
-        'darkLogoUrl'                  => mcwallet_dark_logo_url(),
+		'darkLogoUrl'                  => mcwallet_dark_logo_url(),
 		'publicUrl'                    => MCWALLET_URL . 'vendors/swap/',
 		'defaultWindowTitle'           => get_option( 'mcwallet_page_title', esc_html__( 'Hot Wallet with p2p exchange', 'multi-currency-wallet' ) ),
 		'DEFAULT_FIAT'                 => $default_fiat,
@@ -352,3 +352,35 @@ function mcwallet_fonts_url() {
 
 	return esc_url_raw( $fonts_url );
 }
+
+/**
+ * Remove all styles and scripts.
+ */
+function mcwallet_remove_all_styles_and_scripts() {
+	/**
+	 * Remove all styles.
+	 */
+	function mcwallet_remove_all_styles() {
+		global $wp_styles;
+		$wp_styles->queue = array();
+	}
+	add_action( 'wp_print_styles', 'mcwallet_remove_all_styles' );
+
+	/**
+	 * Remove all scripts.
+	 */
+	function mcwallet_remove_all_scripts() {
+		global $wp_scripts;
+		$wp_scripts->queue = array();
+	}
+	add_action( 'wp_print_scripts', 'mcwallet_remove_all_scripts' );
+}
+add_action( 'mcwallet_before_template', 'mcwallet_remove_all_styles_and_scripts' );
+
+/**
+ * Remove WordPress Admin Bar CSS.
+ */
+function mcwallet_remove_admin_bar_bump_cb() {
+	remove_action('wp_head', '_admin_bar_bump_cb');
+}
+add_action( 'mcwallet_before_template', 'mcwallet_remove_admin_bar_bump_cb' );
