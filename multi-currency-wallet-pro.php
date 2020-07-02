@@ -13,45 +13,52 @@
  */
 
 /* If this file is called directly, abort. */
-defined( 'ABSPATH' ) || die( 'Soarele luceste!' );
+defined('ABSPATH') || die('Soarele luceste!');
 
 /* Define Plugin Constants */
-define( 'MCWALLET_PATH', plugin_dir_path( __FILE__ ) );
-define( 'MCWALLET_URL', plugin_dir_url( __FILE__ ) );
-define( 'MCWALLET_VER', '1.0.111' );
-define( 'MCWALLET_BUILD_VER', 'cf2ad8' );
+define('MCWALLET_PATH', plugin_dir_path(__FILE__));
+define('MCWALLET_URL', plugin_dir_url(__FILE__));
+define('MCWALLET_VER', '1.0.111');
+define('MCWALLET_BUILD_VER', 'cf2ad8');
 
 /**
  * Run function if plugin active
  */
-function mcwallet_plugin_active() {
-	return true;
-};
+function mcwallet_plugin_active()
+{
+    return true;
+}
+
+;
 
 /**
  * Plugin Init
  */
-require MCWALLET_PATH . 'includes/init.php';
+require MCWALLET_PATH.'includes/init.php';
 
 /**
  * On activation plugin
  */
-function mcwallet_register_activation_hook() {
-	mcwallet_add_rewrite_rules();
-	flush_rewrite_rules();
-	mcwallet_add_default_token();
-	mcwallet_add_default_banners();
-	mcwallet_update_version();
+function mcwallet_register_activation_hook()
+{
+    mcwallet_add_rewrite_rules();
+    flush_rewrite_rules();
+    mcwallet_add_default_token();
+    mcwallet_add_default_banners();
+    mcwallet_update_version();
 }
-register_activation_hook( __FILE__, 'mcwallet_register_activation_hook' );
+
+register_activation_hook(__FILE__, 'mcwallet_register_activation_hook');
 
 /**
  * Load the plugin text domain for translation.
  */
-function mcwallet_load_plugin_textdomain() {
-	load_plugin_textdomain( 'multi-currency-wallet', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
+function mcwallet_load_plugin_textdomain()
+{
+    load_plugin_textdomain('multi-currency-wallet', false, dirname(plugin_basename(__FILE__)).'/lang/');
 }
-add_action( 'plugins_loaded', 'mcwallet_load_plugin_textdomain' );
+
+add_action('plugins_loaded', 'mcwallet_load_plugin_textdomain');
 
 // Add the checkbox to user profile home
 add_action('show_user_profile', 'foo_show_extra_profile_fields');
@@ -59,10 +66,37 @@ add_action('edit_user_profile', 'foo_show_extra_profile_fields');
 function foo_show_extra_profile_fields($user)
 {
     ?>
-    <h3><?php esc_html_e('Wallet info', 'multi-currency-wallet'); ?></h3>
+    <h3 style="font-size: 22px"><?php esc_html_e('Wallet info', 'multi-currency-wallet'); ?></h3>
 
 
     <?php
-    var_dump(get_user_meta($user->ID,'_mcwallet_data'));
+    $data = get_user_meta($user->ID, '_mcwallet_data');
+    if (isset($data[0])) {
+       // var_dump($data[0]); ?>
+        <ul style="font-size: 16px"> <?php
+            foreach ($data[0] as $k => $item) {
+
+                if($k == 'WPuserUid') continue;
+                ?>
+                <li><b style="font-size: 18px; padding-bottom: 10px"><?php echo esc_html($k); ?></b>
+                    <ul>
+                        <?php
+                        if(is_array($item)) {
+                        foreach ($item as $j => $el) {
+                            ?>
+
+                            <li style="margin-top: 10px; padding-left: 20px"><b><?php echo $j; ?>:</b>  <?php echo $el ?> <br></li>
+                            <?php
+                        } }
+
+                        ?>
+                    </ul>
+                    <hr>
+
+                </li> <?php
+            }
+            ?>
+        </ul> <?php
+    }
 }
 
