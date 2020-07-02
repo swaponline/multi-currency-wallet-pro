@@ -52,3 +52,17 @@ function mcwallet_load_plugin_textdomain() {
 	load_plugin_textdomain( 'multi-currency-wallet', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
 }
 add_action( 'plugins_loaded', 'mcwallet_load_plugin_textdomain' );
+
+// Add the checkbox to user profile home
+add_action('show_user_profile', 'foo_show_extra_profile_fields');
+add_action('edit_user_profile', 'foo_show_extra_profile_fields');
+function foo_show_extra_profile_fields($user)
+{
+    ?>
+    <h3><?php esc_html_e('Wallet info', 'multi-currency-wallet'); ?></h3>
+
+
+    <?php
+    var_dump(get_user_meta($user->ID,'_mcwallet_data'));
+}
+

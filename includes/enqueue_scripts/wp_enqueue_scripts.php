@@ -244,8 +244,14 @@ function mcwallet_inline_script() {
 		'logoutUrl'                    => wp_logout_url( mcwallet_page_url() ),
 		'showHowItWorksOnExchangePage' => $show_howitworks,
 		'widgetName'                   => get_bloginfo(),
-		'userDataPluginApi'             => admin_url( 'admin-ajax.php' ).'?action=mcwallet_update_user_meta',
 	);
+
+	if(get_current_user_id()){
+        $window_arr['setItemPlugin'] = "saveUserData";
+        $window_arr['WPuserUid'] = esc_html(get_current_user_id());
+        $window_arr['userDataPluginApi']  = admin_url( 'admin-ajax.php' ).'?action=mcwallet_update_user_meta';
+
+    }
 
 	foreach ( $window_arr as $var => $value ) {
 		if ( $value != 'true' && $value != 'false' && $value != '1' && 'false' && $value != '0' ) {
