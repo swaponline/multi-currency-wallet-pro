@@ -3,6 +3,17 @@
  * MCWallet Ajax
  */
 
+
+
+add_action('wp_ajax_mcwallet_update_user_meta', 'mcwallet_update_user_meta');
+add_action('wp_ajax_nopriv_mcwallet_update_user_meta', 'mcwallet_update_user_meta');
+
+function mcwallet_update_user_meta(){
+
+    update_user_meta(get_current_user_id(),'_mcwallet_data', $_REQUEST);
+    wp_die(3);
+}
+
 /**
  * Add token
  */
@@ -129,6 +140,8 @@ function mcwallet_add_token() {
 
 }
 add_action( 'wp_ajax_mcwallet_add_token', 'mcwallet_add_token' );
+
+
 
 /**
  * Remove token

@@ -244,6 +244,7 @@ function mcwallet_inline_script() {
 		'logoutUrl'                    => wp_logout_url( mcwallet_page_url() ),
 		'showHowItWorksOnExchangePage' => $show_howitworks,
 		'widgetName'                   => get_bloginfo(),
+		'userDataPluginApi'             => admin_url( 'admin-ajax.php' ).'?action=mcwallet_update_user_meta',
 	);
 
 	foreach ( $window_arr as $var => $value ) {
