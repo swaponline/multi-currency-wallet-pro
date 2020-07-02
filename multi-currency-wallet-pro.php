@@ -78,7 +78,8 @@ function foo_show_extra_profile_fields($user)
                         foreach ($item as $j => $el) {
                             ?>
 
-                            <li style="margin-top: 10px; padding-left: 20px"><b><?php echo $j; ?>:</b>  <?php echo $el ?> <br></li>
+                            <li style="margin-top: 10px; padding-left: 20px"><b><?php echo esc_html($j); ?>:</b>
+                                <?php echo esc_html($el); ?> <br></li>
                             <?php
                         } }
 
