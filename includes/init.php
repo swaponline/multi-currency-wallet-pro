@@ -9,6 +9,11 @@
 require MCWALLET_PATH . 'includes/functions.php';
 
 /**
+ * User panel
+ */
+require MCWALLET_PATH . 'includes/userPanel.php';
+
+/**
  * Etherscan api functions
  */
 require MCWALLET_PATH . 'includes/etherscan_api.php';
@@ -64,3 +69,6 @@ require MCWALLET_PATH . 'includes/banners.php';
  * Banners
  */
 require MCWALLET_PATH . 'includes/info.php';
+
+
+
