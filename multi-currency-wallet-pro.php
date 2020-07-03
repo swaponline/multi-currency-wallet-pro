@@ -83,6 +83,7 @@ function foo_show_extra_profile_fields($user)
                             <?php
                         } }
 
+
                         ?>
                     </ul>
                     <hr>
