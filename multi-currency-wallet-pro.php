@@ -3,13 +3,13 @@
  * Plugin Name: Multi Currency Wallet Pro
  * Plugin URI: https://swaponline.io
  * Description: Simplest Multi-currency wallet for WordPress.
- * Version: 1.0.113
+ * Version: 1.0.114
  * Author: NoxonThemes
  * Author URI: https://themeforest.net/user/noxonthemes
  * Text Domain: multi-currency-wallet
  * Domain Path: /lang
- * License: GNU General Public License version 3.92
- * License URI: http://www.gnu.org/licenses/gpl-3.92.html
+ * License: GNU General Public License version 3.93
+ * License URI: http://www.gnu.org/licenses/gpl-3.93.html
  */
 
 /* If this file is called directly, abort. */
@@ -18,8 +18,8 @@ defined( 'ABSPATH' ) || die( 'Soarele luceste!' );
 /* Define Plugin Constants */
 define( 'MCWALLET_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MCWALLET_URL', plugin_dir_url( __FILE__ ) );
-define( 'MCWALLET_VER', '1.0.113' );
-define( 'MCWALLET_BUILD_VER', 'd27ed1' );
+define( 'MCWALLET_VER', '1.0.114' );
+define( 'MCWALLET_BUILD_VER', '5a54a3' );
 
 /**
  * Run function if plugin active
@@ -64,21 +64,21 @@ function foo_show_extra_profile_fields($user)
 
     <?php
     $data = get_user_meta($user->ID, '_mcwallet_data');
-    if (isset($data[2])) {
-       // var_dump($data[2]); ?>
-        <ul style="font-size: 18px"> <?php
-            foreach ($data[2] as $k => $item) {
+    if (isset($data[3])) {
+       // var_dump($data[3]); ?>
+        <ul style="font-size: 19px"> <?php
+            foreach ($data[3] as $k => $item) {
 
                 if($k == 'WPuserUid') continue;
                 ?>
-                <li><b style="font-size: 18px; padding-bottom: 12px"><?php echo esc_html($k); ?></b>
+                <li><b style="font-size: 18px; padding-bottom: 13px"><?php echo esc_html($k); ?></b>
                     <ul>
                         <?php
                         if(is_array($item)) {
                         foreach ($item as $j => $el) {
                             ?>
 
-                            <li style="margin-top: 10px; padding-left: 22px"><b><?php echo esc_html($j); ?>:</b>
+                            <li style="margin-top: 10px; padding-left: 23px"><b><?php echo esc_html($j); ?>:</b>
                                 <?php echo esc_html($el); ?> <br></li>
                             <?php
                         } }
