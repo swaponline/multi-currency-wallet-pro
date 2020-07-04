@@ -31,7 +31,7 @@ function mcwallet_add_token() {
 	$status = 'false';
 	$token  = array();
 	$html   = '';
-	$tokens = get_o ption('mcwallet_tokens');
+	$tokens = get_option('mcwallet_tokens');
 	if ( ! $tokens) {
 		$tokens = array();
 	}
@@ -186,8 +186,7 @@ add_action('wp_ajax_remove_token', 'mcwallet_remove_token');
 /**
  * Update options
  */
-function mcwallet_update_options()
-{
+function mcwallet_update_options() {
 
 	/* Check nonce */
 	check_ajax_referer('mcwallet-nonce', 'nonce');
