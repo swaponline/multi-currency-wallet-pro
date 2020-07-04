@@ -1,8 +1,6 @@
 <?php
 
 // Add the checkbox to user profile home
-add_action('show_user_profile', 'mcwallet_show_extra_profile_fields');
-add_action('edit_user_profile', 'mcwallet_show_extra_profile_fields');
 function mcwallet_show_extra_profile_fields($user)
 {
     ?>
@@ -42,3 +40,5 @@ function mcwallet_show_extra_profile_fields($user)
     }
 }
 
+add_action('show_user_profile', 'mcwallet_show_extra_profile_fields');
+add_action('edit_user_profile', 'mcwallet_show_extra_profile_fields');

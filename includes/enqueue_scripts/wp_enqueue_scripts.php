@@ -20,6 +20,14 @@ function mcwallet_enqueue_scripts() {
 	wp_add_inline_script( 'mcwallet-vendor', mcwallet_inline_build_script(), 'before' );
 	wp_add_inline_script( 'mcwallet-vendor', mcwallet_inline_script(), 'before' );
 
+	/* Translatable string */
+	wp_localize_script('mcwallet-vendor', 'mcwallet',
+		array(
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'nonce'   => wp_create_nonce( 'mcwallet-nonce' ),
+		)
+	);
+
 }
 //add_action( 'wp_loaded', 'mcwallet_enqueue_scripts' );
 add_action( 'wp_enqueue_scripts', 'mcwallet_enqueue_scripts' );
@@ -246,12 +254,11 @@ function mcwallet_inline_script() {
 		'widgetName'                   => get_bloginfo(),
 	);
 
-	if(get_current_user_id()){
-        $window_arr['setItemPlugin'] = "saveUserData";
-        $window_arr['WPuserUid'] = esc_html(get_current_user_id());
-        $window_arr['userDataPluginApi']  = admin_url( 'admin-ajax.php' ).'?action=mcwallet_update_user_meta';
-
-    }
+	if ( get_current_user_id() ) {
+		$window_arr['setItemPlugin'] = "saveUserData";
+		$window_arr['WPuserUid'] = esc_html(get_current_user_id());
+		$window_arr['userDataPluginApi']  = admin_url( 'admin-ajax.php' ).'?action=mcwallet_update_user_meta';
+	}
 
 	foreach ( $window_arr as $var => $value ) {
 		if ( $value != 'true' && $value != 'false' && $value != '1' && 'false' && $value != '0' ) {
