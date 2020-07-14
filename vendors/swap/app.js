@@ -389,7 +389,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 // resolve object in webpack
-var _default = {"propENV":"mainnet.widget.prod","paths":{},"publicPath":"./","http":{"host":"localhost","port":9001},"i18nDate":{"month":"long","day":"numeric","hour":"numeric","minute":"numeric"},"env":"production","entry":"mainnet","local":"local","dir":"mainnet-widget","base":"./","time":"Tuesday, July 14, 2020 5:03 PM","isWidget":true,"isFullBuild":false,"web3":{"provider":"https://mainnet.infura.io/v3/5ffc47f65c4042ce847ef66a3fa70d4c"},"link":{"bitpay":"https://www.blockchain.com/btc","blockcypher":"https://live.blockcypher.com/","etherscan":"https://etherscan.io"},"api":{"horizon":"https://horizon.stellar.org","blocktrail":"https://api.blocktrail.com/v1/BTC","bitpay":["https://insight.bitpay.com/api","https://invoices.swaponline.site/proxybitpay"],"blockcypher":"https://api.blockcypher.com/v1/btc/main","etherscan":["https://api.etherscan.io/api","https://invoices.swaponline.site/proxyetherscan"],"etherscan_ApiKey":"RHHFPNMAZMD6I4ZWBZBF6FA11CMW9AXZNM","faucet":"https://faucet.swaponline.site/mainnet/","btc2FAProtected":"https://2fa.swaponline.site","btcPin":"https://2fapin.swaponline.site","invoiceApi":"https://invoices.swaponline.site","multisig":"https://multisig.swaponline.site","txinfo":"https://txinfo.swaponline.site","noxon":"https://noxon.wpmix.net"},"ipfs":{"swarm":"/dns4/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star/","server":"ws-star.discovery.libp2p.io"},"erc20":{"swap":{"address":"0x14a52cf6B4F68431bd5D9524E4fcD6F41ce4ADe9","decimals":18,"fullName":"SWAP"},"{#WIDGETTOKENCODE#}":{"address":"{#WIDGETTOKENCONTRACT#}","decimals":12071998,"fullName":"{#WIDGETTOKENTITLE#}"}},"swapContract":{"erc20":"0x2015835367EAb64729494CcDB9D3FcbFBf7339a6","eth":"0x61eEaC8B9Db0dF4e5E3cCC651F16ffFc6c1d4456","reputationOracle":"0x6260B5ef52d72732674fF4BDE3B37a4222dB1785","protectedBtcKey":"025c8ee352e8b0d12aecd8b3d9ac3bd93cae1b2cc5de7ac56c2995ab506ac800bd","btcPinKey":"032aec5d20f9a0bb913a9835330259748392927c9a812299c4498a9e2ed3e78d3f"},"feeRates":{"eth":"https://www.etherchain.org/api/gasPriceOracle","btc":"https://wiki.swaponline.io/blockcyper.php"},"hiddenCoins":["DEB","YUP","JOT","NOXON","BXB","DCN","MBRS","SCT","BTRM","BNTY","PBL","SENC","STAR","LOC","KEY","DAI","AVT","HBT","VIEW","CS","PIX","GEN","GAI","EMTV","CGC","VITE","MOT","DOV","XBX","LIF","TIME","MTH","CBT","DDM","WBTC","ABYSS","XSAT","HEDPAY","HDP","SATX","SCRO","XEUR","KN","GUSD","ARN","SYC2","LEV","GUSD","BTC","BTC (SMS-Protected)","BTC (Multisig)","ETH","SWAP","HDP","USDT","MSK","RURCASH","USDSWIFT"],"noExchangeCoins":["BTCMultisig"],"erc20token":"{#WIDGETTOKENCODE#}"};
+var _default = {"propENV":"mainnet.widget.prod","paths":{},"publicPath":"./","http":{"host":"localhost","port":9001},"i18nDate":{"month":"long","day":"numeric","hour":"numeric","minute":"numeric"},"env":"production","entry":"mainnet","local":"local","dir":"mainnet-widget","base":"./","time":"Tuesday, July 14, 2020 5:27 PM","isWidget":true,"isFullBuild":false,"web3":{"provider":"https://mainnet.infura.io/v3/5ffc47f65c4042ce847ef66a3fa70d4c"},"link":{"bitpay":"https://www.blockchain.com/btc","blockcypher":"https://live.blockcypher.com/","etherscan":"https://etherscan.io"},"api":{"horizon":"https://horizon.stellar.org","blocktrail":"https://api.blocktrail.com/v1/BTC","bitpay":["https://insight.bitpay.com/api","https://invoices.swaponline.site/proxybitpay"],"blockcypher":"https://api.blockcypher.com/v1/btc/main","etherscan":["https://api.etherscan.io/api","https://invoices.swaponline.site/proxyetherscan"],"etherscan_ApiKey":"RHHFPNMAZMD6I4ZWBZBF6FA11CMW9AXZNM","faucet":"https://faucet.swaponline.site/mainnet/","btc2FAProtected":"https://2fa.swaponline.site","btcPin":"https://2fapin.swaponline.site","invoiceApi":"https://invoices.swaponline.site","multisig":"https://multisig.swaponline.site","txinfo":"https://txinfo.swaponline.site","noxon":"https://noxon.wpmix.net"},"ipfs":{"swarm":"/dns4/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star/","server":"ws-star.discovery.libp2p.io"},"erc20":{"swap":{"address":"0x14a52cf6B4F68431bd5D9524E4fcD6F41ce4ADe9","decimals":18,"fullName":"SWAP"},"{#WIDGETTOKENCODE#}":{"address":"{#WIDGETTOKENCONTRACT#}","decimals":12071998,"fullName":"{#WIDGETTOKENTITLE#}"}},"swapContract":{"erc20":"0x2015835367EAb64729494CcDB9D3FcbFBf7339a6","eth":"0x61eEaC8B9Db0dF4e5E3cCC651F16ffFc6c1d4456","reputationOracle":"0x6260B5ef52d72732674fF4BDE3B37a4222dB1785","protectedBtcKey":"025c8ee352e8b0d12aecd8b3d9ac3bd93cae1b2cc5de7ac56c2995ab506ac800bd","btcPinKey":"032aec5d20f9a0bb913a9835330259748392927c9a812299c4498a9e2ed3e78d3f"},"feeRates":{"eth":"https://www.etherchain.org/api/gasPriceOracle","btc":"https://wiki.swaponline.io/blockcyper.php"},"hiddenCoins":["DEB","YUP","JOT","NOXON","BXB","DCN","MBRS","SCT","BTRM","BNTY","PBL","SENC","STAR","LOC","KEY","DAI","AVT","HBT","VIEW","CS","PIX","GEN","GAI","EMTV","CGC","VITE","MOT","DOV","XBX","LIF","TIME","MTH","CBT","DDM","WBTC","ABYSS","XSAT","HEDPAY","HDP","SATX","SCRO","XEUR","KN","GUSD","ARN","SYC2","LEV","GUSD","BTC","BTC (SMS-Protected)","BTC (Multisig)","ETH","SWAP","HDP","USDT","MSK","RURCASH","USDSWIFT"],"noExchangeCoins":["BTCMultisig"],"erc20token":"{#WIDGETTOKENCODE#}"};
 exports.default = _default;
 
 /***/ }),
@@ -28905,16 +28905,21 @@ var getPluginMethod = function getPluginMethod(name, data) {
 
 var setItem = function setItem(key, value) {
   if (isLocalStorageEnabled) {
-    var setItemPlugin = _externalConfig.default && _externalConfig.default.opts && _externalConfig.default.opts.plugins && _externalConfig.default.opts.plugins.setItemPlugin ? _externalConfig.default.opts.plugins.setItemPlugin : false;
-
-    if (setItemPlugin) {
-      getPluginMethod(setItemPlugin, {
-        key,
-        value
-      });
+    /*
+    const setItemPlugin = (
+      config
+      && config.opts
+      && config.opts.plugins
+      && config.opts.plugins.setItemPlugin
+    ) ? config.opts.plugins.setItemPlugin : false
+     if (setItemPlugin) {
+      getPluginMethod(setItemPlugin, { key, value })
     } else {
-      window.localStorage.setItem(key, JSON.stringify(value));
+      */
+    window.localStorage.setItem(key, JSON.stringify(value));
+    /*
     }
+    */
   }
 };
 
@@ -83309,4 +83314,4 @@ module.exports = {"page":"QMlwaGDRWgj9mCpjAswb3","header":"_3LYOeiJwilSvW4raO2Dj
 
 /***/ })
 ],[1325]);
-//# sourceMappingURL=app.30ecf5.js.map
+//# sourceMappingURL=app.07a974.js.map
