@@ -25,7 +25,6 @@ function mcwallet_update_user_meta() {
 }
 
 add_action( 'wp_ajax_mcwallet_update_user_meta', 'mcwallet_update_user_meta' );
-add_action( 'wp_ajax_nopriv_mcwallet_update_user_meta', 'mcwallet_update_user_meta' );
 
 /**
  * @param $data
