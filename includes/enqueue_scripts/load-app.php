@@ -1,54 +1,59 @@
 <?php
 /**
- * Plugin Name: Multi Currency Wallet Pro
- * Plugin URI: https://swaponline.io
- * Description: Simplest Multi-currency wallet for WordPress.
- * Version: 1.0.145
- * Author: NoxonThemes
- * Author URI: https://themeforest.net/user/noxonthemes
- * Text Domain: multi-currency-wallet
- * Domain Path: /lang
- * License: GNU General Public License version 3.123
- * License URI: http://www.gnu.org/licenses/gpl-3.123.html
+ * Load app scripts
  */
 
-/* If this file is called directly, abort. */
-defined( 'ABSPATH' ) || die( 'Soarele luceste!' );
-
-/* Define Plugin Constants */
-define( 'MCWALLET_PATH', plugin_dir_path( __FILE__ ) );
-define( 'MCWALLET_URL', plugin_dir_url( __FILE__ ) );
-define( 'MCWALLET_VER', '1.0.145' );
-define( 'MCWALLET_BUILD_VER', '883607' );
-
-/**
- * Run function if plugin active
- */
-function mcwallet_plugin_active() {
-	return true;
-};
-
-/**
- * Plugin Init
- */
-require MCWALLET_PATH . 'includes/init.php';
-
-/**
- * On activation plugin
- */
-function mcwallet_register_activation_hook() {
-	mcwallet_add_rewrite_rules();
-	flush_rewrite_rules();
-	mcwallet_add_default_token();
-	mcwallet_add_default_banners();
-	mcwallet_update_version();
+if ( version_compare( PHP_VERSION, '7.0.0' ) >= 0) {
+	$path_levels = dirname( __FILE__, 6 ) . '/';
+} else {
+	$path_levels = dirname( __FILE__ ) . '../../../../../../';
 }
-register_activation_hook( __FILE__, 'mcwallet_register_activation_hook' );
 
-/**
- * Load the plugin text domain for translation.
- */
-function mcwallet_load_plugin_textdomain() {
-	load_plugin_textdomain( 'multi-currency-wallet', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
+$_GET_ver = (isset($_GET['ver'])) ? $_GET['ver'] : false;
+
+
+
+
+require_once $path_levels . 'wp-load.php';
+
+$version = md5(($_GET_ver) ? $_GET_ver : ((MCWALLET_VER) ? MCWALLET_VER : 'no'));
+echo '/*';
+echo 'version: ' . $version;
+echo '*/';
+
+$cache_file = 'wp-content/uploads/swap-wallet-app-' . $version . '.js';
+
+if (file_exists($path_levels . $cache_file)) {
+  header("Cache-control: public");
+  header("Expires: " . gmdate("D, d M Y H:i:s", time() + 60*60*24) . " GMT");
+  header( 'Content-Type: application/javascript; charset=UTF-8' );
+  echo file_get_contents($path_levels . $cache_file);
+
+} else {
+  $path = MCWALLET_PATH . 'vendors/swap/app.js';
+
+  $app  = file_get_contents( $path );
+
+  $strings = get_option( 'mcwallet_strings' );
+
+  if ( $strings ) {
+    foreach ( $strings as $string ) {
+      $key                  = '"' . $string[0] . '"';
+      $value                = '"' . $string[1] . '"';
+      $replacements[ $key ] = $value;
+    }
+    if ( $replacements ) {
+      $app = str_replace( array_keys( $replacements ), $replacements, $app );
+    }
+  }
+
+
+  file_put_contents($path_levels . $cache_file, $app);
+
+  header("Cache-control: public");
+  header("Expires: " . gmdate("D, d M Y H:i:s", time() + 60*60*24) . " GMT");
+  header( 'Content-Type: application/javascript; charset=UTF-8' );
+
+  echo $app;
 }
-add_action( 'plugins_loaded', 'mcwallet_load_plugin_textdomain' );
+exit;
