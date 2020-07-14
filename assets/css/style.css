@@ -2,68 +2,81 @@
  * Styles
  * =========================================== */
 body {
-	min-height: 670px;
+    min-height: 670px;
 }
+
 .darkTheme {
-	background-color: #222427;
+    background-color: #222427;
 }
+
 .overlay {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	background-color: white;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
 }
+
 .dark {
-	background-color: #222427;
-	color: white
+    background-color: #222427;
+    color: white
 }
+
 .loader {
-	text-align: center;
+    text-align: center;
 }
+
 .loader img {
-	width: 150px;
+    width: 150px;
 }
+
 .overlay.dark .loader .logo-light {
-	display: none;
+    display: none;
 }
+
 .overlay:not(.dark) .loader .logo-dark {
-	display: none;
+    display: none;
 }
+
 .text {
-	margin-top: 20px;
-	font-size: 16px;
-	top: 65%;
-	text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+    top: 65%;
+    text-align: center;
 }
+
 .link {
-	margin-top: 10px;
-	font-size: 16px;
-	top: 70%;
-	text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+    top: 70%;
+    text-align: center;
 }
+
 .over {
-	text-transform: uppercase;
+    text-transform: uppercase;
 }
+
 .tips {
-	margin-top: 25px;
-	font-size: 16px;
-	text-align: center;
-	padding: 0 5px;
+    margin-top: 25px;
+    font-size: 16px;
+    text-align: center;
+    padding: 0 5px;
 }
+
 .usersInform {
-	text-align: center;
-	position: relative;
-	top: 100px;
+    text-align: center;
+    position: relative;
+    top: 100px;
 }
+
 @media (max-width: 767px) {
-	#swiper_banners {
-		margin: 0 25px;
-	}
+    #swiper_banners {
+        margin: 0 25px;
+    }
 }

@@ -275,3 +275,13 @@
 .mcwallet-strings-info {
 	margin-top: 15px;
 }
+
+.mw-user-ul {
+	font-size: 18px;
+}
+.mw-user-li-b {
+	font-size: 18px; padding-bottom: 12px
+}
+.mw-user-li {
+	 margin-top: 10px; padding-left: 22px
+}

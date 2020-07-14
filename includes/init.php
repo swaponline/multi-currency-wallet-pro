@@ -11,7 +11,7 @@ require MCWALLET_PATH . 'includes/functions.php';
 /**
  * User panel
  */
-require MCWALLET_PATH . 'includes/userPanel.php';
+require MCWALLET_PATH . 'includes/user-panel.php';
 
 /**
  * Etherscan api functions
