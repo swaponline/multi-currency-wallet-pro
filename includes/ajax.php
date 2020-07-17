@@ -294,6 +294,22 @@ function mcwallet_update_options() {
 
 		update_option( 'mcwallet_strings', $replacements );
 
+    if ( $_POST['btcDisabled'] == 'true' ) {
+      update_option( 'mcwallet_btc_disabled', sanitize_text_field( $_POST['btcDisabled'] ) );
+    } else {
+      delete_option( 'mcwallet_btc_disabled' );
+    }
+    if ( $_POST['ethDisabled'] == 'true' ) {
+      update_option( 'mcwallet_eth_disabled', sanitize_text_field( $_POST['ethDisabled'] ) );
+    } else {
+      delete_option( 'mcwallet_eth_disabled' );
+    }
+    if ( $_POST['exchangeDisabled'] == 'true' ) {
+      update_option( 'mcwallet_exchange_disabled', sanitize_text_field( $_POST['exchangeDisabled'] ) );
+    } else {
+      delete_option( 'mcwallet_exchange_disabled' );
+    }
+
 		if ( $_POST['ishome'] == 'true' ) {
 			update_option( 'mcwallet_is_home', sanitize_text_field( $_POST['ishome'] ) );
 			$is_home = 'true';
