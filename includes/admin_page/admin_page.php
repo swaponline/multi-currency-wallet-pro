@@ -245,6 +245,33 @@ function mcwallet_page() {
 									</label>
 								</td>
 							</tr>
+              <tr>
+								<th scope="row"></th>
+								<td>
+									<label for="mcwallet_btc_disabled">
+										<input name="btc_disabled" type="checkbox" id="mcwallet_btc_disabled" <?php checked( 'true', get_option( 'mcwallet_btc_disabled' ) ); ?>>
+										<?php esc_html_e( 'Disable BTC wallet.', 'multi-currency-wallet' );?>
+									</label>
+								</td>
+							</tr>
+              <tr>
+								<th scope="row"></th>
+								<td>
+									<label for="mcwallet_eth_disabled">
+										<input name="eth_disabled" type="checkbox" id="mcwallet_eth_disabled" <?php checked( 'true', get_option( 'mcwallet_eth_disabled' ) ); ?>>
+										<?php esc_html_e( 'Disable ETH wallet.', 'multi-currency-wallet' );?>
+									</label>
+								</td>
+							</tr>
+              <tr>
+								<th scope="row"></th>
+								<td>
+									<label for="mcwallet_exchange_disabled">
+										<input name="exchange_disabled" type="checkbox" id="mcwallet_exchange_disabled" <?php checked( 'true', get_option( 'mcwallet_exchange_disabled' ) ); ?>>
+										<?php esc_html_e( 'Disable exchange', 'multi-currency-wallet' );?>
+									</label>
+								</td>
+							</tr>
 						</tbody>
 					</table><!-- .form-table -->
 
