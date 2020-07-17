@@ -170,7 +170,11 @@
 		var codeHead       = thisParent.find( '[name="mcwallet_head_code"]' ).val();
 		var codeBody       = thisParent.find( '[name="mcwallet_body_code"]' ).val();
 		var codeFooter     = thisParent.find( '[name="mcwallet_footer_code"]' ).val();
-		
+
+    var btcDisabled    = thisParent.find( '[name="btc_disabled"]' )
+    var ethDisabled    = thisParent.find( '[name="eth_disabled"]' )
+    var exchangeDisabled = thisParent.find( '[name="exchange_disabled"]' )
+    
 		// click handler
 
 		var strings = '';
@@ -181,7 +185,11 @@
 		var ishome = 'false';
 		var isLogged = 'false';
 		var isHowitworks = 'false';
-		
+
+    btcDisabled = btcDisabled.is(':checked') ? 'true' : 'false';
+    ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
+    exchangeDisabled = exchangeDisabled.is(':checked') ? 'true' : 'false';
+
 		if ( pageHome.is(':checked') ) {
 			ishome = 'true';
 		}
@@ -219,6 +227,10 @@
 			fiatGatewayUrl: fiatGatewayUrl,
 			isHowitworks: isHowitworks,
 			strings: strings,
+
+      btcDisabled: btcDisabled,
+      ethDisabled: ethDisabled,
+      exchangeDisabled: exchangeDisabled
 		};
 
 		mcwalletSpinner(thisBtn);
