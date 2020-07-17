@@ -252,6 +252,9 @@ function mcwallet_inline_script() {
 		'logoutUrl'                    => wp_logout_url( mcwallet_page_url() ),
 		'showHowItWorksOnExchangePage' => $show_howitworks,
 		'widgetName'                   => get_bloginfo(),
+    'EXCHANGE_DISABLED'            => get_option( 'mcwallet_exchange_disabled', 'false' ),
+    'CUR_BTC_DISABLED'             => get_option( 'mcwallet_btc_disabled', 'false' ),
+    'CUR_ETH_DISABLED'             => get_option( 'mcwallet_eth_disabled', 'false' ),
 	);
 
 	if ( get_current_user_id() ) {
