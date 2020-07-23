@@ -84,8 +84,8 @@ input,textarea{background:none;outline:none;border:0;border-radius:0}._3T0zd_zY0
 ._2sLZn8cUBaqNVlNpgThy4L{margin-top:40px}._153K8dq3UrLlWjo6kIDlrB{width:400px;text-align:center}
 .react-tags {
   position: relative;
-  padding: 6px 1px 1px 6px;
-  border: 1px solid rgba(0,0,0,0.2);
+  padding: 14px 6px 9px;
+  border: 2px solid rgba(0,0,0,0.2);
   border-radius: 2px;
 
   /* shared font styles */
@@ -95,8 +95,7 @@ input,textarea{background:none;outline:none;border:0;border-radius:0}._3T0zd_zY0
   /* clicking anywhere will focus the input */
   cursor: text;
 
-  padding-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   width: 400px;
 }
 
@@ -108,8 +107,6 @@ input,textarea{background:none;outline:none;border:0;border-radius:0}._3T0zd_zY0
 }
 .react-tags.is-focused {
   border: 2px solid #6144e5;
-  padding: 5px 0px 0px 5px;
-  padding-top: 19px;
 }
 
 .react-tags__selected {
