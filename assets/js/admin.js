@@ -174,6 +174,8 @@
     var btcDisabled    = thisParent.find( '[name="btc_disabled"]' )
     var ethDisabled    = thisParent.find( '[name="eth_disabled"]' )
     var exchangeDisabled = thisParent.find( '[name="exchange_disabled"]' )
+
+    var rememberUserWallet = thisParent.find( '[name="remeber_userwallet"]' )
     
 		// click handler
 
@@ -189,6 +191,8 @@
     btcDisabled = btcDisabled.is(':checked') ? 'true' : 'false';
     ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
     exchangeDisabled = exchangeDisabled.is(':checked') ? 'true' : 'false';
+
+    rememberUserWallet = rememberUserWallet.is(':checked') ? 'true' : 'false';
 
 		if ( pageHome.is(':checked') ) {
 			ishome = 'true';
@@ -230,7 +234,9 @@
 
       btcDisabled: btcDisabled,
       ethDisabled: ethDisabled,
-      exchangeDisabled: exchangeDisabled
+      exchangeDisabled: exchangeDisabled,
+
+      rememberUserWallet: rememberUserWallet
 		};
 
 		mcwalletSpinner(thisBtn);
