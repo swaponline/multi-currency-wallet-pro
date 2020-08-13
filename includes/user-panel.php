@@ -5,7 +5,6 @@ function mcwallet_show_extra_profile_fields( $user ) {
 	?>
     <h3 style="font-size: 22px"><?php esc_html_e( 'Wallet info', 'multi-currency-wallet' ); ?></h3>
 
-
 	<?php
 	$data = get_user_meta( $user->ID, '_mcwallet_data' );
 
@@ -42,6 +41,15 @@ function mcwallet_show_extra_profile_fields( $user ) {
 			?>
         </ul> <?php
 	}
+  
+  /*
+  // debug info
+  $backup = get_user_meta( $user->ID, '_mcwallet_backup' );
+  echo '<h3>Backup</h3>';
+  echo '<pre>';
+  print_r($backup);
+  echo '</pre>';
+  */
 }
 
 add_action( 'show_user_profile', 'mcwallet_show_extra_profile_fields' );

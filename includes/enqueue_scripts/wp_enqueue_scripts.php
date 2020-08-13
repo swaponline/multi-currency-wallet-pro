@@ -261,6 +261,21 @@ function mcwallet_inline_script() {
 		$window_arr['setItemPlugin'] = "saveUserData";
 		$window_arr['WPuserUid'] = esc_html(get_current_user_id());
 		$window_arr['userDataPluginApi']  = admin_url( 'admin-ajax.php' ).'?action=mcwallet_update_user_meta';
+
+    // Нужно сгенерировать уникальный хеш из данных пользователя
+    // Нельзя передавать просто userId, это не безопастно
+    // Помимо userId в backend передаем его хеш, по которому проверяем,
+    // Действительно ли это отправил пользователь или злоумышлиник, обычным подбором userId
+    $userData = get_userdata(get_current_user_id())->data;
+    $userHashString = get_current_user_id().':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
+    $user_uniqhash = hash('sha3-512', md5($userHashString));
+
+    $window_arr['WPuserHash'] = esc_html($user_uniqhash);
+    if (get_option( 'mcwallet_remember_userwallet' ) == 'true') {
+      $window_arr['backupPlugin'] = 'backupUserData';
+      $window_arr['backupUrl'] = admin_url( 'admin-ajax.php' ).'?action=mcwallet_backup_userwallet';
+      $window_arr['restoreUrl'] = admin_url( 'admin-ajax.php' ).'?action=mcwallet_restore_userwallet';
+    }
 	}
 
 	foreach ( $window_arr as $var => $value ) {

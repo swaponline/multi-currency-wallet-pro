@@ -3,6 +3,140 @@
  * MCWallet Ajax
  */
 
+function mcwallet_backup_user() {
+  $data = json_decode( file_get_contents( 'php://input' ), true );
+
+  if ($data['WPuserUid'] !== get_current_user_id()) {
+    wp_die('Access deny', 403);
+  }
+
+  $user_id = get_current_user_id();
+
+  $userData = get_userdata($user_id)->data;
+  $userHashString = $user_id.':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
+  $user_uniqhash = hash('sha3-512', md5($userHashString));
+
+  if ($user_uniqhash != $data['WPuserHash']) {
+    wp_die('Access deny', 403);
+  }
+
+  $backup = get_user_meta( $user_id, '_mcwallet_backup' );
+  if (is_array($backup)
+    and isset($backup[0])
+    and is_array($backup[0])
+  ) {
+    $backup = $backup[0];
+  } else {
+    $backup = false;
+  }
+
+  if ($data[ 'action' ] && $data[ 'action' ] == 'cleanup') {
+    wp_die( '{"answer":"ok"}', 200);
+  }
+
+  if ($backup
+    and $backup[ 'twentywords' ]
+    and $data[ 'twentywords' ]
+    and ($backup[ 'twentywords' ] != $data[ 'twentywords' ])
+    and ($backup[ 'twentywords' ] != '-')
+    and ($data[ 'twentywords' ] != '-')
+  ) {
+    wp_die( '{"error":"rewrite seed"}', 200);
+  }
+
+  $arr = [];
+  $arr[ 'btcMnemonic' ]                       = $data[ 'btcMnemonic' ];
+  $arr[ 'ethMnemonic' ]                       = $data[ 'ethMnemonic' ];
+  $arr[ 'eth' ]                               = $data[ 'eth' ];
+  $arr[ 'btc' ]                               = $data[ 'btc' ];
+  $arr[ 'ghost' ]                             = $data[ 'ghost' ];
+  $arr[ 'ethOld' ]                            = $data[ 'ethOld' ];
+  $arr[ 'btcOld' ]                            = $data[ 'btcOld' ];
+  $arr[ 'twentywords' ]                       = $data[ 'twentywords' ];
+  $arr[ 'btcMultisig' ]                       = $data[ 'btcMultisig' ];
+  $arr[ 'btcMultisigOtherOwnerKey' ]          = $data[ 'btcMultisigOtherOwnerKey' ];
+  $arr[ 'btcMultisigOtherOwnerKeyMnemonic' ]  = $data[ 'btcMultisigOtherOwnerKeyMnemonic' ];
+  $arr[ 'btcMultisigOtherOwnerKeyOld' ]       = $data[ 'btcMultisigOtherOwnerKeyOld' ];
+  $arr[ 'btcSmsMnemonicKey' ]                 = $data[ 'btcSmsMnemonicKey' ];
+  $arr[ 'btcSmsMnemonicKeyGenerated' ]        = $data[ 'btcSmsMnemonicKeyGenerated' ];
+  $arr[ 'btcSmsMnemonicKeyMnemonic' ]         = $data[ 'btcSmsMnemonicKeyMnemonic' ];
+  $arr[ 'btcSmsMnemonicKeyOld' ]              = $data[ 'btcSmsMnemonicKeyOld' ];
+  $arr[ 'btcPinMnemonicKey' ]                 = $data[ 'btcPinMnemonicKey' ];
+  $arr[ 'hiddenCoinsList' ]                   = $data[ 'hiddenCoinsList' ];
+  
+  $arr[ 'isWalletCreate' ]                    = $data[ 'isWalletCreate' ];
+  $arr[ 'didProtectedBtcCreated' ]            = $data[ 'didProtectedBtcCreated' ];
+  $arr[ 'didPinBtcCreated' ]                  = $data[ 'didPinBtcCreated' ];
+
+
+  update_user_meta( $user_id, '_mcwallet_backup', $arr);
+  wp_die( '{"answer":"ok"}', 200);
+}
+
+add_action( 'wp_ajax_mcwallet_backup_userwallet', 'mcwallet_backup_user' );
+// debug action - for allow request from http://localhost:9001/ with hardcore writed userid
+// add_action( 'wp_ajax_nopriv_mcwallet_backup_userwallet', 'mcwallet_backup_user' );
+
+function mcwallet_restory_user() {
+  $data = json_decode( file_get_contents( 'php://input' ), true );
+
+  if ($data['WPuserUid'] !== get_current_user_id()) {
+    wp_die('Access deny', 403);
+  }
+
+  $user_id = get_current_user_id();
+
+  $userData = get_userdata($user_id)->data;
+  $userHashString = $user_id.':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
+  $user_uniqhash = hash('sha3-512', md5($userHashString));
+
+  if ($user_uniqhash != $data['WPuserHash']) {
+    wp_die('Access deny', 403);
+  }
+
+  $backup = get_user_meta( $user_id, '_mcwallet_backup' );
+  if (is_array($backup)
+    and isset($backup[0])
+    and is_array($backup[0])
+  ) {
+    $backup = $backup[0];
+
+    $data = array();
+    $data['btcMnemonic']                        = $backup['btcMnemonic'];
+    $data['ethMnemonic']                        = $backup['ethMnemonic'];
+    $data['eth']                                = $backup['eth'];
+    $data['btc']                                = $backup['btc'];
+    $data['ghost']                              = $backup['ghost'];
+    $data['ethOld']                             = $backup['ethOld'];
+    $data['btcOld']                             = $backup['btcOld'];
+    $data['twentywords']                        = $backup['twentywords'];
+    $data['btcMultisig']                        = $backup['btcMultisig'];
+    $data['btcMultisigOtherOwnerKey']           = $backup['btcMultisigOtherOwnerKey'];
+    $data['btcMultisigOtherOwnerKeyMnemonic']   = $backup['btcMultisigOtherOwnerKeyMnemonic'];
+    $data['btcMultisigOtherOwnerKeyOld']        = $backup['btcMultisigOtherOwnerKeyOld'];
+    $data['btcSmsMnemonicKey']                  = $backup['btcSmsMnemonicKey'];
+    $data['btcSmsMnemonicKeyGenerated']         = $backup['btcSmsMnemonicKeyGenerated'];
+    $data['btcSmsMnemonicKeyMnemonic']          = $backup['btcSmsMnemonicKeyMnemonic'];
+    $data['btcSmsMnemonicKeyOld']               = $backup['btcSmsMnemonicKeyOld'];
+    $data['btcPinMnemonicKey']                  = $backup['btcPinMnemonicKey'];
+    $data['hiddenCoinsList']                    = $backup['hiddenCoinsList'];
+    $data[ 'isWalletCreate' ]                   = $backup[ 'isWalletCreate' ];
+    $data[ 'didProtectedBtcCreated' ]           = $backup[ 'didProtectedBtcCreated' ];
+    $data[ 'didPinBtcCreated' ]                 = $backup[ 'didPinBtcCreated' ];
+
+    $json = array(
+      'answer' => 'ok',
+      'data' => $data
+    );
+    wp_send_json($json);
+  } else {
+    wp_die('{"answer":"not found"}', 200);
+  }
+}
+add_action( 'wp_ajax_mcwallet_restore_userwallet', 'mcwallet_restory_user' );
+// debug action - for allow request from http://localhost:9001/ with hardcore writed userid
+// add_action( 'wp_ajax_nopriv_mcwallet_restore_userwallet', 'mcwallet_restory_user' );
+
 
 function mcwallet_update_user_meta() {
 
@@ -293,6 +427,12 @@ function mcwallet_update_options() {
 		update_option( 'mcwallet_footer_code', $code_footer );
 
 		update_option( 'mcwallet_strings', $replacements );
+
+    if ( $_POST['rememberUserWallet'] == 'true' ) {
+      update_option( 'mcwallet_remember_userwallet', sanitize_text_field( $_POST['rememberUserWallet'] ) );
+    } else {
+      delete_option( 'mcwallet_remember_userwallet' );
+    }
 
     if ( $_POST['btcDisabled'] == 'true' ) {
       update_option( 'mcwallet_btc_disabled', sanitize_text_field( $_POST['btcDisabled'] ) );
