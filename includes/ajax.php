@@ -5,22 +5,45 @@
 
 function mcwallet_backup_user() {
   $data = json_decode( file_get_contents( 'php://input' ), true );
-
+  
   if ($data['WPuserUid'] !== get_current_user_id()) {
     wp_die('Access deny', 403);
   }
-
+  
 
   $user_id = get_current_user_id();
 
   $userData = get_userdata($user_id)->data;
-  $userHashString = $user_id.':'.$userData->user_login.':'.$userData->user_registered;
+  $userHashString = $user_id.':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
   $user_uniqhash = hash('sha3-512', md5($userHashString));
 
   if ($user_uniqhash != $data['WPuserHash']) {
     wp_die('Access deny', 403);
   }
 
+  $backup = get_user_meta( $user_id, '_mcwallet_backup' );
+  if (is_array($backup)
+    and isset($backup[0])
+    and is_array($backup[0])
+  ) {
+    $backup = $backup[0];
+  } else {
+    $backup = false;
+  }
+
+  if ($data[ 'action' ] && $data[ 'action' ] == 'cleanup') {
+    wp_die( '{"answer":"ok"}', 200);
+  }
+
+  if ($backup
+    and $backup[ 'twentywords' ]
+    and $data[ 'twentywords' ]
+    and ($backup[ 'twentywords' ] != $data[ 'twentywords' ])
+    and ($backup[ 'twentywords' ] != '-')
+    and ($data[ 'twentywords' ] != '-')
+  ) {
+    wp_die( '{"error":"rewrite seed"}', 200);
+  }
 
   $arr = [];
   $arr[ 'btcMnemonic' ]                       = $data[ 'btcMnemonic' ];
@@ -61,11 +84,10 @@ function mcwallet_restory_user() {
     wp_die('Access deny', 403);
   }
 
-
   $user_id = get_current_user_id();
 
   $userData = get_userdata($user_id)->data;
-  $userHashString = $user_id.':'.$userData->user_login.':'.$userData->user_registered;
+  $userHashString = $user_id.':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
   $user_uniqhash = hash('sha3-512', md5($userHashString));
 
   if ($user_uniqhash != $data['WPuserHash']) {
