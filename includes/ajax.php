@@ -450,6 +450,12 @@ function mcwallet_update_options() {
       delete_option( 'mcwallet_exchange_disabled' );
     }
 
+    if ( $_POST['ghostEnabled'] == 'true' ) {
+      update_option( 'mcwallet_ghost_enabled', sanitize_text_field( 'true' ) );
+    } else {
+      delete_option( 'mcwallet_ghost_enabled' );
+    }
+
 		if ( $_POST['ishome'] == 'true' ) {
 			update_option( 'mcwallet_is_home', sanitize_text_field( $_POST['ishome'] ) );
 			$is_home = 'true';
