@@ -255,6 +255,7 @@ function mcwallet_inline_script() {
     'EXCHANGE_DISABLED'            => get_option( 'mcwallet_exchange_disabled', 'false' ),
     'CUR_BTC_DISABLED'             => get_option( 'mcwallet_btc_disabled', 'false' ),
     'CUR_ETH_DISABLED'             => get_option( 'mcwallet_eth_disabled', 'false' ),
+    'CUR_GHOST_DISABLED'           => (get_option( 'mcwallet_ghost_enabled') == 'true') ? 'false' : 'true',
 	);
 
 	if ( get_current_user_id() ) {

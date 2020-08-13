@@ -171,11 +171,12 @@
 		var codeBody       = thisParent.find( '[name="mcwallet_body_code"]' ).val();
 		var codeFooter     = thisParent.find( '[name="mcwallet_footer_code"]' ).val();
 
-    var btcDisabled    = thisParent.find( '[name="btc_disabled"]' )
-    var ethDisabled    = thisParent.find( '[name="eth_disabled"]' )
-    var exchangeDisabled = thisParent.find( '[name="exchange_disabled"]' )
+    var btcDisabled    = thisParent.find( '[name="btc_disabled"]' );
+    var ethDisabled    = thisParent.find( '[name="eth_disabled"]' );
+    var ghostEnabled   = thisParent.find( '[name="ghost_enabled"]' );
+    var exchangeDisabled = thisParent.find( '[name="exchange_disabled"]' );
 
-    var rememberUserWallet = thisParent.find( '[name="remeber_userwallet"]' )
+    var rememberUserWallet = thisParent.find( '[name="remeber_userwallet"]' );
     
 		// click handler
 
@@ -190,6 +191,8 @@
 
     btcDisabled = btcDisabled.is(':checked') ? 'true' : 'false';
     ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
+    ghostEnabled = ghostEnabled.is(':checked') ? 'false' : 'true';
+
     exchangeDisabled = exchangeDisabled.is(':checked') ? 'true' : 'false';
 
     rememberUserWallet = rememberUserWallet.is(':checked') ? 'true' : 'false';
@@ -234,6 +237,7 @@
 
       btcDisabled: btcDisabled,
       ethDisabled: ethDisabled,
+      ghostEnabled: ghostEnabled,
       exchangeDisabled: exchangeDisabled,
 
       rememberUserWallet: rememberUserWallet
