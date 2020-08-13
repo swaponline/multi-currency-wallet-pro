@@ -266,6 +266,15 @@ function mcwallet_page() {
               <tr>
 								<th scope="row"></th>
 								<td>
+									<label for="mcwallet_ghost_enabled">
+										<input name="ghost_enabled" type="checkbox" id="mcwallet_ghost_enabled" <?php checked( 'true', (!get_option('mcwallet_ghost_enabled')) ? 'true' : 'false' ); ?>>
+										<?php esc_html_e( 'Disable GHOST wallet.', 'multi-currency-wallet' );?>
+									</label>
+								</td>
+							</tr>
+              <tr>
+								<th scope="row"></th>
+								<td>
 									<label for="mcwallet_exchange_disabled">
 										<input name="exchange_disabled" type="checkbox" id="mcwallet_exchange_disabled" <?php checked( 'true', get_option( 'mcwallet_exchange_disabled' ) ); ?>>
 										<?php esc_html_e( 'Disable exchange', 'multi-currency-wallet' );?>
