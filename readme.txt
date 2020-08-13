@@ -42,3 +42,4 @@ Yes, you can!.
 
 = 1.0.0 =
 * Release
+
