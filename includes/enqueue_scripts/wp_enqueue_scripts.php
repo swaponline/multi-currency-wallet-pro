@@ -267,7 +267,7 @@ function mcwallet_inline_script() {
     // Помимо userId в backend передаем его хеш, по которому проверяем,
     // Действительно ли это отправил пользователь или злоумышлиник, обычным подбором userId
     $userData = get_userdata(get_current_user_id())->data;
-    $userHashString = get_current_user_id().':'.$userData->user_login.':'.$userData->user_registered;
+    $userHashString = get_current_user_id().':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
     $user_uniqhash = hash('sha3-512', md5($userHashString));
 
     $window_arr['WPuserHash'] = esc_html($user_uniqhash);
