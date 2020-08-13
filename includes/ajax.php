@@ -5,11 +5,10 @@
 
 function mcwallet_backup_user() {
   $data = json_decode( file_get_contents( 'php://input' ), true );
-  
+
   if ($data['WPuserUid'] !== get_current_user_id()) {
     wp_die('Access deny', 403);
   }
-  
 
   $user_id = get_current_user_id();
 
@@ -50,6 +49,7 @@ function mcwallet_backup_user() {
   $arr[ 'ethMnemonic' ]                       = $data[ 'ethMnemonic' ];
   $arr[ 'eth' ]                               = $data[ 'eth' ];
   $arr[ 'btc' ]                               = $data[ 'btc' ];
+  $arr[ 'ghost' ]                             = $data[ 'ghost' ];
   $arr[ 'ethOld' ]                            = $data[ 'ethOld' ];
   $arr[ 'btcOld' ]                            = $data[ 'btcOld' ];
   $arr[ 'twentywords' ]                       = $data[ 'twentywords' ];
@@ -106,6 +106,7 @@ function mcwallet_restory_user() {
     $data['ethMnemonic']                        = $backup['ethMnemonic'];
     $data['eth']                                = $backup['eth'];
     $data['btc']                                = $backup['btc'];
+    $data['ghost']                              = $backup['ghost'];
     $data['ethOld']                             = $backup['ethOld'];
     $data['btcOld']                             = $backup['btcOld'];
     $data['twentywords']                        = $backup['twentywords'];
