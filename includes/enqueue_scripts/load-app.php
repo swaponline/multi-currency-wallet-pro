@@ -17,9 +17,6 @@ $_GET_ver = (isset($_GET['ver'])) ? $_GET['ver'] : false;
 require_once $path_levels . 'wp-load.php';
 
 $version = md5(($_GET_ver) ? $_GET_ver : ((MCWALLET_VER) ? MCWALLET_VER : 'no'));
-echo '/*';
-echo 'version: ' . $version;
-echo '*/';
 
 $cache_file = 'wp-content/uploads/swap-wallet-app-' . $version . '.js';
 
