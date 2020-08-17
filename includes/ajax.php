@@ -14,7 +14,7 @@ function mcwallet_backup_user() {
 
   $userData = get_userdata($user_id)->data;
   $userHashString = $user_id.':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
-  $user_uniqhash = hash('sha3-512', md5($userHashString));
+  $user_uniqhash = md5($userHashString);
 
   if ($user_uniqhash != $data['WPuserHash']) {
     wp_die('Access deny', 403);
@@ -88,7 +88,7 @@ function mcwallet_restory_user() {
 
   $userData = get_userdata($user_id)->data;
   $userHashString = $user_id.':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
-  $user_uniqhash = hash('sha3-512', md5($userHashString));
+  $user_uniqhash = md5($userHashString);
 
   if ($user_uniqhash != $data['WPuserHash']) {
     wp_die('Access deny', 403);

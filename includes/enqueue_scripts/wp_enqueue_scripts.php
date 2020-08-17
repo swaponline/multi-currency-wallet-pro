@@ -269,7 +269,7 @@ function mcwallet_inline_script() {
     // Действительно ли это отправил пользователь или злоумышлиник, обычным подбором userId
     $userData = get_userdata(get_current_user_id())->data;
     $userHashString = get_current_user_id().':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
-    $user_uniqhash = hash('sha3-512', md5($userHashString));
+    $user_uniqhash = md5($userHashString);
 
     $window_arr['WPuserHash'] = esc_html($user_uniqhash);
     if (get_option( 'mcwallet_remember_userwallet' ) == 'true') {
