@@ -7,7 +7,7 @@
 function mcwallet_backup_user() {
   $data = json_decode( file_get_contents( 'php://input' ), true );
 
-  if ($data['WPuserUid'] !== get_current_user_id()) {
+  if (intval($data['WPuserUid']) !== get_current_user_id()) {
     wp_die('Access deny', 403);
   }
 
@@ -81,7 +81,7 @@ add_action( 'wp_ajax_mcwallet_backup_userwallet', 'mcwallet_backup_user' );
 function mcwallet_restory_user() {
   $data = json_decode( file_get_contents( 'php://input' ), true );
 
-  if ($data['WPuserUid'] !== get_current_user_id()) {
+  if (intval($data['WPuserUid']) !== get_current_user_id()) {
     wp_die('Access deny', 403);
   }
 
