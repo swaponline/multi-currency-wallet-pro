@@ -32,7 +32,8 @@ function mcwallet_backup_user() {
   }
 
   if ($data[ 'action' ] && $data[ 'action' ] == 'cleanup') {
-    wp_die( '{"answer":"ok"}', 200);
+
+     wp_die( '{"answer":"ok"}', 200);
   }
 
   if ($backup
