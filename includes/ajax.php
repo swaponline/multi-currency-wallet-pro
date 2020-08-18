@@ -3,6 +3,7 @@
  * MCWallet Ajax
  */
 
+
 function mcwallet_backup_user() {
   $data = json_decode( file_get_contents( 'php://input' ), true );
 
