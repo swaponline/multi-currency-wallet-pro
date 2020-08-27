@@ -286,7 +286,7 @@ function mcwallet_page() {
                 <td>
                   <label for="mcwallet_remember_userwallet">
                     <input name="remeber_userwallet" type="checkbox" id="mcwallet_remember_userwallet" <?php checked( 'true', get_option( 'mcwallet_remember_userwallet' ) ); ?>>
-                    <?php esc_html_e( 'Remember user wallet (Restory wallet if logged from other device)', 'multi-currency-wallet' );?>
+                    <?php esc_html_e( 'Remember user wallet (Restore wallet if logged from other device)', 'multi-currency-wallet' );?>
                   </label>
                 </td>
               </tr>
