@@ -5,9 +5,13 @@
 function mcwallet_login_enqueue_scripts() {
 
 	/* Register styles */
-	wp_enqueue_style( 'mcwallet-login', MCWALLET_URL . 'assets/css/login.css', array( 'login' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER.'1' );
+	if ( ! get_option( 'mcwallet_logo' ) ) {
+		return;
+	}
 
-	$image = mcwallet_logo_url();
+	wp_enqueue_style( 'mcwallet-login', MCWALLET_URL . 'assets/css/login.css', array( 'login' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER );
+
+	$image     = mcwallet_logo_url();
 	$login_css = "
 		:root {
 			--mcwallet-login-logo: url({$image});
