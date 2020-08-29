@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || die( 'Soarele luceste!' );
 /* Define Plugin Constants */
 define( 'MCWALLET_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MCWALLET_URL', plugin_dir_url( __FILE__ ) );
-define( 'MCWALLET_VER', '1.0.234' );
+define( 'MCWALLET_VER', '1.0.235' );
 define( 'MCWALLET_BUILD_VER', 'dfabd8' );
 
 /**
