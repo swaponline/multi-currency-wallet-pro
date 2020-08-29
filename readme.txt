@@ -2,9 +2,9 @@
 Contributors: noxonsu, burdianov
 Tags: adress generation, bitcoin, blockchain, crypto, cryptocurrency, eos, ethereum, exchange, shortcode, wallet, widget
 Requires at least: 5.0
-Tested up to: 5.3
-Stable tag: 4.3
-Requires PHP: 5.2.4
+Tested up to: 5.5
+Stable tag: 1.0.2
+Requires PHP: 5.6
 License: GNU General Public License version 3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
