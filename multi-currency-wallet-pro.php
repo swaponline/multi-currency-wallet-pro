@@ -4,7 +4,7 @@
  * Plugin URI: https://swaponline.io
  * Description: Simplest Multi-currency wallet for WordPress.
  * Version: 1.0.243
- * Requires at least: 5.8
+ * Requires at least: 5.4.0
  * Requires PHP: 5.14
  * Author: NoxonThemes
  * Author URI: https://themeforest.net/user/noxonthemes
