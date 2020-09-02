@@ -5,7 +5,7 @@
  * Description: Simplest Multi-currency wallet for WordPress.
  * Version: 1.0.244
  * Requires at least: 5.4.101
- * Requires PHP: 5.15
+ * Requires PHP: 5.105
  * Author: NoxonThemes
  * Author URI: https://themeforest.net/user/noxonthemes
  * Text Domain: multi-currency-wallet
