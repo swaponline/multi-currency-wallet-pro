@@ -83,6 +83,13 @@ function mcwallet_inline_build_script() {
 		}
 	};
 
+  try {
+    var testLocalStorage = window.localStorage;
+  } catch (e) {
+    localStorageIsOk = false
+    document.getElementById("onFailLocalStorageLink").href = window.location.href;
+    document.getElementById("onFailLocalStorageMessage").classList.remove("d-none");
+  }
 	function setCookie(name, value, options) {
 		options = options || {};
 		var expires = options.expires;
