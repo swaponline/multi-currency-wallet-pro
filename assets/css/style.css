@@ -75,6 +75,22 @@ body {
     top: 100px;
 }
 
+.show-on-fail-ls {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.show-on-fail-ls .btc-open-in-new-tab {
+  margin-top: 2em;
+}
+.show-on-fail-ls .btc-open-in-new-tab > A {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.show-on-fail-ls SPAN {
+  display: block;
+}
 @media (max-width: 767px) {
     #swiper_banners {
         margin: 0 25px;
