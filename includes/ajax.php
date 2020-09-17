@@ -70,6 +70,7 @@ function mcwallet_backup_user() {
   $arr[ 'didProtectedBtcCreated' ]            = $data[ 'didProtectedBtcCreated' ];
   $arr[ 'didPinBtcCreated' ]                  = $data[ 'didPinBtcCreated' ];
 
+  $arr[ 'orders' ]                            = $data[ 'orders' ];
 
   update_user_meta( $user_id, '_mcwallet_backup', $arr);
   wp_die( '{"answer":"ok"}', 200);
@@ -125,6 +126,7 @@ function mcwallet_restory_user() {
     $data[ 'isWalletCreate' ]                   = $backup[ 'isWalletCreate' ];
     $data[ 'didProtectedBtcCreated' ]           = $backup[ 'didProtectedBtcCreated' ];
     $data[ 'didPinBtcCreated' ]                 = $backup[ 'didPinBtcCreated' ];
+    $data[ 'orders' ]                           = $backup[ 'orders' ];
 
     $json = array(
       'answer' => 'ok',
@@ -430,6 +432,11 @@ function mcwallet_update_options() {
 
 		update_option( 'mcwallet_strings', $replacements );
 
+    if ( $_POST['footerDisabled'] == 'true' ) {
+      update_option( 'mcwallet_disable_footer', sanitize_text_field( $_POST['footerDisabled'] ) );
+    } else {
+      delete_option( 'mcwallet_disable_footer' );
+    }
     if ( $_POST['rememberUserWallet'] == 'true' ) {
       update_option( 'mcwallet_remember_userwallet', sanitize_text_field( $_POST['rememberUserWallet'] ) );
     } else {
@@ -456,6 +463,12 @@ function mcwallet_update_options() {
       update_option( 'mcwallet_ghost_enabled', sanitize_text_field( 'true' ) );
     } else {
       delete_option( 'mcwallet_ghost_enabled' );
+    }
+
+    if ( $_POST['nextEnabled'] == 'true' ) {
+      update_option( 'mcwallet_next_enabled', sanitize_text_field( 'true' ) );
+    } else {
+      delete_option( 'mcwallet_next_enabled' );
     }
 
 		if ( $_POST['ishome'] == 'true' ) {
