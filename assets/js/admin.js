@@ -174,10 +174,12 @@
     var btcDisabled    = thisParent.find( '[name="btc_disabled"]' );
     var ethDisabled    = thisParent.find( '[name="eth_disabled"]' );
     var ghostEnabled   = thisParent.find( '[name="ghost_enabled"]' );
+    var nextEnabled   = thisParent.find( '[name="next_enabled"]' );
     var exchangeDisabled = thisParent.find( '[name="exchange_disabled"]' );
 
     var rememberUserWallet = thisParent.find( '[name="remeber_userwallet"]' );
-    
+
+    var footerDisabled = thisParent.find( '[name="disable_footer"]' );
 		// click handler
 
 		var strings = '';
@@ -192,10 +194,13 @@
     btcDisabled = btcDisabled.is(':checked') ? 'true' : 'false';
     ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
     ghostEnabled = ghostEnabled.is(':checked') ? 'false' : 'true';
+    nextEnabled = nextEnabled.is(':checked') ? 'false' : 'true';
 
     exchangeDisabled = exchangeDisabled.is(':checked') ? 'true' : 'false';
 
     rememberUserWallet = rememberUserWallet.is(':checked') ? 'true' : 'false';
+
+    footerDisabled = footerDisabled.is(':checked') ? 'true' : 'false';
 
 		if ( pageHome.is(':checked') ) {
 			ishome = 'true';
@@ -238,9 +243,12 @@
       btcDisabled: btcDisabled,
       ethDisabled: ethDisabled,
       ghostEnabled: ghostEnabled,
+      nextEnabled: nextEnabled,
       exchangeDisabled: exchangeDisabled,
 
-      rememberUserWallet: rememberUserWallet
+      rememberUserWallet: rememberUserWallet,
+
+      footerDisabled: footerDisabled
 		};
 
 		mcwalletSpinner(thisBtn);
