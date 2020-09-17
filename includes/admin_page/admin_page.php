@@ -275,6 +275,15 @@ function mcwallet_page() {
               <tr>
 								<th scope="row"></th>
 								<td>
+									<label for="mcwallet_next_enabled">
+										<input name="next_enabled" type="checkbox" id="mcwallet_next_enabled" <?php checked( 'true', (!get_option('mcwallet_next_enabled')) ? 'true' : 'false' ); ?>>
+										<?php esc_html_e( 'Disable NEXT wallet.', 'multi-currency-wallet' );?>
+									</label>
+								</td>
+							</tr>
+              <tr>
+								<th scope="row"></th>
+								<td>
 									<label for="mcwallet_exchange_disabled">
 										<input name="exchange_disabled" type="checkbox" id="mcwallet_exchange_disabled" <?php checked( 'true', get_option( 'mcwallet_exchange_disabled' ) ); ?>>
 										<?php esc_html_e( 'Disable exchange', 'multi-currency-wallet' );?>
@@ -386,6 +395,15 @@ function mcwallet_page() {
 									</label>
 								</td>
 							</tr>
+              <tr>
+                <th scope="row"></th>
+                <td>
+                  <label for="mcwallet_disable_footer">
+                    <input name="disable_footer" type="checkbox" id="mcwallet_disable_footer" <?php checked( 'true', get_option( 'mcwallet_disable_footer' ) ); ?>>
+                    <?php esc_html_e( "Hide footer", 'multi-currency-wallet' );?>
+                  </label>
+                </td>
+              </tr>
 							<tr>
 								<th scope="row"></th>
 								<td>
