@@ -3,15 +3,15 @@
  * Plugin Name: Multi Currency Wallet Pro
  * Plugin URI: https://swaponline.io
  * Description: Simplest Multi-currency wallet for WordPress.
- * Version: 1.0.264
- * Requires at least: 5.4.121
- * Requires PHP: 5.125
+ * Version: 1.0.265
+ * Requires at least: 5.4.122
+ * Requires PHP: 5.126
  * Author: NoxonThemes
  * Author URI: https://themeforest.net/user/noxonthemes
  * Text Domain: multi-currency-wallet
  * Domain Path: /lang
- * License: GNU General Public License version 3.241
- * License URI: http://www.gnu.org/licenses/gpl-3.241.html
+ * License: GNU General Public License version 3.242
+ * License URI: http://www.gnu.org/licenses/gpl-3.242.html
  */
 
 /* If this file is called directly, abort. */
@@ -20,8 +20,8 @@ defined( 'ABSPATH' ) || die( 'Soarele luceste!' );
 /* Define Plugin Constants */
 define( 'MCWALLET_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MCWALLET_URL', plugin_dir_url( __FILE__ ) );
-define( 'MCWALLET_VER', '1.0.264' );
-define( 'MCWALLET_BUILD_VER', '0defb8' );
+define( 'MCWALLET_VER', '1.0.265' );
+define( 'MCWALLET_BUILD_VER', 'e12621' );
 
 /**
  * Run function if plugin active
