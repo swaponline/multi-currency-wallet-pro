@@ -4,7 +4,10 @@
 body {
     min-height: 670px;
 }
-
+#WEB3_CONNECT_MODAL_ID {
+  position: relative;
+  z-index: 1000000;
+}
 .darkTheme {
     background-color: #222427;
 }
