@@ -46,7 +46,8 @@ function mcwallet_backup_user() {
     wp_die( '{"error":"rewrite seed"}', 200);
   }
 
-  $arr = [];
+  $arr = ($backup) ? $backup : [];
+
   $arr[ 'btcMnemonic' ]                       = $data[ 'btcMnemonic' ];
   $arr[ 'ethMnemonic' ]                       = $data[ 'ethMnemonic' ];
   $arr[ 'eth' ]                               = $data[ 'eth' ];
@@ -54,7 +55,11 @@ function mcwallet_backup_user() {
   $arr[ 'ghost' ]                             = $data[ 'ghost' ];
   $arr[ 'ethOld' ]                            = $data[ 'ethOld' ];
   $arr[ 'btcOld' ]                            = $data[ 'btcOld' ];
-  $arr[ 'twentywords' ]                       = $data[ 'twentywords' ];
+
+  if ($data['twentywords'] !== '-') {
+    $arr[ 'twentywords' ]                       = $data[ 'twentywords' ];
+  }
+
   $arr[ 'btcMultisig' ]                       = $data[ 'btcMultisig' ];
   $arr[ 'btcMultisigOtherOwnerKey' ]          = $data[ 'btcMultisigOtherOwnerKey' ];
   $arr[ 'btcMultisigOtherOwnerKeyMnemonic' ]  = $data[ 'btcMultisigOtherOwnerKeyMnemonic' ];
@@ -112,7 +117,7 @@ function mcwallet_restory_user() {
     $data['ghost']                              = $backup['ghost'];
     $data['ethOld']                             = $backup['ethOld'];
     $data['btcOld']                             = $backup['btcOld'];
-    $data['twentywords']                        = $backup['twentywords'];
+    $data['twentywords']                        = '-'; // $backup['twentywords'];
     $data['btcMultisig']                        = $backup['btcMultisig'];
     $data['btcMultisigOtherOwnerKey']           = $backup['btcMultisigOtherOwnerKey'];
     $data['btcMultisigOtherOwnerKeyMnemonic']   = $backup['btcMultisigOtherOwnerKeyMnemonic'];
