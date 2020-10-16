@@ -4,6 +4,32 @@
  */
 
 /**
+ * Redefine logout
+ */
+if (!function_exists( 'wp_logout' ) ) {
+	/**
+	 * Log the current user out.
+	 *
+	 * @since 2.5.0
+	 */
+	function wp_logout() {
+    $users_must_be_registered = (get_option( 'mcwallet_is_logged' ) == 'true');
+    $save_userData = (get_option( 'mcwallet_remember_userwallet' ) == 'true');
+    $is_adminPage = (strpos(strtolower($_SERVER['HTTP_REFERER']), '/wp-admin') !== false);
+
+    if ($is_adminPage and $save_userData) {
+      header('Location: '.mcwallet_page_url().'/#/exit');
+      exit();
+    } else {
+      wp_destroy_current_session();
+      wp_clear_auth_cookie();
+      wp_set_current_user( 0 );
+
+      do_action( 'wp_logout' );
+    }
+	}
+}
+/**
  * Default Page slug
  */
 function mcwallet_default_slug(){
