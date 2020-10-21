@@ -506,6 +506,26 @@ function mcwallet_update_options() {
 	mcwallet_add_rewrite_rules();
 	flush_rewrite_rules();
 
+  /* clear cache */
+  if ( version_compare( PHP_VERSION, '7.0.0' ) >= 0) {
+    $path_levels = dirname( __FILE__, 5 ) . '/';
+  } else {
+    $path_levels = dirname( __FILE__ ) . '../../../../../';
+  }
+
+  $cache_dir = $path_levels . 'wp-content/uploads/';
+  $cache_dir_files = scandir($cache_dir);
+  $cache_file_mark = 'swap-wallet-app-';
+  foreach($cache_dir_files as $fkey=>$file) {
+    $file_ext = explode('.', $file);
+    $file_ext = $file_ext[count($file_ext)-1];
+    $file_subname = substr($file,0, strlen($cache_file_mark));
+    if (($file_ext === 'js') and ($file_subname === $cache_file_mark)) {
+      unlink($cache_dir.$file);
+    }
+  }
+  /* dump result */
+
 	$result_arr = array(
 		'status'   => $status,
 		'url'      => esc_attr( mcwallet_page_url() ),
