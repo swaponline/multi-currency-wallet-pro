@@ -63,7 +63,7 @@ function mcwallet_page() {
 									<span><?php esc_html_e( 'ERC20 contract address', 'multi-currency-wallet' ); ?></span>
 								</td>
 								<td class="item-echange-rate">
-									<span><?php esc_html_e( 'Exchange Rate', 'multi-currency-wallet' ); ?></span>
+									<span><?php esc_html_e( 'Recommended price', 'multi-currency-wallet' ); ?></span>
 								</td>
 								<td class="item-action">
 									<span><?php esc_html_e( 'Action', 'multi-currency-wallet' ); ?></span>
