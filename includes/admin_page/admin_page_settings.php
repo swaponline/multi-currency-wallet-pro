@@ -40,11 +40,11 @@ function mcwallet_do_settings_sections() {
 			</tr>
 			<tr>
 				<th scope="row">
-					<label><?php esc_html_e( 'Custom exchange rate', 'multi-currency-wallet' );?></label>
+					<label><?php esc_html_e( 'Recommended exchange rate', 'multi-currency-wallet' );?></label>
 				</th>
 				<td>
 					<input name="rate" type="number" value="" size="7" class="textright" placeholder="0">
-					<p class="description"><?php esc_html_e( 'Custom exchange rate', 'multi-currency-wallet' );?> <a href="https://screenshots.wpmix.net/chrome_vnv8OIFJ4oZ9QfCxrLM6CjQ05HG02mFG.png" target="_blank">(?)</a></p>
+					<p class="description"><?php esc_html_e( 'Recommended exchange rate', 'multi-currency-wallet' );?> <a href="https://screenshots.wpmix.net/chrome_vnv8OIFJ4oZ9QfCxrLM6CjQ05HG02mFG.png" target="_blank">(?)</a> this rate uses ONLY in the wallet, not int he exchange</p>
 				</td>
 			</tr>
 			<tr>
