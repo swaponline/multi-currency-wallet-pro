@@ -46,6 +46,21 @@ function mcwallet_print_head_styles() {
 	echo '<script>' . "\n";
 	echo '  var isWidgetBuild = "true";' . "\n";
 	echo '</script>' . "\n";
+	?><style>
+	  :root {
+        --primary:<? echo get_option( 'mcwallet_colors_primary', '#6144e5' ); ?>;
+        --primary-hover: <? echo get_option( 'mcwallet_colors_primary', '#7371ff' ); ?>;
+        --primary-background: <? echo get_option( 'mcwallet_colors_primary', 'rgba(97, 68, 229, 0.1)' ); ?>;
+        --alternate: <? echo get_option( 'mcwallet_colors_primary', '#e91db4' ); ?>;
+        --alternate-hover:  <? echo get_option( 'mcwallet_colors_primary', '#ff1fc5' ); ?>;
+      }
+      
+      #WEB3_CONNECT_MODAL_ID {
+        position: relative;
+        z-index: 1000000;
+      }
+	</style>';
+	<?php
 }
 add_action( 'mcwallet_head', 'mcwallet_print_head_styles' );
 
