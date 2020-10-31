@@ -49,10 +49,10 @@ function mcwallet_print_head_styles() {
 	?><style>
 	  :root {
         --primary:<?php echo get_option( 'mcwallet_colors_primary', '#6144e5' ); ?>;
-        --primary-hover: <?php echo get_option( 'mcwallet_colors_primary', '#7371ff' ); ?>;
-        --primary-background: <?php echo get_option( 'mcwallet_colors_primary', 'rgba(97, 68, 229, 0.1)' ); ?>;
-        --alternate: <?php echo get_option( 'mcwallet_colors_primary', '#e91db4' ); ?>;
-        --alternate-hover:  <?php echo get_option( 'mcwallet_colors_primary', '#ff1fc5' ); ?>;
+        --primary-hover: <?php echo get_option( 'mcwallet_colors_primary_hover', '#7371ff' ); ?>;
+        --primary-background: <?php echo get_option( 'mcwallet_colors_primary_background', 'rgba(97, 68, 229, 0.1)' ); ?>;
+        --alternate: <?php echo get_option( 'mcwallet_colors_alternate', '#e91db4' ); ?>;
+        --alternate-hover:  <?php echo get_option( 'mcwallet_colors_alternate_hover', '#ff1fc5' ); ?>;
       }
       
       #WEB3_CONNECT_MODAL_ID {
