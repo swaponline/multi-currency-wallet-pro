@@ -46,7 +46,9 @@ function mcwallet_print_head_styles() {
 	echo '<script>' . "\n";
 	echo '  var isWidgetBuild = "true";' . "\n";
 	echo '</script>' . "\n";
-	?><style>
+	?>
+<!-- ya coment -->
+	<style>
 	  :root {
         --primary:<?php echo get_option( 'mcwallet_colors_primary', '#6144e5' ); ?>;
         --primary-hover: <?php echo get_option( 'mcwallet_colors_primary_hover', '#7371ff' ); ?>;
