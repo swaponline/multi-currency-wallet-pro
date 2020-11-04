@@ -302,7 +302,7 @@ function mcwallet_page() {
 						</tbody>
 					</table><!-- .form-table -->
 
-					<h3><?php esc_html_e( 'Transaction fees', 'multi-currency-wallet' );?></h3>
+					<h3><?php esc_html_e( 'Transaction fees', 'multi-currency-wallet' );?> <a href="https://support.swaponline.io/docs/fpr-business/admin-fees-formula-wallet-only/">?</a></h3>
 
 					<table class="form-table">
 						<tbody>
