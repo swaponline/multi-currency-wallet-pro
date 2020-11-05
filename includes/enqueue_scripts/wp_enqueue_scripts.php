@@ -61,7 +61,7 @@ function mcwallet_print_head_styles() {
         position: relative;
         z-index: 1000000;
       }
-	</style>';
+	</style>
 	<?php
 }
 add_action( 'mcwallet_head', 'mcwallet_print_head_styles' );
