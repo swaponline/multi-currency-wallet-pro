@@ -463,6 +463,11 @@ function mcwallet_update_options() {
     } else {
       delete_option( 'mcwallet_exchange_disabled' );
     }
+    if ( $_POST['invoiceEnabled'] == 'true' ) {
+      update_option( 'mcwallet_invoice_enabled', sanitize_text_field( $_POST['invoiceEnabled'] ) );
+    } else {
+      delete_option( 'mcwallet_invoice_enabled' );
+    }
 
     if ( $_POST['ghostEnabled'] == 'true' ) {
       update_option( 'mcwallet_ghost_enabled', sanitize_text_field( 'true' ) );
