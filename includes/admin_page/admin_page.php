@@ -291,6 +291,15 @@ function mcwallet_page() {
 								</td>
 							</tr>
               <tr>
+								<th scope="row"></th>
+								<td>
+									<label for="mcwallet_invoice_enabled">
+										<input name="invoice_enabled" type="checkbox" id="mcwallet_invoice_enabled" <?php checked( 'true', get_option( 'mcwallet_invoice_enabled' ) ); ?>>
+										<?php esc_html_e( 'Enable Invoices', 'multi-currency-wallet' );?>
+									</label>
+								</td>
+							</tr>
+              <tr>
                 <th scope="row"></th>
                 <td>
                   <label for="mcwallet_remember_userwallet">
