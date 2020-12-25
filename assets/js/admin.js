@@ -176,6 +176,7 @@
     var ghostEnabled   = thisParent.find( '[name="ghost_enabled"]' );
     var nextEnabled   = thisParent.find( '[name="next_enabled"]' );
     var exchangeDisabled = thisParent.find( '[name="exchange_disabled"]' );
+    var invoiceEnabled = thisParent.find( '[name="invoice_enabled"]' );
 
     var rememberUserWallet = thisParent.find( '[name="remeber_userwallet"]' );
 
@@ -197,6 +198,8 @@
     nextEnabled = nextEnabled.is(':checked') ? 'false' : 'true';
 
     exchangeDisabled = exchangeDisabled.is(':checked') ? 'true' : 'false';
+
+    invoiceEnabled = invoiceEnabled.is(':checked') ? 'true' : 'false';
 
     rememberUserWallet = rememberUserWallet.is(':checked') ? 'true' : 'false';
 
@@ -245,6 +248,8 @@
       ghostEnabled: ghostEnabled,
       nextEnabled: nextEnabled,
       exchangeDisabled: exchangeDisabled,
+
+      invoiceEnabled: invoiceEnabled,
 
       rememberUserWallet: rememberUserWallet,
 
