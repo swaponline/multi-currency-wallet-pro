@@ -282,7 +282,7 @@ function mcwallet_inline_script() {
 			if ( isset( $token['howwithdraw'] ) ) {
 				$how_withdraw = $token['howwithdraw'];
 			}
-			$script .= "    " . $symbol . ": {
+			$script .= "    '" . $symbol . "': {
 		address: '" . $address . "',
 		decimals: " . $decimals . ",
 		fullName: '" . $fullname . "',
