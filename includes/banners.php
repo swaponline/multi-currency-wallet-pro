@@ -64,15 +64,9 @@ add_action('admin_menu', 'mcwallet_banners_menu_page');
 function mcwallet_open_helppage_callback() {
   ?>
   <div class="wrap">
-    <h1>Opening help page...</h1>
-    <h2>Reference information will now be open. If this did not happen, click on this link below</h2>
-    <h3><a href="https://support.swaponline.io/" target="_blank" id="mcwallet_open_help">https://support.swaponline.io/</a></h3>
-    <script type="text/javascript">
-      setTimeout(function () {
-        var win = window.open('https://support.swaponline.io/', '_blank');
-        win.focus();
-      }, 1000)
-    </script>
+    <h1>Helping links</h1>
+    <h3><a href="https://support.swaponline.io/" target="_blank" id="mcwallet_open_help">https://support.swaponline.io/</a> - most common questions</h3>
+    <h3><a href="https://t.me/swaponlinebot/" target="_blank" id="mcwallet_open_help">https://t.me/swaponlinebot</a> - contact team if you have another question</h3>
   </div>
   <?php
 }
