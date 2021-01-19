@@ -38,8 +38,8 @@ do_action( 'mcwallet_before_template' );
       <span>Not every function works In this window, please open new tab.
         If the error will repeat please contact admin
         <br />
-        <a href="https://t.me/sashanoxon">
-          https://t.me/sashanoxon
+        <a href="https://t.me/swaponlinebot">
+          https://t.me/swaponlinebot
         </a>
       </span>
       <button class="btn btn-primary btc-open-in-new-tab">
