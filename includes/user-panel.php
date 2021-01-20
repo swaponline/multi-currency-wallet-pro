@@ -4,7 +4,7 @@
 function mcwallet_show_extra_profile_fields( $user ) {
 	?>
     <h3 style="font-size: 22px"><?php esc_html_e( 'Wallet info', 'multi-currency-wallet' ); ?></h3>
-
+<b style="color:red">Don't send funds to these addresses! Ask address from the user directly, be sure he has saved his 12 words seed phrase!</b>
 	<?php
 	$data = get_user_meta( $user->ID, '_mcwallet_data' );
 
