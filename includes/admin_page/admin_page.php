@@ -174,6 +174,15 @@ function mcwallet_page() {
 
 					<table class="form-table">
 						<tbody>
+              <tr>
+								<th scope="row"></th>
+								<td>
+									<label for="mcwallet_use_testnet">
+										<input name="use_testnet" type="checkbox" id="mcwallet_use_testnet" <?php checked( 'true', get_option( 'mcwallet_use_testnet' ) ); ?>>
+										<?php esc_html_e( 'Use Testnet blockchain.', 'multi-currency-wallet' );?>
+									</label>
+								</td>
+							</tr>
 							<tr>
 								<th scope="row">
 									<label><?php esc_html_e( 'Wallet front page title', 'multi-currency-wallet' );?></label>
@@ -193,7 +202,7 @@ function mcwallet_page() {
 									</div>
 								</td>
 							</tr>
-                            <tr>
+              <tr>
 								<th scope="row">
 									<label><?php esc_html_e( 'Dark Logo url', 'multi-currency-wallet' );?></label>
 								</th>
