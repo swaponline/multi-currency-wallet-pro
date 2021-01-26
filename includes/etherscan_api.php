@@ -5,7 +5,7 @@
 
 /* Service Url Mainnet */
 function mcwallet_service_url_mainnet(){
-	$service_url_mainnet = 'api.etherscan.io/api';
+  $service_url_mainnet = (get_option( 'mcwallet_use_testnet' ) === 'true') ? 'api-rinkeby.etherscan.io/api' : 'api.etherscan.io/api';
 	return esc_url( $service_url_mainnet, 'https' );
 }
 
