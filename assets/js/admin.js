@@ -181,6 +181,8 @@
     var rememberUserWallet = thisParent.find( '[name="remeber_userwallet"]' );
 
     var footerDisabled = thisParent.find( '[name="disable_footer"]' );
+
+    var useTestnet = thisParent.find( '[name="use_testnet"]' );
 		// click handler
 
 		var strings = '';
@@ -196,6 +198,8 @@
     ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
     ghostEnabled = ghostEnabled.is(':checked') ? 'false' : 'true';
     nextEnabled = nextEnabled.is(':checked') ? 'false' : 'true';
+
+    useTestnet = useTestnet.is(':checked') ? 'true' : 'false';
 
     exchangeDisabled = exchangeDisabled.is(':checked') ? 'true' : 'false';
 
@@ -248,6 +252,7 @@
       ghostEnabled: ghostEnabled,
       nextEnabled: nextEnabled,
       exchangeDisabled: exchangeDisabled,
+      useTestnet: useTestnet,
 
       invoiceEnabled: invoiceEnabled,
 
