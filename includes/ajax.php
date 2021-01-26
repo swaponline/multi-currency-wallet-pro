@@ -448,6 +448,12 @@ function mcwallet_update_options() {
       delete_option( 'mcwallet_remember_userwallet' );
     }
 
+    if ( $_POST['useTestnet'] == 'true' ) {
+      update_option( 'mcwallet_use_testnet', sanitize_text_field( $_POST['useTestnet'] ) );
+    } else {
+      delete_option( 'mcwallet_use_testnet');
+    }
+
     if ( $_POST['btcDisabled'] == 'true' ) {
       update_option( 'mcwallet_btc_disabled', sanitize_text_field( $_POST['btcDisabled'] ) );
     } else {
