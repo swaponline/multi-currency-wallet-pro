@@ -16,9 +16,11 @@ $_GET_ver = (isset($_GET['ver'])) ? $_GET['ver'] : false;
 
 require_once $path_levels . 'wp-load.php';
 
+$use_testnet = (get_option( 'mcwallet_use_testnet' ) === 'true') ? true : false;
+
 $version = md5(($_GET_ver) ? $_GET_ver : ((MCWALLET_VER) ? MCWALLET_VER : 'no'));
 
-$cache_file = 'wp-content/uploads/swap-wallet-app-' . $version . '.js';
+$cache_file = 'wp-content/uploads/swap-wallet-app-' . $version . '-' . (($use_testnet) ? 'testnet' : 'mainnet'). '.js';
 
 if (file_exists($path_levels . $cache_file)) {
   header("Cache-control: public");
@@ -27,7 +29,7 @@ if (file_exists($path_levels . $cache_file)) {
   echo file_get_contents($path_levels . $cache_file);
 
 } else {
-  $path = MCWALLET_PATH . 'vendors/swap/app.js';
+  $path = MCWALLET_PATH . (($use_testnet) ? 'vendors/swap/testnet/app.js' : 'vendors/swap/app.js');
 
   $app  = file_get_contents( $path );
 
