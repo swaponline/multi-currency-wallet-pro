@@ -3,7 +3,7 @@
  * Enqueue Scripts
  */
 function mcwallet_enqueue_scripts() {
-
+  $use_testnet = (get_option( 'mcwallet_use_testnet' ) === 'true');
 	/* Register styles */
 	wp_register_style( 'mcwallet-bootstrap', MCWALLET_URL . 'assets/css/bootstrap.min.css', false, '4.3.1' );
 	wp_register_style( 'fontawesome', MCWALLET_URL . 'assets/css/fontawesome.min.css', false, '5.7.21-' . MCWALLET_VER );
@@ -11,10 +11,18 @@ function mcwallet_enqueue_scripts() {
 	wp_register_style( 'mcwallet-style', MCWALLET_URL . 'assets/css/style.css', false, MCWALLET_VER . '-' . MCWALLET_BUILD_VER );
 	/* Google Fonts */
 	wp_register_style( 'mcwallet-google-fonts', mcwallet_fonts_url(), array(), MCWALLET_VER . '-' . MCWALLET_BUILD_VER );
-	wp_register_style( 'mcwallet-app', MCWALLET_URL . 'vendors/swap/app.css', false, MCWALLET_VER . '-' . MCWALLET_BUILD_VER );
+  if ($use_testnet) {
+    wp_register_style( 'mcwallet-app', MCWALLET_URL . 'vendors/swap/testnet/app.css', false, MCWALLET_VER . '-' . MCWALLET_BUILD_VER );
+  } else {
+    wp_register_style( 'mcwallet-app', MCWALLET_URL . 'vendors/swap/app.css', false, MCWALLET_VER . '-' . MCWALLET_BUILD_VER );
+  }
 	/* Register Scripts */
 	wp_register_script( 'swiper', MCWALLET_URL . 'assets/js/swiper.min.js', array(), '4.5.1', true );
-	wp_register_script( 'mcwallet-vendor', MCWALLET_URL . 'vendors/swap/vendor.js', array( 'react-dom', 'swiper' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );
+  if ($use_testnet) {
+    wp_register_script( 'mcwallet-vendor', MCWALLET_URL . 'vendors/swap/testnet/vendor.js', array( 'react-dom', 'swiper' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );
+  } else {
+    wp_register_script( 'mcwallet-vendor', MCWALLET_URL . 'vendors/swap/vendor.js', array( 'react-dom', 'swiper' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );
+  }
   /*
   $path = MCWALLET_PATH . 'vendors/swap/';
   $chunks_files = scandir($path);
@@ -33,7 +41,7 @@ function mcwallet_enqueue_scripts() {
     }
   }
   */
-	wp_register_script( 'mcwallet-app', MCWALLET_URL . 'includes/enqueue_scripts/load-app.php', array( 'mcwallet-vendor' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );
+	wp_register_script( 'mcwallet-app', MCWALLET_URL . 'includes/enqueue_scripts/load-app.php', array( 'mcwallet-vendor' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER . '-' . (($use_testnet) ? 'testnet' : 'mainnet'), true );
 
 	wp_add_inline_script( 'mcwallet-vendor', mcwallet_inline_build_script(), 'before' );
 	wp_add_inline_script( 'mcwallet-vendor', mcwallet_inline_script(), 'before' );
