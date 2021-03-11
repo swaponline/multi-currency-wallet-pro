@@ -142,6 +142,15 @@
 		}
 	});
 
+  /**
+   * If user must be logged in - save user data
+   */
+  $('.mcwallet-form-options [name="is_logged"]').on('change', function (e) {
+    if ($('.mcwallet-form-options [name="is_logged"]').is(':checked')) {
+      $('.mcwallet-form-options [name="remeber_userwallet"]').prop('checked', true)
+    }
+  })
+  
 	/**
 	 * Update Options
 	 */
@@ -215,6 +224,7 @@
 		
 		if ( pageAccess.is(':checked') ) {
 			isLogged = 'true';
+      rememberUserWallet = 'true';
 		}
 		
 		if ( showHowitworks.is(':checked') ) {
