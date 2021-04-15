@@ -327,6 +327,7 @@ function mcwallet_inline_script() {
 		'logoUrl'                      => mcwallet_logo_url(),
 		'darkLogoUrl'                  => mcwallet_dark_logo_url(),
 		'publicUrl'                    => MCWALLET_URL . 'vendors/swap/',
+		'chunkURL'                    => MCWALLET_URL . 'vendors/swap/',
 		'defaultWindowTitle'           => get_option( 'mcwallet_page_title', esc_html__( 'Hot Wallet with p2p exchange', 'multi-currency-wallet' ) ),
 		'DEFAULT_FIAT'                 => $default_fiat,
 		'isUserRegisteredAndLoggedIn'  => $is_user_loggedin,
