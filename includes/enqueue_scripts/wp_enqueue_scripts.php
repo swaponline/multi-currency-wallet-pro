@@ -269,6 +269,10 @@ function mcwallet_inline_script() {
 				$separator = ',';
 			}
 			$name     = strtolower( $name );
+			$standard = 'erc20';
+			if ( isset( $token['standard'] ) ) {
+				$standard = $token['standard'];
+			}
 			$address  = $token['address'];
 			$decimals = $token['decimals'];
 			$fullname = $token['name'];
@@ -291,6 +295,7 @@ function mcwallet_inline_script() {
 				$how_withdraw = $token['howwithdraw'];
 			}
 			$script .= "    '" . $symbol . "': {
+		standard: '" . $standard . "',
 		address: '" . $address . "',
 		decimals: " . $decimals . ",
 		fullName: '" . $fullname . "',

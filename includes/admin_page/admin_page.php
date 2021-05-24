@@ -61,10 +61,10 @@ function mcwallet_page() {
 									<span><?php esc_html_e( 'Decimals', 'multi-currency-wallet' ); ?></span>
 								</td>
 								<td class="item-address">
-									<span><?php esc_html_e( 'ERC20 contract address', 'multi-currency-wallet' ); ?></span>
+									<span><?php esc_html_e( 'Contract address', 'multi-currency-wallet' ); ?></span>
 								</td>
 								<td class="item-echange-rate">
-									<span><?php esc_html_e( 'Recommended price', 'multi-currency-wallet' ); ?></span>
+									<span><?php esc_html_e( 'Exchange Rate', 'multi-currency-wallet' ); ?></span>
 								</td>
 								<td class="item-action">
 									<span><?php esc_html_e( 'Action', 'multi-currency-wallet' ); ?></span>
@@ -86,6 +86,9 @@ function mcwallet_page() {
 									if ( isset( $token['rate'] ) && $token['rate'] ) {
 										$token_rate = $token['rate'];
 									}
+									if ( ! isset( $token['standard'] ) ) {
+										$token['standard'] = 'erc20';
+									}
 								?>
 								<tr class="item">
 									<th class="item-count">
@@ -106,6 +109,7 @@ function mcwallet_page() {
 										<span><?php echo esc_html( $token['decimals'] );?></span>
 									</td>
 									<td class="item-address">
+										<code><?php echo esc_html( $token['standard'] );?></code>
 										<code><?php echo esc_html( $token['address'] );?></code>
 									</td>
 									<td class="item-exchange-rate">
@@ -143,7 +147,7 @@ function mcwallet_page() {
 									<span><?php esc_html_e( 'Decimals', 'multi-currency-wallet' );?></span>
 								</td>
 								<td class="item-address">
-									<span><?php esc_html_e( 'ERC20 contract address', 'multi-currency-wallet' );?></span>
+									<span><?php esc_html_e( 'Сontract address', 'multi-currency-wallet' );?></span>
 								</td>
 								<td class="item-echange-rate">
 									<span><?php esc_html_e( 'Exchange Rate', 'multi-currency-wallet' ); ?></span>
@@ -175,7 +179,7 @@ function mcwallet_page() {
 
 					<table class="form-table">
 						<tbody>
-              <tr>
+							<tr>
 								<th scope="row"></th>
 								<td>
 									<label for="mcwallet_use_testnet">
@@ -203,7 +207,7 @@ function mcwallet_page() {
 									</div>
 								</td>
 							</tr>
-              <tr>
+							<tr>
 								<th scope="row">
 									<label><?php esc_html_e( 'Dark Logo url', 'multi-currency-wallet' );?></label>
 								</th>

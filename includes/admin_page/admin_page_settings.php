@@ -22,7 +22,18 @@ function mcwallet_do_settings_sections() {
 		<tbody>
 			<tr>
 				<th scope="row">
-					<label><?php esc_html_e( 'ERC20 contract address', 'multi-currency-wallet' );?></label>
+					<label><?php esc_html_e( 'Token standard', 'multi-currency-wallet' );?></label>
+				</th>
+				<td>
+					<select name="standard" class="regular-text">
+						<option value="erc20" selected="">ERC-20</option>
+						<option value="bep20">BEP-20</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">
+					<label><?php esc_html_e( 'Сontract address', 'multi-currency-wallet' );?></label>
 				</th>
 				<td>
 					<input name="address" type="text" class="regular-text">

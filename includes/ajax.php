@@ -228,6 +228,7 @@ function mcwallet_add_token() {
 			}
 			$symbol       = mcwallet_hex_to_string( mcwallet_get_remote_result( 'symbol', $address ) );
 			$decimals     = mcwallet_hex_to_number( mcwallet_get_remote_result( 'decimals', $address ) );
+			$standard     = sanitize_text_field( $_POST['standard'] );
 			$icon         = sanitize_text_field( $_POST['icon'] );
 			$rate         = sanitize_text_field( $_POST['rate'] );
 			$icon_bg      = sanitize_hex_color( $_POST['bg'] );
@@ -258,13 +259,14 @@ function mcwallet_add_token() {
 					<span>' . esc_html( $decimals ) . '</span>
 				</td>
 				<td class="item-address">
+					<code>' . esc_html( $standard ) . '</code>
 					<code>' . esc_html( $address ) . '</code>
 				</td>
 				<td class="item-echange-rate">
 					<span>' . esc_html( $rate ) . '</span>
 				</td>
 				<td class="item-action">
-					<a href="#" class="button-link-delete mcwallet-btn-remove" data-name="' . esc_attr( $key ) . '"><span class="dashicons dashicons-trash"></span></a>
+					<a href="#" class="button-link-delete mcwallet-remove-token" data-name="' . esc_attr( $key ) . '"><span class="dashicons dashicons-trash"></span></a>
 
 				</td>
 			</tr>';
@@ -274,6 +276,7 @@ function mcwallet_add_token() {
 				'symbol'      => $symbol,
 				'address'     => $address,
 				'decimals'    => $decimals,
+				'standard'    => $standard,
 				'icon'        => $icon,
 				'rate'        => $rate,
 				'bg'          => $icon_bg,
@@ -290,6 +293,7 @@ function mcwallet_add_token() {
 					'symbol'      => $symbol,
 					'address'     => $address,
 					'decimals'    => $decimals,
+					'standard'    => $standard,
 					'icon'        => $icon,
 					'rate'        => $rate,
 					'bg'          => $icon_bg,
