@@ -49,15 +49,25 @@ add_action( 'init', 'mcwallet_banner_post_type' );
  * Add page link to submenu
  */
 function mcwallet_banners_menu_page() {
-	add_submenu_page( 'mcwallet', esc_html__( 'Banners', 'multi-currency-wallet' ), esc_html__( 'Banners', 'multi-currency-wallet' ), 'manage_options', 'edit.php?post_type=mcwallet_banner' ); 
-  add_submenu_page(
-    'mcwallet',
-    esc_html__( 'Help', 'multi-currency-wallet' ),
-    esc_html__( 'Help', 'multi-currency-wallet' ),
-    'manage_options',
-    'mcwallet_open_helppage',
-    'mcwallet_open_helppage_callback'
-  ); 
+	add_submenu_page(
+		'mcwallet',
+		esc_html__( 'Banners', 'multi-currency-wallet' ),
+		esc_html__( 'Banners', 'multi-currency-wallet' ),
+		'manage_options',
+		'edit.php?post_type=mcwallet_banner',
+		'',
+		1
+	);
+
+	add_submenu_page(
+		'mcwallet',
+		esc_html__( 'Help', 'multi-currency-wallet' ),
+		esc_html__( 'Help', 'multi-currency-wallet' ),
+		'manage_options',
+		'mcwallet_open_helppage',
+		'mcwallet_open_helppage_callback',
+		3
+	);
 }
 add_action('admin_menu', 'mcwallet_banners_menu_page');
 
