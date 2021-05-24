@@ -14,9 +14,14 @@ require MCWALLET_PATH . 'includes/functions.php';
 require MCWALLET_PATH . 'includes/user-panel.php';
 
 /**
- * Etherscan api functions
+ * Etherscan API functions
  */
-require MCWALLET_PATH . 'includes/etherscan_api.php';
+require MCWALLET_PATH . 'includes/etherscan-api.php';
+
+/**
+ * Envato API functions
+ */
+//require MCWALLET_PATH . 'includes/envato-api.php';
 
 /**
  * Multi Currency Wallet Admin Page
@@ -74,6 +79,3 @@ require MCWALLET_PATH . 'includes/banners.php';
  * Banners
  */
 require MCWALLET_PATH . 'includes/info.php';
-
-
-
