@@ -296,6 +296,7 @@ function mcwallet_inline_script() {
 			}
 			$script .= "{
     name: '". $symbol ."',
+    symbol: '". $symbol ."',
 		standard: '" . $standard . "',
 		address: '" . $address . "',
 		decimals: " . $decimals . ",
