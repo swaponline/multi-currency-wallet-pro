@@ -9,9 +9,15 @@ function mcwallet_service_url_mainnet(){
 	return esc_url( $service_url_mainnet, 'https' );
 }
 
+function mcwallet_service_url_binance(){
+  $service_url_mainnet = (get_option( 'mcwallet_use_testnet' ) === 'true') ? 'api-testnet.bscscan.com/api' : 'api.bscscan.com/api';
+	return esc_url( $service_url_mainnet, 'https' );
+}
+
 /* Service Api Token */
-function mcwallet_service_api_token(){
+function mcwallet_service_api_token($standart = 'erc20'){
 	$service_api_token = 'X88AP9B52SENYPTR31W5SGRK5EGJZD2BJC';
+  if ($standart == 'bep20') $service_api_token = 'WI4QEJSV19U3TF2H1DPQ2HR6712HW4MYKJ';
 	return $service_api_token;
 }
 
@@ -27,19 +33,19 @@ function mcwallet_get_signature( $signature = 'name' ){
 }
 
 /* Get Args Url */
-function mcwallet_get_args_url(){
+function mcwallet_get_args_url($standart = 'erc20'){
 	$args = array(
 		'module' => 'proxy',
 		'action' => 'eth_call',
 		'data'   => mcwallet_get_signature(),
-		'apikey' => mcwallet_service_api_token(),
+		'apikey' => mcwallet_service_api_token($standart),
 	);
 	return $args;
 }
 
 /* Get Remote Url */
-function mcwallet_get_remote_url( $result = 'name', $address = '' ){
-	$args = mcwallet_get_args_url();
+function mcwallet_get_remote_url( $result = 'name', $address = '', $standart = 'erc20' ){
+	$args = mcwallet_get_args_url($standart);
 	if ( $address ) {
 		$args['to'] = $address;
 	}
@@ -48,7 +54,9 @@ function mcwallet_get_remote_url( $result = 'name', $address = '' ){
 		$args['data'] = $result;
 	}
 
-	$url = mcwallet_service_url_mainnet();
+  $url = '';
+	if ($standart === 'erc20') { $url = mcwallet_service_url_mainnet(); }
+  if ($standart === 'bep20') { $url = mcwallet_service_url_binance(); }
 
 	$swap_remote_url = add_query_arg(
 		$args,
@@ -60,9 +68,9 @@ function mcwallet_get_remote_url( $result = 'name', $address = '' ){
 /**
  * Is Address
  */
-function mcwallet_is_address( $address = '' ){
+function mcwallet_is_address( $address = '', $standart = 'erc20' ){
 
-	$url = mcwallet_get_remote_url( 'name', $address );
+	$url = mcwallet_get_remote_url( 'name', $address, $standart );
 	$response = wp_remote_get( $url );
 	if ( wp_remote_retrieve_response_code( $response ) === 200 ){
 		$response_body = wp_remote_retrieve_body( $response );
@@ -80,9 +88,9 @@ function mcwallet_is_address( $address = '' ){
 /**
  * Get Remote Result
  */
-function mcwallet_get_remote_result( $result = 'name', $address ){
+function mcwallet_get_remote_result( $result = 'name', $address, $standart = 'erc20' ){
 	
-	$url = mcwallet_get_remote_url( $result, $address );
+	$url = mcwallet_get_remote_url( $result, $address, $standart );
 	$response = wp_remote_get( $url );
 	if ( wp_remote_retrieve_response_code( $response ) === 200 ){
 		$response_body = wp_remote_retrieve_body( $response );
