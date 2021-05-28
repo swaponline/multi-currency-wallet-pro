@@ -258,7 +258,7 @@ function mcwallet_inline_script() {
 	}
 
 	if ( $tokens ) {
-		$script = "window.widgetERC20Tokens = {" . "\n";
+		$script = "window.widgetERC20Tokens = [" . "\n";
 		$i      = 0;
 		$count  = count( $tokens );
 
@@ -294,7 +294,8 @@ function mcwallet_inline_script() {
 			if ( isset( $token['howwithdraw'] ) ) {
 				$how_withdraw = $token['howwithdraw'];
 			}
-			$script .= "    '" . $symbol . "': {
+			$script .= "{
+    name: '". $symbol ."',
 		standard: '" . $standard . "',
 		address: '" . $address . "',
 		decimals: " . $decimals . ",
@@ -304,9 +305,9 @@ function mcwallet_inline_script() {
 		iconBgColor: '" . $icon_bg . "',
 		howToDeposit: '" . wp_specialchars_decode( $how_deposit ) . "',
 		howToWithdraw: '" . wp_specialchars_decode( $how_withdraw ) . "',
-	}" . $separator . "\n";
+      }" . $separator . "\n";
 		}
-		$script .= "}\n\n";
+		$script .= "]\n\n";
 
 	}
 
