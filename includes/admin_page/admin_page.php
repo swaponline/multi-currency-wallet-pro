@@ -37,7 +37,6 @@ function mcwallet_page() {
 				<a href="#mcwallet-tab-3" class="nav-tab"><?php esc_html_e( 'Custom HTML', 'multi-currency-wallet' ); ?></a>
 				<a href="#mcwallet-tab-4" class="nav-tab"><?php esc_html_e( 'Strings Editor', 'multi-currency-wallet' ); ?></a>
 			</h2><!-- .nav-tab-wrapper -->
-<b style='color:red'><br>upd: 21.05 We have an issue with adding new erc20 and bep20 tokes. The fix under development, will in 3-4 days (May 24). Sorry for the inconvenience.</b>
 			
 			<div class="welcome-panel-column-container mcwallet-panel-tab panel-tab-active" id="mcwallet-tab-1">
 				<div class="mcwallet-shortcode-panel-row">
