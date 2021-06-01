@@ -347,7 +347,7 @@ function mcwallet_page() {
 							</tr>
 							<tr>
 								<th scope="row">
-									<label><?php esc_html_e( 'Ethereum', 'multi-currency-wallet' );?></label>
+									<label><?php esc_html_e( 'EVM compatible (ETH, BSC, etc..)', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
 									<input name="eth_fee" type="text" value="<?php echo esc_attr( get_option('eth_fee') );?>" class="tiny-text textright"> %, no less than <input name="eth_min" type="text" value="<?php echo esc_attr( get_option('eth_min') );?>" size="7" class="textright" placeholder="Enter Min. fee (ex. 0.0001)"> <?php esc_html_e( 'ETH', 'multi-currency-wallet' ); ?>
@@ -355,7 +355,7 @@ function mcwallet_page() {
 							</tr>
 							<tr>
 								<th scope="row">
-									<label><?php esc_html_e( 'Ethereum Adress where to collect fees', 'multi-currency-wallet' );?></label>
+									<label><?php esc_html_e( 'EVM compatible Adress where to collect fees', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
 									<input name="eth_fee_address" type="text" class="regular-text" value="<?php echo esc_attr( get_option('eth_fee_address') );?>">
