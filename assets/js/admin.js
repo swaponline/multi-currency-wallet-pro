@@ -196,6 +196,8 @@
     var useTestnet = thisParent.find( '[name="use_testnet"]' );
 		// click handler
 
+    var selected_theme = thisParent.find( '[name="selected_theme"]' );
+ 
 		var strings = '';
 		if ( $('.mcwallet-string-input').length ) {
 			 strings = $('.mcwallet-string-input').serializeArray();
@@ -204,6 +206,8 @@
 		var ishome = 'false';
 		var isLogged = 'false';
 		var isHowitworks = 'false';
+
+    selected_theme = selected_theme.val();
 
     btcDisabled = btcDisabled.is(':checked') ? 'true' : 'false';
     ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
@@ -270,7 +274,9 @@
 
       rememberUserWallet: rememberUserWallet,
 
-      footerDisabled: footerDisabled
+      footerDisabled: footerDisabled,
+
+      selected_theme: selected_theme,
 		};
 
 		mcwalletSpinner(thisBtn);

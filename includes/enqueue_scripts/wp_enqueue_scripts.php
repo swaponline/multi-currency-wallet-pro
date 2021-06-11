@@ -209,12 +209,27 @@ function mcwallet_inline_build_script() {
 
 	const wrapper = document.getElementById("wrapper_element");
 
-	if ( window.localStorage.getItem("isDark") ) {
+  const default_theme = "'.get_option('selected_theme','light').'";
+	if ( window.localStorage.getItem("isDark") || default_theme === "only_dark") {
 		wrapper.classList.add("dark");
+    window.localStorage.setItem("isDark", "true");
+    window.localStorage.removeItem("isLight");
 	} else {
-		wrapper.classList.remove("dark");
+    if (window.localStorage.getItem("isLight")) {
+      wrapper.classList.remove("dark");
+      window.localStorage.removeItem("isDark");
+      window.localStorage.setItem("isLight", "true");
+    }
 	}
-
+  if ( window.localStorage.getItem("isDark") === null && window.localStorage.getItem("isLight") === null && default_theme === "dark") {
+    wrapper.classList.add("dark");
+    window.localStorage.setItem("isDark", "true");
+  }
+  if (default_theme === "only_light") {
+    wrapper.classList.remove("dark");
+    window.localStorage.removeItem("isDark");
+    window.localStorage.removeItem("isLight");
+  }
 	var lang = getCookie("mylang");
 
 	// detect browser lang
@@ -348,7 +363,8 @@ function mcwallet_inline_script() {
     'CUR_GHOST_DISABLED'           => (get_option( 'mcwallet_ghost_enabled') == 'true') ? 'false' : 'true',
     'CUR_NEXT_DISABLED'            => (get_option( 'mcwallet_next_enabled') == 'true') ? 'false' : 'true',
     '_ui_footerDisabled'           =>  get_option( 'mcwallet_disable_footer', 'false'),
-    'invoiceEnabled'               => get_option( 'mcwallet_invoice_enabled', 'false')
+    'invoiceEnabled'               => get_option( 'mcwallet_invoice_enabled', 'false'),
+    'WPSO_selected_theme'               => get_option( 'selected_theme', 'light'),
 	);
 
 	if ( get_current_user_id() ) {
