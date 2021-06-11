@@ -225,6 +225,32 @@ function mcwallet_page() {
 									<input name="logo_link" type="text" value="<?php echo esc_attr( get_option('mcwallet_logo_link', get_home_url( '/' ) ) );?>" class="large-text">
 								</td>
 							</tr>
+              <tr>
+                <th scope="row">
+									<label><?php esc_html_e( 'Default theme', 'multi-currency-wallet' );?></label>
+								</th>
+								<td>
+                  <?php
+                  $themes = array(
+                    'light' => 'Light',
+                    'dark' => 'Dark',
+                    'only_light' => 'Only light',
+                    'only_dark' => 'Only dark'
+                  );
+                  $selected_theme = get_option( 'selected_theme' );
+                  $selected_theme = ($selected_theme) ? $selected_theme : 'light';
+                  ?>
+                  <select name="selected_theme" id="selected_theme" class="regular-text">
+                    <?php
+                    foreach($themes as $theme_key => $theme_title) {
+                      ?>
+                      <option value="<?php echo $theme_key?>" <?php echo ($theme_key === $selected_theme) ? 'selected' : ''?>><?php echo $theme_title?></option>
+                      <?php
+                    }
+                    ?>
+                  </select>
+								</td>
+              </tr>
 							<tr>
 								<th scope="row">
 									<label><?php esc_html_e( 'Permalink', 'multi-currency-wallet' );?></label>
