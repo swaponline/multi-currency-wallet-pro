@@ -12,28 +12,52 @@ function mcwallet_license_submenu_page() {
 		'mcwallet_license_page',
 		2
 	);
+
+	//call register settings function
+	add_action( 'admin_init', 'mcwallet_register_settings_license' );
 }
 add_action('admin_menu', 'mcwallet_license_submenu_page');
+
+
+function mcwallet_register_settings_license() {
+	//register our settings
+	register_setting( 'mcwallet-settings-license', 'mcwallet_purchase_code', 'mcwallet_sanitize_purchase_code' );
+}
 
 /**
  * Widget Page
  */
 function mcwallet_license_page() {
 
-	$erc20tokens = get_option('mcwallet_tokens');
-
 ?>
 
 <div class="wrap">
 	<h2><?php echo get_admin_page_title(); ?></h2>
-	<div class="notice mcwallet-notice hide-all"><p></p></div>
+	<?php settings_errors(); ?>
+	<!-- <div class="notice mcwallet-notice hide-all"><p></p></div> -->
 
 	<div class="welcome-panel mcwallet-welcome-panel">
 		<div class="welcome-panel-content">
-			<h3>License Activation</h3>
-			<p>The active support gives access to the latest version from the developer's server. An expired license DOES NOT AFFECT the plugin's functionality</p>
+			<h3><?php esc_html_e( 'License Activation', 'multi-currency-wallet' ); ?></h3>
+			<p><?php esc_html_e( 'The active support gives access to the latest version from the developer\'s server. An expired license DOES NOT AFFECT the plugin\'s functionality', 'multi-currency-wallet' ); ?></p>
 
-			<form method="post">
+			<?php if ( get_option( 'mcwallet_purchase_code' ) ) { ?>
+				<?php if ( mcwallet_is_supported() ) {
+					$d = new DateTime( get_option( 'mcwallet_license_supported_until' ) );
+
+					$date_until = $d->format( 'Y-m-d H:i'); // 012345
+					?>
+					<p><?php esc_html_e( 'Your support is valid until:', 'multi-currency-wallet' ); ?> <strong><?php echo esc_html( $date_until ); ?></strong></p>
+				<?php } else { ?>
+					<p><?php esc_html_e( 'Your support is expired, please go to the plugin page to renew.', 'multi-currency-wallet' ); ?> <strong><?php echo esc_html( $date_until ); ?></strong></p>
+				<?php } ?>
+			<?php } ?>
+
+			<form method="post" action="options.php">
+
+				<?php settings_fields( 'mcwallet-settings-license' ); ?>
+				<?php do_settings_sections( 'mcwallet-settings-license' ); ?>
+
 				<table class="form-table">
 					<tbody>
 						<tr>
@@ -45,44 +69,20 @@ function mcwallet_license_page() {
 							</td>
 						</tr>
 						<tr>
-						<th scope="row"></th>
-						<td>
-							<?php
-								submit_button( esc_attr__( 'Activate License', 'multi-currency-wallet' ), 'primary', false );
-							?>
-						</td>
-					</tr>
-				</tbody>
-			</table><!-- .form-table -->
-		</form>
-
-<pre><?php 
-
-
-//67ae17cd-8cfc-46ff-979c-c1a866fce34b
-$code = '';
-if ( isset( $_POST['mcwallet_purchase_code'] ) ) {
-	$code = $_POST['mcwallet_purchase_code'];
-}
-
-
-$result = mcwallet_get_license_info( $code );
-
-//print_r($result);
-
-// wp_remote_retrieve_response_code().
-
-if ( isset( $result->sold_at ) ) {
-	echo 'Sold at: ' . $result->sold_at . '<br>';
-	echo 'License: ' . $result->license . '<br>';
-	echo 'Support Until: ' . $result->supported_until . '<br>';
-	echo 'Item ID: ' . $result->item->id . '<br>';
-	echo 'Item URL: ' . $result->item->url . '<br>';
-
-	
-}
-
-?></pre>
+							<th scope="row"></th>
+							<td>
+								<?php
+									$button_text = esc_attr__( 'Activate License', 'multi-currency-wallet' );
+									if ( get_option( 'mcwallet_purchase_code' ) ) {
+										$button_text = esc_attr__( 'Update License', 'multi-currency-wallet' );
+									}
+									submit_button( $button_text, 'primary', false );
+								?>
+							</td>
+						</tr>
+					</tbody>
+				</table><!-- .form-table -->
+			</form>
 
 		</div>
 	</div>

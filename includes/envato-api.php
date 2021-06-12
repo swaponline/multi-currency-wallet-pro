@@ -4,17 +4,8 @@
  */
 
 /**
- * If Active License
+ * Get License Info
  */
-function mcwallet_is_active_license() {
-	return true;
-}
-
-
-
-
-// wp_remote_retrieve_response_code().
-
 function mcwallet_get_license_info( $code = null ){
 
 	$url = 'https://wallet.wpmix.net/wp-json/license/info?code=' . $code;
@@ -28,10 +19,106 @@ function mcwallet_get_license_info( $code = null ){
 	);
 
 	$response = wp_remote_retrieve_body( $response );
+	$response = json_decode( $response );
 
-	return json_decode( $response );
+	$code = 'undefined';
+	if ( isset( $response->code ) ) {
+		$code = $response->code;
+	}
+	$return = array(
+		'code' => strval( $code ),
+	);
 
+	if ( 'success' === $code ) {
+		$return['sold_at']         = $response->sold_at;
+		$return['supported_until'] = $response->supported_until;
+	}
+
+	return $return;
 }
 
+/**
+ * Sanitize Purchase Code
+ */
+function mcwallet_sanitize_purchase_code( $code ){
+	$code = trim( $code );
 
+	if( empty( $code ) ) {
+		$message = esc_html__( 'The purchase code must not be empty.', 'multi-currency-wallet' );
+	} else {
+		$message = esc_html__( 'Please enter a valid purchase code.', 'multi-currency-wallet' );
+	}
+	if ( preg_match("/^([a-f0-9]{8})-(([a-f0-9]{4})-){3}([a-f0-9]{12})$/i", $code ) ) {
 
+		$info = mcwallet_get_license_info( $code );
+
+		if ( '404' === $info['code'] ) {
+			$message = esc_html__( 'Please enter a valid purchase code.', 'multi-currency-wallet' );
+			add_settings_error( 'mcwallet_purchase_code', 'settings_updated', $message, 'error' );
+			return;
+		}
+
+		if ( 'success' === $info['code'] ) {
+			if ( isset( $info['sold_at'] ) ) {
+				update_option( 'mcwallet_license_sold_at', $info['sold_at'] );
+			}
+			if ( isset( $info['supported_until'] ) ) {
+				update_option( 'mcwallet_license_supported_until', $info['supported_until'] );
+			}
+		} else {
+			delete_option( 'mcwallet_license_sold_at' );
+			delete_option( 'mcwallet_license_supported_until' );
+		}
+
+		$message = esc_html__( 'Your license code has been successfully added.', 'multi-currency-wallet' );
+
+		add_settings_error( 'mcwallet_purchase_code', 'settings_updated', $message, 'updated' );
+		return $code;
+	} else {
+		delete_option( 'mcwallet_license_sold_at' );
+		delete_option( 'mcwallet_license_supported_until' );
+	}
+
+	add_settings_error( 'mcwallet_purchase_code', 'settings_updated', $message, 'error' );
+	return false;
+}
+
+/**
+ * Validate Purchase Code
+ */
+function mcwallet_validate_purchase_code( $code ){
+	if ( mcwallet_sanitize_purchase_code( $code ) ) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * If Support Has Expired
+ */
+function mcwallet_is_supported() {
+	if ( get_option( 'mcwallet_license_supported_until' ) ) {
+
+		$date_now   = new DateTime( 'NOW' );
+		$date_until = new DateTime( get_option( 'mcwallet_license_supported_until' ) );
+		$diff       = $date_now->diff( $date_until );
+		if ( $diff->invert ) {
+			return false;
+		}
+		return true;
+	}
+	return false;
+}
+
+/**
+ * If Active License
+ */
+function mcwallet_is_active_license() {
+	if ( get_option( 'mcwallet_purchase_code' ) ) {
+		if ( ! mcwallet_is_supported() ) {
+			return false;
+		}
+		return true;
+	}
+	return false;
+}

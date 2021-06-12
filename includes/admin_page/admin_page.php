@@ -620,4 +620,4 @@ require MCWALLET_PATH . 'includes/admin_page/admin_page_settings.php';
 /**
  * Admin Page License
  */
-//require MCWALLET_PATH . 'includes/admin_page/admin-page-license.php';
+require MCWALLET_PATH . 'includes/admin_page/admin-page-license.php';

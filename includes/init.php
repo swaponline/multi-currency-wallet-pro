@@ -21,7 +21,7 @@ require MCWALLET_PATH . 'includes/etherscan-api.php';
 /**
  * Envato API functions
  */
-//require MCWALLET_PATH . 'includes/envato-api.php';
+require MCWALLET_PATH . 'includes/envato-api.php';
 
 /**
  * Multi Currency Wallet Admin Page
@@ -76,6 +76,8 @@ require MCWALLET_PATH . 'includes/tinymce.php';
 require MCWALLET_PATH . 'includes/banners.php';
 
 /**
- * Banners
+ * Updates
  */
-require MCWALLET_PATH . 'includes/info.php';
+if ( mcwallet_is_active_license() ) {
+	require MCWALLET_PATH . 'includes/info.php';
+}
