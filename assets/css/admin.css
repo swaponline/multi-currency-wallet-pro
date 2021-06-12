@@ -168,6 +168,9 @@
 .mcwallet-welcome-panel h3 {
 	font-size: 1.3em;
 }
+.mcwallet-welcome-panel h3:first-child {
+	margin-top: 0;
+}
 .mcwallet-button-url.disabled {
 	pointer-events: none;
 }
