@@ -49,7 +49,7 @@ function mcwallet_license_page() {
 					?>
 					<p><?php esc_html_e( 'Your support is valid until:', 'multi-currency-wallet' ); ?> <strong><?php echo esc_html( $date_until ); ?></strong></p>
 				<?php } else { ?>
-					<p><?php esc_html_e( 'Your support is expired, please go to the plugin page to renew.', 'multi-currency-wallet' ); ?> <strong><?php echo esc_html( $date_until ); ?></strong></p>
+					<p><?php esc_html_e( 'Your support is expired, please go to the plugin page to renew.', 'multi-currency-wallet' ); ?></p>
 				<?php } ?>
 			<?php } ?>
 
