@@ -410,27 +410,30 @@ function mcwallet_inline_script() {
 	if ( get_option( 'eth_fee' ) ) {
 		$fees['eth']['fee'] = get_option( 'eth_fee' );
 		$fees['bnb']['fee'] = get_option( 'eth_fee' );
+		$fees['matic']['fee'] = get_option( 'eth_fee' );
 	}
 	if ( get_option( 'eth_min' ) ) {
 		$fees['eth']['min'] = get_option( 'eth_min' );
-	}
-	if ( get_option( 'eth_fee_address' ) ) {
-		$fees['eth']['address'] = get_option( 'eth_fee_address' );
-		$fees['bnb']['address'] = get_option( 'eth_fee_address' );
+		$fees['bnb']['min'] = get_option( 'eth_min' );
+		$fees['matic']['min'] = get_option( 'eth_min' );
 	}
 	if ( get_option( 'tokens_fee' ) ) {
 		$fees['erc20']['fee'] = get_option( 'tokens_fee' );
 		$fees['bep20']['fee'] = get_option( 'tokens_fee' );
+		$fees['erc20matic']['fee'] = get_option( 'tokens_fee' );
 	}
 	if ( get_option( 'tokens_min' ) ) {
 		$fees['erc20']['min'] = get_option( 'tokens_min' );
 		$fees['bep20']['min'] = get_option( 'tokens_min' );
+		$fees['erc20matic']['min'] = get_option( 'tokens_min' );
 	}
 	if ( get_option( 'eth_fee_address' ) ) {
-		$fees['eth']['address']   = get_option( 'eth_fee_address' );
+		$fees['eth']['address'] = get_option( 'eth_fee_address' );
 		$fees['bnb']['address'] = get_option( 'eth_fee_address' );
+		$fees['matic']['address'] = get_option( 'eth_fee_address' );
 		$fees['erc20']['address'] = get_option( 'eth_fee_address' );
 		$fees['bep20']['address'] = get_option( 'eth_fee_address' );
+		$fees['erc20matic']['address'] = get_option( 'eth_fee_address' );
 	}
 
 	$script .= 'window.widgetERC20Comisions = ' . wp_json_encode( $fees, JSON_PRETTY_PRINT ) . ';' . "\n\n";
