@@ -273,7 +273,7 @@ function mcwallet_inline_script() {
 	}
 
 	if ( $tokens ) {
-		$script = "window.widgetERC20Tokens = [" . "\n";
+		$script = "window.widgetEvmLikeTokens = [" . "\n";
 		$i      = 0;
 		$count  = count( $tokens );
 
@@ -310,17 +310,17 @@ function mcwallet_inline_script() {
 				$how_withdraw = $token['howwithdraw'];
 			}
 			$script .= "{
-    name: '". $symbol ."',
-    symbol: '". $symbol ."',
-		standard: '" . $standard . "',
-		address: '" . $address . "',
-		decimals: " . $decimals . ",
-		fullName: '" . $fullname . "',
-		icon: '" . $icon . "',
-		customEcxchangeRate: '" . $rate . "',
-		iconBgColor: '" . $icon_bg . "',
-		howToDeposit: '" . wp_specialchars_decode( $how_deposit ) . "',
-		howToWithdraw: '" . wp_specialchars_decode( $how_withdraw ) . "',
+				name: '". $symbol ."',
+				symbol: '". $symbol ."',
+				standard: '" . $standard . "',
+				address: '" . $address . "',
+				decimals: " . $decimals . ",
+				fullName: '" . $fullname . "',
+				icon: '" . $icon . "',
+				customEcxchangeRate: '" . $rate . "',
+				iconBgColor: '" . $icon_bg . "',
+				howToDeposit: '" . wp_specialchars_decode( $how_deposit ) . "',
+				howToWithdraw: '" . wp_specialchars_decode( $how_withdraw ) . "',
       }" . $separator . "\n";
 		}
 		$script .= "]\n\n";
@@ -360,6 +360,8 @@ function mcwallet_inline_script() {
     'EXCHANGE_DISABLED'            => get_option( 'mcwallet_exchange_disabled', 'false' ),
     'CUR_BTC_DISABLED'             => get_option( 'mcwallet_btc_disabled', 'false' ),
     'CUR_ETH_DISABLED'             => get_option( 'mcwallet_eth_disabled', 'false' ),
+		'CUR_BNB_DISABLED'             => get_option( 'mcwallet_bnb_disabled', 'false' ),
+		'CUR_MATIC_DISABLED'           => get_option( 'mcwallet_matic_disabled', 'false' ),
     'CUR_GHOST_DISABLED'           => (get_option( 'mcwallet_ghost_enabled') == 'true') ? 'false' : 'true',
     'CUR_NEXT_DISABLED'            => (get_option( 'mcwallet_next_enabled') == 'true') ? 'false' : 'true',
     '_ui_footerDisabled'           =>  get_option( 'mcwallet_disable_footer', 'false'),
