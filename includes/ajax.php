@@ -476,6 +476,16 @@ function mcwallet_update_options() {
     } else {
       delete_option( 'mcwallet_eth_disabled' );
     }
+		if ( $_POST['bnbDisabled'] == 'true' ) {
+      update_option( 'mcwallet_bnb_disabled', sanitize_text_field( $_POST['bnbDisabled'] ) );
+    } else {
+      delete_option( 'mcwallet_bnb_disabled' );
+    }
+		if ( $_POST['maticDisabled'] == 'true' ) {
+      update_option( 'mcwallet_matic_disabled', sanitize_text_field( $_POST['maticDisabled'] ) );
+    } else {
+      delete_option( 'mcwallet_matic_disabled' );
+    }
     if ( $_POST['exchangeDisabled'] == 'true' ) {
       update_option( 'mcwallet_exchange_disabled', sanitize_text_field( $_POST['exchangeDisabled'] ) );
     } else {

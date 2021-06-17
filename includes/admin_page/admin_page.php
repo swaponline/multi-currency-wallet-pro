@@ -302,6 +302,24 @@ function mcwallet_page() {
 									</label>
 								</td>
 							</tr>
+							<tr>
+								<th scope="row"></th>
+								<td>
+									<label for="mcwallet_bnb_disabled">
+										<input name="bnb_disabled" type="checkbox" id="mcwallet_bnb_disabled" <?php checked( 'true', get_option( 'mcwallet_bnb_disabled' ) ); ?>>
+										<?php esc_html_e( 'Disable BNB wallet.', 'multi-currency-wallet' );?>
+									</label>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row"></th>
+								<td>
+									<label for="mcwallet_matic_disabled">
+										<input name="matic_disabled" type="checkbox" id="mcwallet_matic_disabled" <?php checked( 'true', get_option( 'mcwallet_matic_disabled' ) ); ?>>
+										<?php esc_html_e( 'Disable MATIC wallet.', 'multi-currency-wallet' );?>
+									</label>
+								</td>
+							</tr>
               <tr>
 								<th scope="row"></th>
 								<td>
