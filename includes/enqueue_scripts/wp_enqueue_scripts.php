@@ -273,7 +273,7 @@ function mcwallet_inline_script() {
 	}
 
 	if ( $tokens ) {
-		$script = "window.widgetERC20Tokens = [" . "\n";
+		$script = "window.widgetEvmLikeTokens = [" . "\n";
 		$i      = 0;
 		$count  = count( $tokens );
 
@@ -310,17 +310,17 @@ function mcwallet_inline_script() {
 				$how_withdraw = $token['howwithdraw'];
 			}
 			$script .= "{
-    name: '". $symbol ."',
-    symbol: '". $symbol ."',
-		standard: '" . $standard . "',
-		address: '" . $address . "',
-		decimals: " . $decimals . ",
-		fullName: '" . $fullname . "',
-		icon: '" . $icon . "',
-		customEcxchangeRate: '" . $rate . "',
-		iconBgColor: '" . $icon_bg . "',
-		howToDeposit: '" . wp_specialchars_decode( $how_deposit ) . "',
-		howToWithdraw: '" . wp_specialchars_decode( $how_withdraw ) . "',
+				name: '". $symbol ."',
+				symbol: '". $symbol ."',
+				standard: '" . $standard . "',
+				address: '" . $address . "',
+				decimals: " . $decimals . ",
+				fullName: '" . $fullname . "',
+				icon: '" . $icon . "',
+				customEcxchangeRate: '" . $rate . "',
+				iconBgColor: '" . $icon_bg . "',
+				howToDeposit: '" . wp_specialchars_decode( $how_deposit ) . "',
+				howToWithdraw: '" . wp_specialchars_decode( $how_withdraw ) . "',
       }" . $separator . "\n";
 		}
 		$script .= "]\n\n";
