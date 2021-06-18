@@ -189,7 +189,7 @@ function mcwallet_page() {
 							</tr>
 							<tr>
 								<th scope="row">
-									<?php esc_html_e( 'Disable developing statistics (does not contain private data)', 'multi-currency-wallet' );?>
+									<?php esc_html_e( 'Disable developing statistics', 'multi-currency-wallet' );?>
 								</th>
 								<td>
 									<label for="mcwallet_disable_stats">
