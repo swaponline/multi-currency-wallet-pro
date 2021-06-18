@@ -466,6 +466,12 @@ function mcwallet_update_options() {
       delete_option( 'mcwallet_use_testnet');
     }
 
+		if ( $_POST['statisticDisabled'] == 'true' ) {
+      update_option( 'mcwallet_disable_stats', sanitize_text_field( $_POST['statisticDisabled'] ) );
+    } else {
+      delete_option( 'mcwallet_disable_stats');
+    }
+
     if ( $_POST['btcDisabled'] == 'true' ) {
       update_option( 'mcwallet_btc_disabled', sanitize_text_field( $_POST['btcDisabled'] ) );
     } else {

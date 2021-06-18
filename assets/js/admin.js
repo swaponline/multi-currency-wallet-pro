@@ -181,7 +181,7 @@
 		var codeHead       = thisParent.find( '[name="mcwallet_head_code"]' ).val();
 		var codeBody       = thisParent.find( '[name="mcwallet_body_code"]' ).val();
 		var codeFooter     = thisParent.find( '[name="mcwallet_footer_code"]' ).val();
-
+		var statisticDisabled = thisParent.find( '[name="statistic_disabled"]' );
     var btcDisabled    = thisParent.find( '[name="btc_disabled"]' );
     var ethDisabled    = thisParent.find( '[name="eth_disabled"]' );
     var ghostEnabled   = thisParent.find( '[name="ghost_enabled"]' );
@@ -208,7 +208,7 @@
 		var isHowitworks = 'false';
 
     selected_theme = selected_theme.val();
-
+		statisticDisabled = statisticDisabled.is(':checked') ? 'true' : 'false';
     btcDisabled = btcDisabled.is(':checked') ? 'true' : 'false';
     ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
     ghostEnabled = ghostEnabled.is(':checked') ? 'false' : 'true';
@@ -262,7 +262,7 @@
 			fiatGatewayUrl: fiatGatewayUrl,
 			isHowitworks: isHowitworks,
 			strings: strings,
-
+			statisticDisabled: statisticDisabled,
       btcDisabled: btcDisabled,
       ethDisabled: ethDisabled,
       ghostEnabled: ghostEnabled,

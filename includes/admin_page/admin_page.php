@@ -189,6 +189,17 @@ function mcwallet_page() {
 							</tr>
 							<tr>
 								<th scope="row">
+									<?php esc_html_e( 'Disable developing statistics (does not contain private data)', 'multi-currency-wallet' );?>
+								</th>
+								<td>
+									<label for="mcwallet_disable_stats">
+										<input name="statistic_disabled" type="checkbox" id="mcwallet_disable_stats" <?php checked( 'true', get_option( 'mcwallet_disable_stats' ) ); ?>>
+										<?php esc_html_e( 'Disable statistic.', 'multi-currency-wallet' );?>
+									</label>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">
 									<label><?php esc_html_e( 'Wallet front page title', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
