@@ -184,6 +184,8 @@
 		var statisticDisabled = thisParent.find( '[name="statistic_disabled"]' );
     var btcDisabled    = thisParent.find( '[name="btc_disabled"]' );
     var ethDisabled    = thisParent.find( '[name="eth_disabled"]' );
+    var bnbDisabled    = thisParent.find( '[name="bnb_disabled"]' );
+    var maticDisabled    = thisParent.find( '[name="matic_disabled"]' );
     var ghostEnabled   = thisParent.find( '[name="ghost_enabled"]' );
     var nextEnabled   = thisParent.find( '[name="next_enabled"]' );
     var exchangeDisabled = thisParent.find( '[name="exchange_disabled"]' );
@@ -213,6 +215,8 @@
     ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
     ghostEnabled = ghostEnabled.is(':checked') ? 'false' : 'true';
     nextEnabled = nextEnabled.is(':checked') ? 'false' : 'true';
+    bnbDisabled = bnbDisabled.is(':checked') ? 'true' : 'false';
+    maticDisabled = maticDisabled.is(':checked') ? 'true' : 'false';
 
     useTestnet = useTestnet.is(':checked') ? 'true' : 'false';
 
@@ -265,6 +269,8 @@
 			statisticDisabled: statisticDisabled,
       btcDisabled: btcDisabled,
       ethDisabled: ethDisabled,
+      bnbDisabled: bnbDisabled,
+      maticDisabled: maticDisabled,
       ghostEnabled: ghostEnabled,
       nextEnabled: nextEnabled,
       exchangeDisabled: exchangeDisabled,
