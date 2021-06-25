@@ -161,8 +161,8 @@
 		var thisBtn        = $(this);
 		var thisParent     = $('.mcwallet-form-options');
 		var logoUrl        = thisParent.find( '[name="logo_url"]' ).val();
-        var darkLogoUrl    = thisParent.find( '[name="dark_logo_url"]' ).val();
-        var logoLink       = thisParent.find( '[name="logo_link"]' ).val();
+    var darkLogoUrl    = thisParent.find( '[name="dark_logo_url"]' ).val();
+    var logoLink       = thisParent.find( '[name="logo_link"]' ).val();
 		var pageTitle      = thisParent.find( '[name="mcwallet_page_title"]' ).val();
 		var pageSlug       = thisParent.find( '[name="page_slug"]' ).val();
 		var pageHome       = thisParent.find( '[name="is_home"]' );
@@ -186,6 +186,7 @@
     var ethDisabled    = thisParent.find( '[name="eth_disabled"]' );
     var bnbDisabled    = thisParent.find( '[name="bnb_disabled"]' );
     var maticDisabled    = thisParent.find( '[name="matic_disabled"]' );
+		var arbitrumDisabled = thisParent.find( '[name="arbitrum_disabled"]' );
     var ghostEnabled   = thisParent.find( '[name="ghost_enabled"]' );
     var nextEnabled   = thisParent.find( '[name="next_enabled"]' );
     var exchangeDisabled = thisParent.find( '[name="exchange_disabled"]' );
@@ -217,6 +218,7 @@
     nextEnabled = nextEnabled.is(':checked') ? 'false' : 'true';
     bnbDisabled = bnbDisabled.is(':checked') ? 'true' : 'false';
     maticDisabled = maticDisabled.is(':checked') ? 'true' : 'false';
+		arbitrumDisabled = arbitrumDisabled.is(':checked') ? 'true' : 'false';
 
     useTestnet = useTestnet.is(':checked') ? 'true' : 'false';
 
@@ -271,6 +273,7 @@
       ethDisabled: ethDisabled,
       bnbDisabled: bnbDisabled,
       maticDisabled: maticDisabled,
+			arbitrumDisabled: arbitrumDisabled,
       ghostEnabled: ghostEnabled,
       nextEnabled: nextEnabled,
       exchangeDisabled: exchangeDisabled,

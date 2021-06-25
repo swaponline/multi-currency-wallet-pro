@@ -477,26 +477,37 @@ function mcwallet_update_options() {
     } else {
       delete_option( 'mcwallet_btc_disabled' );
     }
+
     if ( $_POST['ethDisabled'] == 'true' ) {
       update_option( 'mcwallet_eth_disabled', sanitize_text_field( $_POST['ethDisabled'] ) );
     } else {
       delete_option( 'mcwallet_eth_disabled' );
     }
+
 		if ( $_POST['bnbDisabled'] == 'true' ) {
       update_option( 'mcwallet_bnb_disabled', sanitize_text_field( $_POST['bnbDisabled'] ) );
     } else {
       delete_option( 'mcwallet_bnb_disabled' );
     }
+
 		if ( $_POST['maticDisabled'] == 'true' ) {
       update_option( 'mcwallet_matic_disabled', sanitize_text_field( $_POST['maticDisabled'] ) );
     } else {
       delete_option( 'mcwallet_matic_disabled' );
     }
+
+		if ( $_POST['arbitrumDisabled'] == 'true' ) {
+      update_option( 'mcwallet_arbitrum_disabled', sanitize_text_field( $_POST['arbitrumDisabled'] ) );
+    } else {
+      delete_option( 'mcwallet_arbitrum_disabled' );
+    }
+
     if ( $_POST['exchangeDisabled'] == 'true' ) {
       update_option( 'mcwallet_exchange_disabled', sanitize_text_field( $_POST['exchangeDisabled'] ) );
     } else {
       delete_option( 'mcwallet_exchange_disabled' );
     }
+
     if ( $_POST['invoiceEnabled'] == 'true' ) {
       update_option( 'mcwallet_invoice_enabled', sanitize_text_field( $_POST['invoiceEnabled'] ) );
     } else {
