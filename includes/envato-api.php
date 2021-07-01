@@ -97,7 +97,6 @@ function mcwallet_validate_purchase_code( $code ){
  * If Support Has Expired
  */
 function mcwallet_is_supported() {
-	return false;
 	if ( get_option( 'mcwallet_license_supported_until' ) ) {
 
 		$date_now   = new DateTime( 'NOW' );
@@ -123,6 +122,7 @@ function mcwallet_is_active_license() {
 	}
 	return false;
 }
+
 
 function mcwallet_license_admin_notice() {
 
