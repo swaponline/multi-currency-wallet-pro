@@ -34,13 +34,12 @@ function mcwallet_license_page() {
 <div class="wrap">
 	<h2><?php echo get_admin_page_title(); ?></h2>
 	<?php settings_errors(); ?>
-	<!-- <div class="notice mcwallet-notice hide-all"><p></p></div> -->
 
 	<div class="welcome-panel mcwallet-welcome-panel">
 		<div class="welcome-panel-content">
-			<h3><?php esc_html_e( 'License Activation', 'multi-currency-wallet' ); ?></h3>
-			<p><?php esc_html_e( 'The active support gives access to the latest version from the developer\'s server. An expired license DOES NOT AFFECT the plugin\'s functionality', 'multi-currency-wallet' ); ?></p>
 
+			<h3><?php esc_html_e( 'License Activation', 'multi-currency-wallet' ); ?></h3>
+			<p><?php esc_html_e( 'The active support gives access to the latest version from the developer&#039;s server. An expired license DOES NOT AFFECT the plugin&#039;s functionality. You still can download versions from codecanyon (but updates are released less often there).', 'multi-currency-wallet' ); ?></p>
 			<?php if ( get_option( 'mcwallet_purchase_code' ) ) { ?>
 				<?php if ( mcwallet_is_supported() ) {
 					$d = new DateTime( get_option( 'mcwallet_license_supported_until' ) );
@@ -49,7 +48,7 @@ function mcwallet_license_page() {
 					?>
 					<p><?php esc_html_e( 'Your support is valid until:', 'multi-currency-wallet' ); ?> <strong><?php echo esc_html( $date_until ); ?></strong></p>
 				<?php } else { ?>
-					<p><?php esc_html_e( 'Your support is expired, please go to the plugin page to renew.', 'multi-currency-wallet' ); ?></p>
+					<p><?php esc_html_e( 'Your support is expired, please renew the plugin license.', 'multi-currency-wallet' ); ?></p>
 				<?php } ?>
 			<?php } ?>
 
