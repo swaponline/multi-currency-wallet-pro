@@ -363,6 +363,7 @@ function mcwallet_inline_script() {
     'CUR_ETH_DISABLED'             => get_option( 'mcwallet_eth_disabled', 'false' ),
 		'CUR_BNB_DISABLED'             => get_option( 'mcwallet_bnb_disabled', 'false' ),
 		'CUR_MATIC_DISABLED'           => get_option( 'mcwallet_matic_disabled', 'false' ),
+		'CUR_ARBITRUM_DISABLED'        => get_option( 'mcwallet_arbitrum_disabled', 'false' ),
     'CUR_GHOST_DISABLED'           => (get_option( 'mcwallet_ghost_enabled') == 'true') ? 'false' : 'true',
     'CUR_NEXT_DISABLED'            => (get_option( 'mcwallet_next_enabled') == 'true') ? 'false' : 'true',
     '_ui_footerDisabled'           =>  get_option( 'mcwallet_disable_footer', 'false'),

@@ -331,6 +331,15 @@ function mcwallet_page() {
 									</label>
 								</td>
 							</tr>
+							<tr>
+								<th scope="row"></th>
+								<td>
+									<label for="mcwallet_arbitrum_disabled">
+										<input name="arbitrum_disabled" type="checkbox" id="mcwallet_arbitrum_disabled" <?php checked( 'true', get_option( 'mcwallet_arbitrum_disabled' ) ); ?>>
+										<?php esc_html_e( 'Disable ARBITRUM wallet.', 'multi-currency-wallet' );?>
+									</label>
+								</td>
+							</tr>
               <tr>
 								<th scope="row"></th>
 								<td>
