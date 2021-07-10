@@ -110,6 +110,8 @@ function mcwallet_do_settings_sections() {
 			<tr>
 				<th scope="row"></th>
 				<td>
+					<?php $order_value = count( get_option( 'mcwallet_tokens' ) ) + 1; ?>
+					<input name="order" type="hidden" value="<?php echo esc_attr( $order_value ); ?>">
 					<?php
 						submit_button( esc_attr__( 'Add new token', 'multi-currency-wallet' ), 'primary mcwallet-add-token', 'mcwallet-add-token', false );
 					?>

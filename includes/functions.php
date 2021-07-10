@@ -13,20 +13,20 @@ if (!function_exists( 'wp_logout' ) ) {
 	 * @since 2.5.0
 	 */
 	function wp_logout() {
-    $users_must_be_registered = (get_option( 'mcwallet_is_logged' ) == 'true');
-    $save_userData = (get_option( 'mcwallet_remember_userwallet' ) == 'true');
-    $is_adminPage = (strpos(strtolower($_SERVER['HTTP_REFERER']), '/wp-admin') !== false);
+		$users_must_be_registered = (get_option( 'mcwallet_is_logged' ) == 'true');
+		$save_userData = (get_option( 'mcwallet_remember_userwallet' ) == 'true');
+		$is_adminPage = (strpos(strtolower($_SERVER['HTTP_REFERER']), '/wp-admin') !== false);
 
-    if ($is_adminPage and $save_userData) {
-      header('Location: '.mcwallet_page_url().'/#/exit');
-      exit();
-    } else {
-      wp_destroy_current_session();
-      wp_clear_auth_cookie();
-      wp_set_current_user( 0 );
+		if ($is_adminPage and $save_userData) {
+			header('Location: '.mcwallet_page_url().'/#/exit');
+			exit();
+		} else {
+			wp_destroy_current_session();
+			wp_clear_auth_cookie();
+			wp_set_current_user( 0 );
 
-      do_action( 'wp_logout' );
-    }
+			do_action( 'wp_logout' );
+		}
 	}
 }
 /**
@@ -74,8 +74,8 @@ function mcwallet_dark_logo_url(){
 	if ( get_option( 'mcwallet_dark_logo' ) ) {
 		$logo_url = get_option( 'mcwallet_dark_logo' );
 	} elseif ( get_option( 'mcwallet_logo' ) ) {
-        $logo_url = get_option( 'mcwallet_logo' );
-    }
+				$logo_url = get_option( 'mcwallet_logo' );
+		}
 	return esc_url( $logo_url );
 }
 
@@ -185,6 +185,7 @@ function mcwallet_default_token() {
 			'bg'          => '',
 			'howdeposit'  => '',
 			'howwithdraw' => '',
+			'order'       => 1,
 		),
 	);
 	return $token;

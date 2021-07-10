@@ -277,6 +277,13 @@ function mcwallet_inline_script() {
 		$i      = 0;
 		$count  = count( $tokens );
 
+		// Sort tokens by order from subarray.
+		uasort( $tokens, function( $a, $b ) {
+			if ( isset( $a['order'] ) ) {
+				return $a['order'] <=> $b['order'];
+			}
+		});
+
 		foreach ( $tokens as $name => $token ) {
 			$i++;
 			$separator = '';
@@ -309,6 +316,10 @@ function mcwallet_inline_script() {
 			if ( isset( $token['howwithdraw'] ) ) {
 				$how_withdraw = $token['howwithdraw'];
 			}
+			$order = '';
+			if ( isset( $token['order'] ) ) {
+				$order = $token['order'];
+			};
 			$script .= "{
 				name: '". $symbol ."',
 				symbol: '". $symbol ."',
@@ -321,7 +332,8 @@ function mcwallet_inline_script() {
 				iconBgColor: '" . $icon_bg . "',
 				howToDeposit: '" . wp_specialchars_decode( $how_deposit ) . "',
 				howToWithdraw: '" . wp_specialchars_decode( $how_withdraw ) . "',
-      }" . $separator . "\n";
+				order: '" . intval( $order ) . "',
+			}" . $separator . "\n";
 		}
 		$script .= "]\n\n";
 

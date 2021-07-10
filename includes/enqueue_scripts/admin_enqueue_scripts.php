@@ -15,7 +15,7 @@ function mcwallet_admin_enqueue_scripts( $hook ) {
 	if ( 'toplevel_page_mcwallet' == $hook || 'mcwallet_banner' == $typenow ) {
 
 		/* Register script */
-		wp_register_script( 'mcwallet-admin', MCWALLET_URL . 'assets/js/admin.js', array( 'jquery' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );
+		wp_register_script( 'mcwallet-admin', MCWALLET_URL . 'assets/js/admin.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-sortable' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );
 		/* Load media and thickbox */
 		wp_enqueue_media();
 		add_thickbox();
@@ -29,12 +29,13 @@ function mcwallet_admin_enqueue_scripts( $hook ) {
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
 				'nonce'   => wp_create_nonce( 'mcwallet-nonce' ),
 				'notices' => array(
-					'success' => esc_html__( 'Token successfully added!', 'multi-currency-wallet' ),
-					'wrong'   => esc_html__( 'Something is wrong, please try again!', 'multi-currency-wallet' ),
-					'empty'   => esc_html__( 'ERC20 contract address is empty!', 'multi-currency-wallet' ),
-					'invalid' => esc_html__( 'Please add a valid ERC20 address!', 'multi-currency-wallet' ),
-					'updated' => esc_html__( 'Options updated!', 'multi-currency-wallet' ),
-					'removed' => esc_html__( 'Token successfully removed!', 'multi-currency-wallet' ),
+					'success'  => esc_html__( 'Token successfully added!', 'multi-currency-wallet' ),
+					'wrong'    => esc_html__( 'Something is wrong, please try again!', 'multi-currency-wallet' ),
+					'empty'    => esc_html__( 'ERC20 contract address is empty!', 'multi-currency-wallet' ),
+					'invalid'  => esc_html__( 'Please add a valid ERC20 address!', 'multi-currency-wallet' ),
+					'updated'  => esc_html__( 'Options updated!', 'multi-currency-wallet' ),
+					'removed'  => esc_html__( 'Token successfully removed!', 'multi-currency-wallet' ),
+					'noTokens' => esc_html__( 'No tokens', 'multi-currency-wallet' ),
 				),
 				'uploader' => array(
 					'title'  => esc_html__( 'Insert image', 'multi-currency-wallet' ),

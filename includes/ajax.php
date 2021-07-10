@@ -5,80 +5,80 @@
 
 
 function mcwallet_backup_user() {
-  $data = json_decode( file_get_contents( 'php://input' ), true );
+	$data = json_decode( file_get_contents( 'php://input' ), true );
 
-  if (intval($data['WPuserUid']) !== get_current_user_id()) {
-    wp_die('Access deny', 403);
-  }
+	if (intval($data['WPuserUid']) !== get_current_user_id()) {
+		wp_die('Access deny', 403);
+	}
 
-  $user_id = get_current_user_id();
+	$user_id = get_current_user_id();
 
-  $userData = get_userdata($user_id)->data;
-  $userHashString = $user_id.':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
-  $user_uniqhash = md5($userHashString);
+	$userData = get_userdata($user_id)->data;
+	$userHashString = $user_id.':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
+	$user_uniqhash = md5($userHashString);
 
-  if ($user_uniqhash != $data['WPuserHash']) {
-    wp_die('Access deny', 403);
-  }
+	if ($user_uniqhash != $data['WPuserHash']) {
+		wp_die('Access deny', 403);
+	}
 
-  $backup = get_user_meta( $user_id, '_mcwallet_backup' );
-  if (is_array($backup)
-    and isset($backup[0])
-    and is_array($backup[0])
-  ) {
-    $backup = $backup[0];
-  } else {
-    $backup = false;
-  }
+	$backup = get_user_meta( $user_id, '_mcwallet_backup' );
+	if (is_array($backup)
+		and isset($backup[0])
+		and is_array($backup[0])
+	) {
+		$backup = $backup[0];
+	} else {
+		$backup = false;
+	}
 
-  if ($data[ 'action' ] && $data[ 'action' ] == 'cleanup') {
+	if ($data[ 'action' ] && $data[ 'action' ] == 'cleanup') {
 
-     wp_die( '{"answer":"ok"}', 200);
-  }
+		 wp_die( '{"answer":"ok"}', 200);
+	}
 
-  if ($backup
-    and $backup[ 'twentywords' ]
-    and $data[ 'twentywords' ]
-    and ($backup[ 'twentywords' ] != $data[ 'twentywords' ])
-    and ($backup[ 'twentywords' ] != '-')
-    and ($data[ 'twentywords' ] != '-')
-  ) {
-    wp_die( '{"error":"rewrite seed"}', 200);
-  }
+	if ($backup
+		and $backup[ 'twentywords' ]
+		and $data[ 'twentywords' ]
+		and ($backup[ 'twentywords' ] != $data[ 'twentywords' ])
+		and ($backup[ 'twentywords' ] != '-')
+		and ($data[ 'twentywords' ] != '-')
+	) {
+		wp_die( '{"error":"rewrite seed"}', 200);
+	}
 
-  $arr = ($backup) ? $backup : [];
+	$arr = ($backup) ? $backup : [];
 
-  $arr[ 'btcMnemonic' ]                       = $data[ 'btcMnemonic' ];
-  $arr[ 'ethMnemonic' ]                       = $data[ 'ethMnemonic' ];
-  $arr[ 'eth' ]                               = $data[ 'eth' ];
-  $arr[ 'btc' ]                               = $data[ 'btc' ];
-  $arr[ 'ghost' ]                             = $data[ 'ghost' ];
-  $arr[ 'ethOld' ]                            = $data[ 'ethOld' ];
-  $arr[ 'btcOld' ]                            = $data[ 'btcOld' ];
+	$arr[ 'btcMnemonic' ]                       = $data[ 'btcMnemonic' ];
+	$arr[ 'ethMnemonic' ]                       = $data[ 'ethMnemonic' ];
+	$arr[ 'eth' ]                               = $data[ 'eth' ];
+	$arr[ 'btc' ]                               = $data[ 'btc' ];
+	$arr[ 'ghost' ]                             = $data[ 'ghost' ];
+	$arr[ 'ethOld' ]                            = $data[ 'ethOld' ];
+	$arr[ 'btcOld' ]                            = $data[ 'btcOld' ];
 
-  if ($data['twentywords'] !== '-') {
-    $arr[ 'twentywords' ]                       = $data[ 'twentywords' ];
-  }
+	if ($data['twentywords'] !== '-') {
+		$arr[ 'twentywords' ]                       = $data[ 'twentywords' ];
+	}
 
-  $arr[ 'btcMultisig' ]                       = $data[ 'btcMultisig' ];
-  $arr[ 'btcMultisigOtherOwnerKey' ]          = $data[ 'btcMultisigOtherOwnerKey' ];
-  $arr[ 'btcMultisigOtherOwnerKeyMnemonic' ]  = $data[ 'btcMultisigOtherOwnerKeyMnemonic' ];
-  $arr[ 'btcMultisigOtherOwnerKeyOld' ]       = $data[ 'btcMultisigOtherOwnerKeyOld' ];
-  $arr[ 'btcSmsMnemonicKey' ]                 = $data[ 'btcSmsMnemonicKey' ];
-  $arr[ 'btcSmsMnemonicKeyGenerated' ]        = $data[ 'btcSmsMnemonicKeyGenerated' ];
-  $arr[ 'btcSmsMnemonicKeyMnemonic' ]         = $data[ 'btcSmsMnemonicKeyMnemonic' ];
-  $arr[ 'btcSmsMnemonicKeyOld' ]              = $data[ 'btcSmsMnemonicKeyOld' ];
-  $arr[ 'btcPinMnemonicKey' ]                 = $data[ 'btcPinMnemonicKey' ];
-  $arr[ 'hiddenCoinsList' ]                   = $data[ 'hiddenCoinsList' ];
-  
-  $arr[ 'isWalletCreate' ]                    = $data[ 'isWalletCreate' ];
-  $arr[ 'didProtectedBtcCreated' ]            = $data[ 'didProtectedBtcCreated' ];
-  $arr[ 'didPinBtcCreated' ]                  = $data[ 'didPinBtcCreated' ];
+	$arr[ 'btcMultisig' ]                       = $data[ 'btcMultisig' ];
+	$arr[ 'btcMultisigOtherOwnerKey' ]          = $data[ 'btcMultisigOtherOwnerKey' ];
+	$arr[ 'btcMultisigOtherOwnerKeyMnemonic' ]  = $data[ 'btcMultisigOtherOwnerKeyMnemonic' ];
+	$arr[ 'btcMultisigOtherOwnerKeyOld' ]       = $data[ 'btcMultisigOtherOwnerKeyOld' ];
+	$arr[ 'btcSmsMnemonicKey' ]                 = $data[ 'btcSmsMnemonicKey' ];
+	$arr[ 'btcSmsMnemonicKeyGenerated' ]        = $data[ 'btcSmsMnemonicKeyGenerated' ];
+	$arr[ 'btcSmsMnemonicKeyMnemonic' ]         = $data[ 'btcSmsMnemonicKeyMnemonic' ];
+	$arr[ 'btcSmsMnemonicKeyOld' ]              = $data[ 'btcSmsMnemonicKeyOld' ];
+	$arr[ 'btcPinMnemonicKey' ]                 = $data[ 'btcPinMnemonicKey' ];
+	$arr[ 'hiddenCoinsList' ]                   = $data[ 'hiddenCoinsList' ];
+	
+	$arr[ 'isWalletCreate' ]                    = $data[ 'isWalletCreate' ];
+	$arr[ 'didProtectedBtcCreated' ]            = $data[ 'didProtectedBtcCreated' ];
+	$arr[ 'didPinBtcCreated' ]                  = $data[ 'didPinBtcCreated' ];
 
-  $arr[ 'orders' ]                            = $data[ 'orders' ];
+	$arr[ 'orders' ]                            = $data[ 'orders' ];
 
-  update_user_meta( $user_id, '_mcwallet_backup', $arr);
-  wp_die( '{"answer":"ok"}', 200);
+	update_user_meta( $user_id, '_mcwallet_backup', $arr);
+	wp_die( '{"answer":"ok"}', 200);
 }
 
 add_action( 'wp_ajax_mcwallet_backup_userwallet', 'mcwallet_backup_user' );
@@ -86,61 +86,61 @@ add_action( 'wp_ajax_mcwallet_backup_userwallet', 'mcwallet_backup_user' );
 // add_action( 'wp_ajax_nopriv_mcwallet_backup_userwallet', 'mcwallet_backup_user' );
 
 function mcwallet_restory_user() {
-  $data = json_decode( file_get_contents( 'php://input' ), true );
+	$data = json_decode( file_get_contents( 'php://input' ), true );
 
-  if (intval($data['WPuserUid']) !== get_current_user_id()) {
-    wp_die('Access deny', 403);
-  }
+	if (intval($data['WPuserUid']) !== get_current_user_id()) {
+		wp_die('Access deny', 403);
+	}
 
-  $user_id = get_current_user_id();
+	$user_id = get_current_user_id();
 
-  $userData = get_userdata($user_id)->data;
-  $userHashString = $user_id.':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
-  $user_uniqhash = md5($userHashString);
+	$userData = get_userdata($user_id)->data;
+	$userHashString = $user_id.':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
+	$user_uniqhash = md5($userHashString);
 
-  if ($user_uniqhash != $data['WPuserHash']) {
-    wp_die('Access deny', 403);
-  }
+	if ($user_uniqhash != $data['WPuserHash']) {
+		wp_die('Access deny', 403);
+	}
 
-  $backup = get_user_meta( $user_id, '_mcwallet_backup' );
-  if (is_array($backup)
-    and isset($backup[0])
-    and is_array($backup[0])
-  ) {
-    $backup = $backup[0];
+	$backup = get_user_meta( $user_id, '_mcwallet_backup' );
+	if (is_array($backup)
+		and isset($backup[0])
+		and is_array($backup[0])
+	) {
+		$backup = $backup[0];
 
-    $data = array();
-    $data['btcMnemonic']                        = $backup['btcMnemonic'];
-    $data['ethMnemonic']                        = $backup['ethMnemonic'];
-    $data['eth']                                = $backup['eth'];
-    $data['btc']                                = $backup['btc'];
-    $data['ghost']                              = $backup['ghost'];
-    $data['ethOld']                             = $backup['ethOld'];
-    $data['btcOld']                             = $backup['btcOld'];
-    $data['twentywords']                        = '-'; // $backup['twentywords'];
-    $data['btcMultisig']                        = $backup['btcMultisig'];
-    $data['btcMultisigOtherOwnerKey']           = $backup['btcMultisigOtherOwnerKey'];
-    $data['btcMultisigOtherOwnerKeyMnemonic']   = $backup['btcMultisigOtherOwnerKeyMnemonic'];
-    $data['btcMultisigOtherOwnerKeyOld']        = $backup['btcMultisigOtherOwnerKeyOld'];
-    $data['btcSmsMnemonicKey']                  = $backup['btcSmsMnemonicKey'];
-    $data['btcSmsMnemonicKeyGenerated']         = $backup['btcSmsMnemonicKeyGenerated'];
-    $data['btcSmsMnemonicKeyMnemonic']          = $backup['btcSmsMnemonicKeyMnemonic'];
-    $data['btcSmsMnemonicKeyOld']               = $backup['btcSmsMnemonicKeyOld'];
-    $data['btcPinMnemonicKey']                  = $backup['btcPinMnemonicKey'];
-    $data['hiddenCoinsList']                    = $backup['hiddenCoinsList'];
-    $data[ 'isWalletCreate' ]                   = $backup[ 'isWalletCreate' ];
-    $data[ 'didProtectedBtcCreated' ]           = $backup[ 'didProtectedBtcCreated' ];
-    $data[ 'didPinBtcCreated' ]                 = $backup[ 'didPinBtcCreated' ];
-    $data[ 'orders' ]                           = $backup[ 'orders' ];
+		$data = array();
+		$data['btcMnemonic']                        = $backup['btcMnemonic'];
+		$data['ethMnemonic']                        = $backup['ethMnemonic'];
+		$data['eth']                                = $backup['eth'];
+		$data['btc']                                = $backup['btc'];
+		$data['ghost']                              = $backup['ghost'];
+		$data['ethOld']                             = $backup['ethOld'];
+		$data['btcOld']                             = $backup['btcOld'];
+		$data['twentywords']                        = '-'; // $backup['twentywords'];
+		$data['btcMultisig']                        = $backup['btcMultisig'];
+		$data['btcMultisigOtherOwnerKey']           = $backup['btcMultisigOtherOwnerKey'];
+		$data['btcMultisigOtherOwnerKeyMnemonic']   = $backup['btcMultisigOtherOwnerKeyMnemonic'];
+		$data['btcMultisigOtherOwnerKeyOld']        = $backup['btcMultisigOtherOwnerKeyOld'];
+		$data['btcSmsMnemonicKey']                  = $backup['btcSmsMnemonicKey'];
+		$data['btcSmsMnemonicKeyGenerated']         = $backup['btcSmsMnemonicKeyGenerated'];
+		$data['btcSmsMnemonicKeyMnemonic']          = $backup['btcSmsMnemonicKeyMnemonic'];
+		$data['btcSmsMnemonicKeyOld']               = $backup['btcSmsMnemonicKeyOld'];
+		$data['btcPinMnemonicKey']                  = $backup['btcPinMnemonicKey'];
+		$data['hiddenCoinsList']                    = $backup['hiddenCoinsList'];
+		$data[ 'isWalletCreate' ]                   = $backup[ 'isWalletCreate' ];
+		$data[ 'didProtectedBtcCreated' ]           = $backup[ 'didProtectedBtcCreated' ];
+		$data[ 'didPinBtcCreated' ]                 = $backup[ 'didPinBtcCreated' ];
+		$data[ 'orders' ]                           = $backup[ 'orders' ];
 
-    $json = array(
-      'answer' => 'ok',
-      'data' => $data
-    );
-    wp_send_json($json);
-  } else {
-    wp_die('{"answer":"not found"}', 200);
-  }
+		$json = array(
+			'answer' => 'ok',
+			'data' => $data
+		);
+		wp_send_json($json);
+	} else {
+		wp_die('{"answer":"not found"}', 200);
+	}
 }
 add_action( 'wp_ajax_mcwallet_restore_userwallet', 'mcwallet_restory_user' );
 // debug action - for allow request from http://localhost:9001/ with hardcore writed userid
@@ -217,12 +217,11 @@ function mcwallet_add_token() {
 		$address     = sanitize_text_field( $_POST['address'] );
 		$custom_name = sanitize_text_field( $_POST['name'] );
 
-    $standard = 'erc20';
-    if (in_array($_POST['standard'], array('erc20','bep20'))) $standard = $_POST['standard'];
+	$standard = 'erc20';
+	if (in_array($_POST['standard'], array('erc20','bep20'))) $standard = $_POST['standard'];
 		if ( mcwallet_is_address( $address, $standard ) ) {
 
 			$status = 'success';
-      
 
 			$name = mcwallet_hex_to_string( mcwallet_get_remote_result( 'name', $address, $standard) );
 			$key  = strtolower( $name );
@@ -237,14 +236,19 @@ function mcwallet_add_token() {
 			$icon_bg      = sanitize_hex_color( $_POST['bg'] );
 			$how_deposit  = esc_html( wp_kses_post( wp_unslash( $_POST['howdeposit'] ) ) );
 			$how_withdraw = esc_html( wp_kses_post( wp_unslash( $_POST['howwithdraw'] ) ) );
+			$order        = intval( $_POST['order'] );
 
 			$img = '<span class="token-letter">' . mcwallet_token_letter( $name ) . '</span>';
 			if ( mcwallet_remote_image_file_exists( $icon ) ) {
 				$img = '<img src="' . esc_attr( $icon ) . '" alt="' . esc_attr( $name ) . '">';
 			}
 
-			$html = '<tr class="item item-fade item-adding">
+			$html = '<tr class="item item-fade item-adding" data-order="' . $order . '" data-name="' . esc_attr( $key ) . '">
 				<th class="item-count">
+					<div class="drag-icons-group">
+						<i class="dashicons dashicons-ellipsis"></i>
+						<i class="dashicons dashicons-ellipsis"></i>
+					</div>
 					<span></span>
 				</th>
 				<td class="item-icon">
@@ -270,7 +274,6 @@ function mcwallet_add_token() {
 				</td>
 				<td class="item-action">
 					<a href="#" class="button-link-delete mcwallet-remove-token" data-name="' . esc_attr( $key ) . '"><span class="dashicons dashicons-trash"></span></a>
-
 				</td>
 			</tr>';
 
@@ -285,10 +288,16 @@ function mcwallet_add_token() {
 				'bg'          => $icon_bg,
 				'howdeposit'  => $how_deposit,
 				'howwithdraw' => $how_withdraw,
+				'order'       => $order,
 			);
 
 			if ( ! is_array( $tokens ) ) {
 				$tokens = $token;
+				uasort( $tokens, function( $a, $b ) {
+					if ( isset( $a['order'] ) ) {
+						return $a['order'] <=> $b['order'];
+					}
+				});
 				update_option( 'mcwallet_tokens', $tokens );
 			} elseif ( ! array_key_exists( $key, $tokens ) ) {
 				$tokens[ $key ] = array(
@@ -302,7 +311,13 @@ function mcwallet_add_token() {
 					'bg'          => $icon_bg,
 					'howdeposit'  => $how_deposit,
 					'howwithdraw' => $how_withdraw,
+					'order'       => $order,
 				);
+				uasort( $tokens, function( $a, $b ) {
+					if ( isset( $a['order'] ) ) {
+						return $a['order'] <=> $b['order'];
+					}
+				});
 				update_option( 'mcwallet_tokens', $tokens );
 			} else {
 				$status = 'false';
@@ -346,6 +361,7 @@ function mcwallet_remove_token() {
 	if ( $_POST['name'] ) {
 
 		$name = sanitize_text_field( $_POST['name'] );
+
 		unset( $tokens[ $name ] );
 
 		if ( $tokens != get_option( 'mcwallet_tokens' ) ) {
@@ -363,6 +379,40 @@ function mcwallet_remove_token() {
 
 add_action( 'wp_ajax_remove_token', 'mcwallet_remove_token' );
 
+/**
+ * Reorder token
+ */
+function mcwallet_reorder_token() {
+
+	/* Check nonce */
+	check_ajax_referer( 'mcwallet-nonce', 'nonce' );
+
+	/* Stop if the current user is not an admin or do not have administrative access */
+	if ( ! current_user_can( 'manage_options' ) ) {
+		die();
+	}
+
+	if ( $_POST['items'] ) {
+
+		$sorded_items = $_POST['items'];
+
+		$tokens = get_option( 'mcwallet_tokens' );
+		$tokens_ordered = array();
+		foreach( $sorded_items as $key => $token ) {
+			$tokens[ $token ]['order'] = $key;
+			$tokens_ordered[ $token ] = $tokens[ $token ];
+		}
+		update_option( 'mcwallet_tokens', $tokens_ordered );
+
+		$result = $tokens_ordered;
+
+	} else {
+		$result = false;
+	}
+
+	wp_send_json( $result );
+}
+add_action( 'wp_ajax_reorder_token', 'mcwallet_reorder_token' );
 
 /**
  * Update options
@@ -399,7 +449,7 @@ function mcwallet_update_options() {
 		$code_body        = esc_html( wp_unslash( $_POST['codeBody'] ) );
 		$code_footer      = esc_html( wp_unslash( $_POST['codeFooter'] ) );
 
-    $selected_theme   = sanitize_text_field( $_POST['selected_theme'] );
+		$selected_theme   = sanitize_text_field( $_POST['selected_theme'] );
 
 		$slug             = 'mcwallet';
 		$is_home          = 'false';
@@ -447,84 +497,84 @@ function mcwallet_update_options() {
 
 		update_option( 'mcwallet_strings', $replacements );
 
-    update_option( 'selected_theme', $selected_theme );
+		update_option( 'selected_theme', $selected_theme );
 
-    if ( $_POST['footerDisabled'] == 'true' ) {
-      update_option( 'mcwallet_disable_footer', sanitize_text_field( $_POST['footerDisabled'] ) );
-    } else {
-      delete_option( 'mcwallet_disable_footer' );
-    }
-    if ( $_POST['rememberUserWallet'] == 'true' ) {
-      update_option( 'mcwallet_remember_userwallet', sanitize_text_field( $_POST['rememberUserWallet'] ) );
-    } else {
-      delete_option( 'mcwallet_remember_userwallet' );
-    }
+		if ( $_POST['footerDisabled'] == 'true' ) {
+			update_option( 'mcwallet_disable_footer', sanitize_text_field( $_POST['footerDisabled'] ) );
+		} else {
+			delete_option( 'mcwallet_disable_footer' );
+		}
+		if ( $_POST['rememberUserWallet'] == 'true' ) {
+			update_option( 'mcwallet_remember_userwallet', sanitize_text_field( $_POST['rememberUserWallet'] ) );
+		} else {
+			delete_option( 'mcwallet_remember_userwallet' );
+		}
 
-    if ( $_POST['useTestnet'] == 'true' ) {
-      update_option( 'mcwallet_use_testnet', sanitize_text_field( $_POST['useTestnet'] ) );
-    } else {
-      delete_option( 'mcwallet_use_testnet');
-    }
+		if ( $_POST['useTestnet'] == 'true' ) {
+			update_option( 'mcwallet_use_testnet', sanitize_text_field( $_POST['useTestnet'] ) );
+		} else {
+			delete_option( 'mcwallet_use_testnet');
+		}
 
 		if ( $_POST['statisticDisabled'] == 'true' ) {
-      update_option( 'mcwallet_disable_stats', sanitize_text_field( $_POST['statisticDisabled'] ) );
-    } else {
-      delete_option( 'mcwallet_disable_stats');
-    }
+			update_option( 'mcwallet_disable_stats', sanitize_text_field( $_POST['statisticDisabled'] ) );
+		} else {
+			delete_option( 'mcwallet_disable_stats');
+		}
 
-    if ( $_POST['btcDisabled'] == 'true' ) {
-      update_option( 'mcwallet_btc_disabled', sanitize_text_field( $_POST['btcDisabled'] ) );
-    } else {
-      delete_option( 'mcwallet_btc_disabled' );
-    }
+		if ( $_POST['btcDisabled'] == 'true' ) {
+			update_option( 'mcwallet_btc_disabled', sanitize_text_field( $_POST['btcDisabled'] ) );
+		} else {
+			delete_option( 'mcwallet_btc_disabled' );
+		}
 
-    if ( $_POST['ethDisabled'] == 'true' ) {
-      update_option( 'mcwallet_eth_disabled', sanitize_text_field( $_POST['ethDisabled'] ) );
-    } else {
-      delete_option( 'mcwallet_eth_disabled' );
-    }
+		if ( $_POST['ethDisabled'] == 'true' ) {
+			update_option( 'mcwallet_eth_disabled', sanitize_text_field( $_POST['ethDisabled'] ) );
+		} else {
+			delete_option( 'mcwallet_eth_disabled' );
+		}
 
 		if ( $_POST['bnbDisabled'] == 'true' ) {
-      update_option( 'mcwallet_bnb_disabled', sanitize_text_field( $_POST['bnbDisabled'] ) );
-    } else {
-      delete_option( 'mcwallet_bnb_disabled' );
-    }
+			update_option( 'mcwallet_bnb_disabled', sanitize_text_field( $_POST['bnbDisabled'] ) );
+		} else {
+			delete_option( 'mcwallet_bnb_disabled' );
+		}
 
 		if ( $_POST['maticDisabled'] == 'true' ) {
-      update_option( 'mcwallet_matic_disabled', sanitize_text_field( $_POST['maticDisabled'] ) );
-    } else {
-      delete_option( 'mcwallet_matic_disabled' );
-    }
+			update_option( 'mcwallet_matic_disabled', sanitize_text_field( $_POST['maticDisabled'] ) );
+		} else {
+			delete_option( 'mcwallet_matic_disabled' );
+		}
 
 		if ( $_POST['arbitrumDisabled'] == 'true' ) {
-      update_option( 'mcwallet_arbitrum_disabled', sanitize_text_field( $_POST['arbitrumDisabled'] ) );
-    } else {
-      delete_option( 'mcwallet_arbitrum_disabled' );
-    }
+			update_option( 'mcwallet_arbitrum_disabled', sanitize_text_field( $_POST['arbitrumDisabled'] ) );
+		} else {
+			delete_option( 'mcwallet_arbitrum_disabled' );
+		}
 
-    if ( $_POST['exchangeDisabled'] == 'true' ) {
-      update_option( 'mcwallet_exchange_disabled', sanitize_text_field( $_POST['exchangeDisabled'] ) );
-    } else {
-      delete_option( 'mcwallet_exchange_disabled' );
-    }
+		if ( $_POST['exchangeDisabled'] == 'true' ) {
+			update_option( 'mcwallet_exchange_disabled', sanitize_text_field( $_POST['exchangeDisabled'] ) );
+		} else {
+			delete_option( 'mcwallet_exchange_disabled' );
+		}
 
-    if ( $_POST['invoiceEnabled'] == 'true' ) {
-      update_option( 'mcwallet_invoice_enabled', sanitize_text_field( $_POST['invoiceEnabled'] ) );
-    } else {
-      delete_option( 'mcwallet_invoice_enabled' );
-    }
+		if ( $_POST['invoiceEnabled'] == 'true' ) {
+			update_option( 'mcwallet_invoice_enabled', sanitize_text_field( $_POST['invoiceEnabled'] ) );
+		} else {
+			delete_option( 'mcwallet_invoice_enabled' );
+		}
 
-    if ( $_POST['ghostEnabled'] == 'true' ) {
-      update_option( 'mcwallet_ghost_enabled', sanitize_text_field( 'true' ) );
-    } else {
-      delete_option( 'mcwallet_ghost_enabled' );
-    }
+		if ( $_POST['ghostEnabled'] == 'true' ) {
+			update_option( 'mcwallet_ghost_enabled', sanitize_text_field( 'true' ) );
+		} else {
+			delete_option( 'mcwallet_ghost_enabled' );
+		}
 
-    if ( $_POST['nextEnabled'] == 'true' ) {
-      update_option( 'mcwallet_next_enabled', sanitize_text_field( 'true' ) );
-    } else {
-      delete_option( 'mcwallet_next_enabled' );
-    }
+		if ( $_POST['nextEnabled'] == 'true' ) {
+			update_option( 'mcwallet_next_enabled', sanitize_text_field( 'true' ) );
+		} else {
+			delete_option( 'mcwallet_next_enabled' );
+		}
 
 		if ( $_POST['ishome'] == 'true' ) {
 			update_option( 'mcwallet_is_home', sanitize_text_field( $_POST['ishome'] ) );
@@ -556,25 +606,25 @@ function mcwallet_update_options() {
 	mcwallet_add_rewrite_rules();
 	flush_rewrite_rules();
 
-  /* clear cache */
-  if ( version_compare( PHP_VERSION, '7.0.0' ) >= 0) {
-    $path_levels = dirname( __FILE__, 5 ) . '/';
-  } else {
-    $path_levels = dirname( __FILE__ ) . '../../../../../';
-  }
+	/* clear cache */
+	if ( version_compare( PHP_VERSION, '7.0.0' ) >= 0) {
+		$path_levels = dirname( __FILE__, 5 ) . '/';
+	} else {
+		$path_levels = dirname( __FILE__ ) . '../../../../../';
+	}
 
-  $cache_dir = $path_levels . 'wp-content/uploads/';
-  $cache_dir_files = scandir($cache_dir);
-  $cache_file_mark = 'swap-wallet-app-';
-  foreach($cache_dir_files as $fkey=>$file) {
-    $file_ext = explode('.', $file);
-    $file_ext = $file_ext[count($file_ext)-1];
-    $file_subname = substr($file,0, strlen($cache_file_mark));
-    if (($file_ext === 'js') and ($file_subname === $cache_file_mark)) {
-      unlink($cache_dir.$file);
-    }
-  }
-  /* dump result */
+	$cache_dir = $path_levels . 'wp-content/uploads/';
+	$cache_dir_files = scandir($cache_dir);
+	$cache_file_mark = 'swap-wallet-app-';
+	foreach($cache_dir_files as $fkey=>$file) {
+		$file_ext = explode('.', $file);
+		$file_ext = $file_ext[count($file_ext)-1];
+		$file_subname = substr($file,0, strlen($cache_file_mark));
+		if (($file_ext === 'js') and ($file_subname === $cache_file_mark)) {
+			unlink($cache_dir.$file);
+		}
+	}
+	/* dump result */
 
 	$result_arr = array(
 		'status'   => $status,

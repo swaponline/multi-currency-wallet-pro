@@ -71,7 +71,14 @@ function mcwallet_page() {
 							</tr>
 						</thead>
 						<tbody>
-							<?php if ( $erc20tokens ) { ?>
+							<?php if ( $erc20tokens ) {
+									// Sort tokens by order from subarray.
+									uasort( $erc20tokens, function( $a, $b ) {
+										if ( isset( $a['order'] ) ) {
+											return $a['order'] <=> $b['order'];
+										}
+									});
+								?>
 								<?php foreach( $erc20tokens as $name => $token ) {
 									$img = '<span class="token-letter">' . mcwallet_token_letter( $token['name'] ) . '</span>';
 									if ( mcwallet_remote_image_file_exists( $token['icon'] ) ) {
@@ -88,9 +95,17 @@ function mcwallet_page() {
 									if ( ! isset( $token['standard'] ) ) {
 										$token['standard'] = 'erc20';
 									}
+									$order = 1;
+									if ( isset( $token['order'] ) ) {
+										$order = intval( $token['order'] );
+									}
 								?>
-								<tr class="item">
+								<tr class="item" data-order="<?php echo esc_attr( $order ); ?>" data-name="<?php echo esc_attr( $name ); ?>">
 									<th class="item-count">
+										<div class="drag-icons-group">
+											<i class="dashicons dashicons-ellipsis"></i>
+											<i class="dashicons dashicons-ellipsis"></i>
+										</div>
 										<span></span>
 									</th>
 									<td class="item-icon">
@@ -120,13 +135,13 @@ function mcwallet_page() {
 								</tr>
 							<?php } ?>
 							<?php } else { ?>
-
+								<tr class="item item-empty">
+									<td colspan="8">
+										<span><?php esc_html_e( 'No tokens', 'multi-currency-wallet' );?></span>
+									</td>
+								</tr>
 							<?php } ?>
-							<tr class="item item-empty">
-								<td colspan="6">
-									<span><?php esc_html_e( 'No tokens', 'multi-currency-wallet' );?></span>
-								</td>
-							</tr>
+							
 						</tbody>
 						<tfoot>
 							<tr>

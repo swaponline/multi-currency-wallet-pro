@@ -75,8 +75,28 @@
 	padding-right: 15px;
 	font-weight: bold;
 }
+.wp-list-tokens tbody {
+	position: relative;
+}
 .wp-list-tokens tbody .item {
-	transition: all .3s;
+	transition: opacity .3s, background-color .3s;
+	position: relative;
+}
+.wp-list-tokens tbody .item:hover {
+	box-shadow: 0px 0px 0px 1px #c3c4c7;
+	z-index: 2;
+}
+.wp-list-tokens .ui-state-highlight {
+	height: 70px;
+	background-color: #2c3338 !important;
+}
+.wp-list-tokens .ui-sortable-helper {
+	display: table;
+	border-collapse: separate;
+	box-sizing: border-box;
+	background-color: #fff;
+	opacity: .7;
+	cursor: grab !important;
 }
 .wp-list-tokens tbody .item > * {
 	padding: 15px;
@@ -84,12 +104,18 @@
 }
 .wp-list-tokens tbody .item .item-count {
 	counter-increment: tokencount;
+	cursor: grab;
+	position: relative;
+}
+.wp-list-tokens tbody .item .item-count:hover {
+	color: #2271b1;
 }
 .wp-list-tokens tbody .item .item-count > span:before {
 	content: counter( tokencount);
 }
 .wp-list-tokens .item-count {
 	width: 20px;
+	text-align: center;
 }
 .wp-list-tokens .item-address {
 	white-space: nowrap;
@@ -97,7 +123,7 @@
 .wp-list-tokens .item-echange-rate {
 	width: 100px;
 	text-align: center;
-    white-space: nowrap;
+	white-space: nowrap;
 }
 .wp-list-tokens .item-action {
 	width: 20px;
@@ -142,6 +168,21 @@
 }
 .wp-list-tokens tbody .item.removing {
 	background-color: #faafaa;
+}
+.wp-list-tokens .drag-icons-group {
+	position: absolute;
+	top: 50%;
+	left: 5px;
+	transform: translateY(-50%);
+	opacity: 0;
+	transition: all .3s;
+}
+.wp-list-tokens .drag-icons-group .dashicons {
+	transform: rotate(90deg);
+	margin: 0 -8px;
+}
+.wp-list-tokens tbody .item:hover .drag-icons-group {
+	opacity: 1;
 }
 .mcwallet-form-inline {
 	display: flex;

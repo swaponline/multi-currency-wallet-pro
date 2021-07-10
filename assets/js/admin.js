@@ -57,7 +57,7 @@
 		var iconBg = thisForm.find('.mcwallet-icon-bg').val();
 		var howDeposit = window.tinyMCE.get('howdeposit').getContent();
 		var howWithdraw = window.tinyMCE.get('howwithdraw').getContent();
-		
+		var tokenOrder = thisForm.find('[name="order"]').val();
 		mcwalletSpinner(thisBtn);
 
 		if ( tokenAddress ){
@@ -73,18 +73,25 @@
 				bg: iconBg,
 				howdeposit: howDeposit,
 				howwithdraw: howWithdraw,
+				order: tokenOrder,
 			};
 
 			$.post( mcwallet.ajaxurl, data, function(response) {
-				
+
 				if( response.status == 'success') {
 					var thisHtml = response.html;
+					$('.wp-list-tokens tbody').find('.item-empty').remove();
+					// If no tokens, add to tbody.
 					$('.wp-list-tokens tbody').append( thisHtml );
+
 					setTimeout(function(){
 						$('.wp-list-tokens tbody').find('.item-fade').removeClass('item-fade');
+						$(this).scrollTop(0);
 					},10);
 					setTimeout(function(){
 						$('.wp-list-tokens tbody').find('.item-adding').removeClass('item-adding');
+						
+						//location.reload();
 					},2000);
 					
 					mcwalletNotice( mcwallet.notices.success, 'success');
@@ -134,6 +141,9 @@
 					thisItem.fadeOut( function(){
 						thisItem.remove();
 						mcwalletNotice( mcwallet.notices.removed, 'success');
+						if( ! $('.wp-list-tokens tbody .item').length ) {
+							$('.wp-list-tokens tbody ').html( '<tr class="item item-empty"><td colspan="8"><span>' + mcwallet.notices.noTokens + '</span></td></tr>' );
+						}
 					});
 				}
 				if ( response == 'false' ) {
@@ -144,15 +154,15 @@
 		}
 	});
 
-  /**
-   * If user must be logged in - save user data
-   */
-  $('.mcwallet-form-options [name="is_logged"]').on('change', function (e) {
-    if ($('.mcwallet-form-options [name="is_logged"]').is(':checked')) {
-      $('.mcwallet-form-options [name="remeber_userwallet"]').prop('checked', true)
-    }
-  })
-  
+	/**
+	 * If user must be logged in - save user data
+	 */
+	$('.mcwallet-form-options [name="is_logged"]').on('change', function (e) {
+		if ($('.mcwallet-form-options [name="is_logged"]').is(':checked')) {
+			$('.mcwallet-form-options [name="remeber_userwallet"]').prop('checked', true)
+		}
+	})
+	
 	/**
 	 * Update Options
 	 */
@@ -161,8 +171,8 @@
 		var thisBtn        = $(this);
 		var thisParent     = $('.mcwallet-form-options');
 		var logoUrl        = thisParent.find( '[name="logo_url"]' ).val();
-    var darkLogoUrl    = thisParent.find( '[name="dark_logo_url"]' ).val();
-    var logoLink       = thisParent.find( '[name="logo_link"]' ).val();
+		var darkLogoUrl    = thisParent.find( '[name="dark_logo_url"]' ).val();
+		var logoLink       = thisParent.find( '[name="logo_link"]' ).val();
 		var pageTitle      = thisParent.find( '[name="mcwallet_page_title"]' ).val();
 		var pageSlug       = thisParent.find( '[name="page_slug"]' ).val();
 		var pageHome       = thisParent.find( '[name="is_home"]' );
@@ -182,25 +192,25 @@
 		var codeBody       = thisParent.find( '[name="mcwallet_body_code"]' ).val();
 		var codeFooter     = thisParent.find( '[name="mcwallet_footer_code"]' ).val();
 		var statisticDisabled = thisParent.find( '[name="statistic_disabled"]' );
-    var btcDisabled    = thisParent.find( '[name="btc_disabled"]' );
-    var ethDisabled    = thisParent.find( '[name="eth_disabled"]' );
-    var bnbDisabled    = thisParent.find( '[name="bnb_disabled"]' );
-    var maticDisabled    = thisParent.find( '[name="matic_disabled"]' );
+		var btcDisabled    = thisParent.find( '[name="btc_disabled"]' );
+		var ethDisabled    = thisParent.find( '[name="eth_disabled"]' );
+		var bnbDisabled    = thisParent.find( '[name="bnb_disabled"]' );
+		var maticDisabled    = thisParent.find( '[name="matic_disabled"]' );
 		var arbitrumDisabled = thisParent.find( '[name="arbitrum_disabled"]' );
-    var ghostEnabled   = thisParent.find( '[name="ghost_enabled"]' );
-    var nextEnabled   = thisParent.find( '[name="next_enabled"]' );
-    var exchangeDisabled = thisParent.find( '[name="exchange_disabled"]' );
-    var invoiceEnabled = thisParent.find( '[name="invoice_enabled"]' );
+		var ghostEnabled   = thisParent.find( '[name="ghost_enabled"]' );
+		var nextEnabled   = thisParent.find( '[name="next_enabled"]' );
+		var exchangeDisabled = thisParent.find( '[name="exchange_disabled"]' );
+		var invoiceEnabled = thisParent.find( '[name="invoice_enabled"]' );
 
-    var rememberUserWallet = thisParent.find( '[name="remeber_userwallet"]' );
+		var rememberUserWallet = thisParent.find( '[name="remeber_userwallet"]' );
 
-    var footerDisabled = thisParent.find( '[name="disable_footer"]' );
+		var footerDisabled = thisParent.find( '[name="disable_footer"]' );
 
-    var useTestnet = thisParent.find( '[name="use_testnet"]' );
+		var useTestnet = thisParent.find( '[name="use_testnet"]' );
 		// click handler
 
-    var selected_theme = thisParent.find( '[name="selected_theme"]' );
- 
+		var selected_theme = thisParent.find( '[name="selected_theme"]' );
+
 		var strings = '';
 		if ( $('.mcwallet-string-input').length ) {
 			 strings = $('.mcwallet-string-input').serializeArray();
@@ -210,25 +220,25 @@
 		var isLogged = 'false';
 		var isHowitworks = 'false';
 
-    selected_theme = selected_theme.val();
+		selected_theme = selected_theme.val();
 		statisticDisabled = statisticDisabled.is(':checked') ? 'true' : 'false';
-    btcDisabled = btcDisabled.is(':checked') ? 'true' : 'false';
-    ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
-    ghostEnabled = ghostEnabled.is(':checked') ? 'false' : 'true';
-    nextEnabled = nextEnabled.is(':checked') ? 'false' : 'true';
-    bnbDisabled = bnbDisabled.is(':checked') ? 'true' : 'false';
-    maticDisabled = maticDisabled.is(':checked') ? 'true' : 'false';
+		btcDisabled = btcDisabled.is(':checked') ? 'true' : 'false';
+		ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
+		ghostEnabled = ghostEnabled.is(':checked') ? 'false' : 'true';
+		nextEnabled = nextEnabled.is(':checked') ? 'false' : 'true';
+		bnbDisabled = bnbDisabled.is(':checked') ? 'true' : 'false';
+		maticDisabled = maticDisabled.is(':checked') ? 'true' : 'false';
 		arbitrumDisabled = arbitrumDisabled.is(':checked') ? 'true' : 'false';
 
-    useTestnet = useTestnet.is(':checked') ? 'true' : 'false';
+		useTestnet = useTestnet.is(':checked') ? 'true' : 'false';
 
-    exchangeDisabled = exchangeDisabled.is(':checked') ? 'true' : 'false';
+		exchangeDisabled = exchangeDisabled.is(':checked') ? 'true' : 'false';
 
-    invoiceEnabled = invoiceEnabled.is(':checked') ? 'true' : 'false';
+		invoiceEnabled = invoiceEnabled.is(':checked') ? 'true' : 'false';
 
-    rememberUserWallet = rememberUserWallet.is(':checked') ? 'true' : 'false';
+		rememberUserWallet = rememberUserWallet.is(':checked') ? 'true' : 'false';
 
-    footerDisabled = footerDisabled.is(':checked') ? 'true' : 'false';
+		footerDisabled = footerDisabled.is(':checked') ? 'true' : 'false';
 
 		if ( pageHome.is(':checked') ) {
 			ishome = 'true';
@@ -236,7 +246,7 @@
 		
 		if ( pageAccess.is(':checked') ) {
 			isLogged = 'true';
-      rememberUserWallet = 'true';
+			rememberUserWallet = 'true';
 		}
 		
 		if ( showHowitworks.is(':checked') ) {
@@ -247,8 +257,8 @@
 			action: 'mcwallet_update_options',
 			nonce: mcwallet.nonce,
 			url: logoUrl,
-            darkLogoUrl: darkLogoUrl,
-            logoLink: logoLink,
+						darkLogoUrl: darkLogoUrl,
+						logoLink: logoLink,
 			pageTitle: pageTitle,
 			slug: pageSlug,
 			btcFee: btcFee,
@@ -269,23 +279,23 @@
 			isHowitworks: isHowitworks,
 			strings: strings,
 			statisticDisabled: statisticDisabled,
-      btcDisabled: btcDisabled,
-      ethDisabled: ethDisabled,
-      bnbDisabled: bnbDisabled,
-      maticDisabled: maticDisabled,
+			btcDisabled: btcDisabled,
+			ethDisabled: ethDisabled,
+			bnbDisabled: bnbDisabled,
+			maticDisabled: maticDisabled,
 			arbitrumDisabled: arbitrumDisabled,
-      ghostEnabled: ghostEnabled,
-      nextEnabled: nextEnabled,
-      exchangeDisabled: exchangeDisabled,
-      useTestnet: useTestnet,
+			ghostEnabled: ghostEnabled,
+			nextEnabled: nextEnabled,
+			exchangeDisabled: exchangeDisabled,
+			useTestnet: useTestnet,
 
-      invoiceEnabled: invoiceEnabled,
+			invoiceEnabled: invoiceEnabled,
 
-      rememberUserWallet: rememberUserWallet,
+			rememberUserWallet: rememberUserWallet,
 
-      footerDisabled: footerDisabled,
+			footerDisabled: footerDisabled,
 
-      selected_theme: selected_theme,
+			selected_theme: selected_theme,
 		};
 
 		mcwalletSpinner(thisBtn);
@@ -352,8 +362,8 @@
 		})
 		.open();
 	});
-    
-    /**
+		
+		/**
 	 * Select/Upload dark logo
 	 */
 	$('body').on('click', '.mcwallet-load-dark-logo', function(e){
@@ -471,6 +481,35 @@
 			wp.media.editor.insert(thisText);
 		}, 50);
 	});
-	
+
+	/**
+	 * Sortable
+	 */
+	 $('.wp-list-table tbody').sortable({
+		axis: 'y',
+		cursor: 'move',
+		//cancel: '.item-address,.item-name',
+		handle: '.item-count',
+		placeholder: 'ui-state-highlight',
+		update: function( event, ui ) {
+
+			var tableItems = $('.wp-list-table tbody .item');
+			var items = [];
+			tableItems.each(function( index ) {
+				items.push( $( this ).data('name')); 
+			});
+
+			var data = {
+				action: 'reorder_token',
+				nonce: mcwallet.nonce,
+				items: items,
+			};
+
+			$.post( ajaxurl, data, function(response) {
+				console.log(response);
+			});
+
+		}
+	});
 
 })( jQuery );
