@@ -56,7 +56,9 @@ body {
 .darkTheme {
 	background-color: #222427;
 }
-
+#wrapper_element {
+	background-color: var(--color-page-background);
+}
 .overlay {
 	display: flex;
 	justify-content: center;
