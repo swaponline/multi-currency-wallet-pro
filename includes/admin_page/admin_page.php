@@ -251,32 +251,6 @@ function mcwallet_page() {
 									<input name="logo_link" type="text" value="<?php echo esc_attr( get_option('mcwallet_logo_link', get_home_url( '/' ) ) );?>" class="large-text">
 								</td>
 							</tr>
-              <tr>
-                <th scope="row">
-									<label><?php esc_html_e( 'Default theme', 'multi-currency-wallet' );?></label>
-								</th>
-								<td>
-                  <?php
-                  $themes = array(
-                    'light' => 'Light',
-                    'dark' => 'Dark',
-                    'only_light' => 'Only light',
-                    'only_dark' => 'Only dark'
-                  );
-                  $selected_theme = get_option( 'selected_theme' );
-                  $selected_theme = ($selected_theme) ? $selected_theme : 'light';
-                  ?>
-                  <select name="selected_theme" id="selected_theme" class="regular-text">
-                    <?php
-                    foreach($themes as $theme_key => $theme_title) {
-                      ?>
-                      <option value="<?php echo $theme_key?>" <?php echo ($theme_key === $selected_theme) ? 'selected' : ''?>><?php echo $theme_title?></option>
-                      <?php
-                    }
-                    ?>
-                  </select>
-								</td>
-              </tr>
 							<tr>
 								<th scope="row">
 									<label><?php esc_html_e( 'Permalink', 'multi-currency-wallet' );?></label>
@@ -310,7 +284,7 @@ function mcwallet_page() {
 									</label>
 								</td>
 							</tr>
-              <tr>
+							<tr>
 								<th scope="row"></th>
 								<td>
 									<label for="mcwallet_btc_disabled">
@@ -319,7 +293,7 @@ function mcwallet_page() {
 									</label>
 								</td>
 							</tr>
-              <tr>
+							<tr>
 								<th scope="row"></th>
 								<td>
 									<label for="mcwallet_eth_disabled">
@@ -355,7 +329,7 @@ function mcwallet_page() {
 									</label>
 								</td>
 							</tr>
-              <tr>
+							<tr>
 								<th scope="row"></th>
 								<td>
 									<label for="mcwallet_ghost_enabled">
@@ -364,7 +338,7 @@ function mcwallet_page() {
 									</label>
 								</td>
 							</tr>
-              <tr>
+							<tr>
 								<th scope="row"></th>
 								<td>
 									<label for="mcwallet_next_enabled">
@@ -373,7 +347,7 @@ function mcwallet_page() {
 									</label>
 								</td>
 							</tr>
-              <tr>
+							<tr>
 								<th scope="row"></th>
 								<td>
 									<label for="mcwallet_exchange_disabled">
@@ -382,7 +356,7 @@ function mcwallet_page() {
 									</label>
 								</td>
 							</tr>
-              <tr>
+							<tr>
 								<th scope="row"></th>
 								<td>
 									<label for="mcwallet_invoice_enabled">
@@ -391,15 +365,15 @@ function mcwallet_page() {
 									</label>
 								</td>
 							</tr>
-              <tr>
-                <th scope="row"></th>
-                <td>
-                  <label for="mcwallet_remember_userwallet">
-                    <input name="remeber_userwallet" type="checkbox" id="mcwallet_remember_userwallet" <?php checked( 'true', get_option( 'mcwallet_remember_userwallet' ) ); ?>>
-                    <?php esc_html_e( "Save private information (keys, etc..) in user's profile (Custodial mode)", 'multi-currency-wallet' );?>
-                  </label>
-                </td>
-              </tr>
+							<tr>
+								<th scope="row"></th>
+								<td>
+									<label for="mcwallet_remember_userwallet">
+										<input name="remeber_userwallet" type="checkbox" id="mcwallet_remember_userwallet" <?php checked( 'true', get_option( 'mcwallet_remember_userwallet' ) ); ?>>
+										<?php esc_html_e( "Save private information (keys, etc..) in user's profile (Custodial mode)", 'multi-currency-wallet' );?>
+									</label>
+								</td>
+							</tr>
 						</tbody>
 					</table><!-- .form-table -->
 
@@ -496,15 +470,15 @@ function mcwallet_page() {
 									</label>
 								</td>
 							</tr>
-              <tr>
-                <th scope="row"></th>
-                <td>
-                  <label for="mcwallet_disable_footer">
-                    <input name="disable_footer" type="checkbox" id="mcwallet_disable_footer" <?php checked( 'true', get_option( 'mcwallet_disable_footer' ) ); ?>>
-                    <?php esc_html_e( "Hide footer", 'multi-currency-wallet' );?>
-                  </label>
-                </td>
-              </tr>
+							<tr>
+								<th scope="row"></th>
+								<td>
+									<label for="mcwallet_disable_footer">
+										<input name="disable_footer" type="checkbox" id="mcwallet_disable_footer" <?php checked( 'true', get_option( 'mcwallet_disable_footer' ) ); ?>>
+										<?php esc_html_e( "Hide footer", 'multi-currency-wallet' );?>
+									</label>
+								</td>
+							</tr>
 							<tr>
 								<th scope="row"></th>
 								<td>
@@ -674,3 +648,22 @@ require MCWALLET_PATH . 'includes/admin_page/admin_page_settings.php';
  * Admin Page License
  */
 require MCWALLET_PATH . 'includes/admin_page/admin-page-license.php';
+
+/**
+ * Add Design page to submenu
+ */
+function knd_add_admin_pages() {
+	global $submenu;
+	$mcwallet_design_url     = add_query_arg( array(
+		'autofocus' => array( 'panel' => 'mcwallet_design' ),
+		'url'       => mcwallet_page_url(),
+	), admin_url( 'customize.php' ) );
+	$submenu['mcwallet'][15] = array( esc_html__( 'Design', 'multi-currency-wallet' ), 'manage_options', esc_url( $mcwallet_design_url ) );
+}
+add_action( 'admin_menu', 'knd_add_admin_pages' );
+
+/**
+ * Admin Page Design
+ */
+require MCWALLET_PATH . 'includes/admin_page/admin-page-help.php';
+

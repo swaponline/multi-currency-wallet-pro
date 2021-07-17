@@ -209,8 +209,6 @@
 		var useTestnet = thisParent.find( '[name="use_testnet"]' );
 		// click handler
 
-		var selected_theme = thisParent.find( '[name="selected_theme"]' );
-
 		var strings = '';
 		if ( $('.mcwallet-string-input').length ) {
 			 strings = $('.mcwallet-string-input').serializeArray();
@@ -220,7 +218,6 @@
 		var isLogged = 'false';
 		var isHowitworks = 'false';
 
-		selected_theme = selected_theme.val();
 		statisticDisabled = statisticDisabled.is(':checked') ? 'true' : 'false';
 		btcDisabled = btcDisabled.is(':checked') ? 'true' : 'false';
 		ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
@@ -294,8 +291,6 @@
 			rememberUserWallet: rememberUserWallet,
 
 			footerDisabled: footerDisabled,
-
-			selected_theme: selected_theme,
 		};
 
 		mcwalletSpinner(thisBtn);
@@ -463,11 +458,12 @@
 			$('.mcwallet-button-url').removeClass('disabled');
 		}
 	});
-	
+
 	/**
 	 * Select Color
 	 */
 	$('.mcwallet-icon-bg').wpColorPicker();
+	$('.mcwallet-color-picker').wpColorPicker();
 	
 	/**
 	 * Timynce text template

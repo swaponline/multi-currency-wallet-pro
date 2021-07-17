@@ -58,28 +58,9 @@ function mcwallet_banners_menu_page() {
 		'',
 		1
 	);
-
-	add_submenu_page(
-		'mcwallet',
-		esc_html__( 'Help', 'multi-currency-wallet' ),
-		esc_html__( 'Help', 'multi-currency-wallet' ),
-		'manage_options',
-		'mcwallet_open_helppage',
-		'mcwallet_open_helppage_callback',
-		3
-	);
 }
 add_action('admin_menu', 'mcwallet_banners_menu_page');
 
-function mcwallet_open_helppage_callback() {
-  ?>
-  <div class="wrap">
-    <h1>Helping links</h1>
-    <h3><a href="https://support.swaponline.io/" target="_blank" id="mcwallet_open_help">https://support.swaponline.io/</a> - most common questions</h3>
-    <h3><a href="https://t.me/swaponlinebot/" target="_blank" id="mcwallet_open_help">https://t.me/swaponlinebot</a> - contact team if you have another question</h3>
-  </div>
-  <?php
-}
 /**
  * Remove months dropdown results
  */

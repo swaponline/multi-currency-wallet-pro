@@ -60,6 +60,10 @@
 	background: #fff;
 	outline: none;
 }
+.mcwallet-nav-tabs .nav-tab-active:focus,
+.mcwallet-nav-tabs .nav-tab-active:focus:active {
+	box-shadow: none;
+}
 .mcwallet-panel-tab:not(.panel-tab-active) {
 	display: none;
 }

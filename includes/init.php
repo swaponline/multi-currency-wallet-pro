@@ -9,6 +9,11 @@
 require MCWALLET_PATH . 'includes/functions.php';
 
 /**
+ * Customier
+ */
+require MCWALLET_PATH . 'includes/customizer/customizer.php';
+
+/**
  * User panel
  */
 require MCWALLET_PATH . 'includes/user-panel.php';

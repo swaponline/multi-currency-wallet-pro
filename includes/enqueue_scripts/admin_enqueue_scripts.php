@@ -12,7 +12,7 @@ function mcwallet_admin_enqueue_scripts( $hook ) {
 	wp_enqueue_style( 'mcwallet-admin' );
 
 	/* Load scripts only on mcwallet admin page */
-	if ( 'toplevel_page_mcwallet' == $hook || 'mcwallet_banner' == $typenow ) {
+	if ( 'toplevel_page_mcwallet' == $hook || 'mcwallet_page_mcwallet-design' == $hook || 'mcwallet_banner' == $typenow ) {
 
 		/* Register script */
 		wp_register_script( 'mcwallet-admin', MCWALLET_URL . 'assets/js/admin.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-sortable' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );

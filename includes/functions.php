@@ -257,6 +257,123 @@ function mcwallet_get_logo_redirect_link() {
 }
 
 /**
+ * Set default colors
+ */
+function mcwallet_default_colors() {
+	$colors = array(
+		'text' => array(
+			'default' => '#000000',
+			'dark'    => '#ffffff',
+			'label'   => esc_html__( 'Text Color', 'multi-currency-wallet' ),
+		),
+		'background' => array(
+			'default' => '#f7f7f7',
+			'dark'    => '#222427',
+			'label'   => esc_html__( 'Site Background', 'multi-currency-wallet' ),
+		),
+		'brand' => array(
+			'default' => '#6144e5',
+			'dark'    => '#6144e5',
+			'label'   => esc_html__( 'Brand Color', 'multi-currency-wallet' ),
+		),
+		'brand_hover' => array(
+			'default' => '#7371ff',
+			'dark'    => '#7371ff',
+			'label'   => esc_html__( 'Brand Color Hover', 'multi-currency-wallet' ),
+		),
+		'brand_background' => array(
+			'default' => '#e8e5f5',
+			'dark'    => '#e8e5f5',
+			'label'   => esc_html__( 'Brand Background', 'multi-currency-wallet' ),
+		),
+	);
+	return apply_filters( 'mcwallet_default_colors', $colors );
+}
+
+/**
+ * Get default color
+ */
+function mcwallet_get_default_color( $name = null, $scheme = 'default' ) {
+	$colors = mcwallet_get_default_colors();
+	$color  = '';
+	if ( isset( $colors[ $name ][ $scheme ] ) ) {
+		$color = $colors[ $name ][ $scheme ];
+	}
+	return $color;
+}
+
+/**
+ * Get colors
+ */
+function mcwallet_get_colors() {
+	$default_colors = mcwallet_default_colors();
+
+	$colors = $default_colors;
+
+	foreach ( $default_colors as $name => $value ) {
+		if ( get_theme_mod( 'color_' . $name ) ) {
+			$colors[ $name ]['default'] = get_theme_mod( 'color_' . $name );
+		}
+		if ( get_theme_mod( 'color_' . $name . '_dark' ) ) {
+			$colors[ $name ]['dark'] = get_theme_mod( 'color_' . $name . '_dark' );
+		}
+	}
+
+	return $colors;
+}
+
+/**
+ * Get color
+ */
+function mcwallet_get_color( $name = null, $scheme = 'default', $default = '' ) {
+	if ( ! $name ) {
+		return;
+	}
+	$color  = '';
+	$colors = mcwallet_get_colors();
+	if ( isset( $colors[ $name ][ $scheme ] ) ) {
+		$color = $colors[ $name ][ $scheme ];
+		if ( $default && ! $color ) {
+			$color = $default;
+		}
+	}
+	return $color;
+}
+
+/**
+ * Inline scheme colors style
+ */
+function mcwallet_inline_scheme_colors(){
+	?>
+:root,
+[data-scheme="default"] {
+	--color: <?php echo mcwallet_get_color( 'text' ); ?>;
+	--color-page-background: <?php echo mcwallet_get_color( 'background' ); ?>;
+	--color-brand: <?php echo mcwallet_get_color( 'brand' ); ?>;
+	--color-brand-hover: <?php echo mcwallet_get_color( 'brand_hover' ); ?>;
+	--color-brand-background: <?php echo mcwallet_get_color( 'brand_background' ); ?>;
+}
+[data-scheme="dark"],
+.darkTheme {
+	--color: <?php echo mcwallet_get_color( 'text', 'dark' ); ?>;
+	--color-page-background: <?php echo mcwallet_get_color( 'background', 'dark' ); ?>;
+	--color-brand: <?php echo mcwallet_get_color( 'brand', 'dark' ); ?>;
+	--color-brand-hover: <?php echo mcwallet_get_color( 'brand_hover', 'dark' ); ?>;
+	--color-brand-background: <?php echo mcwallet_get_color( 'brand_background', 'dark' ); ?>;
+}
+<?php
+}
+
+function mcwallet_scheme_attr() {
+	$scheme       = 'default';
+	$color_scheme = get_theme_mod( 'color_scheme', 'light' );
+	if ( 'dark' === $color_scheme || 'only_dark' === $color_scheme ) {
+		$scheme = 'dark';
+	}
+	echo 'data-scheme="' . esc_attr( $scheme ) . '"';
+}
+
+/**
  * Get valutes
  */ 
 function mcwallet_get_valutes() {
