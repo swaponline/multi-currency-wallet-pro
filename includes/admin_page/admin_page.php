@@ -252,6 +252,28 @@ function mcwallet_page() {
 								</td>
 							</tr>
 							<tr>
+                <th scope="row">
+									<label><?php esc_html_e( 'Exchange mode', 'multi-currency-wallet' );?></label>
+								</th>
+								<td>
+                  <?php
+										$exchangeModes = array(
+											'atomic' => 'Atomic swap',
+											'quick' => 'Quick swap',
+											'only_atomic' => 'Only atomic swap',
+											'only_quick' => 'Only quick swap'
+                  	);
+                  	$selected_exchange_mode = get_option( 'selected_exchange_mode' );
+                  	$selected_exchange_mode = ($selected_exchange_mode) ? $selected_exchange_mode : 'light';
+                  ?>
+                  <select name="selected_exchange_mode" id="selected_exchange_mode" class="regular-text">
+                    <?php foreach($exchangeModes as $key => $title) { ?>
+											<option value="<?php echo $key?>" <?php echo ($key === $selected_exchange_mode) ? 'selected' : ''?>><?php echo $title?></option>
+										<?php } ?>
+                  </select>
+								</td>
+              </tr>
+							<tr>
 								<th scope="row">
 									<label><?php esc_html_e( 'Permalink', 'multi-currency-wallet' );?></label>
 								</th>

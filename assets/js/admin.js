@@ -205,7 +205,7 @@
 		var rememberUserWallet = thisParent.find( '[name="remeber_userwallet"]' );
 
 		var footerDisabled = thisParent.find( '[name="disable_footer"]' );
-
+		var selected_exchange_mode = thisParent.find( '[name="selected_exchange_mode"]' );
 		var useTestnet = thisParent.find( '[name="use_testnet"]' );
 		// click handler
 
@@ -218,6 +218,7 @@
 		var isLogged = 'false';
 		var isHowitworks = 'false';
 
+		selected_exchange_mode = selected_exchange_mode.val();
 		statisticDisabled = statisticDisabled.is(':checked') ? 'true' : 'false';
 		btcDisabled = btcDisabled.is(':checked') ? 'true' : 'false';
 		ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
@@ -254,8 +255,8 @@
 			action: 'mcwallet_update_options',
 			nonce: mcwallet.nonce,
 			url: logoUrl,
-						darkLogoUrl: darkLogoUrl,
-						logoLink: logoLink,
+			darkLogoUrl: darkLogoUrl,
+			logoLink: logoLink,
 			pageTitle: pageTitle,
 			slug: pageSlug,
 			btcFee: btcFee,
@@ -285,7 +286,7 @@
 			nextEnabled: nextEnabled,
 			exchangeDisabled: exchangeDisabled,
 			useTestnet: useTestnet,
-
+			selected_exchange_mode: selected_exchange_mode,
 			invoiceEnabled: invoiceEnabled,
 
 			rememberUserWallet: rememberUserWallet,
