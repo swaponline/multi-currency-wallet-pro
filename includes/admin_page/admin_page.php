@@ -258,13 +258,13 @@ function mcwallet_page() {
 								<td>
                   <?php
 										$exchangeModes = array(
-											'atomic' => 'Atomic swap',
-											'quick' => 'Quick swap',
+											'only_quick' => 'Only quick swap',
 											'only_atomic' => 'Only atomic swap',
-											'only_quick' => 'Only quick swap'
+											'quick' => 'Default quick swap',
+											'atomic' => 'Default atomic swap',
                   	);
                   	$selected_exchange_mode = get_option( 'selected_exchange_mode' );
-                  	$selected_exchange_mode = ($selected_exchange_mode) ? $selected_exchange_mode : 'light';
+                  	$selected_exchange_mode = ($selected_exchange_mode) ? $selected_exchange_mode : 'only_quick';
                   ?>
                   <select name="selected_exchange_mode" id="selected_exchange_mode" class="regular-text">
                     <?php foreach($exchangeModes as $key => $title) { ?>

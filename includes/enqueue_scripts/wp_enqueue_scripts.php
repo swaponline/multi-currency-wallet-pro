@@ -375,7 +375,7 @@ function mcwallet_inline_script() {
 		'CUR_NEXT_DISABLED'            => (get_option( 'mcwallet_next_enabled') == 'true') ? 'false' : 'true',
 		'_ui_footerDisabled'           => get_option( 'mcwallet_disable_footer', 'false'),
 		'invoiceEnabled'               => get_option( 'mcwallet_invoice_enabled', 'false'),
-		'exchangeMode'                 => get_option( 'selected_exchange_mode', 'atomic' ),
+		'exchangeMode'                 => get_option( 'selected_exchange_mode', 'only_quick' ),
 		'WPSO_selected_theme'          => get_theme_mod( 'color_scheme', 'light' ),
 	);
 
