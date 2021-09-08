@@ -26,32 +26,10 @@ services:
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_TABLE_PREFIX: "wp1_"
+      WORDPRESS_TABLE_PREFIX: "wp3_"
       WORDPRESS_DEBUG: 1
     volumes:
-      - wp_data:/var/www/html
-      - ./build:/var/www/html/wp-content/themes
-
-  # node:
-  #   depends_on:
-  #     - db
-  #     - wordpress
-  #     - wordpress-cli
-  #   image: "node:14.12"
-  #   working_dir: /app
-  #   volumes:
-  #     - ./app:/app
-  #     - ./app/node_modules:/app/node_modules
-  #     - ./build:/build
-  #   ports:
-  #     - 3000:3000
-  #     - 3001:3001
-  #   command: >
-  #     /bin/sh -c '
-  #     yarn global add gulp@4.0.2;
-  #     yarn;
-  #     gulp build;
-  #     '
+      - ./wp_data:/var/www/html
 
   wordpress-cli:
     depends_on:
@@ -66,7 +44,7 @@ services:
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_TABLE_PREFIX: "wp1_"
+      WORDPRESS_TABLE_PREFIX: "wp3_"
       WORDPRESS_DEBUG: 1
       MYSQL_ROOT_PASSWORD: p4ssw0rd!
       MYSQL_DATABASE: wordpress
@@ -88,28 +66,21 @@ services:
       then
         echo "WordPress not setup yet - Setting up title and admin user...";
         echo "Removing default data...";
-        wp plugin delete akismet hello;
-        wp theme delete twentynineteen twentyseventeen;
-        wp site empty --yes;
-        echo "Importing data...";
-        wp plugin install wordpress-importer --activate;
-        wp import /var/www/src/theme/data/wordpress-base-data.xml --authors=create;
-        wp option update show_on_front "page";
-        wp option update page_on_front 5;
+        
+        wp plugin install https://growup.wpmix.net/wp-content/uploads/multi-currency-wallet-pro/multi-currency-wallet-pro.zip 
+        wp plugin activate multi-currency-wallet-pro
+        wp option update mcwallet_is_home true
+        
       fi;
       echo "SUCCESS: WP-CLI setup commands completed.";
       tail -F persistCliContainer 2> /dev/null;
       '
     volumes:
-      - wp_data:/var/www/html
-      - ./build:/var/www/html/wp-content/themes
-      - ./app/src/theme:/var/www/src/theme
+      - ./wp_data:/var/www/html
     networks:
       - front
       - back
 
-volumes:
-  wp_data:
 networks:
   front:
   back:
