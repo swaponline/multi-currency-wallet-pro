@@ -14,10 +14,17 @@ function mcwallet_service_url_binance(){
 	return esc_url( $service_url_mainnet, 'https' );
 }
 
+function mcwallet_service_url_poligon(){
+  // У полигона нет тестового апи (точнее оно не коректно работает) используем маиннет
+  $service_url_mainnet = (get_option( 'mcwallet_use_testnet' ) === 'true') ? 'api.polygonscan.com/api' : 'api.polygonscan.com/api';
+	return esc_url( $service_url_mainnet, 'https' );
+}
+
 /* Service Api Token */
 function mcwallet_service_api_token($standart = 'erc20'){
 	$service_api_token = 'X88AP9B52SENYPTR31W5SGRK5EGJZD2BJC';
   if ($standart == 'bep20') $service_api_token = 'WI4QEJSV19U3TF2H1DPQ2HR6712HW4MYKJ';
+  if ($standart == 'erc20matic') $service_api_token = '8S2R45ZWG94HI7YK9RCXSK4VCASJ4XVA15';
 	return $service_api_token;
 }
 
@@ -57,6 +64,7 @@ function mcwallet_get_remote_url( $result = 'name', $address = '', $standart = '
   $url = '';
 	if ($standart === 'erc20') { $url = mcwallet_service_url_mainnet(); }
   if ($standart === 'bep20') { $url = mcwallet_service_url_binance(); }
+  if ($standart === 'erc20matic') { $url = mcwallet_service_url_poligon(); }
 
 	$swap_remote_url = add_query_arg(
 		$args,
