@@ -26,7 +26,7 @@ services:
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_TABLE_PREFIX: "wp3_"
+      WORDPRESS_TABLE_PREFIX: "wp6_"
       WORDPRESS_DEBUG: 1
     volumes:
       - ./wp_data:/var/www/html
@@ -44,7 +44,7 @@ services:
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_TABLE_PREFIX: "wp3_"
+      WORDPRESS_TABLE_PREFIX: "wp6_"
       WORDPRESS_DEBUG: 1
       MYSQL_ROOT_PASSWORD: p4ssw0rd!
       MYSQL_DATABASE: wordpress
@@ -57,10 +57,10 @@ services:
       /bin/sh -c '
       wp option get page_on_front > /dev/null;
       if [ $$? -gt 0 ]; then
-        echo "Waiting for MySQL (20 sec)...";
-        sleep 20;
+        echo "Waiting for MySQL (10 sec)...";
+        sleep 10;
       fi;
-      wp core install --path="/var/www/html" --url="http://88.198.69.167:8000" --title="Wordpress Timber Docker" --admin_user=admin --admin_password=p4ssw0rd!  --admin_email=admin@dockerhub.com;
+      wp core install --path="/var/www/html" --url="https://88.198.69.167" --title="Wordpress Timber Docker" --admin_user=admin --admin_password=p4ssw0rd!  --admin_email=admin@dockerhub.com;
       DATA_EXISTS=$$(wp option get page_on_front);
       if [ $$DATA_EXISTS = 0 ];
       then
