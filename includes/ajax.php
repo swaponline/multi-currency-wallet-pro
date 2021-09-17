@@ -448,7 +448,7 @@ function mcwallet_update_options() {
 		$code_head        = esc_html( wp_unslash( $_POST['codeHead'] ) );
 		$code_body        = esc_html( wp_unslash( $_POST['codeBody'] ) );
 		$code_footer      = esc_html( wp_unslash( $_POST['codeFooter'] ) );
-
+		$selected_exchange_mode = sanitize_text_field( $_POST['selected_exchange_mode'] );
 		$slug             = 'mcwallet';
 		$is_home          = 'false';
 		$is_logged        = 'false';
@@ -492,7 +492,7 @@ function mcwallet_update_options() {
 		update_option( 'mcwallet_head_code', $code_head );
 		update_option( 'mcwallet_body_code', $code_body );
 		update_option( 'mcwallet_footer_code', $code_footer );
-
+		update_option( 'selected_exchange_mode', $selected_exchange_mode );
 		update_option( 'mcwallet_strings', $replacements );
 
 		if ( $_POST['footerDisabled'] == 'true' ) {

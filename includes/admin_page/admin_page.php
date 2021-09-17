@@ -252,6 +252,37 @@ function mcwallet_page() {
 								</td>
 							</tr>
 							<tr>
+                <th scope="row">
+									<label><?php esc_html_e( 'Exchange mode', 'multi-currency-wallet' );?></label>
+								</th>
+								<td>
+                  <?php
+										$exchangeModes = array(
+											'only_quick' => 'Only quick swap',
+											'only_atomic' => 'Only atomic swap',
+											'quick' => 'Default quick swap',
+											'atomic' => 'Default atomic swap',
+                  	);
+                  	$selected_exchange_mode = get_option( 'selected_exchange_mode' );
+                  	$selected_exchange_mode = ($selected_exchange_mode) ? $selected_exchange_mode : 'only_quick';
+                  ?>
+                  <select name="selected_exchange_mode" id="selected_exchange_mode" class="regular-text">
+                    <?php foreach($exchangeModes as $key => $title) { ?>
+											<option value="<?php echo $key?>" <?php echo ($key === $selected_exchange_mode) ? 'selected' : ''?>><?php echo $title?></option>
+										<?php } ?>
+                  </select>
+								</td>
+              </tr>
+							<tr>
+								<th scope="row"></th>
+								<td>
+									<label for="mcwallet_exchange_disabled">
+										<input name="exchange_disabled" type="checkbox" id="mcwallet_exchange_disabled" <?php checked( 'true', get_option( 'mcwallet_exchange_disabled' ) ); ?>>
+										<?php esc_html_e( 'Disable exchange', 'multi-currency-wallet' );?>
+									</label>
+								</td>
+							</tr>
+							<tr>
 								<th scope="row">
 									<label><?php esc_html_e( 'Permalink', 'multi-currency-wallet' );?></label>
 								</th>
@@ -344,15 +375,6 @@ function mcwallet_page() {
 									<label for="mcwallet_next_enabled">
 										<input name="next_enabled" type="checkbox" id="mcwallet_next_enabled" <?php checked( 'true', (!get_option('mcwallet_next_enabled')) ? 'true' : 'false' ); ?>>
 										<?php esc_html_e( 'Disable NEXT wallet.', 'multi-currency-wallet' );?>
-									</label>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"></th>
-								<td>
-									<label for="mcwallet_exchange_disabled">
-										<input name="exchange_disabled" type="checkbox" id="mcwallet_exchange_disabled" <?php checked( 'true', get_option( 'mcwallet_exchange_disabled' ) ); ?>>
-										<?php esc_html_e( 'Disable exchange', 'multi-currency-wallet' );?>
 									</label>
 								</td>
 							</tr>

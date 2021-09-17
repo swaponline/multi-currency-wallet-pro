@@ -323,7 +323,7 @@ function mcwallet_inline_script() {
 				decimals: " . $decimals . ",
 				fullName: '" . $fullname . "',
 				icon: '" . $icon . "',
-				customEcxchangeRate: '" . $rate . "',
+				customExchangeRate: '" . $rate . "',
 				iconBgColor: '" . $icon_bg . "',
 				howToDeposit: '" . wp_specialchars_decode( $how_deposit ) . "',
 				howToWithdraw: '" . wp_specialchars_decode( $how_withdraw ) . "',
@@ -373,8 +373,9 @@ function mcwallet_inline_script() {
 		'CUR_ARBITRUM_DISABLED'        => get_option( 'mcwallet_arbitrum_disabled', 'false' ),
 		'CUR_GHOST_DISABLED'           => (get_option( 'mcwallet_ghost_enabled') == 'true') ? 'false' : 'true',
 		'CUR_NEXT_DISABLED'            => (get_option( 'mcwallet_next_enabled') == 'true') ? 'false' : 'true',
-		'_ui_footerDisabled'           =>  get_option( 'mcwallet_disable_footer', 'false'),
+		'_ui_footerDisabled'           => get_option( 'mcwallet_disable_footer', 'false'),
 		'invoiceEnabled'               => get_option( 'mcwallet_invoice_enabled', 'false'),
+		'exchangeMode'                 => get_option( 'selected_exchange_mode', 'only_quick' ),
 		'WPSO_selected_theme'          => get_theme_mod( 'color_scheme', 'light' ),
 	);
 
