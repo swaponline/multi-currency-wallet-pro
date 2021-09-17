@@ -185,8 +185,22 @@ function mcwallet_default_token() {
 			'bg'          => '',
 			'howdeposit'  => '',
 			'howwithdraw' => '',
+      'standard' => 'erc20',
 			'order'       => 1,
 		),
+    'wmatic'      => array(
+      'name'        => 'WrappedMatic',
+			'symbol'      => 'wmatic',
+			'address'     => '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270',
+			'decimals'    => '18',
+			'icon'        => '',
+			'rate'        => '',
+			'bg'          => '',
+			'howdeposit'  => '',
+			'howwithdraw' => '',
+      'standard' => 'erc20matic',
+			'order'       => 2,
+		)
 	);
 	return $token;
 }
