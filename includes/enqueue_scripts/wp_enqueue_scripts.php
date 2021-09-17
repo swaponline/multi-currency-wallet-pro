@@ -323,7 +323,7 @@ function mcwallet_inline_script() {
 				decimals: " . $decimals . ",
 				fullName: '" . $fullname . "',
 				icon: '" . $icon . "',
-				customEcxchangeRate: '" . $rate . "',
+				customExchangeRate: '" . $rate . "',
 				iconBgColor: '" . $icon_bg . "',
 				howToDeposit: '" . wp_specialchars_decode( $how_deposit ) . "',
 				howToWithdraw: '" . wp_specialchars_decode( $how_withdraw ) . "',
