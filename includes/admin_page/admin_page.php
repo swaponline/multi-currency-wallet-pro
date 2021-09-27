@@ -273,6 +273,36 @@ function mcwallet_page() {
                   </select>
 								</td>
               </tr>
+
+
+
+							<tr>
+                <th scope="row">
+									<label><?php esc_html_e( 'Default language', 'multi-currency-wallet' );?></label>
+								</th>
+								<td>
+                  <?php
+										$availableLanguages = array(
+											'en' => 'English',
+											'ru' => 'Russian',
+											'nl' => 'Dutch',
+											'es' => 'Spanish',
+											'de' => 'German',
+											'pl' => 'Polish',
+                  	);
+                  	$default_language = get_option( 'default_language' );
+                  	$default_language = ($default_language) ? $default_language : 'en';
+                  ?>
+                  <select name="default_language" id="default_language" class="regular-text">
+                    <?php foreach($availableLanguages as $key => $title) { ?>
+											<option value="<?php echo $key?>" <?php echo ($key === $selected_exchange_mode) ? 'selected' : ''?>><?php echo $title?></option>
+										<?php } ?>
+                  </select>
+								</td>
+              </tr>
+
+
+
 							<tr>
 								<th scope="row"></th>
 								<td>
