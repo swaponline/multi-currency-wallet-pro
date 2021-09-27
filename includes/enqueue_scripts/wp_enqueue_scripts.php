@@ -225,13 +225,13 @@ function mcwallet_inline_build_script() {
 		window.localStorage.removeItem("isDark");
 		window.localStorage.removeItem("isLight");
 	}
-	var lang = getCookie("mylang");
 
-	// detect browser lang
+	let lang = getCookie("mylang");
+	const defaultLanguage = "'.get_option('default_language', 'en').'";
+
 	if (!lang) {
-		var browserLang = getNavigatorLanguage();
-		lang = browserLang.indexOf("ru") > -1 ? "ru" : "en";
-		setCookie("mylang", lang);
+		lang = defaultLanguage;
+		setCookie("mylang", defaultLanguage);
 	}
 
 	const locale = lang.toLowerCase();
@@ -376,6 +376,7 @@ function mcwallet_inline_script() {
 		'_ui_footerDisabled'           => get_option( 'mcwallet_disable_footer', 'false'),
 		'invoiceEnabled'               => get_option( 'mcwallet_invoice_enabled', 'false'),
 		'exchangeMode'                 => get_option( 'selected_exchange_mode', 'only_quick' ),
+		'defaultLanguage'              => get_option( 'default_language', 'en' ),
 		'WPSO_selected_theme'          => get_theme_mod( 'color_scheme', 'light' ),
 	);
 

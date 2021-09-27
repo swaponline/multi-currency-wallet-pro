@@ -296,8 +296,8 @@ function mcwallet_default_colors() {
 			'label'   => esc_html__( 'Brand Color Hover', 'multi-currency-wallet' ),
 		),
 		'brand_background' => array(
-			'default' => '#e8e5f5',
-			'dark'    => '#e8e5f5',
+			'default' => '#6144e51a',
+			'dark'    => '#6144e51a',
 			'label'   => esc_html__( 'Brand Background', 'multi-currency-wallet' ),
 		),
 	);

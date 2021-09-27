@@ -206,6 +206,7 @@
 
 		var footerDisabled = thisParent.find( '[name="disable_footer"]' );
 		var selected_exchange_mode = thisParent.find( '[name="selected_exchange_mode"]' );
+		var default_language = thisParent.find('[name="default_language"]');
 		var useTestnet = thisParent.find( '[name="use_testnet"]' );
 		// click handler
 
@@ -219,6 +220,7 @@
 		var isHowitworks = 'false';
 
 		selected_exchange_mode = selected_exchange_mode.val();
+		default_language = default_language.val();
 		statisticDisabled = statisticDisabled.is(':checked') ? 'true' : 'false';
 		btcDisabled = btcDisabled.is(':checked') ? 'true' : 'false';
 		ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
@@ -287,6 +289,7 @@
 			exchangeDisabled: exchangeDisabled,
 			useTestnet: useTestnet,
 			selected_exchange_mode: selected_exchange_mode,
+			default_language: default_language,
 			invoiceEnabled: invoiceEnabled,
 
 			rememberUserWallet: rememberUserWallet,
