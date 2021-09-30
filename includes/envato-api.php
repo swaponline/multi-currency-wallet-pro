@@ -135,19 +135,19 @@ function mcwallet_license_admin_notice() {
 		return;
 	}
 
-	if ( get_option( 'mcwallet_purchase_code' ) && ! mcwallet_is_supported() ) {
+	// if ( get_option( 'mcwallet_purchase_code' ) && ! mcwallet_is_supported() ) {
 		?>
 		<div class="notice notice-warning">
-			<p><?php echo sprintf ( esc_html__( 'For further Multi Currency Wallet updates that include fixes and new features, you need to %srenew the license%s.', 'multi-currency-wallet' ), '<a href="' . esc_url( admin_url( 'admin.php?page=mcwallet-license' ) ) . '">', '</a>' ); ?></p>
+			<p><?php echo sprintf ( esc_html__( 'The new version of MCW plugin with fixes and new features is ready but you can&#039;t install it automatically because your license is expired. Please %srenew the license%s.', 'multi-currency-wallet' ), '<a href="' . esc_url( admin_url( 'admin.php?page=mcwallet-license' ) ) . '">', '</a>' ); ?></p>
 		</div>
 		<?php
-	} else {
-		?>
-		<div class="notice notice-error">
-			<p><?php echo sprintf ( esc_html__( 'For further Multi Currency Wallet updates that include fixes and new features, you need to %sactivate the license%s.', 'multi-currency-wallet' ), '<a href="' . esc_url( admin_url( 'admin.php?page=mcwallet-license' ) ) . '">', '</a>' ); ?></p>
-		</div>
-		<?php
-	}
+	// } else {
+	// 	?>
+	// 	<div class="notice notice-error">
+	// 		<p><?php echo sprintf ( esc_html__( 'For further Multi Currency Wallet updates that include fixes and new features, you need to %sactivate the license%s.', 'multi-currency-wallet' ), '<a href="' . esc_url( admin_url( 'admin.php?page=mcwallet-license' ) ) . '">', '</a>' ); ?></p>
+	// 	</div>
+	// 	<?php
+	// }
 }
 add_action( 'admin_notices', 'mcwallet_license_admin_notice' );
 
