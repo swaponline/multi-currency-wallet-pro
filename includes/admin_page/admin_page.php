@@ -502,7 +502,7 @@ function mcwallet_page() {
 								<th scope="row">
 									<label>
 										<?php esc_html_e( 'Transak API key', 'multi-currency-wallet' );?>
-										<a target=_blank href="https://transak.com/">service</a>
+										(<a target=_blank href="https://transak.com/">?</a>)
 									</label>
 								</th>
 								<td>
