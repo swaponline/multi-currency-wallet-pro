@@ -498,6 +498,18 @@ function mcwallet_page() {
 									<input name="fiat_gateway_url" type="text" class="large-text" value="<?php echo esc_attr( get_option( 'fiat_gateway_url', 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}') );?>">
 								</td>
 							</tr>
+							<tr>
+								<th scope="row">
+									<label>
+										<?php esc_html_e( 'Transak API key', 'multi-currency-wallet' );?>
+										<a target=_blank href="https://transak.com/">service</a>
+									</label>
+								</th>
+								<td>
+									<input name="transak_api_key" type="text" class="large-text" value="<?php echo esc_attr( get_option( 'transak_api_key', '') );?>">
+									<p class="description"><?php esc_html_e( 'With this key, your payment method will be automatically replaced with the Transak service', 'multi-currency-wallet' );?></p>
+								</td>
+							</tr>
 						</tbody>
 					</table><!-- .form-table -->
 

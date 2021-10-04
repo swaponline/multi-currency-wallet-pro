@@ -187,6 +187,7 @@
 		var tokensMin      = thisParent.find( '[name="tokens_min"]' ).val();
 		var fiatCurrency   = thisParent.find( '[name="fiat_currency"]' ).val();
 		var fiatGatewayUrl = thisParent.find( '[name="fiat_gateway_url"]' ).val();
+		var transakApiKey = thisParent.find( '[name="transak_api_key"]' ).val();
 		var showHowitworks = thisParent.find( '[name="show_howitworks"]' );
 		var codeHead       = thisParent.find( '[name="mcwallet_head_code"]' ).val();
 		var codeBody       = thisParent.find( '[name="mcwallet_body_code"]' ).val();
@@ -276,6 +277,7 @@
 			codeBody: codeBody,
 			codeFooter: codeFooter,
 			fiatGatewayUrl: fiatGatewayUrl,
+			transakApiKey: transakApiKey,
 			isHowitworks: isHowitworks,
 			strings: strings,
 			statisticDisabled: statisticDisabled,
