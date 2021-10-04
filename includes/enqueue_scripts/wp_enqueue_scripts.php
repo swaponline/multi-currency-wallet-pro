@@ -361,6 +361,7 @@ function mcwallet_inline_script() {
 		'DEFAULT_FIAT'                 => $default_fiat,
 		'isUserRegisteredAndLoggedIn'  => $is_user_loggedin,
 		'buyViaCreditCardLink'         => get_option( 'fiat_gateway_url', 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}' ),
+		'transakApiKey'                => get_option( 'transak_api_key', '' ),
 		'logoutUrl'                    => wp_logout_url( mcwallet_page_url() ),
 		'showHowItWorksOnExchangePage' => $show_howitworks,
 		'widgetName'                   => get_bloginfo(),
