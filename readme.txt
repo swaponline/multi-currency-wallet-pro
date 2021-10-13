@@ -1,3 +1,7 @@
+Warning! This is free version of the plugin https://wordpress.org/plugins/multi-currency-wallet/
+
+To activate premium features buy full version here https://codecanyon.net/item/multicurrency-crypto-wallet-and-exchange-widgets-for-wordpress/23532064 
+
 === Multi Currency Wallet ===
 Contributors: noxonsu, burdianov
 Tags: adress generation, bitcoin, blockchain, crypto, cryptocurrency, eos, ethereum, exchange, shortcode, wallet, widget
