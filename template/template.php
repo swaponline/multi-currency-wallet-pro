@@ -26,7 +26,9 @@ do_action( 'mcwallet_before_template' );
 ob_start();
 wp_head(); 
 $con = ob_get_clean();
-$con=preg_replace('/<title>(.*)<\/title>/i','<title>'.get_option("blogname").'</title>',$con);
+$con = str_replace("Blog - ","",$con);
+//$con=preg_replace('/<title>(.*)<\/title>/i','<title>'.get_bloginfo('name').'</title>',$con);
+//$con=preg_replace('/<meta property="og:title" content="(.*?)" />/i','<meta property="og:title" content="'.get_bloginfo('name').'" />',$con);
 echo $con;
 ?>
 <?php mcwallet_head(); ?>
