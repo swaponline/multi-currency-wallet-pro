@@ -9,6 +9,12 @@ if ( get_option( 'mcwallet_is_logged' ) && ! is_user_logged_in() ) {
 	auth_redirect();
 }
 
+add_filter( 'wp_title', 'custom_title', 20 );
+
+function mcw_custom_title( $title ) {
+    return 'Loading...';
+}
+
 /** Action before template load */
 do_action( 'mcwallet_before_template' );
 
@@ -16,7 +22,13 @@ do_action( 'mcwallet_before_template' );
 <html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
-<?php wp_head(); ?>
+<?php 
+ob_start();
+wp_head(); 
+$con = ob_get_clean();
+$con=preg_replace('/<title>(.*)<\/title>/i','<title>'.get_option("blogname").'</title>',$con);
+echo $con;
+?>
 <?php mcwallet_head(); ?>
 </head>
 <body <?php body_class(); ?>>
