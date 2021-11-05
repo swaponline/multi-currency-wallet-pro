@@ -395,7 +395,7 @@ function mcwallet_inline_script() {
 		$user_uniqhash = md5($userHashString);
 
 		$window_arr['WPuserHash'] = esc_html($user_uniqhash);
-		if ((get_option( 'mcwallet_remember_userwallet' ) == 'true') or (get_option( 'mcwallet_is_logged' ) == 'true')) {
+		if ((get_option( 'mcwallet_remember_userwallet' ) == 'true') && (get_option( 'mcwallet_is_logged' ) == 'true')) {
 			$window_arr['backupPlugin'] = 'backupUserData';
 			$window_arr['backupUrl'] = admin_url( 'admin-ajax.php' ).'?action=mcwallet_backup_userwallet';
 			$window_arr['restoreUrl'] = admin_url( 'admin-ajax.php' ).'?action=mcwallet_restore_userwallet';
