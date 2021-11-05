@@ -247,8 +247,10 @@
 		
 		if ( pageAccess.is(':checked') ) {
 			isLogged = 'true';
-			rememberUserWallet = 'true';
+			// rememberUserWallet = 'true';
 		}
+
+    if (rememberUserWallet == 'true') isLogged = 'true';
 		
 		if ( showHowitworks.is(':checked') ) {
 			isHowitworks = 'true';
