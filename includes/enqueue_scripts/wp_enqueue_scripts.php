@@ -377,6 +377,7 @@ function mcwallet_inline_script() {
 		'_ui_footerDisabled'           => get_option( 'mcwallet_disable_footer', 'false'),
 		'invoiceEnabled'               => get_option( 'mcwallet_invoice_enabled', 'false'),
 		'exchangeMode'                 => get_option( 'selected_exchange_mode', 'only_quick' ),
+		'quickswapMode'                => get_option( 'selected_quickswap_mode', 'aggregator' ),
 		'defaultLanguage'              => get_option( 'default_language', 'en' ),
 		'WPSO_selected_theme'          => get_theme_mod( 'color_scheme', 'light' ),
 	);

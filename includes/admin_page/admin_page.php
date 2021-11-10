@@ -260,8 +260,8 @@ function mcwallet_page() {
 										$exchangeModes = array(
 											'only_quick' => 'Only quick swap',
 											'only_atomic' => 'Only atomic swap',
-											'quick' => 'Default quick swap',
-											'atomic' => 'Default atomic swap',
+											'quick' => 'Default is quick swap',
+											'atomic' => 'Default is atomic swap',
                   	);
                   	$selected_exchange_mode = get_option( 'selected_exchange_mode' );
                   	$selected_exchange_mode = $selected_exchange_mode ? $selected_exchange_mode : 'only_quick';
@@ -273,6 +273,30 @@ function mcwallet_page() {
                   </select>
 								</td>
               </tr>
+
+							<tr>
+                <th scope="row">
+									<label><?php esc_html_e( 'Quick swap mode', 'multi-currency-wallet' );?></label>
+								</th>
+								<td>
+                  <?php
+										$quickswapModes = array(
+											'only_aggregator' => 'Only aggregator',
+											'only_source' => 'Only source',
+											'aggregator' => 'Default is aggregator',
+											'source' => 'Default is source',
+                  	);
+                  	$selected_quickswap_mode = get_option( 'selected_quickswap_mode' );
+                  	$selected_quickswap_mode = $selected_quickswap_mode ? $selected_quickswap_mode : 'only_quick';
+                  ?>
+                  <select name="selected_quickswap_mode" id="selected_quickswap_mode" class="regular-text">
+                    <?php foreach($quickswapModes as $key => $title) { ?>
+											<option value="<?php echo $key?>" <?php echo ($key === $selected_quickswap_mode) ? 'selected' : ''?>><?php echo $title?></option>
+										<?php } ?>
+                  </select>
+								</td>
+              </tr>
+							
 							<tr>
                 <th scope="row">
 									<label><?php esc_html_e( 'Default language', 'multi-currency-wallet' );?></label>
