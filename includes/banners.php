@@ -266,7 +266,7 @@ function mcwallet_add_default_banners() {
 			'post_author' => 1,
 			'meta_input'  => [
 				'banner_text' => 'Deposit using VISA/MC',
-				'banner_url' => 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}',
+				'banner_url' => 'https://buy.itez.com/swaponline',
 				'banner_icon' => 'https://growup.wpmix.net/wp-content/uploads/2020/05/pngflow.com_.png',
 				'banner_image' => '',
 				'banner_color' => '#2aa2d6',
