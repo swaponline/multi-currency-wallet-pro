@@ -26,7 +26,7 @@ function mcwallet_help_page() {
 <div class="wrap">
 	<h2><?php echo get_admin_page_title(); ?></h2>
 	<h3><a href="https://support.swaponline.io/" target="_blank" id="mcwallet_open_help">https://support.swaponline.io/</a> - most common questions</h3>
-	<h3><a href="https://discord.gg/QM5wHf79" target="_blank" id="mcwallet_open_help">https://discord.gg/QM5wHf79</a> - ask the community!</h3>
+	<h3><a href="https://discord.gg/fcs8u9jm5P" target="_blank" id="mcwallet_open_help">https://discord.gg/fcs8u9jm5P</a> - ask the community!</h3>
 	<h3><a href="https://t.me/swaponlinebot/" target="_blank" id="mcwallet_open_help">https://t.me/swaponlinebot</a> - contact team if you have another question</h3>
 	<h3>Are you familar with GitHub? <a href="https://github.com/swaponline/MultiCurrencyWallet/issues/" target="_blank" id="mcwallet_open_help">Create an issue</a></h3>
 </div>
