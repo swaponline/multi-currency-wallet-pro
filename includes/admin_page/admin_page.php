@@ -281,9 +281,9 @@ function mcwallet_page() {
 								<td>
                   <?php
 										$quickswapModes = array(
-											'only_aggregator' => 'Only aggregator',
+											'only_aggregator' => 'Only 0x aggregator',
 											'only_source' => 'Only source',
-											'aggregator' => 'Default is aggregator',
+											'aggregator' => 'Default is 0x aggregator',
 											'source' => 'Default is source',
                   	);
                   	$selected_quickswap_mode = get_option( 'selected_quickswap_mode' );
