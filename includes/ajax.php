@@ -450,6 +450,7 @@ function mcwallet_update_options() {
 		$code_body        = esc_html( wp_unslash( $_POST['codeBody'] ) );
 		$code_footer      = esc_html( wp_unslash( $_POST['codeFooter'] ) );
 		$selected_exchange_mode = sanitize_text_field( $_POST['selected_exchange_mode'] );
+		$selected_quickswap_mode = sanitize_text_field( $_POST['selected_quickswap_mode'] );
 		$default_language = sanitize_text_field( $_POST['default_language'] );
 		$slug             = 'mcwallet';
 		$is_home          = 'false';
@@ -496,6 +497,7 @@ function mcwallet_update_options() {
 		update_option( 'mcwallet_body_code', $code_body );
 		update_option( 'mcwallet_footer_code', $code_footer );
 		update_option( 'selected_exchange_mode', $selected_exchange_mode );
+		update_option( 'selected_quickswap_mode', $selected_quickswap_mode );
 		update_option( 'default_language', $default_language );
 		update_option( 'mcwallet_strings', $replacements );
 
