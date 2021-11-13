@@ -111,6 +111,27 @@ function mcwallet_is_supported() {
 }
 
 /**
+ * Get Support days left
+ */
+function mcwallet_support_days_left() {
+	$left = 'false';
+
+	if ( ! mcwallet_is_supported() ) {
+		return $left;
+	}
+
+	$date_now   = new DateTime( 'NOW' );
+	$date_until = new DateTime( get_option( 'mcwallet_license_supported_until' ) );
+	$diff       = $date_now->diff( $date_until );
+
+	if( isset( $diff->days ) && $diff->days ) {
+		$left = $diff->days;
+	}
+
+	return $left;
+}
+
+/**
  * If Active License
  */
 function mcwallet_is_active_license() {
