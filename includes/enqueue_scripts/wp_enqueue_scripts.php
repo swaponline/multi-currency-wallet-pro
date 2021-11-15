@@ -380,6 +380,7 @@ function mcwallet_inline_script() {
 		'quickswapMode'                => get_option( 'selected_quickswap_mode', 'aggregator' ),
 		'defaultLanguage'              => get_option( 'default_language', 'en' ),
 		'WPSO_selected_theme'          => get_theme_mod( 'color_scheme', 'light' ),
+		'pluginVersion'                => MCWALLET_VER,
 		'licenceInfo'                  => mcwallet_support_days_left(),
 	);
 
