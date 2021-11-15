@@ -26,9 +26,9 @@ function mcwallet_do_settings_sections() {
 				</th>
 				<td>
 					<select name="standard" class="regular-text">
-						<option value="erc20" selected="">ERC-20</option>
-						<option value="bep20">BEP-20</option>
-            <option value="erc20matic">Poligon ERC-20</option>
+						<option value="erc20" selected="">Ethereum (ERC-20)</option>
+						<option value="bep20">Binance Smart chain (BEP-20)</option>
+            					<option value="erc20matic">Poligon ERC-20</option>
 					</select>
 				</td>
 			</tr>
