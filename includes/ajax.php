@@ -224,7 +224,7 @@ function mcwallet_add_token() {
 			$status = 'success';
 
 			$name = mcwallet_hex_to_string( mcwallet_get_remote_result( 'name', $address, $standard) );
-			$key  = strtolower( $name );
+			$key  = strtolower( $name . '_' . $standard . '_' .$address);
 			if ( $custom_name ) {
 				$name = $custom_name;
 			}
