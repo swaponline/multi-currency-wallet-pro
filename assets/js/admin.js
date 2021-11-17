@@ -185,6 +185,7 @@
 		var ethFeeAddress  = thisParent.find( '[name="eth_fee_address"]' ).val();
 		var tokensFee      = thisParent.find( '[name="tokens_fee"]' ).val();
 		var tokensMin      = thisParent.find( '[name="tokens_min"]' ).val();
+		var zeroxFeePercent = thisParent.find( '[name="zerox_fee_percent"]' ).val();
 		var fiatCurrency   = thisParent.find( '[name="fiat_currency"]' ).val();
 		var fiatGatewayUrl = thisParent.find( '[name="fiat_gateway_url"]' ).val();
 		var transakApiKey = thisParent.find( '[name="transak_api_key"]' ).val();
@@ -264,6 +265,7 @@
 			logoLink: logoLink,
 			pageTitle: pageTitle,
 			slug: pageSlug,
+			zeroxFeePercent: zeroxFeePercent,
 			btcFee: btcFee,
 			btcMin: btcMin,
 			btcFeeAddress: btcFeeAddress,

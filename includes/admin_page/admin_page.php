@@ -448,6 +448,32 @@ function mcwallet_page() {
 						</tbody>
 					</table><!-- .form-table -->
 
+					<h3><?php esc_html_e( 'Exchange fees', 'multi-currency-wallet' );?></h3>
+
+					<table class="form-table">
+						<tbody>
+							<tr>
+								<th scope="row">
+									<label><?php esc_html_e( '0x swap fee', 'multi-currency-wallet' );?></label>
+								</th>
+								<td>
+									<input name="zerox_fee_percent" type="text" value="<?php echo esc_attr( get_option('zerox_fee_percent') );?>" class="tiny-text textright"> %
+									<p class="description"><?php esc_html_e( 'The percentage of the purchase amount that will be sent to the EVM address', 'multi-currency-wallet' );?></p>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label><?php esc_html_e( 'Address where to collect fees', 'multi-currency-wallet' );?></label>
+								</th>
+								<td>
+									<input type="text" value="<?php echo esc_attr( get_option('eth_fee_address') );?>" class="regular-text" disabled>
+									<p class="description"><?php esc_html_e( 'The same as EVM compatible address', 'multi-currency-wallet' );?></p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+
 					<h3><?php esc_html_e( 'Transaction fees', 'multi-currency-wallet' );?> (<a target=_blank href="https://support.swaponline.io/docs/fpr-business/admin-fees-formula-wallet-only/">?</a>)</h3>
 
 					<table class="form-table">
@@ -479,7 +505,7 @@ function mcwallet_page() {
 							</tr>
 							<tr>
 								<th scope="row">
-									<label><?php esc_html_e( 'EVM compatible Adress where to collect fees', 'multi-currency-wallet' );?></label>
+									<label><?php esc_html_e( 'EVM compatible Address where to collect fees', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
 									<input name="eth_fee_address" type="text" class="regular-text" value="<?php echo esc_attr( get_option('eth_fee_address') );?>">
@@ -495,7 +521,7 @@ function mcwallet_page() {
 							</tr>
 							<tr>
 								<th scope="row">
-									<label><?php esc_html_e( 'Other tokens Adress where to collect fees', 'multi-currency-wallet' );?></label>
+									<label><?php esc_html_e( 'Other tokens address where to collect fees', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
 									<input type="text" value="<?php echo esc_attr( get_option('eth_fee_address') );?>" class="regular-text" disabled>

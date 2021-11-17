@@ -380,6 +380,7 @@ function mcwallet_inline_script() {
 		'quickswapMode'                => get_option( 'selected_quickswap_mode', 'aggregator' ),
 		'defaultLanguage'              => get_option( 'default_language', 'en' ),
 		'WPSO_selected_theme'          => get_theme_mod( 'color_scheme', 'light' ),
+		'zeroxFeePercent'              => get_option( 'zerox_fee_percent', '' ),
 		'pluginVersion'                => MCWALLET_VER,
 		'licenceInfo'                  => mcwallet_support_days_left(),
 	);
@@ -428,11 +429,13 @@ function mcwallet_inline_script() {
 		$fees['eth']['fee'] = get_option( 'eth_fee' );
 		$fees['bnb']['fee'] = get_option( 'eth_fee' );
 		$fees['matic']['fee'] = get_option( 'eth_fee' );
+		$fees['arbeth']['fee'] = get_option( 'eth_fee' );
 	}
 	if ( get_option( 'eth_min' ) ) {
 		$fees['eth']['min'] = get_option( 'eth_min' );
 		$fees['bnb']['min'] = get_option( 'eth_min' );
 		$fees['matic']['min'] = get_option( 'eth_min' );
+		$fees['arbeth']['min'] = get_option( 'eth_min' );
 	}
 	if ( get_option( 'tokens_fee' ) ) {
 		$fees['erc20']['fee'] = get_option( 'tokens_fee' );
@@ -448,6 +451,7 @@ function mcwallet_inline_script() {
 		$fees['eth']['address'] = get_option( 'eth_fee_address' );
 		$fees['bnb']['address'] = get_option( 'eth_fee_address' );
 		$fees['matic']['address'] = get_option( 'eth_fee_address' );
+		$fees['arbeth']['address'] = get_option( 'eth_fee_address' );
 		$fees['erc20']['address'] = get_option( 'eth_fee_address' );
 		$fees['bep20']['address'] = get_option( 'eth_fee_address' );
 		$fees['erc20matic']['address'] = get_option( 'eth_fee_address' );
