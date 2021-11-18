@@ -20,16 +20,20 @@ Simplest Multi-currency wallet for WordPress. Check premium version https://code
 
 We use this 3rd party services:
 https://etherscan.io/ - free public blockchain explorer. they provide information for user balances (Ethereum cryptoccurrency and ER20 assets);
-https://insight.bitpay.com  - free bitcoin endpoint where we send a transactions for broadcatst to the bitcoin network. Otherwise user must install own bitcoin node.
 https://infura.io/  - (free 100,000 Requests/Day) ethereum endoint to broadcast transactions.
+https://www.blockchain.com/btc, https://api.blockcypher.com/v1/btc/main, https://live.blockcypher.com/ - bitcoin explorers 
+https://ghostscan.io - GHOST blockchain explorer
+https://explore.next.exchange - NEXT blockchain explorer
+https://horizon.stellar.org - STELLAR blockchain exploreer
+https://api.blocktrail.com/v1/BTC - Bitcoin mining fees data 
+https://api.bitcore.io/api/BTC/mainnet - free bitcoin endpoint where we send a transactions for broadcatst to the bitcoin network. Otherwise user must install own bitcoin node.
+https://next.swaponline.io/mainnet - NEXT blockchain node endpoint
+https://noxon.wpmix.net/currsAll.php - free cryptocurrency price feed
+
 
 == Usage ==
 
-Copy and paste this shortcode in your page content.
-[mcwallet_widget]
-
-Or add this code to the place of the template where you need to display widget.
-`<?php echo do_shortcode( '[mcwallet_widget]' );?>`
+Activate plugin, go to MCW options and enable "Use Multi Currency Wallet template as home page."
 
 == Frequently Asked Questions ==
 
