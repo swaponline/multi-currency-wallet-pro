@@ -42,6 +42,15 @@ function mcwallet_show_extra_profile_fields( $user ) {
         </ul> <?php
 	}
   
+  
+  // debug info
+  if (get_option( 'mcwallet_remember_userwallet' ) == 'true') {
+    $backup = get_user_meta( $user->ID, '_mcwallet_backup' );
+    echo '<h3>Backup</h3>';
+    echo '<pre>';
+    print_r($backup);
+    echo '</pre>';
+  }
 }
 
 add_action( 'show_user_profile', 'mcwallet_show_extra_profile_fields' );
