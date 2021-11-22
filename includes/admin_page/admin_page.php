@@ -204,12 +204,12 @@ function mcwallet_page() {
 							</tr>
 							<tr>
 								<th scope="row">
-									<?php esc_html_e( 'Disable sending statistics to plugin developers', 'multi-currency-wallet' );?>
+									<?php esc_html_e( 'Enable sending statistics to plugin developers', 'multi-currency-wallet' );?>
 								</th>
 								<td>
-									<label for="mcwallet_disable_stats">
-										<input name="statistic_disabled" type="checkbox" id="mcwallet_disable_stats" <?php checked( 'true', get_option( 'mcwallet_disable_stats' ) ); ?>>
-										<?php esc_html_e( 'Disable statistic.', 'multi-currency-wallet' );?>
+									<label for="mcwallet_enable_stats">
+										<input name="statistic_enabled" type="checkbox" id="mcwallet_enable_stats" <?php checked( 'false', get_option( 'mcwallet_enable_stats' ) ); ?>>
+										<?php esc_html_e( 'Enable statistics.', 'multi-currency-wallet' );?>
 									</label>
 								</td>
 							</tr>
