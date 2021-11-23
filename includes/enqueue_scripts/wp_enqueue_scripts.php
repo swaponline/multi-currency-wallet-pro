@@ -367,6 +367,7 @@ function mcwallet_inline_script() {
 		'widgetName'                   => get_bloginfo(),
 		'STATISTICS_ENABLED'           => get_option( 'mcwallet_enable_stats', 'false' ),
 		'EXCHANGE_DISABLED'            => get_option( 'mcwallet_exchange_disabled', 'false' ),
+    'SO_disableInternalWallet'     => get_option( 'mcwallet_disable_internal', 'false' ),
 		'CUR_BTC_DISABLED'             => get_option( 'mcwallet_btc_disabled', 'false' ),
 		'CUR_ETH_DISABLED'             => get_option( 'mcwallet_eth_disabled', 'false' ),
 		'CUR_BNB_DISABLED'             => get_option( 'mcwallet_bnb_disabled', 'false' ),
