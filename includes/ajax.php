@@ -526,6 +526,11 @@ function mcwallet_update_options() {
 			delete_option( 'mcwallet_enable_stats');
 		}
 
+    if ( $_POST['disableInternal'] == 'true' ) {
+      update_option( 'mcwallet_disable_internal', sanitize_text_field( $_POST['disableInternal'] ) );
+    } else {
+      delete_option( 'mcwallet_disable_internal' );
+    }
 		if ( $_POST['btcDisabled'] == 'true' ) {
 			update_option( 'mcwallet_btc_disabled', sanitize_text_field( $_POST['btcDisabled'] ) );
 		} else {
