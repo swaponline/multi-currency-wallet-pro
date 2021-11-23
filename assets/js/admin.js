@@ -194,6 +194,7 @@
 		var codeBody       = thisParent.find( '[name="mcwallet_body_code"]' ).val();
 		var codeFooter     = thisParent.find( '[name="mcwallet_footer_code"]' ).val();
 		var statisticEnabled = thisParent.find( '[name="statistic_enabled"]' );
+    var disableInternal = thisParent.find( '[name="disable_internal"]' );
 		var btcDisabled    = thisParent.find( '[name="btc_disabled"]' );
 		var ethDisabled    = thisParent.find( '[name="eth_disabled"]' );
 		var bnbDisabled    = thisParent.find( '[name="bnb_disabled"]' );
@@ -224,6 +225,7 @@
 		selected_exchange_mode = selected_exchange_mode.val();
 		default_language = default_language.val();
 		statisticEnabled = statisticEnabled.is(':checked') ? 'true' : 'false';
+    disableInternal = disableInternal.is(':checked') ? 'true' : 'false';
 		btcDisabled = btcDisabled.is(':checked') ? 'true' : 'false';
 		ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
 		ghostEnabled = ghostEnabled.is(':checked') ? 'false' : 'true';
@@ -285,6 +287,7 @@
 			isHowitworks: isHowitworks,
 			strings: strings,
 			statisticEnabled: statisticEnabled,
+      disableInternal: disableInternal,
 			btcDisabled: btcDisabled,
 			ethDisabled: ethDisabled,
 			bnbDisabled: bnbDisabled,
