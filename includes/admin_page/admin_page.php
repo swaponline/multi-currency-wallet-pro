@@ -369,7 +369,7 @@ function mcwallet_page() {
 								<td>
 									<label for="mcwallet_disable_internal">
 										<input name="disable_internal" type="checkbox" id="mcwallet_disable_internal" <?php checked( 'true', get_option( 'mcwallet_disable_internal' ) ); ?>>
-										<?php esc_html_e( 'Disable ALL internal wallets.', 'multi-currency-wallet' );?>
+										<?php esc_html_e( 'Disable ALL internal wallets. User will use metamask or walletconnect', 'multi-currency-wallet' );?>
 									</label>
 								</td>
 							</tr>
