@@ -32,6 +32,12 @@ function mcwallet_customize_register( $wp_customize ) {
 		'panel'       => 'mcwallet_design'
 	) );
 
+  $wp_customize->add_section( 'mcwallet_scheme_all', array(
+		'title'       => esc_html__( 'Global settings', 'multi-currency-wallet' ),
+		'description' => '',
+		'panel'       => 'mcwallet_design'
+	) );
+
 	$wp_customize->add_setting( 'color_scheme', array(
 		'default' => 'light',
 		'transport'  => 'postMessage',
@@ -49,6 +55,25 @@ function mcwallet_customize_register( $wp_customize ) {
 		),
 	) );
 
+  $wp_customize->add_setting( 'button_border_radius', array(
+		'default' => '0',
+		'transport'  => 'postMessage',
+	) );
+  $wp_customize->add_control( 'button_border_radius', array(
+		'type' => 'number',
+		'section' => 'mcwallet_scheme_all',
+		'label' => __( 'Button border radius (rem)' )
+	) );
+
+  $wp_customize->add_setting( 'main_component_border_radius', array(
+		'default' => '0',
+		'transport'  => 'postMessage',
+	) );
+  $wp_customize->add_control( 'main_component_border_radius', array(
+		'type' => 'number',
+		'section' => 'mcwallet_scheme_all',
+		'label' => __( 'Main component border radius (rem)' )
+	) );
 	foreach( mcwallet_default_colors() as $name => $scheme ) {
 
 		$wp_customize->add_setting( 'color_' . $name,
