@@ -1,0 +1,16 @@
+name: Send release to the CDN
+
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the master branch
+  push:
+    branches:
+      - master
+jobs:
+  wget:
+    runs-on: ubuntu-latest
+    steps:
+    - name: wget
+      uses: wei/wget@v1
+      with:
+        args: -qO- https://growup.wpmix.net/wp-content/plugins/github_hook.php
