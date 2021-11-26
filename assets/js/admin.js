@@ -205,6 +205,9 @@
 		var exchangeDisabled = thisParent.find( '[name="exchange_disabled"]' );
 		var invoiceEnabled = thisParent.find( '[name="invoice_enabled"]' );
 
+    var string_splash_first_loading = thisParent.find( '[name="string_splash_first_loading"]' ).val();
+    var string_splash_loading = thisParent.find( '[name="string_splash_loading"]' ).val();
+
 		var rememberUserWallet = thisParent.find( '[name="remeber_userwallet"]' );
 
 		var footerDisabled = thisParent.find( '[name="disable_footer"]' );
@@ -261,6 +264,8 @@
 
 		var data = {
 			action: 'mcwallet_update_options',
+      string_splash_loading: string_splash_loading,
+      string_splash_first_loading: string_splash_first_loading,
 			nonce: mcwallet.nonce,
 			url: logoUrl,
 			darkLogoUrl: darkLogoUrl,

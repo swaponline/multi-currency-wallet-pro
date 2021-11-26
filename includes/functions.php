@@ -375,6 +375,12 @@ function mcwallet_inline_scheme_colors(){
 	--color-brand-hover: <?php echo mcwallet_get_color( 'brand_hover', 'dark' ); ?>;
 	--color-brand-background: <?php echo mcwallet_get_color( 'brand_background', 'dark' ); ?>;
 }
+:root,
+[data-scheme="default"],
+[data-scheme="dark"] {
+  --button-border-radius: <?php echo get_theme_mod( 'button_border_radius', '0' );?>rem;
+  --main-component-border-radius: <?php echo get_theme_mod( 'main_component_border_radius', '0' );?>rem;
+}
 <?php
 }
 

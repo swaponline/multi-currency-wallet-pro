@@ -237,16 +237,12 @@ function mcwallet_inline_build_script() {
 	const locale = lang.toLowerCase();
 	const locationName = lang.toUpperCase();
 
-	advice.innerText = "' . esc_html__( 'Do not forget to save your private keys!', 'multi-currency-wallet' ) . '";
+	advice.innerText = "' . esc_html__( get_option( 'string_splash_loading', 'Loading...' ) ) . '";
 
 	var information = document.getElementById("usersInform");
 
-	if ((locationName === "ru" || (locale === "ru" && locationName !== "en")) && localStorage.length === 0) {
-		information.innerText = "' . esc_html__( 'Generating private keys for your multi-currency wallet right now, \ n it may take one minute', 'multi-currency-wallet' ) . '";
-	}
-
 	if (localStorage.length === 0) {
-		information.innerText = "' . esc_html__( 'Please wait while the application is loading,\n it may take one minute...', 'multi-currency-wallet' ) . '";
+		information.innerText = "' . esc_html__( get_option( 'string_splash_first_loading', 'Please wait while the application is loading,\n it may take one minute...' ) , 'multi-currency-wallet' ) . '";
 	}
 
 	';
