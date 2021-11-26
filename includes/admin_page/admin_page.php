@@ -709,6 +709,36 @@ function mcwallet_page() {
 					</div>
 
 					<div class="mcwallet-strings-body">
+            <div class="mcwallet-strings-row">
+              <div class="mcwallet-string-col">
+                <strong><?php esc_html_e( 'Splash Screen', 'multi-currency-wallet' ); ?> &quot;</strong>
+                <span><?php esc_html_e( 'Loading...', 'multi-currency-wallet' ); ?></span>
+                <strong>&quot;</strong>
+              </div>
+              <div class="mcwallet-string-col">
+                <input type="text" name="string_splash_loading" class="large-text" value="<?php
+                  echo get_option( 'string_splash_loading', 'Loading...' );
+                ?>">
+              </div>
+              <div class="mcwallet-string-action">
+                <span class="dashicons dashicons-trash" style="visibility: hidden"></span>
+              </div>
+            </div>
+            <div class="mcwallet-strings-row">
+              <div class="mcwallet-string-col">
+                <strong><?php esc_html_e( 'Splash Screen first loading', 'multi-currency-wallet' ); ?> &quot;</strong>
+                <span><?php esc_html_e( 'Please wait while the application is loading', 'multi-currency-wallet' ); ?></span>
+                <strong>&quot;</strong>
+              </div>
+              <div class="mcwallet-string-col">
+                <input type="text" name="string_splash_first_loading" class="large-text" value="<?php
+                  echo get_option( 'string_splash_first_loading', 'Please wait while the application is loading,\n it may take one minute...' );
+                ?>">
+              </div>
+              <div class="mcwallet-string-action">
+                <span class="dashicons dashicons-trash" style="visibility: hidden"></span>
+              </div>
+            </div>
 						<?php
 						$strings = get_option( 'mcwallet_strings');
 

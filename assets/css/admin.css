@@ -305,6 +305,7 @@
 }
 .mcwallet-strings-row .mcwallet-string-col {
 	flex: auto;
+  width: 50%;
 }
 .mcwallet-strings-row .mcwallet-string-action a {
 	text-decoration: none;

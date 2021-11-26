@@ -45,7 +45,7 @@ echo $con;
 				<img id="loaderImg" class="logo-dark" src="<?php echo esc_url( mcwallet_dark_logo_url() ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
 			</div>
 			<div id="beforeJSTip" class="tips">
-				<?php esc_html_e( 'Do not forget to save your private keys!', 'multi-currency-wallet' );?>
+				<?php echo get_option( 'string_splash_loading', 'Loading...' );?>
 			</div>
 		</div>
 		<div class="mb-4 show-on-fail-ls d-none" id="onFailLocalStorageMessage">

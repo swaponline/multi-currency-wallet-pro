@@ -463,6 +463,10 @@ function mcwallet_update_options() {
 			$strings = $_POST['strings'];
 		}
 
+    $string_splash_first_loading = trim( esc_attr( wp_strip_all_tags( $_POST['string_splash_first_loading'] ) ) );
+    $string_splash_loading = trim( esc_attr( wp_strip_all_tags( $_POST['string_splash_loading'] ) ) );
+    update_option( 'string_splash_loading', $string_splash_loading );
+    update_option( 'string_splash_first_loading', $string_splash_first_loading );
 		if ( $strings ) {
 			foreach ( $strings as $string ) {
 				$id    = esc_attr( $string['name'] );
