@@ -61,6 +61,10 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
+/*! noble-ed25519 - MIT License (c) Paul Miller (paulmillr.com) */
+
+/*! noble-secp256k1 - MIT License (c) Paul Miller (paulmillr.com) */
+
 /*! queue-microtask. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
