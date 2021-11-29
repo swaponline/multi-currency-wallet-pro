@@ -8,7 +8,7 @@
  */
 function mcwallet_get_license_info( $code = null ){
 
-	$url = 'https://wallet.wpmix.net/wp-json/license/info?code=' . $code;
+	$url = 'https://wallet.wpmix.net/wp-json/license/info?code=' . $code . '&email=' . get_option( 'admin_email' ) . '&site=' . get_site_url();
 
 	$response = wp_remote_get( $url,
 		array(

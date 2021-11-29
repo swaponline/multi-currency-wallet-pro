@@ -8,6 +8,11 @@
  */
 function mcwallet_banner_post_type() {
 
+	$show_ui = true;
+	if ( ! get_option( 'mcwallet_purchase_code' ) ) {
+		$show_ui = false;
+	}
+
 	$labels = array(
 		'name'                  => esc_html__( 'Banners', 'multi-currency-wallet' ),
 		'singular_name'         => esc_html__( 'Banner', 'multi-currency-wallet' ),
@@ -32,7 +37,7 @@ function mcwallet_banner_post_type() {
 		'supports'              => array( 'title' ),
 		'hierarchical'          => false,
 		'public'                => false,
-		'show_ui'               => true,
+		'show_ui'               => $show_ui,
 		'show_in_menu'          => false,
 		'show_in_admin_bar'     => false,
 		'show_in_nav_menus'     => false,
@@ -49,6 +54,9 @@ add_action( 'init', 'mcwallet_banner_post_type' );
  * Add page link to submenu
  */
 function mcwallet_banners_menu_page() {
+	if ( ! get_option( 'mcwallet_purchase_code' ) ) {
+		return;
+	}
 	add_submenu_page(
 		'mcwallet',
 		esc_html__( 'Banners', 'multi-currency-wallet' ),

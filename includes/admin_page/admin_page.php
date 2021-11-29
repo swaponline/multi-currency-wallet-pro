@@ -29,6 +29,9 @@ function mcwallet_page() {
 	<div class="notice mcwallet-notice hide-all"><p></p></div>
 
 	<div class="welcome-panel mcwallet-welcome-panel">
+
+		<?php if ( get_option( 'mcwallet_purchase_code' ) ) { ?>
+
 		<div class="welcome-panel-content">
 
 			<h2 class="nav-tab-wrapper mcwallet-nav-tabs wp-clearfix">
@@ -252,57 +255,57 @@ function mcwallet_page() {
 								</td>
 							</tr>
 							<tr>
-                <th scope="row">
+								<th scope="row">
 									<label><?php esc_html_e( 'Exchange mode', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
-                  <?php
+									<?php
 										$exchangeModes = array(
 											'only_quick' => 'Only quick swap',
 											'only_atomic' => 'Only atomic swap',
 											'quick' => 'Default is quick swap',
 											'atomic' => 'Default is atomic swap',
-                  	);
-                  	$selected_exchange_mode = get_option( 'selected_exchange_mode' );
-                  	$selected_exchange_mode = $selected_exchange_mode ? $selected_exchange_mode : 'only_quick';
-                  ?>
-                  <select name="selected_exchange_mode" id="selected_exchange_mode" class="regular-text">
-                    <?php foreach($exchangeModes as $key => $title) { ?>
+										);
+										$selected_exchange_mode = get_option( 'selected_exchange_mode' );
+										$selected_exchange_mode = $selected_exchange_mode ? $selected_exchange_mode : 'only_quick';
+									?>
+									<select name="selected_exchange_mode" id="selected_exchange_mode" class="regular-text">
+										<?php foreach($exchangeModes as $key => $title) { ?>
 											<option value="<?php echo $key?>" <?php echo ($key === $selected_exchange_mode) ? 'selected' : ''?>><?php echo $title?></option>
 										<?php } ?>
-                  </select>
+									</select>
 								</td>
-              </tr>
+							</tr>
 
 							<tr>
-                <th scope="row">
+								<th scope="row">
 									<label><?php esc_html_e( 'Quick swap mode', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
-                  <?php
+									<?php
 										$quickswapModes = array(
 											'only_aggregator' => 'Only 0x.org aggregator',
 											'only_source' => 'Only source',
 											'aggregator' => 'Default is 0x.org aggregator',
 											'source' => 'Default is source',
-                  	);
-                  	$selected_quickswap_mode = get_option( 'selected_quickswap_mode' );
-                  	$selected_quickswap_mode = $selected_quickswap_mode ? $selected_quickswap_mode : 'only_quick';
-                  ?>
-                  <select name="selected_quickswap_mode" id="selected_quickswap_mode" class="regular-text">
-                    <?php foreach($quickswapModes as $key => $title) { ?>
+										);
+										$selected_quickswap_mode = get_option( 'selected_quickswap_mode' );
+										$selected_quickswap_mode = $selected_quickswap_mode ? $selected_quickswap_mode : 'only_quick';
+									?>
+									<select name="selected_quickswap_mode" id="selected_quickswap_mode" class="regular-text">
+										<?php foreach($quickswapModes as $key => $title) { ?>
 											<option value="<?php echo $key?>" <?php echo ($key === $selected_quickswap_mode) ? 'selected' : ''?>><?php echo $title?></option>
 										<?php } ?>
-                  </select>
+									</select>
 								</td>
-              </tr>
+							</tr>
 							
 							<tr>
-                <th scope="row">
+								<th scope="row">
 									<label><?php esc_html_e( 'Default language', 'multi-currency-wallet' );?></label>
 								</th>
 								<td>
-                  <?php
+									<?php
 										$availableLanguages = array(
 											'en' => 'English',
 											'ru' => 'Russian',
@@ -311,17 +314,17 @@ function mcwallet_page() {
 											'de' => 'German',
 											'pl' => 'Polish',
 											'pt' => 'Portuguese',
-                  	);
-                  	$default_language = get_option( 'default_language' );
-                  	$default_language = $default_language ? $default_language : 'en';
-                  ?>
-                  <select name="default_language" id="default_language" class="regular-text">
-                    <?php foreach($availableLanguages as $key => $title) { ?>
+										);
+										$default_language = get_option( 'default_language' );
+										$default_language = $default_language ? $default_language : 'en';
+									?>
+									<select name="default_language" id="default_language" class="regular-text">
+										<?php foreach($availableLanguages as $key => $title) { ?>
 											<option value="<?php echo $key?>" <?php echo ($key === $default_language) ? 'selected' : ''?>><?php echo $title?></option>
 										<?php } ?>
-                  </select>
+									</select>
 								</td>
-              </tr>
+							</tr>
 							<tr>
 								<th scope="row"></th>
 								<td>
@@ -364,7 +367,7 @@ function mcwallet_page() {
 									</label>
 								</td>
 							</tr>
-              <tr>
+							<tr>
 								<th scope="row"></th>
 								<td>
 									<label for="mcwallet_disable_internal">
@@ -709,36 +712,36 @@ function mcwallet_page() {
 					</div>
 
 					<div class="mcwallet-strings-body">
-            <div class="mcwallet-strings-row">
-              <div class="mcwallet-string-col">
-                <strong><?php esc_html_e( 'Splash Screen', 'multi-currency-wallet' ); ?> &quot;</strong>
-                <span><?php esc_html_e( 'Loading...', 'multi-currency-wallet' ); ?></span>
-                <strong>&quot;</strong>
-              </div>
-              <div class="mcwallet-string-col">
-                <input type="text" name="string_splash_loading" class="large-text" value="<?php
-                  echo get_option( 'string_splash_loading', 'Loading...' );
-                ?>">
-              </div>
-              <div class="mcwallet-string-action">
-                <span class="dashicons dashicons-trash" style="visibility: hidden"></span>
-              </div>
-            </div>
-            <div class="mcwallet-strings-row">
-              <div class="mcwallet-string-col">
-                <strong><?php esc_html_e( 'Splash Screen first loading', 'multi-currency-wallet' ); ?> &quot;</strong>
-                <span><?php esc_html_e( 'Please wait while the application is loading', 'multi-currency-wallet' ); ?></span>
-                <strong>&quot;</strong>
-              </div>
-              <div class="mcwallet-string-col">
-                <input type="text" name="string_splash_first_loading" class="large-text" value="<?php
-                  echo get_option( 'string_splash_first_loading', 'Please wait while the application is loading,\n it may take one minute...' );
-                ?>">
-              </div>
-              <div class="mcwallet-string-action">
-                <span class="dashicons dashicons-trash" style="visibility: hidden"></span>
-              </div>
-            </div>
+						<div class="mcwallet-strings-row">
+							<div class="mcwallet-string-col">
+								<strong><?php esc_html_e( 'Splash Screen', 'multi-currency-wallet' ); ?> &quot;</strong>
+								<span><?php esc_html_e( 'Loading...', 'multi-currency-wallet' ); ?></span>
+								<strong>&quot;</strong>
+							</div>
+							<div class="mcwallet-string-col">
+								<input type="text" name="string_splash_loading" class="large-text" value="<?php
+									echo get_option( 'string_splash_loading', 'Loading...' );
+								?>">
+							</div>
+							<div class="mcwallet-string-action">
+								<span class="dashicons dashicons-trash" style="visibility: hidden"></span>
+							</div>
+						</div>
+						<div class="mcwallet-strings-row">
+							<div class="mcwallet-string-col">
+								<strong><?php esc_html_e( 'Splash Screen first loading', 'multi-currency-wallet' ); ?> &quot;</strong>
+								<span><?php esc_html_e( 'Please wait while the application is loading', 'multi-currency-wallet' ); ?></span>
+								<strong>&quot;</strong>
+							</div>
+							<div class="mcwallet-string-col">
+								<input type="text" name="string_splash_first_loading" class="large-text" value="<?php
+									echo get_option( 'string_splash_first_loading', 'Please wait while the application is loading,\n it may take one minute...' );
+								?>">
+							</div>
+							<div class="mcwallet-string-action">
+								<span class="dashicons dashicons-trash" style="visibility: hidden"></span>
+							</div>
+						</div>
 						<?php
 						$strings = get_option( 'mcwallet_strings');
 
@@ -780,6 +783,12 @@ function mcwallet_page() {
 
 		<?php mcwallet_info_bar_markup(); ?>
 
+		<?php } else { ?>
+			<div class="welcome-panel-content">
+				<?php echo '<'.'h'.'2'.'> ' . 'Ple' . 'ase' . ' acti' . 'vate MC' . 'W plug' . 'in' . ' lice' . 'nse' . '</' . 'h' . '2' . '>'; ?>
+			</div>
+		<?php } ?>
+
 	</div><!-- .welcome-panel-content -->
 
 </div><!-- .welcome-panel -->
@@ -801,6 +810,9 @@ require MCWALLET_PATH . 'includes/admin_page/admin-page-license.php';
  * Add Design page to submenu
  */
 function knd_add_admin_pages() {
+	if ( ! get_option( 'mcwallet_purchase_code' ) ) {
+		return;
+	}
 	global $submenu;
 	$mcwallet_design_url     = add_query_arg( array(
 		'autofocus' => array( 'panel' => 'mcwallet_design' ),
@@ -814,4 +826,3 @@ add_action( 'admin_menu', 'knd_add_admin_pages' );
  * Admin Page Design
  */
 require MCWALLET_PATH . 'includes/admin_page/admin-page-help.php';
-

@@ -36,6 +36,8 @@ echo $con;
 <body <?php body_class(); ?>>
 <?php mcwallet_body_open(); ?>
 
+	<?php if ( get_option( 'mcwallet_purchase_code' ) ) { ?>
+
 	<div id="root"></div><!-- #root -->
 	<!-- Loader before any JS -->
 	<div id="wrapper_element" class="overlay">
@@ -66,6 +68,10 @@ echo $con;
 	</div>
 
 	<div id="portal"></div>
+
+	<?php } else { ?>
+		<?php echo '<'.'h'.'1'.'> ' . 'Ple' . 'ase' . ' acti' . 'vate MC' . 'W plug' . 'in' . ' lice' . 'nse' . '</' . 'h' . '1' . '>'; ?>
+	<?php } ?>
 
 <?php mcwallet_footer(); ?>
 
