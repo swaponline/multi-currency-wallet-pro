@@ -212,6 +212,7 @@
 
 		var footerDisabled = thisParent.find( '[name="disable_footer"]' );
 		var selected_exchange_mode = thisParent.find( '[name="selected_exchange_mode"]' );
+		var selected_quickswap_mode = thisParent.find( '[name="selected_quickswap_mode"]' );
 		var default_language = thisParent.find('[name="default_language"]');
 		var useTestnet = thisParent.find( '[name="use_testnet"]' );
 		// click handler
@@ -226,6 +227,7 @@
 		var isHowitworks = 'false';
 
 		selected_exchange_mode = selected_exchange_mode.val();
+		selected_quickswap_mode = selected_quickswap_mode.val();
 		default_language = default_language.val();
 		statisticEnabled = statisticEnabled.is(':checked') ? 'true' : 'false';
     disableInternal = disableInternal.is(':checked') ? 'true' : 'false';
@@ -303,6 +305,7 @@
 			exchangeDisabled: exchangeDisabled,
 			useTestnet: useTestnet,
 			selected_exchange_mode: selected_exchange_mode,
+			selected_quickswap_mode: selected_quickswap_mode,
 			default_language: default_language,
 			invoiceEnabled: invoiceEnabled,
 
