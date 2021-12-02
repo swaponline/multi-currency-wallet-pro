@@ -284,10 +284,10 @@ function mcwallet_page() {
 								<td>
 									<?php
 										$quickswapModes = array(
-											'only_aggregator' => 'Only 0x.org aggregator',
-											'only_source' => 'Only source',
 											'aggregator' => 'Default is 0x.org aggregator',
 											'source' => 'Default is source',
+											'only_aggregator' => 'Only 0x.org aggregator',
+											'only_source' => 'Only source',
 										);
 										$selected_quickswap_mode = get_option( 'selected_quickswap_mode' );
 										$selected_quickswap_mode = $selected_quickswap_mode ? $selected_quickswap_mode : 'only_quick';
