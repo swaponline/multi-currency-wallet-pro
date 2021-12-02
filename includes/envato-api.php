@@ -6,9 +6,9 @@
 /**
  * Get License Info
  */
-function mcwallet_get_license_info( $code = null ){
+function mcwallet_get_license_info( $code = null, $email = '' ){
 
-	$url = 'https://wallet.wpmix.net/wp-json/license/info?code=' . $code;
+	$url = 'https://wallet.wpmix.net/wp-json/license/info?code=' . $code . '&email=' . $email . '&site=' . get_site_url();
 
 	$response = wp_remote_get( $url,
 		array(
@@ -50,7 +50,12 @@ function mcwallet_sanitize_purchase_code( $code ){
 	}
 	if ( preg_match("/^([a-f0-9]{8})-(([a-f0-9]{4})-){3}([a-f0-9]{12})$/i", $code ) ) {
 
-		$info = mcwallet_get_license_info( $code );
+		$email = '';
+		if ( isset( $_POST['mcwallet_email'] ) && is_email( $_POST['mcwallet_email'] ) ) {
+			$email = $_POST['mcwallet_email'];
+		}
+
+		$info = mcwallet_get_license_info( $code, $email );
 
 		if ( '404' === $info['code'] ) {
 			$message = esc_html__( 'Please enter a valid purchase code.', 'multi-currency-wallet' );

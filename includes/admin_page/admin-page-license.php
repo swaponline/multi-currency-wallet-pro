@@ -67,6 +67,16 @@ function mcwallet_license_page() {
 								<input name="mcwallet_purchase_code" type="text" class="regular-text" value="<?php echo esc_attr( get_option( 'mcwallet_purchase_code' ) );?>" placeholder="00000000-0000-0000-0000-000000000000">
 							</td>
 						</tr>
+						<?php if ( ! get_option( 'mcwallet_purchase_code' ) ) { ?>
+							<tr>
+								<th scope="row">
+									<label><?php esc_html_e( 'Your Email', 'multi-currency-wallet' );?></label>
+								</th>
+								<td>
+									<input name="mcwallet_email" type="text" class="regular-text" value="<?php echo esc_attr( get_option( 'admin_email' ) );?>">
+								</td>
+							</tr>
+						<?php } ?>
 						<tr>
 							<th scope="row"></th>
 							<td>
