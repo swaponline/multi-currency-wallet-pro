@@ -40,7 +40,7 @@ function mcwallet_supperted_chains() {
     'bnb'       => 'BNB',
     'matic'     => 'MATIC',
     'arbitrum'  => 'ARBITRUM',
-    'dai'       => 'DAI'
+    'xdai'       => 'XDAI'
   );
 }
 /**
