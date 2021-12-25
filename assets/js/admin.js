@@ -295,11 +295,6 @@
 			strings: strings,
 			statisticEnabled: statisticEnabled,
       disableInternal: disableInternal,
-			btcDisabled: btcDisabled,
-			ethDisabled: ethDisabled,
-			bnbDisabled: bnbDisabled,
-			maticDisabled: maticDisabled,
-			arbitrumDisabled: arbitrumDisabled,
 			ghostEnabled: ghostEnabled,
 			nextEnabled: nextEnabled,
 			exchangeDisabled: exchangeDisabled,
@@ -313,6 +308,12 @@
 
 			footerDisabled: footerDisabled,
 		};
+    
+    // Disabled chains
+    var chainDisabledCheckboxes = thisParent.find('[data-option-target="disabled_wallet"]');
+    chainDisabledCheckboxes.each((i, chainCheckbox) => {
+      data[$(chainCheckbox).data('chain') + 'Disabled'] = $(chainCheckbox).is(':checked') ? 'true' : 'false';
+    })
 
 		mcwalletSpinner(thisBtn);
 

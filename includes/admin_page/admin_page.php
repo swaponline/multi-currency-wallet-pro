@@ -376,51 +376,30 @@ function mcwallet_page() {
 									</label>
 								</td>
 							</tr>
-							<tr>
-								<th scope="row"></th>
-								<td>
-									<label for="mcwallet_btc_disabled">
-										<input name="btc_disabled" type="checkbox" id="mcwallet_btc_disabled" <?php checked( 'true', get_option( 'mcwallet_btc_disabled' ) ); ?>>
-										<?php esc_html_e( 'Disable BTC wallet.', 'multi-currency-wallet' );?>
-									</label>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"></th>
-								<td>
-									<label for="mcwallet_eth_disabled">
-										<input name="eth_disabled" type="checkbox" id="mcwallet_eth_disabled" <?php checked( 'true', get_option( 'mcwallet_eth_disabled' ) ); ?>>
-										<?php esc_html_e( 'Disable ETH wallet.', 'multi-currency-wallet' );?>
-									</label>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"></th>
-								<td>
-									<label for="mcwallet_bnb_disabled">
-										<input name="bnb_disabled" type="checkbox" id="mcwallet_bnb_disabled" <?php checked( 'true', get_option( 'mcwallet_bnb_disabled' ) ); ?>>
-										<?php esc_html_e( 'Disable BNB wallet.', 'multi-currency-wallet' );?>
-									</label>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"></th>
-								<td>
-									<label for="mcwallet_matic_disabled">
-										<input name="matic_disabled" type="checkbox" id="mcwallet_matic_disabled" <?php checked( 'true', get_option( 'mcwallet_matic_disabled' ) ); ?>>
-										<?php esc_html_e( 'Disable MATIC wallet.', 'multi-currency-wallet' );?>
-									</label>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"></th>
-								<td>
-									<label for="mcwallet_arbitrum_disabled">
-										<input name="arbitrum_disabled" type="checkbox" id="mcwallet_arbitrum_disabled" <?php checked( 'true', get_option( 'mcwallet_arbitrum_disabled' ) ); ?>>
-										<?php esc_html_e( 'Disable ARBITRUM wallet.', 'multi-currency-wallet' );?>
-									</label>
-								</td>
-							</tr>
+              <?php
+                // Disable wallets block
+                $chains = mcwallet_supperted_chains();
+                foreach ($chains as $key=>$title) {
+                  ?>
+                  <tr>
+                    <th scope="row"></th>
+                    <td>
+                      <label for="mcwallet_<?php echo $key?>_disabled">
+                        <input
+                          name="<?php echo $key?>_disabled"
+                          data-option-target="disabled_wallet"
+                          data-chain="<?php echo $key?>"
+                          type="checkbox"
+                          id="mcwallet_<?php echo $key?>_disabled"
+                          <?php checked( 'true', get_option( "mcwallet_{$key}_disabled" ) ); ?>
+                        />
+                        <?php esc_html_e( "Disable {$title} wallet.", 'multi-currency-wallet' );?>
+                      </label>
+                    </td>
+                  </tr>
+                  <?php
+                }
+              ?>
 							<tr>
 								<th scope="row"></th>
 								<td>

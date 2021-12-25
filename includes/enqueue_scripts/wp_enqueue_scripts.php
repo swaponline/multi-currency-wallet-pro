@@ -364,11 +364,6 @@ function mcwallet_inline_script() {
 		'STATISTICS_ENABLED'           => get_option( 'mcwallet_enable_stats', 'false' ),
 		'EXCHANGE_DISABLED'            => get_option( 'mcwallet_exchange_disabled', 'false' ),
     'SO_disableInternalWallet'     => get_option( 'mcwallet_disable_internal', 'false' ),
-		'CUR_BTC_DISABLED'             => get_option( 'mcwallet_btc_disabled', 'false' ),
-		'CUR_ETH_DISABLED'             => get_option( 'mcwallet_eth_disabled', 'false' ),
-		'CUR_BNB_DISABLED'             => get_option( 'mcwallet_bnb_disabled', 'false' ),
-		'CUR_MATIC_DISABLED'           => get_option( 'mcwallet_matic_disabled', 'false' ),
-		'CUR_ARBITRUM_DISABLED'        => get_option( 'mcwallet_arbitrum_disabled', 'false' ),
 		'CUR_GHOST_DISABLED'           => (get_option( 'mcwallet_ghost_enabled') == 'true') ? 'false' : 'true',
 		'CUR_NEXT_DISABLED'            => (get_option( 'mcwallet_next_enabled') == 'true') ? 'false' : 'true',
 		'_ui_footerDisabled'           => get_option( 'mcwallet_disable_footer', 'false'),
@@ -381,6 +376,12 @@ function mcwallet_inline_script() {
 		'pluginVersion'                => MCWALLET_VER,
 		'licenceInfo'                  => mcwallet_support_days_left(),
 	);
+
+  // Disabled chains
+  $supported_chains = mcwallet_supperted_chains();
+  foreach ($supported_chains as $chain=>$chain_title) {
+    $window_arr["CUR_" . strtoupper($chain) . "_DISABLED"] = get_option( "mcwallet_{$chain}_disabled", 'false' );
+  }
 
 	if ( get_current_user_id() ) {
 		$window_arr['setItemPlugin'] = "saveUserData";
