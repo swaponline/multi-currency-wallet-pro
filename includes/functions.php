@@ -29,6 +29,8 @@ if (!function_exists( 'wp_logout' ) ) {
 		}
 	}
 }
+
+
 /**
  * Default Page slug
  */

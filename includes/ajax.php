@@ -535,35 +535,15 @@ function mcwallet_update_options() {
     } else {
       delete_option( 'mcwallet_disable_internal' );
     }
-		if ( $_POST['btcDisabled'] == 'true' ) {
-			update_option( 'mcwallet_btc_disabled', sanitize_text_field( $_POST['btcDisabled'] ) );
-		} else {
-			delete_option( 'mcwallet_btc_disabled' );
-		}
 
-		if ( $_POST['ethDisabled'] == 'true' ) {
-			update_option( 'mcwallet_eth_disabled', sanitize_text_field( $_POST['ethDisabled'] ) );
-		} else {
-			delete_option( 'mcwallet_eth_disabled' );
-		}
-
-		if ( $_POST['bnbDisabled'] == 'true' ) {
-			update_option( 'mcwallet_bnb_disabled', sanitize_text_field( $_POST['bnbDisabled'] ) );
-		} else {
-			delete_option( 'mcwallet_bnb_disabled' );
-		}
-
-		if ( $_POST['maticDisabled'] == 'true' ) {
-			update_option( 'mcwallet_matic_disabled', sanitize_text_field( $_POST['maticDisabled'] ) );
-		} else {
-			delete_option( 'mcwallet_matic_disabled' );
-		}
-
-		if ( $_POST['arbitrumDisabled'] == 'true' ) {
-			update_option( 'mcwallet_arbitrum_disabled', sanitize_text_field( $_POST['arbitrumDisabled'] ) );
-		} else {
-			delete_option( 'mcwallet_arbitrum_disabled' );
-		}
+    $supported_chains = mcwallet_supperted_chains();
+    foreach ($supported_chains as $chain=>$chain_title) {
+      if ( $_POST["{$chain}Disabled"] == 'true' ) {
+        update_option( "mcwallet_{$chain}_disabled", sanitize_text_field( $_POST["{$chain}Disabled"] ) );
+      } else {
+        delete_option( "mcwallet_{$chain}_disabled" );
+      }
+    }
 
 		if ( $_POST['exchangeDisabled'] == 'true' ) {
 			update_option( 'mcwallet_exchange_disabled', sanitize_text_field( $_POST['exchangeDisabled'] ) );
