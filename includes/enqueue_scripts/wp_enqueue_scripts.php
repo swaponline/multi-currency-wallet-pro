@@ -108,8 +108,12 @@ function mcwallet_head_meta() {
  * Inline scripts
  */
 function mcwallet_inline_build_script() {
-
-	$script = ' const getNavigatorLanguage = () => {
+  ob_start();
+  ?><script type="text/javascript"><?php
+  ob_clean();
+  ob_start();
+  ?>
+	const getNavigatorLanguage = () => {
 		if (navigator.languages && navigator.languages.length) {
 			return navigator.languages[0];
 		} else {
@@ -202,32 +206,42 @@ function mcwallet_inline_build_script() {
 
 	document.body.setAttribute("data-scheme", "default");
 
-	const default_theme = "'.get_theme_mod('color_scheme','light').'";
-	if ( window.localStorage.getItem("isDark") || default_theme === "only_dark") {
-		document.body.setAttribute("data-scheme", "dark");
-		wrapper.classList.add("dark");
-		window.localStorage.setItem("isDark", "true");
-		window.localStorage.removeItem("isLight");
-	} else {
-		if (window.localStorage.getItem("isLight")) {
-			wrapper.classList.remove("dark");
-			window.localStorage.removeItem("isDark");
-			window.localStorage.setItem("isLight", "true");
-		}
-	}
-	if ( window.localStorage.getItem("isDark") === null && window.localStorage.getItem("isLight") === null && default_theme === "dark") {
-		wrapper.classList.add("dark");
-		window.localStorage.setItem("isDark", "true");
-	}
-	if (default_theme === "only_light") {
-		document.body.setAttribute("data-scheme", "default");
-		wrapper.classList.remove("dark");
-		window.localStorage.removeItem("isDark");
-		window.localStorage.removeItem("isLight");
-	}
+	const default_theme = "<?php echo get_theme_mod('color_scheme','light')?>";
+  const isDark = localStorage.getItem('isDark')
+  const isLight = localStorage.getItem('isLight')
+  const isSystemDark = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  if (!isDark && !isLight && (default_theme !== 'only_dark') && (default_theme !== 'only_light') && isSystemDark) {
+    document.body.setAttribute("data-scheme", "dark");
+    wrapper.classList.add("dark");
+    window.localStorage.setItem("isDark", "true");
+    window.localStorage.removeItem("isLight");
+  } else {
+    if ( isDark || default_theme === "only_dark") {
+      document.body.setAttribute("data-scheme", "dark");
+      wrapper.classList.add("dark");
+      window.localStorage.setItem("isDark", "true");
+      window.localStorage.removeItem("isLight");
+    } else {
+      if (window.localStorage.getItem("isLight")) {
+        wrapper.classList.remove("dark");
+        window.localStorage.removeItem("isDark");
+        window.localStorage.setItem("isLight", "true");
+      }
+    }
+    if ( isDark === null && isLight === null && default_theme === "dark") {
+      wrapper.classList.add("dark");
+      window.localStorage.setItem("isDark", "true");
+    }
+    if (default_theme === "only_light") {
+      document.body.setAttribute("data-scheme", "default");
+      wrapper.classList.remove("dark");
+      window.localStorage.removeItem("isDark");
+      window.localStorage.removeItem("isLight");
+    }
+  }
 
 	let lang = getCookie("mylang");
-	const defaultLanguage = "'.get_option('default_language', 'en').'";
+	const defaultLanguage = "<?php echo get_option('default_language', 'en') ?>";
 
 	if (!lang) {
 		lang = defaultLanguage;
@@ -237,15 +251,18 @@ function mcwallet_inline_build_script() {
 	const locale = lang.toLowerCase();
 	const locationName = lang.toUpperCase();
 
-	advice.innerText = "' . esc_html__( get_option( 'string_splash_loading', 'Loading...' ) ) . '";
+	advice.innerText = "<?php echo esc_html__( get_option( 'string_splash_loading', 'Loading...' ) ) ?>";
 
 	var information = document.getElementById("usersInform");
 
 	if (localStorage.length === 0) {
-		information.innerText = "' . esc_html__( get_option( 'string_splash_first_loading', 'Please wait while the application is loading,\n it may take one minute...' ) , 'multi-currency-wallet' ) . '";
+		information.innerText = "<?php echo esc_html__( get_option( 'string_splash_first_loading', 'Please wait while the application is loading,\n it may take one minute...' ) , 'multi-currency-wallet' ) ?>";
 	}
-
-	';
+  <?php
+  $script = ob_get_clean();
+  ob_start();
+  ?></script><?php
+  ob_clean();
 
 	return $script;
 }
