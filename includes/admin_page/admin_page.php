@@ -37,6 +37,7 @@ function mcwallet_page() {
 			<h2 class="nav-tab-wrapper mcwallet-nav-tabs wp-clearfix">
 				<a href="#mcwallet-tab-1" class="nav-tab nav-tab-active"><?php esc_html_e( 'Tokens list', 'multi-currency-wallet' ); ?></a>
 				<a href="#mcwallet-tab-2" class="nav-tab"><?php esc_html_e( 'Options', 'multi-currency-wallet' ); ?></a>
+        <a href="#mcwallet-tab-fiat" class="nav-tab"><?php esc_html_e( 'Fiat options', 'multi-currency-wallet'); ?></a>
 				<a href="#mcwallet-tab-3" class="nav-tab"><?php esc_html_e( 'Custom HTML', 'multi-currency-wallet' ); ?></a>
 				<a href="#mcwallet-tab-4" class="nav-tab"><?php esc_html_e( 'Strings Editor', 'multi-currency-wallet' ); ?></a>
 			</h2><!-- .nav-tab-wrapper -->
@@ -519,39 +520,6 @@ function mcwallet_page() {
 									<p class="description"><?php esc_html_e( 'Address the same as Ethereum', 'multi-currency-wallet' );?></p>
 								</td>
 							</tr>
-							<tr>
-								<th scope="row">
-									<label><?php esc_html_e( 'Default fiat currency', 'multi-currency-wallet' );?></label>
-								</th>
-								<td>
-									<select type="text" name="fiat_currency" class="regular-text">
-										<?php foreach( mcwallet_get_valutes() as $key => $valute ) { ?>
-											<option value="<?php echo esc_attr( $key ); ?>" <?php selected( get_option( 'fiat_currency', 'USD' ), $key ); ?>><?php echo esc_attr( $valute ); ?></option>
-										<?php } ?>
-									</select>
-									<!-- https://noxon.wpmix.net/worldCurrencyPrices.php -->
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label><?php esc_html_e( 'Fiat Gateway Url', 'multi-currency-wallet' );?></label>
-								</th>
-								<td>
-									<input name="fiat_gateway_url" type="text" class="large-text" value="<?php echo esc_attr( get_option( 'fiat_gateway_url', 'https://itez.swaponline.io/?DEFAULT_FIAT={DEFAULT_FIAT}&locale={locale}&btcaddress={btcaddress}') );?>">
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label>
-										<?php esc_html_e( 'Transak API key', 'multi-currency-wallet' );?>
-										(<a target=_blank href="https://transak.com/">?</a>)
-									</label>
-								</th>
-								<td>
-									<input name="transak_api_key" type="text" class="large-text" value="<?php echo esc_attr( get_option( 'transak_api_key', '') );?>">
-									<p class="description"><?php esc_html_e( 'With this key, your payment method will be automatically replaced with the Transak service', 'multi-currency-wallet' );?></p>
-								</td>
-							</tr>
 						</tbody>
 					</table><!-- .form-table -->
 
@@ -636,6 +604,9 @@ function mcwallet_page() {
 				</div><!-- .mcwallet-shortcode-panel-row -->
 			</div><!-- .mcwallet-panel-tab -->
 
+      <div class="welcome-panel-column-container mcwallet-panel-tab mcwallet-form-options" id="mcwallet-tab-fiat">
+        <?php include('admin_page_options_fiat.php');?>
+      </div>
 			<div class="welcome-panel-column-container mcwallet-panel-tab mcwallet-form-options" id="mcwallet-tab-3">
 				<div class="mcwallet-shortcode-panel-row">
 
