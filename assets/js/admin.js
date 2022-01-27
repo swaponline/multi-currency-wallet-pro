@@ -35,12 +35,14 @@
 		},6000);
 	}
 
+  mcwallet.showNotice = mcwalletNotice
 	/**
 	 * Spinner
 	 */
 	function mcwalletSpinner( button ){
 		button.next('.spinner').toggleClass('is-active');
 	}
+  mcwallet.showSpinner = mcwalletSpinner
 
 	/** 
 	 * Add token
@@ -134,7 +136,7 @@
 				name: thisName,
 			};
 
-			$.post( ajaxurl, data, function(response) {
+			$.post( mcwallet.ajaxurl, data, function(response) {
 
 				if( response == 'true') {
 					thisItem.addClass('removing');
@@ -317,7 +319,7 @@
 
 		mcwalletSpinner(thisBtn);
 
-		$.post( ajaxurl, data, function(response) {
+		$.post( mcwallet.ajaxurl, data, function(response) {
 
 			if( response.status == 'success' ) {
 				mcwalletNotice( mcwallet.notices.updated, 'success');
@@ -523,7 +525,7 @@
 				items: items,
 			};
 
-			$.post( ajaxurl, data, function(response) {
+			$.post( mcwallet.ajaxurl, data, function(response) {
 				console.log(response);
 			});
 
