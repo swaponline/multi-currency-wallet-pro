@@ -28,7 +28,7 @@ function mcwallet_page() {
 	<h2><?php echo get_admin_page_title(); ?></h2>
 	<div class="notice mcwallet-notice hide-all"><p></p></div>
 
-	<div class="welcome-panel mcwallet-welcome-panel">
+	<div class="mcwallet-welcome-panel">
 
 		<?php if ( get_option( 'mcwallet_purchase_code' ) ) { ?>
 
@@ -42,7 +42,7 @@ function mcwallet_page() {
         <a href="#mcwallet-tab-editfaq" class="nav-tab"><?php esc_html_e( 'Edit FAQ', 'multi-currency-wallet' ); ?></a>
 			</h2><!-- .nav-tab-wrapper -->
 			
-			<div class="welcome-panel-column-container mcwallet-panel-tab panel-tab-active" id="mcwallet-tab-1">
+			<div class="mcwallet-panel-tab panel-tab-active" id="mcwallet-tab-1">
 				<div class="mcwallet-shortcode-panel-row">
 
 					<table class="wp-list-table widefat striped wp-list-tokens">

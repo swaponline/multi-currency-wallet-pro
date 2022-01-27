@@ -64,6 +64,15 @@
 .mcwallet-nav-tabs .nav-tab-active:focus:active {
 	box-shadow: none;
 }
+
+.mcwallet-panel-tab {
+  background: #fff;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid #c3c4c7;
+  border-top: 0px;
+}
+
 .mcwallet-panel-tab:not(.panel-tab-active) {
 	display: none;
 }
