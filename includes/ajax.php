@@ -415,6 +415,49 @@ function mcwallet_reorder_token() {
 add_action( 'wp_ajax_reorder_token', 'mcwallet_reorder_token' );
 
 /**
+ * Update faqs
+ */
+function mcwallet_update_faqs() {
+  	/* Check nonce */
+	check_ajax_referer( 'mcwallet-nonce', 'nonce' );
+
+	/* Stop if the current user is not an admin or do not have administrative access */
+	if ( ! current_user_can( 'manage_options' ) ) {
+		die();
+	}
+
+	$status = 'false';
+
+  $own_before_faqs = array();
+  if (isset($_POST['faqsBefore']) and is_array($_POST['faqsBefore'])) {
+    foreach ($_POST['faqsBefore'] as $k=>$faqData) {
+      if (is_array($faqData) and isset($faqData['title']) and isset($faqData['content']) and ($faqData['title'] !== '') and ($faqData['content'] !== '')) {
+        $own_before_faqs[] = array(
+          'title' => sanitize_text_field($faqData['title']),
+          'content' => sanitize_text_field($faqData['content'])
+        );
+      }
+    }
+  }
+  $own_after_faqs = array();
+  if (isset($_POST['faqsAfter']) and is_array($_POST['faqsAfter'])) {
+    foreach ($_POST['faqsAfter'] as $k=>$faqData) {
+      if (is_array($faqData) and isset($faqData['title']) and isset($faqData['content']) and ($faqData['title'] !== '') and ($faqData['content'] !== '')) {
+        $own_after_faqs[] = array(
+          'title' => sanitize_text_field($faqData['title']),
+          'content' => sanitize_text_field($faqData['content'])
+        );
+      }
+    }
+  }
+  update_option( 'mcwallet_own_before_faqs', $own_before_faqs);
+  update_option( 'mcwallet_own_after_faqs', $own_after_faqs);
+  wp_send_json( array(
+    'status' => 'success'
+  ));
+}
+add_action( 'wp_ajax_mcwallet_update_faqs', 'mcwallet_update_faqs' );
+/**
  * Update options
  */
 function mcwallet_update_options() {

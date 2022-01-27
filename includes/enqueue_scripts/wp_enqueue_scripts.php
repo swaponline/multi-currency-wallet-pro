@@ -474,6 +474,12 @@ function mcwallet_inline_script() {
 
 	$script .= 'window.widgetERC20Comisions = ' . wp_json_encode( $fees, JSON_PRETTY_PRINT ) . ';' . "\n\n";
 
+  // faqs
+  $own_before_faqs = get_option( 'mcwallet_own_before_faqs' , array() );
+  $own_after_faqs = get_option( 'mcwallet_own_after_faqs', array() );
+
+  $script .= 'window.SO_FaqBeforeTabs = ' . wp_json_encode( $own_before_faqs , JSON_PRETTY_PRINT ) . ';' . "\n\n";
+  $script .= 'window.SO_FaqAfterTabs = ' . wp_json_encode( $own_after_faqs , JSON_PRETTY_PRINT ) . ';' . "\n\n";
 	$args = array(
 		'post_type'      => 'mcwallet_banner',
 		'posts_per_page' => -1,
