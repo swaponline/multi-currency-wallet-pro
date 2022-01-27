@@ -35,8 +35,8 @@ function mcwallet_license_page() {
 	<h2><?php echo get_admin_page_title(); ?></h2>
 	<?php settings_errors(); ?>
 
-	<div class="welcome-panel mcwallet-welcome-panel">
-		<div class="welcome-panel-content">
+	<div class="mcwallet-welcome-panel">
+		<div class="mcwallet-welcome-panel-content">
 
 			<h3><?php esc_html_e( 'License Activation', 'multi-currency-wallet' ); ?></h3>
 			<p><?php esc_html_e( 'The active support gives access to the latest version from the developer&#039;s server. An expired license DOES NOT AFFECT the plugin&#039;s functionality. You still can download versions from codecanyon (but updates are released less often there).', 'multi-currency-wallet' ); ?></p>
