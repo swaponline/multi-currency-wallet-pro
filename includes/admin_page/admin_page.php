@@ -315,6 +315,7 @@ function mcwallet_page() {
 											'de' => 'German',
 											'pl' => 'Polish',
 											'pt' => 'Portuguese',
+                      'ko' => 'Korean'
 										);
 										$default_language = get_option( 'default_language' );
 										$default_language = $default_language ? $default_language : 'en';
