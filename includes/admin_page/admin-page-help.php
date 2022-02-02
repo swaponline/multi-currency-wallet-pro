@@ -11,10 +11,10 @@ function mcwallet_help_submenu_page() {
 		'manage_options',
 		'mcwallet-help',
 		'mcwallet_help_page',
-		10
+		21
 	);
 }
-add_action( 'admin_menu', 'mcwallet_help_submenu_page' );
+add_action( 'admin_menu', 'mcwallet_help_submenu_page', 11 );
 
 /**
  * Page

@@ -798,7 +798,7 @@ function mcwallet_add_admin_pages() {
 		'autofocus' => array( 'panel' => 'mcwallet_design' ),
 		'url'       => mcwallet_page_url(),
 	), admin_url( 'customize.php' ) );
-	$submenu['mcwallet'][15] = array( esc_html__( 'Design', 'multi-currency-wallet' ), 'manage_options', esc_url( $mcwallet_design_url ) );
+	$submenu['mcwallet'][20] = array( esc_html__( 'Design', 'multi-currency-wallet' ), 'manage_options', esc_url( $mcwallet_design_url ) );
 }
 add_action( 'admin_menu', 'mcwallet_add_admin_pages' );
 
