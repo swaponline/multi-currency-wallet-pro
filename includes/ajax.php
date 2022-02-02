@@ -457,6 +457,52 @@ function mcwallet_update_faqs() {
   ));
 }
 add_action( 'wp_ajax_mcwallet_update_faqs', 'mcwallet_update_faqs' );
+
+/**
+ * Update menu items
+ */
+function mcwallet_update_menus() {
+  	/* Check nonce */
+	check_ajax_referer( 'mcwallet-nonce', 'nonce' );
+
+	/* Stop if the current user is not an admin or do not have administrative access */
+	if ( ! current_user_can( 'manage_options' ) ) {
+		die();
+	}
+
+	$status = 'false';
+
+  $own_before_menus = array();
+  if (isset($_POST['menusBefore']) and is_array($_POST['menusBefore'])) {
+    foreach ($_POST['menusBefore'] as $k=>$menuData) {
+      if (is_array($menuData) and isset($menuData['title']) and isset($menuData['link']) and ($menuData['title'] !== '') and ($menuData['link'] !== '')) {
+        $own_before_menus[] = array(
+          'title' => sanitize_text_field($menuData['title']),
+          'link' => sanitize_text_field($menuData['link'])
+        );
+      }
+    }
+  }
+  $own_after_menus = array();
+  if (isset($_POST['menusAfter']) and is_array($_POST['menusAfter'])) {
+    foreach ($_POST['menusAfter'] as $k=>$menuData) {
+      if (is_array($menuData) and isset($menuData['title']) and isset($menuData['link']) and ($menuData['title'] !== '') and ($menuData['link'] !== '')) {
+        $own_after_menus[] = array(
+          'title' => sanitize_text_field($menuData['title']),
+          'link' => sanitize_text_field($menuData['link'])
+        );
+      }
+    }
+  }
+  update_option( 'mcwallet_own_before_menus', $own_before_menus);
+  update_option( 'mcwallet_own_after_menus', $own_after_menus);
+  wp_send_json( array(
+    'status' => 'success'
+  ));
+}
+add_action( 'wp_ajax_mcwallet_update_menus', 'mcwallet_update_menus' );
+
+
 /**
  * Update options
  */
