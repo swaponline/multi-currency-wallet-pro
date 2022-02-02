@@ -40,6 +40,7 @@ function mcwallet_page() {
 				<a href="#mcwallet-tab-3" class="nav-tab"><?php esc_html_e( 'Custom HTML', 'multi-currency-wallet' ); ?></a>
 				<a href="#mcwallet-tab-4" class="nav-tab"><?php esc_html_e( 'Strings Editor', 'multi-currency-wallet' ); ?></a>
         <a href="#mcwallet-tab-editfaq" class="nav-tab"><?php esc_html_e( 'Edit FAQ', 'multi-currency-wallet' ); ?></a>
+        <a href="#mcwallet-tab-editmenu" class="nav-tab"><?php esc_html_e( 'Edit Menu items', 'multi-currency-wallet' ); ?></a>
 			</h2><!-- .nav-tab-wrapper -->
 			
 			<div class="mcwallet-panel-tab panel-tab-active" id="mcwallet-tab-1">
@@ -190,6 +191,7 @@ function mcwallet_page() {
 
 			</div><!-- .mcwallet-panel-tab -->
       <?php include "admin_page_editfaq.php"; ?>
+      <?php include "admin_page_editmenu.php"; ?>
 			<div class="welcome-panel-column-container mcwallet-panel-tab mcwallet-form-options" id="mcwallet-tab-2">
 				<div class="mcwallet-shortcode-panel-row">
 

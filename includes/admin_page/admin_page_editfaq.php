@@ -59,7 +59,7 @@
         <tr>
           <td colspan="3" align="center" style="background: #e9e9e9">
             <strong>
-              <?php esc_html_e('Default FAQ block (&quot;How are my private keys stored&quot;, &quot;Waht are the fees involved&quot;, &quot;Why minning fee is to high&quot;)'); ?>
+              <?php esc_html_e('Default FAQ block (&quot;How are my private keys stored&quot;, &quot;What are the fees involved&quot;, &quot;Why minning fee is to high&quot;)'); ?>
             </strong>
           </td>
         </tr>
