@@ -1,8 +1,8 @@
 <div class="welcome-panel-column-container mcwallet-panel-tab mcwallet-form-options" id="mcwallet-tab-editmenu">
   <div class="mcwallet-shortcode-panel-row">
     <?php
-      $own_before_menus = get_option( 'mcwallet_own_before_menu' , array() );
-      $own_after_menus = get_option( 'mcwallet_own_after_menu', array() );
+      $own_before_menus = get_option( 'mcwallet_own_before_menus' , array() );
+      $own_after_menus = get_option( 'mcwallet_own_after_menus', array() );
 
       function render_menu_rows($rows, $type) {
         if (count($rows)) {

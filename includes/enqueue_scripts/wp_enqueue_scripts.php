@@ -480,6 +480,14 @@ function mcwallet_inline_script() {
 
   $script .= 'window.SO_FaqBeforeTabs = ' . wp_json_encode( $own_before_faqs , JSON_PRETTY_PRINT ) . ';' . "\n\n";
   $script .= 'window.SO_FaqAfterTabs = ' . wp_json_encode( $own_after_faqs , JSON_PRETTY_PRINT ) . ';' . "\n\n";
+
+  // menu items
+  $own_before_menus = get_option( 'mcwallet_own_before_menus' , array() );
+  $own_after_menus = get_option( 'mcwallet_own_after_menus', array() );
+
+  $script .= 'window.SO_MenuItemsBefore = ' . wp_json_encode( $own_before_menus , JSON_PRETTY_PRINT ) . ';' . "\n\n";
+  $script .= 'window.SO_MenuItemsAfter = ' . wp_json_encode( $own_after_menus , JSON_PRETTY_PRINT ) . ';' . "\n\n";
+
 	$args = array(
 		'post_type'      => 'mcwallet_banner',
 		'posts_per_page' => -1,
