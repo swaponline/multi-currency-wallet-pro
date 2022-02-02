@@ -789,7 +789,7 @@ require MCWALLET_PATH . 'includes/admin_page/admin-page-license.php';
 /**
  * Add Design page to submenu
  */
-function knd_add_admin_pages() {
+function mcwallet_add_admin_pages() {
 	if ( ! get_option( 'mcwallet_purchase_code' ) ) {
 		return;
 	}
@@ -800,7 +800,7 @@ function knd_add_admin_pages() {
 	), admin_url( 'customize.php' ) );
 	$submenu['mcwallet'][15] = array( esc_html__( 'Design', 'multi-currency-wallet' ), 'manage_options', esc_url( $mcwallet_design_url ) );
 }
-add_action( 'admin_menu', 'knd_add_admin_pages' );
+add_action( 'admin_menu', 'mcwallet_add_admin_pages' );
 
 /**
  * Admin Page Design
