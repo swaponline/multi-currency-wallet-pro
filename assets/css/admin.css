@@ -215,6 +215,7 @@
 }
 .mcwallet-welcome-panel .welcome-panel-content {
 	margin-right: 13px;
+	min-height: initial;
 }
 .wrap .mcwallet-welcome-panel h2.nav-tab-wrapper {
 	padding-top: 0;
@@ -332,6 +333,7 @@
 }
 .mcwallet-strings-info {
 	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 .mw-user-ul {
