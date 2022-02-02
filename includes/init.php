@@ -83,6 +83,11 @@ require MCWALLET_PATH . 'includes/tinymce.php';
 require MCWALLET_PATH . 'includes/banners.php';
 
 /**
+ * FAQ
+ */
+require MCWALLET_PATH . 'includes/faq.php';
+
+/**
  * Updates
  */
 if ( mcwallet_is_active_license() ) {

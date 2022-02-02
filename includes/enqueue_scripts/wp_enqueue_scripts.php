@@ -108,11 +108,11 @@ function mcwallet_head_meta() {
  * Inline scripts
  */
 function mcwallet_inline_build_script() {
-  ob_start();
-  ?><script type="text/javascript"><?php
-  ob_clean();
-  ob_start();
-  ?>
+	ob_start();
+	?><script type="text/javascript"><?php
+	ob_clean();
+	ob_start();
+	?>
 	const getNavigatorLanguage = () => {
 		if (navigator.languages && navigator.languages.length) {
 			return navigator.languages[0];
@@ -207,38 +207,38 @@ function mcwallet_inline_build_script() {
 	document.body.setAttribute("data-scheme", "default");
 
 	const default_theme = "<?php echo get_theme_mod('color_scheme','light')?>";
-  const isDark = localStorage.getItem('isDark')
-  const isLight = localStorage.getItem('isLight')
-  const isSystemDark = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
-  if (!isDark && !isLight && (default_theme !== 'only_dark') && (default_theme !== 'only_light') && isSystemDark) {
-    document.body.setAttribute("data-scheme", "dark");
-    wrapper.classList.add("dark");
-    window.localStorage.setItem("isDark", "true");
-    window.localStorage.removeItem("isLight");
-  } else {
-    if ( isDark || default_theme === "only_dark") {
-      document.body.setAttribute("data-scheme", "dark");
-      wrapper.classList.add("dark");
-      window.localStorage.setItem("isDark", "true");
-      window.localStorage.removeItem("isLight");
-    } else {
-      if (window.localStorage.getItem("isLight")) {
-        wrapper.classList.remove("dark");
-        window.localStorage.removeItem("isDark");
-        window.localStorage.setItem("isLight", "true");
-      }
-    }
-    if ( isDark === null && isLight === null && default_theme === "dark") {
-      wrapper.classList.add("dark");
-      window.localStorage.setItem("isDark", "true");
-    }
-    if (default_theme === "only_light") {
-      document.body.setAttribute("data-scheme", "default");
-      wrapper.classList.remove("dark");
-      window.localStorage.removeItem("isDark");
-      window.localStorage.removeItem("isLight");
-    }
-  }
+	const isDark = localStorage.getItem('isDark')
+	const isLight = localStorage.getItem('isLight')
+	const isSystemDark = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+	if (!isDark && !isLight && (default_theme !== 'only_dark') && (default_theme !== 'only_light') && isSystemDark) {
+		document.body.setAttribute("data-scheme", "dark");
+		wrapper.classList.add("dark");
+		window.localStorage.setItem("isDark", "true");
+		window.localStorage.removeItem("isLight");
+	} else {
+		if ( isDark || default_theme === "only_dark") {
+			document.body.setAttribute("data-scheme", "dark");
+			wrapper.classList.add("dark");
+			window.localStorage.setItem("isDark", "true");
+			window.localStorage.removeItem("isLight");
+		} else {
+			if (window.localStorage.getItem("isLight")) {
+				wrapper.classList.remove("dark");
+				window.localStorage.removeItem("isDark");
+				window.localStorage.setItem("isLight", "true");
+			}
+		}
+		if ( isDark === null && isLight === null && default_theme === "dark") {
+			wrapper.classList.add("dark");
+			window.localStorage.setItem("isDark", "true");
+		}
+		if (default_theme === "only_light") {
+			document.body.setAttribute("data-scheme", "default");
+			wrapper.classList.remove("dark");
+			window.localStorage.removeItem("isDark");
+			window.localStorage.removeItem("isLight");
+		}
+	}
 
 	let lang = getCookie("mylang");
 	const defaultLanguage = "<?php echo get_option('default_language', 'en') ?>";
@@ -258,11 +258,11 @@ function mcwallet_inline_build_script() {
 	if (localStorage.length === 0) {
 		information.innerText = "<?php echo esc_html__( get_option( 'string_splash_first_loading', 'Please wait while the application is loading,\n it may take one minute...' ) , 'multi-currency-wallet' ) ?>";
 	}
-  <?php
-  $script = ob_get_clean();
-  ob_start();
-  ?></script><?php
-  ob_clean();
+	<?php
+	$script = ob_get_clean();
+	ob_start();
+	?></script><?php
+	ob_clean();
 
 	return $script;
 }
@@ -380,7 +380,7 @@ function mcwallet_inline_script() {
 		'widgetName'                   => get_bloginfo(),
 		'STATISTICS_ENABLED'           => get_option( 'mcwallet_enable_stats', 'false' ),
 		'EXCHANGE_DISABLED'            => get_option( 'mcwallet_exchange_disabled', 'false' ),
-    'SO_disableInternalWallet'     => get_option( 'mcwallet_disable_internal', 'false' ),
+		'SO_disableInternalWallet'     => get_option( 'mcwallet_disable_internal', 'false' ),
 		'CUR_GHOST_DISABLED'           => (get_option( 'mcwallet_ghost_enabled') == 'true') ? 'false' : 'true',
 		'CUR_NEXT_DISABLED'            => (get_option( 'mcwallet_next_enabled') == 'true') ? 'false' : 'true',
 		'_ui_footerDisabled'           => get_option( 'mcwallet_disable_footer', 'false'),
@@ -394,11 +394,11 @@ function mcwallet_inline_script() {
 		'licenceInfo'                  => mcwallet_support_days_left(),
 	);
 
-  // Disabled chains
-  $supported_chains = mcwallet_supperted_chains();
-  foreach ($supported_chains as $chain=>$chain_title) {
-    $window_arr["CUR_" . strtoupper($chain) . "_DISABLED"] = get_option( "mcwallet_{$chain}_disabled", 'false' );
-  }
+	// Disabled chains
+	$supported_chains = mcwallet_supperted_chains();
+	foreach ($supported_chains as $chain=>$chain_title) {
+		$window_arr["CUR_" . strtoupper($chain) . "_DISABLED"] = get_option( "mcwallet_{$chain}_disabled", 'false' );
+	}
 
 	if ( get_current_user_id() ) {
 		$window_arr['setItemPlugin'] = "saveUserData";
@@ -474,12 +474,12 @@ function mcwallet_inline_script() {
 
 	$script .= 'window.widgetERC20Comisions = ' . wp_json_encode( $fees, JSON_PRETTY_PRINT ) . ';' . "\n\n";
 
-  // faqs
-  $own_before_faqs = get_option( 'mcwallet_own_before_faqs' , array() );
-  $own_after_faqs = get_option( 'mcwallet_own_after_faqs', array() );
+	// faqs
+	$own_before_faqs = get_option( 'mcwallet_own_before_faqs' , array() );
+	$own_after_faqs = get_option( 'mcwallet_own_after_faqs', array() );
 
-  $script .= 'window.SO_FaqBeforeTabs = ' . wp_json_encode( $own_before_faqs , JSON_PRETTY_PRINT ) . ';' . "\n\n";
-  $script .= 'window.SO_FaqAfterTabs = ' . wp_json_encode( $own_after_faqs , JSON_PRETTY_PRINT ) . ';' . "\n\n";
+	$script .= 'window.SO_FaqBeforeTabs = ' . wp_json_encode( $own_before_faqs , JSON_PRETTY_PRINT ) . ';' . "\n\n";
+	$script .= 'window.SO_FaqAfterTabs = ' . wp_json_encode( $own_after_faqs , JSON_PRETTY_PRINT ) . ';' . "\n\n";
 	$args = array(
 		'post_type'      => 'mcwallet_banner',
 		'posts_per_page' => -1,
@@ -518,6 +518,28 @@ function mcwallet_inline_script() {
 	wp_reset_postdata();
 
 	$script .= 'window.bannersOnMainPage = ' . $banners_js . ';' . "\n\n";
+
+	/** Add FAQ */
+	$faq_args = array(
+		'post_type'      => 'mcwallet_faq',
+		'posts_per_page' => -1,
+	);
+
+	$faq_query = new WP_Query( $faq_args );
+
+	$faq_js = '""';
+	if ( $faq_query->have_posts() ) :
+		$faq_arr = array();
+		while ( $faq_query->have_posts() ) : $faq_query->the_post();
+			$faq_arr[]['title'] = get_the_title();
+			$faq_arr[]['content'] = get_the_content();
+		endwhile;
+		$faq_js = wp_json_encode( $faq_arr );
+	endif;
+
+	wp_reset_postdata();
+
+	$script .= 'window.mcwalletFaq = ' . $faq_js . ';' . "\n\n";
 
 	return $script;
 }
