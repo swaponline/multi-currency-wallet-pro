@@ -16,6 +16,9 @@
             <input type="text" data-mcwallet-target="mcwallet-menu-link" value="<?php esc_attr_e($own_menu['link']);?>" />
           </td>
           <td>
+            <input type="checkbox" data-mcwallet-target="mcwallet-menu-newwindow" <?php echo (isset($own_menu['newwindow']) and $own_menu['newwindow']) ? 'checked' : ''?> />
+          </td>
+          <td>
             <a href="#" data-mcwallet-action="mcwallet_menu_move_up">[Up]</a>
             <a href="#" data-mcwallet-action="mcwallet_menu_move_down">[Down]</a>
             <a href="#" data-mcwallet-action="mcwallet_menu_remove">[Delete]</a>
@@ -26,7 +29,7 @@
         }
         ?>
         <tr class="<?php echo (count($rows)) ? '-mc-hidden' : ''?>" data-mcwallet-role="empty-row">
-          <td colspan="3" align="center"><?php esc_html_e('Empty') ?></td>
+          <td colspan="4" align="center"><?php esc_html_e('Empty') ?></td>
         </tr>
         <?php
       }
@@ -36,8 +39,12 @@
       .mcwallet-menu-list STRONG {
         font-weight: bold;
       }
-      .mcwallet-own-menu-row INPUT {
+      .mcwallet-own-menu-row INPUT[type="text"] {
         width: 100%;
+      }
+      .mcwallet-own-menu-row INPUT[type="checkbox"] {
+        display: block;
+        margin: 0 auto;
       }
       .mcwallet-menu-list .-mc-hidden {
         display: none;
@@ -48,6 +55,7 @@
         <tr>
           <td width="25%"><strong><?php esc_html_e('Title', 'multi-currency-wallet'); ?></strong></td>
           <td><strong><?php esc_html_e('Link', 'multi-currency-wallet'); ?></strong></td>
+          <td width="200px"><strong><?php esc_html_e('New window?', 'multi-currency-wallet'); ?></strong></td>
           <td width="250px"><strong><?php esc_html_e('Actions', 'multi-currency-wallet'); ?></strong></td>
         </tr>
       </thead>
@@ -56,7 +64,7 @@
       </tbody>
       <tbody>
         <tr>
-          <td colspan="3" align="center" style="background: #e9e9e9">
+          <td colspan="4" align="center" style="background: #e9e9e9">
             <strong>
               <?php esc_html_e('Default menu items (&quot;Wallet&quot;, &quot;Transactions&quot;, &quot;Exchange&quot;)'); ?>
             </strong>
@@ -68,7 +76,7 @@
       </tbody>
       <thead>
         <tr>
-          <td colspan="3">
+          <td colspan="4">
             <h3><?php esc_html_e( 'Add new menu item', 'multi-currency-wallet' );?></h3>
           </td>
         </tr>
@@ -82,6 +90,9 @@
             <input type="text" data-mcwallet-role="mcwallet-addmenu-link" value="" />
           </td>
           <td>
+            <input type="checkbox" data-mcwallet-role="mcwallet-addmenu-newwindow" />
+          </td>
+          <td>
             <a href="#" data-mcwallet-action="mcwallet_menu_add">[Add menu]</a>
           </td>
         </tr>
@@ -93,6 +104,9 @@
           </td>
           <td>
             <input type="text" data-mcwallet-target="mcwallet-menu-link" value="" />
+          </td>
+          <td>
+            <input type="checkbox" data-mcwallet-target="mcwallet-menu-newwindow" />
           </td>
           <td>
             <a href="#" data-mcwallet-action="mcwallet_menu_move_up">[Up]</a>
@@ -132,17 +146,21 @@
           $beforemenusRows.each((i, rowholder) => {
             const title = $($(rowholder).find('INPUT[data-mcwallet-target="mcwallet-menu-title"]')[0]).val()
             const link = $($(rowholder).find('INPUT[data-mcwallet-target="mcwallet-menu-link"]')[0]).val()
+            const newwindow = $(rowholder).find('INPUT[data-mcwallet-target="mcwallet-menu-newwindow"]')[0].checked
             ajaxData.menusBefore.push({
               title,
-              link
+              link,
+              newwindow
             })
           })
           $aftermenusRows.each((i, rowholder) => {
             const title = $($(rowholder).find('INPUT[data-mcwallet-target="mcwallet-menu-title"]')[0]).val()
             const link = $($(rowholder).find('INPUT[data-mcwallet-target="mcwallet-menu-link"]')[0]).val()
+            const newwindow = $(rowholder).find('INPUT[data-mcwallet-target="mcwallet-menu-newwindow"]')[0].checked
             ajaxData.menusAfter.push({
               title,
-              link
+              link,
+              newwindow
             })
           })
           const thisBtn = $(this)
@@ -161,12 +179,14 @@
           e.preventDefault()
           const title = $('INPUT[data-mcwallet-role="mcwallet-addmenu-title"]').val()
           const link = $('INPUT[data-mcwallet-role="mcwallet-addmenu-link"]').val()
+          const newwindow = $('INPUT[data-mcwallet-role="mcwallet-addmenu-newwindow"]')[0].checked
           const $newRow = $('TBODY[data-mcwallet-role="menu_template"]>TR').clone()
           $('INPUT[data-mcwallet-role="mcwallet-addmenu-title"]').val('')
           $('INPUT[data-mcwallet-role="mcwallet-addmenu-link"]').val('')
           $newRow.css({ opacity: 0 })
           $($newRow.find('INPUT[data-mcwallet-target="mcwallet-menu-title"]')[0]).val(title)
           $($newRow.find('INPUT[data-mcwallet-target="mcwallet-menu-link"]')[0]).val(link)
+          $newRow.find('INPUT[data-mcwallet-target="mcwallet-menu-newwindow"]')[0].checked = newwindow
           $afterHolder.append($newRow)
           $afterHolder.find('TR[data-mcwallet-role="empty-row"]').addClass('-mc-hidden')
           $newRow.animate( { opacity: 1 }, 500)

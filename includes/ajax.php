@@ -478,7 +478,8 @@ function mcwallet_update_menus() {
       if (is_array($menuData) and isset($menuData['title']) and isset($menuData['link']) and ($menuData['title'] !== '') and ($menuData['link'] !== '')) {
         $own_before_menus[] = array(
           'title' => sanitize_text_field($menuData['title']),
-          'link' => sanitize_text_field($menuData['link'])
+          'link' => sanitize_text_field($menuData['link']),
+          'newwindow' => (isset($menuData['newwindow']) and ($menuData['newwindow'] === 'true')) ? true : false
         );
       }
     }
@@ -489,7 +490,8 @@ function mcwallet_update_menus() {
       if (is_array($menuData) and isset($menuData['title']) and isset($menuData['link']) and ($menuData['title'] !== '') and ($menuData['link'] !== '')) {
         $own_after_menus[] = array(
           'title' => sanitize_text_field($menuData['title']),
-          'link' => sanitize_text_field($menuData['link'])
+          'link' => sanitize_text_field($menuData['link']),
+          'newwindow' => (isset($menuData['newwindow']) and ($menuData['newwindow'] === 'true')) ? true : false
         );
       }
     }
