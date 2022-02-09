@@ -23,6 +23,8 @@ define( 'MCWALLET_URL', plugin_dir_url( __FILE__ ) );
 define( 'MCWALLET_VER', '1.1.1418' );
 define( 'MCWALLET_BUILD_VER', '1a9eb0' );
 
+define( 'MCWALLET_LANG_MARKER', 'multi-currency-wallet');
+
 /**
  * Run function if plugin active
  */
