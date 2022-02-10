@@ -212,7 +212,7 @@
 
 		var rememberUserWallet = thisParent.find( '[name="remeber_userwallet"]' );
 
-		var footerDisabled = thisParent.find( '[name="disable_footer"]' );
+		var hideServiceLinks = thisParent.find( '[name="hide_service_links"]' );
 		var selected_exchange_mode = thisParent.find( '[name="selected_exchange_mode"]' );
 		var selected_quickswap_mode = thisParent.find( '[name="selected_quickswap_mode"]' );
 		var default_language = thisParent.find('[name="default_language"]');
@@ -249,7 +249,7 @@
 
 		rememberUserWallet = rememberUserWallet.is(':checked') ? 'true' : 'false';
 
-		footerDisabled = footerDisabled.is(':checked') ? 'true' : 'false';
+		hideServiceLinks = hideServiceLinks.is(':checked') ? 'true' : 'false';
 
 		if ( pageHome.is(':checked') ) {
 			ishome = 'true';
@@ -308,7 +308,7 @@
 
 			rememberUserWallet: rememberUserWallet,
 
-			footerDisabled: footerDisabled,
+			hideServiceLinks: hideServiceLinks,
 		};
     
     // Disabled chains

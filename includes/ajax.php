@@ -598,10 +598,10 @@ function mcwallet_update_options() {
 		update_option( 'default_language', $default_language );
 		update_option( 'mcwallet_strings', $replacements );
 
-		if ( $_POST['footerDisabled'] == 'true' ) {
-			update_option( 'mcwallet_disable_footer', sanitize_text_field( $_POST['footerDisabled'] ) );
+		if ( $_POST['hideServiceLinks'] == 'true' ) {
+			update_option( 'mcwallet_hide_service_links', sanitize_text_field( $_POST['hideServiceLinks'] ) );
 		} else {
-			delete_option( 'mcwallet_disable_footer' );
+			delete_option( 'mcwallet_hide_service_links' );
 		}
 		if ( $_POST['rememberUserWallet'] == 'true' ) {
 			update_option( 'mcwallet_remember_userwallet', sanitize_text_field( $_POST['rememberUserWallet'] ) );
