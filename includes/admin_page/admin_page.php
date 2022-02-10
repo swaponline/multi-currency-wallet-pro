@@ -577,9 +577,9 @@ function mcwallet_page() {
 							<tr>
 								<th scope="row"></th>
 								<td>
-									<label for="mcwallet_disable_footer">
-										<input name="disable_footer" type="checkbox" id="mcwallet_disable_footer" <?php checked( 'true', get_option( 'mcwallet_disable_footer' ) ); ?>>
-										<?php esc_html_e( "Hide footer", 'multi-currency-wallet' );?>
+									<label for="mcwallet_hide_service_links">
+										<input name="hide_service_links" type="checkbox" id="mcwallet_hide_service_linksr" <?php checked( 'true', get_option( 'mcwallet_hide_service_links' ) ); ?>>
+										<?php esc_html_e( "Hide Service Links (In footer)", 'multi-currency-wallet' );?>
 									</label>
 								</td>
 							</tr>
