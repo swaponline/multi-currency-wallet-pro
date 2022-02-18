@@ -11,9 +11,14 @@
 require MCWALLET_PATH . 'includes/setup.php';
 
 /**
- * Wallet Functions
+ * Functions
  */
 require MCWALLET_PATH . 'includes/functions.php';
+
+/**
+ * Admin Functions
+ */
+require MCWALLET_PATH . 'includes/admin-functions.php';
 
 /**
  * Customizer
@@ -39,9 +44,9 @@ if ( file_exists( $mcwallet_pro_path ) ) {
 }
 
 /**
- * Multi Currency Wallet Admin Page
+ * Admin Page
  */
-require MCWALLET_PATH . 'includes/admin_page/admin_page.php';
+require MCWALLET_PATH . 'includes/admin-page/admin-page.php';
 
 /**
  * Ajax
@@ -89,10 +94,3 @@ require MCWALLET_PATH . 'includes/tinymce.php';
  * Banners
  */
 require MCWALLET_PATH . 'includes/banners.php';
-
-/**
- * Updates
- */
-if ( mcwallet_is_active_license() ) {
-	require MCWALLET_PATH . 'includes/info.php';
-}
