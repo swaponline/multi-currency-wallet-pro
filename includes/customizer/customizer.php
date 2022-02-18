@@ -17,36 +17,36 @@ function mcwallet_customize_register( $wp_customize ) {
 	$wp_customize->add_section( 'mcwallet_scheme', array(
 		'title'       => esc_html__( 'Site Color Scheme', 'multi-currency-wallet' ),
 		'description' => '',
-		'panel'       => 'mcwallet_design'
+		'panel'       => 'mcwallet_design',
 	) );
 
 	$wp_customize->add_section( 'mcwallet_scheme_light', array(
 		'title'       => esc_html__( 'Light Scheme', 'multi-currency-wallet' ),
 		'description' => '',
-		'panel'       => 'mcwallet_design'
+		'panel'       => 'mcwallet_design',
 	) );
 
 	$wp_customize->add_section( 'mcwallet_scheme_dark', array(
 		'title'       => esc_html__( 'Dark Scheme', 'multi-currency-wallet' ),
 		'description' => '',
-		'panel'       => 'mcwallet_design'
+		'panel'       => 'mcwallet_design',
 	) );
 
-  $wp_customize->add_section( 'mcwallet_scheme_all', array(
+	$wp_customize->add_section( 'mcwallet_scheme_all', array(
 		'title'       => esc_html__( 'Global settings', 'multi-currency-wallet' ),
 		'description' => '',
-		'panel'       => 'mcwallet_design'
+		'panel'       => 'mcwallet_design',
 	) );
 
 	$wp_customize->add_setting( 'color_scheme', array(
-		'default' => 'light',
-		'transport'  => 'postMessage',
+		'default'   => 'light',
+		'transport' => 'postMessage',
 	) );
 
 	$wp_customize->add_control( 'color_scheme', array(
-		'type' => 'radio',
+		'type'    => 'radio',
 		'section' => 'mcwallet_scheme',
-		'label' => __( 'Select Color Scheme' ),
+		'label'   => esc_html__( 'Select Color Scheme', 'multi-currency-wallet' ),
 		'choices' => array(
 			'light'      => esc_html__( 'Light', 'multi-currency-wallet' ),
 			'dark'       => esc_html__( 'Dark', 'multi-currency-wallet' ),
@@ -55,25 +55,28 @@ function mcwallet_customize_register( $wp_customize ) {
 		),
 	) );
 
-  $wp_customize->add_setting( 'button_border_radius', array(
-		'default' => '0',
-		'transport'  => 'postMessage',
-	) );
-  $wp_customize->add_control( 'button_border_radius', array(
-		'type' => 'number',
-		'section' => 'mcwallet_scheme_all',
-		'label' => __( 'Button border radius (rem)' )
+	$wp_customize->add_setting( 'button_border_radius', array(
+		'default'   => '0',
+		'transport' => 'postMessage',
 	) );
 
-  $wp_customize->add_setting( 'main_component_border_radius', array(
-		'default' => '0',
-		'transport'  => 'postMessage',
-	) );
-  $wp_customize->add_control( 'main_component_border_radius', array(
-		'type' => 'number',
+	$wp_customize->add_control( 'button_border_radius', array(
+		'type'    => 'number',
 		'section' => 'mcwallet_scheme_all',
-		'label' => __( 'Main component border radius (rem)' )
+		'label'   => esc_html__( 'Button border radius (rem)', 'multi-currency-wallet' ),
 	) );
+
+	$wp_customize->add_setting( 'main_component_border_radius', array(
+		'default'   => '0',
+		'transport' => 'postMessage',
+	) );
+
+	$wp_customize->add_control( 'main_component_border_radius', array(
+		'type'    => 'number',
+		'section' => 'mcwallet_scheme_all',
+		'label'   => esc_html__( 'Main component border radius (rem)', 'multi-currency-wallet' ),
+	) );
+
 	foreach( mcwallet_default_colors() as $name => $scheme ) {
 
 		$wp_customize->add_setting( 'color_' . $name,
@@ -96,9 +99,9 @@ function mcwallet_customize_register( $wp_customize ) {
 
 		$wp_customize->add_setting( 'color_' . $name . '_dark',
 			array(
-				'default'    => $scheme['dark'],
-				'type'       => 'theme_mod',
-				'transport'  => 'postMessage',
+				'default'   => $scheme['dark'],
+				'type'      => 'theme_mod',
+				'transport' => 'postMessage',
 			)
 		);
 
@@ -106,9 +109,9 @@ function mcwallet_customize_register( $wp_customize ) {
 			$wp_customize,
 			'color_' . $name . '_dark',
 			array(
-				'label'      => $scheme['label'],
-				'settings'   => 'color_' . $name . '_dark',
-				'section'    => 'mcwallet_scheme_dark',
+				'label'    => $scheme['label'],
+				'settings' => 'color_' . $name . '_dark',
+				'section'  => 'mcwallet_scheme_dark',
 			 ) 
 		) );
 

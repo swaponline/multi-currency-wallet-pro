@@ -16,7 +16,7 @@ require MCWALLET_PATH . 'includes/setup.php';
 require MCWALLET_PATH . 'includes/functions.php';
 
 /**
- * Customier
+ * Customizer
  */
 require MCWALLET_PATH . 'includes/customizer/customizer.php';
 
