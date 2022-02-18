@@ -1,7 +1,14 @@
 <?php
 /**
- * Multi Currency Wallet Init
+ * Init
+ * 
+ * @package Multi Currency Wallet
  */
+
+/**
+ * Setup
+ */
+require MCWALLET_PATH . 'includes/setup.php';
 
 /**
  * Wallet Functions
