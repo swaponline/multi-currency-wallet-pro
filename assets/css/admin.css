@@ -52,6 +52,9 @@
 .mcwallet-nav-tabs {
 	margin-left: -5px;
 }
+.mcwallet-nav-tabs .nav-tab:first-child {
+	margin-left: auto;
+}
 .mcwallet-nav-tabs .nav-tab-active,
 .mcwallet-nav-tabs .nav-tab-active:focus,
 .mcwallet-nav-tabs .nav-tab-active:focus:active,
@@ -66,11 +69,11 @@
 }
 
 .mcwallet-panel-tab {
-  background: #fff;
-  padding-left: 10px;
-  padding-right: 10px;
-  border: 1px solid #c3c4c7;
-  border-top: 0px;
+	background: #fff;
+	padding-left: 15px;
+	padding-right: 15px;
+	border: 1px solid #c3c4c7;
+	border-top: 0px;
 }
 
 .mcwallet-panel-tab:not(.panel-tab-active) {
@@ -215,6 +218,7 @@
 }
 .mcwallet-welcome-panel .welcome-panel-content {
 	margin-right: 13px;
+	justify-content: flex-start;
 }
 .wrap .mcwallet-welcome-panel h2.nav-tab-wrapper {
 	padding-top: 0;
@@ -222,7 +226,8 @@
 .mcwallet-welcome-panel h3 {
 	font-size: 1.3em;
 }
-.mcwallet-welcome-panel h3:first-child {
+.mcwallet-welcome-panel h3:first-child,
+.mcwallet-strings-header > h3 {
 	margin-top: 0;
 }
 .mcwallet-button-url.disabled {
@@ -231,6 +236,12 @@
 .wp-mcwallet-widget-form .mcwallet-open-modal {
 	padding: 8px 30px;
 	font-size: 16px;
+}
+.mcwallet-submit-group {
+	display: inline-block;
+}
+.form-table td:first-child > .mcwallet-submit-group {
+	margin-left: -10px;
 }
 
 /* Notice */
@@ -314,7 +325,7 @@
 }
 .mcwallet-strings-row .mcwallet-string-col {
 	flex: auto;
-  width: 50%;
+	width: 50%;
 }
 .mcwallet-strings-row .mcwallet-string-action a {
 	text-decoration: none;
@@ -332,14 +343,31 @@
 }
 .mcwallet-strings-info {
 	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.mcwallet-form-table th {
+	padding-left:  15px;
 }
 
-.mw-user-ul {
-	font-size: 18px;
+/**
+ * Faq and Menu list
+ */
+.mcwallet-faq-list th,
+.mcwallet-menu-list th,
+.mcwallet-faq-list strong,
+.mcwallet-menu-list strong {
+	font-weight: bold;
 }
-.mw-user-li-b {
-	font-size: 18px; padding-bottom: 12px
+.mcwallet-own-faq-row input,
+.mcwallet-own-faq-row textarea,
+.mcwallet-own-menu-row input[type="text"] {
+	width: 100%;
 }
-.mw-user-li {
-	 margin-top: 10px; padding-left: 22px
+.mcwallet-own-menu-row input[type="checkbox"] {
+	display: block;
+	margin: 0 auto;
+}
+.mcwallet-faq-list .-mc-hidden,
+.mcwallet-menu-list .-mc-hidden {
+	display: none;
 }

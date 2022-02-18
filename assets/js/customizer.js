@@ -42,12 +42,9 @@
 							// Get old style
 							var oldCssText = elem.sheet.cssRules[i].style.cssText;
 
-							console.log(oldCssText);
 							// Replace old to new style
 							var newCssText = oldCssText.replace( cssVariable + ': ' + old_value, cssVariable + ': ' + new_value );
-							console.log(newCssText);
-							console.log(cssVariable + ': ' + old_value);
-							console.log( cssVariable + ': ' + new_value);
+
 							// Add new style
 							elem.sheet.cssRules[i].style.cssText = newCssText;
 
@@ -59,44 +56,44 @@
 		}
 	});
 
-  // button border radius
-  wp.customize(
-    'button_border_radius',
-    function ( value ) {
-      value.bind(
-        function ( new_value, old_value ) {
-          cssVariable = '--button-border-radius';
-          var elem = document.getElementById( 'mcwallet-inline-styles' );
-          var oldCssText = elem.sheet.cssRules[2].style.cssText;
-          var newCssText = oldCssText.replace( cssVariable + ': ' + old_value + 'rem', cssVariable + ': ' + new_value + 'rem' );
-          elem.sheet.cssRules[2].style.cssText = newCssText;
-        }
-      );
-    }
-  );
-  // main container radius
-  wp.customize(
-    'main_component_border_radius',
-    function ( value ) {
-      value.bind(
-        function ( new_value, old_value ) {
-          cssVariable = '--main-component-border-radius';
-          var elem = document.getElementById( 'mcwallet-inline-styles' );
-          var oldCssText = elem.sheet.cssRules[2].style.cssText;
-          var newCssText = oldCssText.replace( cssVariable + ': ' + old_value + 'rem', cssVariable + ': ' + new_value + 'rem' );
-          elem.sheet.cssRules[2].style.cssText = newCssText;
-        }
-      );
-    }
-  );
+	// button border radius
+	wp.customize(
+		'button_border_radius',
+		function ( value ) {
+			value.bind(
+				function ( new_value, old_value ) {
+					cssVariable = '--button-border-radius';
+					var elem = document.getElementById( 'mcwallet-inline-styles' );
+					var oldCssText = elem.sheet.cssRules[2].style.cssText;
+					var newCssText = oldCssText.replace( cssVariable + ': ' + old_value + 'rem', cssVariable + ': ' + new_value + 'rem' );
+					elem.sheet.cssRules[2].style.cssText = newCssText;
+				}
+			);
+		}
+	);
+
+	// main container radius
+	wp.customize(
+		'main_component_border_radius',
+		function ( value ) {
+			value.bind(
+				function ( new_value, old_value ) {
+					cssVariable = '--main-component-border-radius';
+					var elem = document.getElementById( 'mcwallet-inline-styles' );
+					var oldCssText = elem.sheet.cssRules[2].style.cssText;
+					var newCssText = oldCssText.replace( cssVariable + ': ' + old_value + 'rem', cssVariable + ': ' + new_value + 'rem' );
+					elem.sheet.cssRules[2].style.cssText = newCssText;
+				}
+			);
+		}
+	);
+
 	// Scheme Switch
 	wp.customize(
 		'color_scheme',
 		function ( value ) {
 			value.bind(
 				function ( new_value, old_value ) {
-					console.log(new_value + ' ' + old_value);
-
 					if ( new_value == 'dark' ||  new_value == 'only_dark' ) {
 						$('body').attr('data-scheme','dark');
 					} else {

@@ -1,17 +1,27 @@
 <?php
 /**
- * Multi Currency Wallet Init
+ * Init
+ * 
+ * @package Multi Currency Wallet
  */
 
 /**
- * Wallet Functions
+ * Setup
+ */
+require MCWALLET_PATH . 'includes/setup.php';
+
+/**
+ * Functions
  */
 require MCWALLET_PATH . 'includes/functions.php';
 
-require MCWALLET_PATH . 'includes/supported_chains.php';
+/**
+ * Admin Functions
+ */
+require MCWALLET_PATH . 'includes/admin-functions.php';
 
 /**
- * Customier
+ * Customizer
  */
 require MCWALLET_PATH . 'includes/customizer/customizer.php';
 
@@ -26,14 +36,17 @@ require MCWALLET_PATH . 'includes/user-panel.php';
 require MCWALLET_PATH . 'includes/etherscan-api.php';
 
 /**
- * Envato API functions
+ * Load pro functions if exists
  */
-require MCWALLET_PATH . 'includes/envato-api.php';
+$mcwallet_pro_path = MCWALLET_PATH . 'pro/init-pro.php';
+if ( file_exists( $mcwallet_pro_path ) ) {
+	require MCWALLET_PATH . 'pro/init-pro.php';
+}
 
 /**
- * Multi Currency Wallet Admin Page
+ * Admin Page
  */
-require MCWALLET_PATH . 'includes/admin_page/admin_page.php';
+require MCWALLET_PATH . 'includes/admin-page/admin-page.php';
 
 /**
  * Ajax
@@ -81,10 +94,3 @@ require MCWALLET_PATH . 'includes/tinymce.php';
  * Banners
  */
 require MCWALLET_PATH . 'includes/banners.php';
-
-/**
- * Updates
- */
-if ( mcwallet_is_active_license() ) {
-	require MCWALLET_PATH . 'includes/info.php';
-}

@@ -1,6 +1,8 @@
 <?php
 /**
- * Multi Currency Wallet Functions
+ * Functions
+ * 
+ * @package Multi Currency Wallet
  */
 
 /**
@@ -393,6 +395,51 @@ function mcwallet_scheme_attr() {
 		$scheme = 'dark';
 	}
 	echo 'data-scheme="' . esc_attr( $scheme ) . '"';
+}
+
+/**
+ * Hex To String
+ *
+ * @link http://www.jonasjohn.de/snippets/php/hex-string.htm
+ */
+function mcwallet_hex_to_string( $hex ) { 
+	$string = '';
+	$arr = explode("\n", trim( chunk_split( $hex, 2 ) ) );
+	foreach( $arr as $h) {
+		$string .= chr( hexdec( $h ) ); 
+	}
+	$string = preg_replace('/[^A-Za-z0-9]/', '', $string);
+	return $string; 
+}
+
+/**
+ * Convert Hex to Number
+ *
+ * @link http://php.net/manual/ru/function.hexdec.php#97172
+ */
+function mcwallet_hex_to_number( $hex ) {
+	$hex = preg_replace( '/[^0-9A-Fa-f]/', '', $hex );
+	$dec = hexdec( $hex );
+	$max = pow(2, 4 * (strlen($hex) + (strlen($hex) % 2)));
+	$_dec = $max - $dec;
+	return $dec > $_dec ? -$_dec : $dec;
+}
+
+/**
+ * Supported Chains
+ * 
+ * List of supported networks, used to create "Disable network" options.
+ */
+function mcwallet_supperted_chains() {
+	$supperted_chains = array(
+		'btc'      => 'BTC',
+		'eth'      => 'ETH',
+		'bnb'      => 'BNB',
+		'matic'    => 'MATIC',
+		'arbitrum' => 'ARBITRUM',
+		'xdai'     => 'XDAI'
+	);
+	return apply_filters( 'mcwallet_supperted_chains', $supperted_chains );
 }
 
 /**

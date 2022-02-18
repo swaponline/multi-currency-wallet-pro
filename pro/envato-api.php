@@ -1,6 +1,8 @@
 <?php
 /**
- * Envato API Functions
+ * Init Pro
+ * 
+ * @package Envato API Functions
  */
 
 /**
@@ -176,4 +178,3 @@ function mcwallet_license_admin_notice() {
 	}
 }
 add_action( 'admin_notices', 'mcwallet_license_admin_notice' );
-

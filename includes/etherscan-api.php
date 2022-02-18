@@ -1,51 +1,55 @@
 <?php
 /**
  * Etherscan API Functions
+ * 
+ * @package Multi Currency Wallet
  */
 
 /* Service Url Mainnet */
 function mcwallet_service_url_mainnet(){
-  $service_url_mainnet = (get_option( 'mcwallet_use_testnet' ) === 'true') ? 'api-rinkeby.etherscan.io/api' : 'api.etherscan.io/api';
+	$service_url_mainnet = ( get_option( 'mcwallet_use_testnet' ) === 'true' ) ? 'api-rinkeby.etherscan.io/api' : 'api.etherscan.io/api';
 	return esc_url( $service_url_mainnet, 'https' );
 }
 
+/* Service Url Binance */
 function mcwallet_service_url_binance(){
-  $service_url_mainnet = (get_option( 'mcwallet_use_testnet' ) === 'true') ? 'api-testnet.bscscan.com/api' : 'api.bscscan.com/api';
+	$service_url_mainnet = ( get_option( 'mcwallet_use_testnet' ) === 'true' ) ? 'api-testnet.bscscan.com/api' : 'api.bscscan.com/api';
 	return esc_url( $service_url_mainnet, 'https' );
 }
 
+/* Service Url Pligon */
 function mcwallet_service_url_poligon(){
-  // У полигона нет тестового апи (точнее оно не коректно работает) используем маиннет
-  $service_url_mainnet = (get_option( 'mcwallet_use_testnet' ) === 'true') ? 'api.polygonscan.com/api' : 'api.polygonscan.com/api';
+	// The polygon does not have a test api (more precisely, it does not work correctly) use the mainnet.
+	$service_url_mainnet = ( get_option( 'mcwallet_use_testnet' ) === 'true' ) ? 'api.polygonscan.com/api' : 'api.polygonscan.com/api';
 	return esc_url( $service_url_mainnet, 'https' );
 }
 
 /* Service Api Token */
-function mcwallet_service_api_token($standart = 'erc20'){
+function mcwallet_service_api_token( $standart = 'erc20' ){
 	$service_api_token = 'X88AP9B52SENYPTR31W5SGRK5EGJZD2BJC';
-  if ($standart == 'bep20') $service_api_token = 'WI4QEJSV19U3TF2H1DPQ2HR6712HW4MYKJ';
-  if ($standart == 'erc20matic') $service_api_token = '8S2R45ZWG94HI7YK9RCXSK4VCASJ4XVA15';
+	if ( 'bep20' === $standart ) $service_api_token = 'WI4QEJSV19U3TF2H1DPQ2HR6712HW4MYKJ';
+	if ( 'erc20matic' === $standart ) $service_api_token = '8S2R45ZWG94HI7YK9RCXSK4VCASJ4XVA15';
 	return $service_api_token;
 }
 
 /* Get Signature */
 function mcwallet_get_signature( $signature = 'name' ){
 	$signature_code = '0x06fdde03';
-	if ( $signature == 'symbol' ) {
+	if ( 'symbol' === $signature ) {
 		$signature_code = '0x95d89b41';
-	} elseif ( $signature == 'decimals' ) {
+	} elseif ( 'decimals' === $signature ) {
 		$signature_code = '0x313ce567';
 	}
 	return $signature_code;
 }
 
 /* Get Args Url */
-function mcwallet_get_args_url($standart = 'erc20'){
+function mcwallet_get_args_url( $standart = 'erc20' ){
 	$args = array(
 		'module' => 'proxy',
 		'action' => 'eth_call',
 		'data'   => mcwallet_get_signature(),
-		'apikey' => mcwallet_service_api_token($standart),
+		'apikey' => mcwallet_service_api_token( $standart ),
 	);
 	return $args;
 }
@@ -61,10 +65,16 @@ function mcwallet_get_remote_url( $result = 'name', $address = '', $standart = '
 		$args['data'] = $result;
 	}
 
-  $url = '';
-	if ($standart === 'erc20') { $url = mcwallet_service_url_mainnet(); }
-  if ($standart === 'bep20') { $url = mcwallet_service_url_binance(); }
-  if ($standart === 'erc20matic') { $url = mcwallet_service_url_poligon(); }
+	$url = '';
+	if ( 'erc20' === $standart ) {
+		$url = mcwallet_service_url_mainnet();
+	}
+	if ( 'bep20' === $standart ) {
+		$url = mcwallet_service_url_binance();
+	}
+	if ( 'erc20matic' === $standart ) {
+		$url = mcwallet_service_url_poligon();
+	}
 
 	$swap_remote_url = add_query_arg(
 		$args,
@@ -108,32 +118,4 @@ function mcwallet_get_remote_result( $result = 'name', $address, $standart = 'er
 		}
 	}
 	return false;
-}
-
-/**
- * Hex To String
- *
- * @link http://www.jonasjohn.de/snippets/php/hex-string.htm
- */
-function mcwallet_hex_to_string( $hex ) { 
-	$string = '';
-	$arr = explode("\n", trim( chunk_split( $hex, 2 ) ) );
-	foreach( $arr as $h) {
-		$string .= chr( hexdec( $h ) ); 
-	}
-	$string = preg_replace('/[^A-Za-z0-9]/', '', $string);
-	return $string; 
-}
-
-/**
- * Convert Hex to Number
- *
- * @link http://php.net/manual/ru/function.hexdec.php#97172
- */
-function mcwallet_hex_to_number( $hex ) {
-	$hex = preg_replace( '/[^0-9A-Fa-f]/', '', $hex );
-	$dec = hexdec( $hex );
-	$max = pow(2, 4 * (strlen($hex) + (strlen($hex) % 2)));
-	$_dec = $max - $dec;
-	return $dec > $_dec ? -$_dec : $dec;
 }
