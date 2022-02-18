@@ -14,21 +14,16 @@
  * License URI: http://www.gnu.org/licenses/gpl-3.1295.html
  */
 
-/* If this file is called directly, abort. */
-defined( 'ABSPATH' ) || die( 'Soarele luceste!' );
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
-/* Define Plugin Constants */
+/* Define Constants */
+define( 'MCWALLET', true );
 define( 'MCWALLET_PATH', plugin_dir_path( __FILE__ ) );
 define( 'MCWALLET_URL', plugin_dir_url( __FILE__ ) );
 define( 'MCWALLET_VER', '1.1.1420' );
 define( 'MCWALLET_BUILD_VER', 'fc7d57' );
-
-/**
- * Run function if plugin active
- */
-function mcwallet_plugin_active() {
-	return true;
-};
 
 /**
  * Plugin Init
