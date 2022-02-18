@@ -1,6 +1,8 @@
 <?php
 /**
- * Multi Currency Wallet Functions
+ * Functions
+ * 
+ * @package Multi Currency Wallet
  */
 
 /**

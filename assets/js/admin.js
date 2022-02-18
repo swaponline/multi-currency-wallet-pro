@@ -554,4 +554,330 @@
 		}
 	});
 
+	/**
+	 * Faq list
+	 */
+	const $beforeFaqHolder = $('#mcwallet-faq-before')
+	const $afterFaqHolder  = $('#mcwallet-faq-after')
+
+	$('#mcwallet-update-faq').on('click', function (e) {
+		e.preventDefault()
+
+		var $beforeFaqsRows = $beforeFaqHolder.find('tr.mcwallet-own-faq-row')
+		var $afterFaqsRows = $afterFaqHolder.find('tr.mcwallet-own-faq-row')
+
+		var ajaxData = {
+			action: 'mcwallet_update_faqs',
+			nonce: mcwallet.nonce,
+			faqsBefore: [],
+			faqsAfter: []
+		}
+
+		$beforeFaqsRows.each((i, rowholder) => {
+			var title = $($(rowholder).find('input[data-mcwallet-target="mcwallet-faq-title"]')[0]).val()
+			var content = $($(rowholder).find('textarea[data-mcwallet-target="mcwallet-faq-content"]')[0]).val()
+			ajaxData.faqsBefore.push({
+				title,
+				content
+			})
+		});
+
+		$afterFaqsRows.each((i, rowholder) => {
+			var title = $($(rowholder).find('input[data-mcwallet-target="mcwallet-faq-title"]')[0]).val()
+			var content = $($(rowholder).find('textarea[data-mcwallet-target="mcwallet-faq-content"]')[0]).val()
+			ajaxData.faqsAfter.push({
+				title,
+				content
+			})
+		});
+
+		var thisBtn = $(this)
+		mcwallet.showSpinner(thisBtn)
+		$.post( mcwallet.ajaxurl, ajaxData, function(response) {
+			if( response.status == 'success' ) {
+				mcwallet.showNotice( mcwallet.notices.updated, 'success')
+			}
+			if ( response.status == 'false' ) {
+				mcwallet.showNotice( mcwallet.notices.wrong, 'error')
+			}
+			mcwallet.showSpinner(thisBtn)
+		});
+	});
+
+	$('a[data-mcwallet-action="mcwallet_faq_add"]').on('click', function (e) {
+		e.preventDefault();
+		var title = $('input[data-mcwallet-role="mcwallet-addfaq-title"]').val();
+		var content = $('textarea[data-mcwallet-role="mcwallet-addfaq-content"]').val();
+		var $newRow = $('tbody[data-mcwallet-role="faq_template"] > tr').clone();
+		$('input[data-mcwallet-role="mcwallet-addfaq-title"]').val('');
+		$('textarea[data-mcwallet-role="mcwallet-addfaq-content"]').val('');
+		$newRow.css({ opacity: 0 });
+		$($newRow.find('input[data-mcwallet-target="mcwallet-faq-title"]')[0]).val(title);
+		$($newRow.find('textarea[data-mcwallet-target="mcwallet-faq-content"]')[0]).val(content);
+		$afterFaqHolder.append($newRow);
+		$afterFaqHolder.find('tr[data-mcwallet-role="empty-row"]').addClass('-mc-hidden');
+		$newRow.animate( { opacity: 1 }, 500);
+	});
+
+	$('table.mcwallet-faq-list').on('click', 'a[data-mcwallet-action="mcwallet_faq_move_up"]', function (e) {
+		e.preventDefault();
+		var faqHolder = $($(e.target).parents('tr')[0])
+		var topHolder = $($(e.target).parents('tbody')[0])
+		let faqPrev = $(faqHolder.prev('tr')[0])
+		if (faqPrev.length && faqPrev.data('mcwallet-role') === 'empty-row') {
+			faqPrev = $(faqPrev.prev('tr')[0])
+		}
+		if (faqPrev.length) {
+			faqHolder
+				.animate({
+					opacity: 0
+				},
+				500,
+				() => {
+					faqHolder
+						.insertBefore(faqPrev)
+						.animate({ opacity: 1, duration: 500 })
+				})
+		} else {
+			if (topHolder.data('mcwallet-role') === 'faq-after-holder') {
+				faqHolder
+					.animate({
+						opacity: 0
+					},
+					500,
+					() => {
+						$beforeFaqHolder.find('tr[data-mcwallet-role="empty-row"]').addClass('-mc-hidden')
+						$beforeFaqHolder.append(faqHolder)
+						faqHolder.animate({ opacity: 1, duration: 500 })
+						const afterFaqs = $afterFaqHolder.find('tr.mcwallet-own-faq-row')
+						if (!afterFaqs.length) {
+							$afterFaqHolder.find('tr[data-mcwallet-role="empty-row"]').removeClass('-mc-hidden')
+						}
+					})
+			}
+		}
+	});
+
+	$('table.mcwallet-faq-list').on('click', 'a[data-mcwallet-action="mcwallet_faq_move_down"]', function (e) {
+		e.preventDefault();
+		var faqHolder = $($(e.target).parents('tr')[0])
+		var topHolder = $($(e.target).parents('tbody')[0])
+		let faqNext = $(faqHolder.next('tr')[0])
+		if (faqNext.length && faqNext.data('mcwallet-role') === 'empty-row') {
+			faqNext = $(faqNext.next('tr')[0])
+		}
+		if (faqNext.length) {
+			faqHolder
+				.animate({
+					opacity: 0
+				},
+				500,
+				() => {
+					faqHolder
+						.insertAfter(faqNext)
+						.animate({ opacity: 1, duration: 500 })
+				})
+		} else {
+			if (topHolder.data('mcwallet-role') === 'faq-before-holder') {
+				faqHolder
+					.animate({
+						opacity: 0
+					},
+					500,
+					() => {
+						$afterFaqHolder.find('tr[data-mcwallet-role="empty-row"]').addClass('-mc-hidden')
+						$afterFaqHolder.prepend(faqHolder)
+						faqHolder.animate({ opacity: 1, duration: 500 })
+						const beforeFaqs = $beforeFaqHolder.find('tr.mcwallet-own-faq-row')
+						if (!beforeFaqs.length) {
+							$beforeFaqHolder.find('tr[data-mcwallet-role="empty-row"]').removeClass('-mc-hidden')
+						}
+					})
+			}
+		}
+	});
+
+	$('table.mcwallet-faq-list').on('click', 'a[data-mcwallet-action="mcwallet_faq_remove"]', function (e) {
+		e.preventDefault();
+		if (confirm(mcwallet.notices.confirmDelete)) {
+			var faqHolder = $($(e.target).parents('tr')[0])
+			var topHolder = $($(e.target).parents('tbody')[0])
+			faqHolder.animate({
+				opacity: 0
+			},
+			500,
+			() => {
+				faqHolder.remove()
+				if(!topHolder.find('tr.mcwallet-own-faq-row').length) {
+					topHolder.find('tr[data-mcwallet-role="empty-row"]').removeClass('-mc-hidden')
+				}
+			})
+		}
+	});
+
+	/**
+	 * Menu List
+	 */
+	var $beforeMenuHolder = $('#mcwallet-menu-before');
+	var $afterMenuHolder = $('#mcwallet-menu-after');
+
+	$('#mcwallet-update-menu').on('click', function (e) {
+		e.preventDefault();
+
+		var $beforemenusRows = $beforeMenuHolder.find('tr.mcwallet-own-menu-row');
+		var $aftermenusRows = $afterMenuHolder.find('tr.mcwallet-own-menu-row');
+		var ajaxData = {
+			action: 'mcwallet_update_menus',
+			nonce: mcwallet.nonce,
+			menusBefore: [],
+			menusAfter: []
+		}
+		$beforemenusRows.each((i, rowholder) => {
+			var title = $($(rowholder).find('input[data-mcwallet-target="mcwallet-menu-title"]')[0]).val()
+			var link = $($(rowholder).find('input[data-mcwallet-target="mcwallet-menu-link"]')[0]).val()
+			var newwindow = $(rowholder).find('input[data-mcwallet-target="mcwallet-menu-newwindow"]')[0].checked
+			ajaxData.menusBefore.push({
+				title,
+				link,
+				newwindow
+			});
+		});
+
+		$aftermenusRows.each((i, rowholder) => {
+			var title = $($(rowholder).find('input[data-mcwallet-target="mcwallet-menu-title"]')[0]).val()
+			var link = $($(rowholder).find('input[data-mcwallet-target="mcwallet-menu-link"]')[0]).val()
+			var newwindow = $(rowholder).find('input[data-mcwallet-target="mcwallet-menu-newwindow"]')[0].checked
+			ajaxData.menusAfter.push({
+				title,
+				link,
+				newwindow
+			});
+		});
+
+		var thisBtn = $(this);
+		mcwallet.showSpinner(thisBtn);
+		$.post( mcwallet.ajaxurl, ajaxData, function(response) {
+			if( response.status == 'success' ) {
+				mcwallet.showNotice( mcwallet.notices.updated, 'success')
+			}
+			if ( response.status == 'false' ) {
+				mcwallet.showNotice( mcwallet.notices.wrong, 'error')
+			}
+			mcwallet.showSpinner(thisBtn);
+		});
+	});
+
+	$('a[data-mcwallet-action="mcwallet_menu_add"]').on('click', function (e) {
+		e.preventDefault();
+		var title = $('input[data-mcwallet-role="mcwallet-addmenu-title"]').val();
+		var link = $('input[data-mcwallet-role="mcwallet-addmenu-link"]').val();
+		var newwindow = $('input[data-mcwallet-role="mcwallet-addmenu-newwindow"]')[0].checked;
+		var $newRow = $('tbody[data-mcwallet-role="menu_template"] > tr').clone();
+		$('input[data-mcwallet-role="mcwallet-addmenu-title"]').val('');
+		$('input[data-mcwallet-role="mcwallet-addmenu-link"]').val('');
+		$newRow.css({ opacity: 0 });
+		$($newRow.find('input[data-mcwallet-target="mcwallet-menu-title"]')[0]).val(title);
+		$($newRow.find('input[data-mcwallet-target="mcwallet-menu-link"]')[0]).val(link);
+		$newRow.find('input[data-mcwallet-target="mcwallet-menu-newwindow"]')[0].checked = newwindow;
+		$afterMenuHolder.append($newRow);
+		$afterMenuHolder.find('tr[data-mcwallet-role="empty-row"]').addClass('-mc-hidden');
+		$newRow.animate( { opacity: 1 }, 500);
+	});
+
+	$('table.mcwallet-menu-list').on('click', 'a[data-mcwallet-action="mcwallet_menu_move_up"]', function (e) {
+		e.preventDefault();
+		var menuHolder = $($(e.target).parents('tr')[0]);
+		var topHolder = $($(e.target).parents('tbody')[0]);
+		let menuPrev = $(menuHolder.prev('tr')[0]);
+		if (menuPrev.length && menuPrev.data('mcwallet-role') === 'empty-row') {
+			menuPrev = $(menuPrev.prev('tr')[0]);
+		}
+		if (menuPrev.length) {
+			menuHolder
+				.animate({
+					opacity: 0
+				},
+				500,
+				() => {
+					menuHolder
+						.insertBefore(menuPrev)
+						.animate({ opacity: 1, duration: 500 })
+				})
+		} else {
+			if (topHolder.data('mcwallet-role') === 'menu-after-holder') {
+				menuHolder
+					.animate({
+						opacity: 0
+					},
+					500,
+					() => {
+						$beforeMenuHolder.find('tr[data-mcwallet-role="empty-row"]').addClass('-mc-hidden');
+						$beforeMenuHolder.append(menuHolder);
+						menuHolder.animate({ opacity: 1, duration: 500 });
+						const aftermenus = $afterMenuHolder.find('tr.mcwallet-own-menu-row');
+						if (!aftermenus.length) {
+							$afterMenuHolder.find('tr[data-mcwallet-role="empty-row"]').removeClass('-mc-hidden');
+						}
+					})
+			}
+		}
+	});
+
+	$('table.mcwallet-menu-list').on('click', 'a[data-mcwallet-action="mcwallet_menu_move_down"]', function (e) {
+		e.preventDefault();
+		var menuHolder = $($(e.target).parents('tr')[0]);
+		var topHolder = $($(e.target).parents('tbody')[0]);
+		let menuNext = $(menuHolder.next('tr')[0])
+		if (menuNext.length && menuNext.data('mcwallet-role') === 'empty-row') {
+			menuNext = $(menuNext.next('tr')[0])
+		}
+		if (menuNext.length) {
+			menuHolder
+				.animate({
+					opacity: 0
+				},
+				500,
+				() => {
+					menuHolder
+						.insertAfter(menuNext)
+						.animate({ opacity: 1, duration: 500 })
+				})
+		} else {
+			if (topHolder.data('mcwallet-role') === 'menu-before-holder') {
+				menuHolder
+					.animate({
+						opacity: 0
+					},
+					500,
+					() => {
+						$afterMenuHolder.find('tr[data-mcwallet-role="empty-row"]').addClass('-mc-hidden')
+						$afterMenuHolder.prepend(menuHolder)
+						menuHolder.animate({ opacity: 1, duration: 500 })
+						const beforemenus = $beforeMenuHolder.find('tr.mcwallet-own-menu-row')
+						if (!beforemenus.length) {
+							$beforeMenuHolder.find('tr[data-mcwallet-role="empty-row"]').removeClass('-mc-hidden')
+						}
+					})
+			}
+		}
+	});
+
+	$('table.mcwallet-menu-list').on('click', 'a[data-mcwallet-action="mcwallet_menu_remove"]', function (e) {
+		e.preventDefault();
+		if (confirm(mcwallet.notices.confirmDelete)) {
+			var menuHolder = $($(e.target).parents('tr')[0])
+			var topHolder = $($(e.target).parents('tbody')[0])
+			menuHolder.animate({
+				opacity: 0
+			},
+			500,
+			() => {
+				menuHolder.remove()
+				if(!topHolder.find('tr.mcwallet-own-menu-row').length) {
+					topHolder.find('tr[data-mcwallet-role="empty-row"]').removeClass('-mc-hidden')
+				}
+			})
+		}
+	});
+
 })( jQuery );
