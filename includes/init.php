@@ -16,11 +16,6 @@ require MCWALLET_PATH . 'includes/setup.php';
 require MCWALLET_PATH . 'includes/functions.php';
 
 /**
- * Supported Chains
- */
-require MCWALLET_PATH . 'includes/supported-chains.php';
-
-/**
  * Customier
  */
 require MCWALLET_PATH . 'includes/customizer/customizer.php';

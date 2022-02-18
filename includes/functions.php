@@ -396,6 +396,23 @@ function mcwallet_scheme_attr() {
 }
 
 /**
+ * Supported Chains
+ * 
+ * List of supported networks, used to create "Disable network" options.
+ */
+function mcwallet_supperted_chains() {
+	$supperted_chains = array(
+		'btc'      => 'BTC',
+		'eth'      => 'ETH',
+		'bnb'      => 'BNB',
+		'matic'    => 'MATIC',
+		'arbitrum' => 'ARBITRUM',
+		'xdai'     => 'XDAI'
+	);
+	return apply_filters( 'mcwallet_supperted_chains', $supperted_chains );
+}
+
+/**
  * Get valutes
  */ 
 function mcwallet_get_valutes() {
