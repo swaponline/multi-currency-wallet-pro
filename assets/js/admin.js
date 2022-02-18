@@ -9,15 +9,37 @@
 	 */
 	$('.mcwallet-nav-tabs > a').on( 'click', function(e) {
 		e.preventDefault();
+		window.location.hash = this.hash
 		var tab = $(this).attr('href');
 		// set active navigation tab
 		$('.mcwallet-nav-tabs > a').removeClass('nav-tab-active');
 		$(this).addClass('nav-tab-active');
 
 		// set active tab from content
-		$('.mcwallet-panel-tab').removeClass('panel-tab-active');
-		$(tab).addClass('panel-tab-active');
+		setTimeout( function() {
+			$('.mcwallet-panel-tab').removeClass('panel-tab-active');
+			$(tab).addClass('panel-tab-active');
+		}, 10 );
+	});
 
+	/**
+	 * Init Tabs on load
+	 */
+	$( window).on( 'load', function() {
+		var hash = window.location.hash;
+		if ( hash ) {
+			var tabElement = $( '.nav-tab[href=' + hash + ']');
+			if ( tabElement.length ) {
+				$('.mcwallet-nav-tabs > a').removeClass('nav-tab-active');
+				$(tabElement).addClass('nav-tab-active');
+
+				// set active tab from content
+				setTimeout( function() {
+					$('.mcwallet-panel-tab').removeClass('panel-tab-active');
+					$(hash).addClass('panel-tab-active');
+				}, 100 );
+			}
+		}
 	});
 
 	/**
@@ -35,14 +57,14 @@
 		},6000);
 	}
 
-  mcwallet.showNotice = mcwalletNotice
+	mcwallet.showNotice = mcwalletNotice
 	/**
 	 * Spinner
 	 */
 	function mcwalletSpinner( button ){
 		button.next('.spinner').toggleClass('is-active');
 	}
-  mcwallet.showSpinner = mcwalletSpinner
+	mcwallet.showSpinner = mcwalletSpinner
 
 	/** 
 	 * Add token
@@ -196,7 +218,7 @@
 		var codeBody       = thisParent.find( '[name="mcwallet_body_code"]' ).val();
 		var codeFooter     = thisParent.find( '[name="mcwallet_footer_code"]' ).val();
 		var statisticEnabled = thisParent.find( '[name="statistic_enabled"]' );
-    var disableInternal = thisParent.find( '[name="disable_internal"]' );
+		var disableInternal = thisParent.find( '[name="disable_internal"]' );
 		var btcDisabled    = thisParent.find( '[name="btc_disabled"]' );
 		var ethDisabled    = thisParent.find( '[name="eth_disabled"]' );
 		var bnbDisabled    = thisParent.find( '[name="bnb_disabled"]' );
@@ -207,8 +229,8 @@
 		var exchangeDisabled = thisParent.find( '[name="exchange_disabled"]' );
 		var invoiceEnabled = thisParent.find( '[name="invoice_enabled"]' );
 
-    var string_splash_first_loading = thisParent.find( '[name="string_splash_first_loading"]' ).val();
-    var string_splash_loading = thisParent.find( '[name="string_splash_loading"]' ).val();
+		var string_splash_first_loading = thisParent.find( '[name="string_splash_first_loading"]' ).val();
+		var string_splash_loading = thisParent.find( '[name="string_splash_loading"]' ).val();
 
 		var rememberUserWallet = thisParent.find( '[name="remeber_userwallet"]' );
 
@@ -232,7 +254,7 @@
 		selected_quickswap_mode = selected_quickswap_mode.val();
 		default_language = default_language.val();
 		statisticEnabled = statisticEnabled.is(':checked') ? 'true' : 'false';
-    disableInternal = disableInternal.is(':checked') ? 'true' : 'false';
+		disableInternal = disableInternal.is(':checked') ? 'true' : 'false';
 		btcDisabled = btcDisabled.is(':checked') ? 'true' : 'false';
 		ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
 		ghostEnabled = ghostEnabled.is(':checked') ? 'false' : 'true';
@@ -260,7 +282,7 @@
 			// rememberUserWallet = 'true';
 		}
 
-    if (rememberUserWallet == 'true') isLogged = 'true';
+		if (rememberUserWallet == 'true') isLogged = 'true';
 		
 		if ( showHowitworks.is(':checked') ) {
 			isHowitworks = 'true';
@@ -268,8 +290,8 @@
 
 		var data = {
 			action: 'mcwallet_update_options',
-      string_splash_loading: string_splash_loading,
-      string_splash_first_loading: string_splash_first_loading,
+			string_splash_loading: string_splash_loading,
+			string_splash_first_loading: string_splash_first_loading,
 			nonce: mcwallet.nonce,
 			url: logoUrl,
 			darkLogoUrl: darkLogoUrl,
@@ -296,7 +318,7 @@
 			isHowitworks: isHowitworks,
 			strings: strings,
 			statisticEnabled: statisticEnabled,
-      disableInternal: disableInternal,
+			disableInternal: disableInternal,
 			ghostEnabled: ghostEnabled,
 			nextEnabled: nextEnabled,
 			exchangeDisabled: exchangeDisabled,
@@ -310,12 +332,12 @@
 
 			hideServiceLinks: hideServiceLinks,
 		};
-    
-    // Disabled chains
-    var chainDisabledCheckboxes = thisParent.find('[data-option-target="disabled_wallet"]');
-    chainDisabledCheckboxes.each((i, chainCheckbox) => {
-      data[$(chainCheckbox).data('chain') + 'Disabled'] = $(chainCheckbox).is(':checked') ? 'true' : 'false';
-    })
+		
+		// Disabled chains
+		var chainDisabledCheckboxes = thisParent.find('[data-option-target="disabled_wallet"]');
+		chainDisabledCheckboxes.each((i, chainCheckbox) => {
+			data[$(chainCheckbox).data('chain') + 'Disabled'] = $(chainCheckbox).is(':checked') ? 'true' : 'false';
+		})
 
 		mcwalletSpinner(thisBtn);
 
