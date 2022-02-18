@@ -31,9 +31,12 @@ require MCWALLET_PATH . 'includes/user-panel.php';
 require MCWALLET_PATH . 'includes/etherscan-api.php';
 
 /**
- * Envato API functions
+ * Load pro functions if exists
  */
-require MCWALLET_PATH . 'includes/envato-api.php';
+$mcwallet_pro_path = MCWALLET_PATH . 'pro/init-pro.php';
+if ( file_exists( $mcwallet_pro_path ) ) {
+	require MCWALLET_PATH . 'pro/init-pro.php';
+}
 
 /**
  * Multi Currency Wallet Admin Page
