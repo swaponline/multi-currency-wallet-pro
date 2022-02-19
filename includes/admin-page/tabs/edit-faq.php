@@ -26,10 +26,8 @@
 		</tbody>
 		<tbody>
 			<tr>
-				<td colspan="3" align="center" style="background: #e9e9e9">
-					<strong>
-						<?php esc_html_e('Default FAQ block (&quot;How are my private keys stored&quot;, &quot;What are the fees involved&quot;, &quot;Why minning fee is to high&quot;)'); ?>
-					</strong>
+				<td colspan="3" class="mcwallet-faq-message">
+					<?php esc_html_e( 'Default FAQ block (&quot;How are my private keys stored&quot;, &quot;What are the fees involved&quot;, &quot;Why minning fee is to high&quot;)', 'multi-currency-wallet' ); ?>
 				</td>
 			</tr>
 		</tbody>
