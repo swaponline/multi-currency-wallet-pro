@@ -1,6 +1,8 @@
 <?php
 /**
- * Multi Currency Wallet Actions
+ * Actions
+ * 
+ * @package Envato API Functions
  */
 
 /**
