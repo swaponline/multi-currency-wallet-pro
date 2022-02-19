@@ -28,7 +28,7 @@ function mcwallet_add_default_banners() {
 			'meta_input'  => array(
 				'banner_text'  => 'Try BTC/USDT AtomicSwap exchange',
 				'banner_url'   => '/exchange/usdt-to-btc',
-				'banner_icon'  => 'https://screenshots.wpmix.net/chrome_MTTeS0mbkL3n2WjS0U6gL2x5l9iID93U.png',
+				'banner_icon'  => '',
 				'banner_image' => '',
 				'banner_color' => '#1f2d48',
 			),
@@ -41,7 +41,7 @@ function mcwallet_add_default_banners() {
 			'meta_input'  => array(
 				'banner_text'  => 'Deposit using VISA/MC',
 				'banner_url'   => 'https://buy.itez.com/swaponline',
-				'banner_icon'  => 'https://growup.wpmix.net/wp-content/uploads/2020/05/pngflow.com_.png',
+				'banner_icon'  => MCWALLET_URL . 'assets/images/banner-mastercard-visa.png',
 				'banner_image' => '',
 				'banner_color' => '#2aa2d6',
 			),
