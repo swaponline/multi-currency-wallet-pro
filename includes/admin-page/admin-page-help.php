@@ -11,10 +11,10 @@ function mcwallet_help_submenu_page() {
 		'manage_options',
 		'mcwallet-help',
 		'mcwallet_help_page',
-		10
+		20
 	);
 }
-add_action( 'admin_menu', 'mcwallet_help_submenu_page' );
+add_action( 'admin_menu', 'mcwallet_help_submenu_page', 11 );
 
 /**
  * Page
@@ -27,12 +27,12 @@ function mcwallet_help_page() {
 	<h2><?php echo get_admin_page_title(); ?></h2>
 	<div class="mcwallet-welcome-panel">
 		<div class="mcwallet-welcome-panel-content">
-
-			<h3><a href="https://support.swaponline.io/" target="_blank" id="mcwallet_open_help">https://support.swaponline.io/</a> - most common questions</h3>
-			<h3><a href="https://discord.gg/fcs8u9jm5P" target="_blank" id="mcwallet_open_help">https://discord.gg/fcs8u9jm5P</a> - ask the community!</h3>
-			<h3><a href="https://t.me/swaponlinebot/" target="_blank" id="mcwallet_open_help">https://t.me/swaponlinebot</a> - contact team if you have another question</h3>
-			<h3>Are you familar with GitHub? <a href="https://github.com/swaponline/MultiCurrencyWallet/issues/" target="_blank" id="mcwallet_open_help">Create an issue</a></h3>
-
+			<div class="card mcwallet-card">
+				<h2><a href="https://support.swaponline.io/" target="_blank">https://support.swaponline.io/</a> - <?php esc_html_e( 'most common questions', 'multi-currency-wallet' ); ?></h2>
+				<h2><a href="https://discord.gg/fcs8u9jm5P" target="_blank">https://discord.gg/fcs8u9jm5P</a> - <?php esc_html_e( 'ask the community!', 'multi-currency-wallet' ); ?></h2>
+				<h2><a href="https://t.me/swaponlinebot/" target="_blank">https://t.me/swaponlinebot</a> - <?php esc_html_e( 'contact team if you have another question', 'multi-currency-wallet' ); ?></h2>
+				<h2><?php esc_html_e( 'Are you familar with GitHub?', 'multi-currency-wallet' ); ?> <a href="https://github.com/swaponline/MultiCurrencyWallet/issues/" target="_blank"><?php esc_html_e( 'Create an issue', 'multi-currency-wallet' ); ?></a></h2>
+			</div>
 		</div>
 	</div>
 </div>

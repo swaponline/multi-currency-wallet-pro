@@ -9,12 +9,6 @@ if ( get_option( 'mcwallet_is_logged' ) && ! is_user_logged_in() ) {
 	auth_redirect();
 }
 
-add_filter( 'wp_title', 'custom_title', 20 );
-
-function mcw_custom_title( $title ) {
-    return 'Loading...';
-}
-
 /** Action before template load */
 do_action( 'mcwallet_before_template' );
 
@@ -24,11 +18,9 @@ do_action( 'mcwallet_before_template' );
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <?php 
 ob_start();
-wp_head(); 
+wp_head();
 $con = ob_get_clean();
-$con = str_replace("Blog - ","",$con);
-//$con=preg_replace('/<title>(.*)<\/title>/i','<title>'.get_bloginfo('name').'</title>',$con);
-//$con=preg_replace('/<meta property="og:title" content="(.*?)" />/i','<meta property="og:title" content="'.get_bloginfo('name').'" />',$con);
+$con = str_replace( 'Blog - ', '', $con );
 echo $con;
 ?>
 <?php mcwallet_head(); ?>
@@ -36,44 +28,40 @@ echo $con;
 <body <?php body_class(); ?>>
 <?php mcwallet_body_open(); ?>
 
-	<?php if ( get_option( 'mcwallet_purchase_code' ) ) { ?>
+	<?php if ( ! apply_filters( 'mcwallet_disable_front_template', false ) ) { ?>
 
-	<div id="root"></div><!-- #root -->
-	<!-- Loader before any JS -->
-	<div id="wrapper_element" class="overlay">
-		<div class="center">
-			<div id="loader" class="loader">
-				<img id="loaderImg" class="logo-light" src="<?php echo esc_url( mcwallet_logo_url() ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
-				<img id="loaderImg" class="logo-dark" src="<?php echo esc_url( mcwallet_dark_logo_url() ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+		<div id="root"></div><!-- #root -->
+		<!-- Loader before any JS -->
+		<div id="wrapper_element" class="overlay">
+			<div class="center">
+				<div id="loader" class="loader">
+					<img id="loaderImg" class="logo-light" src="<?php echo esc_url( mcwallet_logo_url() ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+					<img id="loaderImg" class="logo-dark" src="<?php echo esc_url( mcwallet_dark_logo_url() ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+				</div>
+				<div id="beforeJSTip" class="tips">
+					<?php echo get_option( 'string_splash_loading', esc_html__( 'Loading...', 'multi-currency-wallet' ) ); ?>
+				</div>
 			</div>
-			<div id="beforeJSTip" class="tips">
-				<?php echo get_option( 'string_splash_loading', 'Loading...' );?>
+			<div class="mb-4 show-on-fail-ls d-none" id="onFailLocalStorageMessage">
+				<span><?php esc_html_e( 'Not every function works In this window, please open new tab.', 'multi-currency-wallet' ); ?>
+					<?php esc_html_e( 'If the error will repeat please contact admin', 'multi-currency-wallet' ); ?>
+					<br>
+					<a href="https://t.me/swaponlinebot">https://t.me/swaponlinebot</a>
+				</span>
+				<button class="btn btn-primary btc-open-in-new-tab">
+					<a href="https://wallet.wpmix.net" id="onFailLocalStorageLink" target="_blank">
+						<?php esc_html_e( 'Open App in new tab', 'multi-currency-wallet' ); ?>
+					</a>
+				</button>
 			</div>
+			<div id="usersInform" class="usersInform"></div>
 		</div>
-		<div class="mb-4 show-on-fail-ls d-none" id="onFailLocalStorageMessage">
-			<span>Not every function works In this window, please open new tab.
-				If the error will repeat please contact admin
-				<br />
-				<a href="https://t.me/swaponlinebot">
-					https://t.me/swaponlinebot
-				</a>
-			</span>
-			<button class="btn btn-primary btc-open-in-new-tab">
-				<a href="https://wallet.wpmix.net" id="onFailLocalStorageLink" target="_blank">
-					Open App in new tab
-				</a>
-			</button>
-		</div>
-		<div id="usersInform" class="usersInform"></div>
-	</div>
 
-	<div id="portal"></div>
+		<div id="portal"></div>
 
-	<?php } else { ?>
-		<?php echo '<'.'h'.'1'.'> ' . 'Ple' . 'ase' . ' acti' . 'vate MC' . 'W plug' . 'in' . ' lice' . 'nse' . '</' . 'h' . '1' . '>'; ?>
 	<?php } ?>
 
-<?php mcwallet_footer(); ?>
+	<?php mcwallet_footer(); ?>
 
 <?php
 if ( is_customize_preview() ) {

@@ -27,10 +27,8 @@
 		</tbody>
 		<tbody>
 			<tr>
-				<td colspan="4" align="center" style="background: #e9e9e9">
-					<strong>
-						<?php esc_html_e('Default menu items (&quot;Wallet&quot;, &quot;Transactions&quot;, &quot;Exchange&quot;)'); ?>
-					</strong>
+				<td colspan="4" class="mcwallet-menu-message">
+					<?php esc_html_e('Default menu items (&quot;Wallet&quot;, &quot;Transactions&quot;, &quot;Exchange&quot;)', 'multi-currency-wallet' ); ?>
 				</td>
 			</tr>
 		</tbody>

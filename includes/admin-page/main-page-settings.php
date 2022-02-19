@@ -1,6 +1,6 @@
 <?php
 /**
- * Widget Register Settings
+ * Register Settings
  */
 function mcwallet_register_settings() {
 	register_setting(
@@ -11,7 +11,7 @@ function mcwallet_register_settings() {
 add_action( 'admin_init', 'mcwallet_register_settings' );
 
 /**
- * Widget Do Setting Sectios
+ * Do Setting Sectios
  */
 function mcwallet_do_settings_sections() {
 	?>
@@ -26,9 +26,9 @@ function mcwallet_do_settings_sections() {
 				</th>
 				<td>
 					<select name="standard" class="regular-text">
-						<option value="erc20" selected="">Ethereum (ERC-20)</option>
-						<option value="bep20">Binance Smart chain (BEP-20)</option>
-            					<option value="erc20matic">Poligon ERC-20</option>
+						<option value="erc20" <?php selected( true, true ); ?>><?php esc_html_e( 'Ethereum (ERC-20)', 'multi-currency-wallet' ); ?></option>
+						<option value="bep20"><?php esc_html_e( 'Binance Smart chain (BEP-20)', 'multi-currency-wallet' ); ?></option>
+						<option value="erc20matic"><?php esc_html_e( 'Poligon ERC-20', 'multi-currency-wallet' ); ?></option>
 					</select>
 				</td>
 			</tr>
@@ -56,7 +56,7 @@ function mcwallet_do_settings_sections() {
 				</th>
 				<td>
 					<input name="rate" type="number" value="" size="7" class="textright" placeholder="0">
-					<p class="description"><?php esc_html_e( 'Recommended exchange rate', 'multi-currency-wallet' );?> <a href="https://screenshots.wpmix.net/chrome_vnv8OIFJ4oZ9QfCxrLM6CjQ05HG02mFG.png" target="_blank">(?)</a> this rate uses ONLY in the wallet, not int he exchange</p>
+					<p class="description"><?php esc_html_e( 'Recommended exchange rate', 'multi-currency-wallet' ); ?> <a href="https://screenshots.wpmix.net/chrome_vnv8OIFJ4oZ9QfCxrLM6CjQ05HG02mFG.png" target="_blank">(?)</a> <?php esc_html_e( 'this rate uses ONLY in the wallet, not int he exchange', 'multi-currency-wallet' );?></p>
 				</td>
 			</tr>
 			<tr>
@@ -113,9 +113,7 @@ function mcwallet_do_settings_sections() {
 				<td>
 					<?php $order_value = count( get_option( 'mcwallet_tokens' ) ) + 1; ?>
 					<input name="order" type="hidden" value="<?php echo esc_attr( $order_value ); ?>">
-					<?php
-						submit_button( esc_attr__( 'Add new token', 'multi-currency-wallet' ), 'primary mcwallet-add-token', 'mcwallet-add-token', false );
-					?>
+					<?php submit_button( esc_attr__( 'Add new token', 'multi-currency-wallet' ), 'primary mcwallet-add-token', 'mcwallet-add-token', false ); ?>
 					<span class="spinner"></span>
 				</td>
 			</tr>

@@ -1,5 +1,11 @@
 <?php
 /**
+ * Login Scripts
+ * 
+ * @package Envato API Functions
+ */
+
+/**
  * Login Enqueue Scripts
  */
 function mcwallet_login_enqueue_scripts() {

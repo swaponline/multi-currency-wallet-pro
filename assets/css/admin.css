@@ -37,6 +37,7 @@
 /* Admin Panel */
 .mcwallet-welcome-panel {
 	padding-bottom: 20px;
+	margin-top: 15px;
 }
 .mcwallet-shortcode-panel-row {
 	padding-top: 15px;
@@ -370,4 +371,17 @@
 .mcwallet-faq-list .-mc-hidden,
 .mcwallet-menu-list .-mc-hidden {
 	display: none;
+}
+.mcwallet-faq-message,
+.mcwallet-menu-message {
+	background-color: #e9e9e9;
+	text-align: center;
+	font-weight: bold;
+}
+
+/**
+ * Card
+ */
+.mcwallet-card {
+	max-width: initial;
 }

@@ -4,10 +4,10 @@
 
 #login h1 a,
 .login h1 a {
-    background-image: var(--mcwallet-login-logo);
-    height: 90px;
-    width: 320px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center top;
+	background-image: var(--mcwallet-login-logo);
+	height: 90px;
+	width: 320px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center top;
 }

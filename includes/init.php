@@ -61,19 +61,9 @@ if ( wp_doing_ajax() ) {
 require MCWALLET_PATH . 'includes/tags.php';
 
 /**
- * Widget Admin Enqueue Scripts
+ * Scripts
  */
-require MCWALLET_PATH . 'includes/enqueue_scripts/admin_enqueue_scripts.php';
-
-/**
- * Widget Enqueue Scripts
- */
-require MCWALLET_PATH . 'includes/enqueue_scripts/wp_enqueue_scripts.php';
-
-/**
- * Login Enqueue Scripts
- */
-require MCWALLET_PATH . 'includes/enqueue_scripts/login_enqueue_scripts.php';
+require MCWALLET_PATH . 'includes/scripts/scripts.php';
 
 /**
  * Actions
@@ -81,9 +71,9 @@ require MCWALLET_PATH . 'includes/enqueue_scripts/login_enqueue_scripts.php';
 require MCWALLET_PATH . 'includes/actions.php';
 
 /**
- * Widget Shortcode
+ * Shortcode
  */
-require MCWALLET_PATH . 'includes/shortcode/shortcode.php';
+require MCWALLET_PATH . 'includes/shortcode.php';
 
 /**
  * Custom Tinymce

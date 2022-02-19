@@ -1,6 +1,12 @@
 <?php
 /**
- * Widget Admin Enqueue Scripts
+ * Admin Scripts
+ * 
+ * @package Envato API Functions
+ */
+
+/**
+ * Admin Enqueue Scripts
  */
 function mcwallet_admin_enqueue_scripts( $hook ) {
 

@@ -5,6 +5,8 @@
  * @package Multi Currency Wallet
  */
 
+$disable_fee = apply_filters( 'mcwallet_disable_fee', true );
+
 ?>
 <div class="mcwallet-shortcode-panel-row">
 
@@ -110,7 +112,7 @@
 					?>
 					<select name="selected_quickswap_mode" id="selected_quickswap_mode" class="regular-text">
 						<?php foreach($quickswapModes as $key => $title) { ?>
-							<option value="<?php echo esc_attr( $key ); ?>" <?php echo ($key === $selected_quickswap_mode) ? 'selected' : ''?>><?php echo $title?></option>
+							<option value="<?php echo esc_attr( $key ); ?>" <?php echo ($key === $selected_quickswap_mode) ? 'selected' : ''?>><?php echo esc_html( $title ); ?></option>
 						<?php } ?>
 					</select>
 				</td>
@@ -199,7 +201,7 @@
 						<td>
 							<label for="mcwallet_<?php echo esc_attr( $key ); ?>_disabled">
 							<input name="<?php echo esc_attr( $key ); ?>_disabled" type="checkbox" data-option-target="disabled_wallet" data-chain="<?php echo esc_attr( $key ); ?>" id="mcwallet_<?php echo esc_attr( $key ); ?>_disabled" <?php checked( 'true', get_option( "mcwallet_{$key}_disabled" ) ); ?>>
-								<?php echo sprintf( esc_html__( 'Disable %s allet.', 'multi-currency-wallet' ), $title ); ?>
+								<?php echo sprintf( esc_html__( 'Disable %s wallet.', 'multi-currency-wallet' ), $title ); ?>
 							</label>
 						</td>
 					</tr>
@@ -252,7 +254,7 @@
 					<label><?php esc_html_e( '0x swap fee', 'multi-currency-wallet' );?></label>
 				</th>
 				<td>
-					<input name="zerox_fee_percent" type="text" value="<?php echo esc_attr( get_option('zerox_fee_percent') );?>" class="tiny-text textright"> %
+					<input name="zerox_fee_percent" type="text" value="<?php echo esc_attr( get_option( 'zerox_fee_percent', '5' ) );?>" class="tiny-text textright" <?php disabled( true, $disable_fee ); ?>> %
 					<p class="description"><?php esc_html_e( 'The percentage of the purchase amount that will be sent to the EVM address', 'multi-currency-wallet' );?></p>
 				</td>
 			</tr>
@@ -278,7 +280,7 @@
 					<label><?php esc_html_e( 'Bitcoin', 'multi-currency-wallet' );?></label>
 				</th>
 				<td>
-					<input name="btc_fee" type="text" value="<?php echo esc_attr( get_option('btc_fee') );?>" class="tiny-text textright"> <?php esc_html_e( '%, no less than', 'multi-currency-wallet' ); ?> <input name="btc_min" type="text" value="<?php echo esc_attr( get_option('btc_min') );?>" size="7" class="textright" placeholder="<?php esc_attr_e( 'Enter Min. fee (ex. 0.0001)', 'multi-currency-wallet' ); ?>"> <?php esc_html_e( 'BTC', 'multi-currency-wallet' ); ?>
+					<input name="btc_fee" type="text" value="<?php echo esc_attr( get_option( 'btc_fee', '5' ) );?>" class="tiny-text textright" <?php disabled( true, $disable_fee ); ?>> <?php esc_html_e( '%, no less than', 'multi-currency-wallet' ); ?> <input name="btc_min" type="text" value="<?php echo esc_attr( get_option('btc_min') );?>" size="7" class="textright" placeholder="<?php esc_attr_e( 'Enter Min. fee (ex. 0.0001)', 'multi-currency-wallet' ); ?>"> <?php esc_html_e( 'BTC', 'multi-currency-wallet' ); ?>
 				</td>
 			</tr>
 			<tr>
@@ -294,7 +296,7 @@
 					<label><?php esc_html_e( 'EVM compatible (ETH, BSC, etc..)', 'multi-currency-wallet' );?></label>
 				</th>
 				<td>
-					<input name="eth_fee" type="text" value="<?php echo esc_attr( get_option('eth_fee') );?>" class="tiny-text textright"> <?php esc_html_e( '%, no less than', 'multi-currency-wallet' ); ?> <input name="eth_min" type="text" value="<?php echo esc_attr( get_option('eth_min') );?>" size="7" class="textright" placeholder="<?php esc_attr_e( 'Enter Min. fee (ex. 0.0001)', 'multi-currency-wallet' ); ?>"> <?php esc_html_e( 'ETH', 'multi-currency-wallet' ); ?>
+					<input name="eth_fee" type="text" value="<?php echo esc_attr( get_option( 'eth_fee', '5' ) );?>" class="tiny-text textright" <?php disabled( true, $disable_fee ); ?>> <?php esc_html_e( '%, no less than', 'multi-currency-wallet' ); ?> <input name="eth_min" type="text" value="<?php echo esc_attr( get_option('eth_min') );?>" size="7" class="textright" placeholder="<?php esc_attr_e( 'Enter Min. fee (ex. 0.0001)', 'multi-currency-wallet' ); ?>"> <?php esc_html_e( 'ETH', 'multi-currency-wallet' ); ?>
 				</td>
 			</tr>
 			<tr>
@@ -310,7 +312,7 @@
 					<label><?php esc_html_e( 'Other tokens', 'multi-currency-wallet' );?></label>
 				</th>
 				<td>
-					<input name="tokens_fee" type="text" value="<?php echo esc_attr( get_option('tokens_fee') );?>" class="tiny-text textright"> <?php esc_html_e( '%, no less than', 'multi-currency-wallet' ); ?> <input name="tokens_min" type="text" value="<?php echo esc_attr( get_option('tokens_min') );?>" size="7" class="textright" placeholder="<?php esc_attr_e( 'Enter Min. fee (ex. 0.0001)', 'multi-currency-wallet' ); ?>"> <?php esc_html_e( 'Tokens', 'multi-currency-wallet' ); ?>
+					<input name="tokens_fee" type="text" value="<?php echo esc_attr( get_option( 'tokens_fee', '5' ) );?>" class="tiny-text textright" <?php disabled( true, $disable_fee ); ?>> <?php esc_html_e( '%, no less than', 'multi-currency-wallet' ); ?> <input name="tokens_min" type="text" value="<?php echo esc_attr( get_option('tokens_min') );?>" size="7" class="textright" placeholder="<?php esc_attr_e( 'Enter Min. fee (ex. 0.0001)', 'multi-currency-wallet' ); ?>"> <?php esc_html_e( 'Tokens', 'multi-currency-wallet' ); ?>
 				</td>
 			</tr>
 			<tr>
@@ -329,7 +331,7 @@
 				<td>
 					<select type="text" name="fiat_currency" class="regular-text">
 						<?php foreach( mcwallet_get_valutes() as $key => $valute ) { ?>
-							<option value="<?php echo esc_attr( $key ); ?>" <?php selected( get_option( 'fiat_currency', 'USD' ), $key ); ?>><?php echo esc_attr( $valute ); ?></option>
+							<option value="<?php echo esc_attr( $key ); ?>" <?php selected( get_option( 'fiat_currency', 'USD' ), $key ); ?>><?php echo esc_html( $valute ); ?></option>
 						<?php } ?>
 					</select>
 				</td>
@@ -376,7 +378,7 @@
 				<th scope="row"></th>
 				<td>
 					<label for="mcwallet_hide_service_links">
-						<input name="hide_service_links" type="checkbox" id="mcwallet_hide_service_linksr" <?php checked( 'true', get_option( 'mcwallet_hide_service_links' ) ); ?>>
+						<input name="hide_service_links" type="checkbox" id="mcwallet_hide_service_links" <?php checked( 'true', get_option( 'mcwallet_hide_service_links' ) ); ?>>
 						<?php esc_html_e( "Hide Service Links (In footer)", 'multi-currency-wallet' );?>
 					</label>
 				</td>
@@ -426,7 +428,7 @@
 						<label><?php esc_html_e( 'Demo', 'multi-currency-wallet' );?></label>
 					</th>
 					<td>
-						<a href="<?php echo mcwallet_thickbox_url();?>" class="button thickbox mcwallet-button-thickbox" title="<?php esc_attr_e( 'MCWallet Widget Demo', 'multi-currency-wallet' );?>"><?php esc_html_e( 'See Modal Widget Demo', 'mcwallet' );?></a>
+						<a href="<?php echo mcwallet_thickbox_url();?>" class="button thickbox mcwallet-button-thickbox" title="<?php esc_attr_e( 'MCWallet Widget Demo', 'multi-currency-wallet' );?>"><?php esc_html_e( 'See Modal Widget Demo', 'multi-currency-wallet' );?></a>
 						<a href="<?php echo mcwallet_page_url(); ?>" class="button mcwallet-button-url" target="_blank"><?php esc_html_e( 'View page', 'multi-currency-wallet' ); ?></a>
 					</td>
 				</tr>

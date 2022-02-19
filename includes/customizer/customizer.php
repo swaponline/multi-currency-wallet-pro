@@ -39,8 +39,9 @@ function mcwallet_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_setting( 'color_scheme', array(
-		'default'   => 'light',
-		'transport' => 'postMessage',
+		'default'           => 'light',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_text_field',
 	) );
 
 	$wp_customize->add_control( 'color_scheme', array(
@@ -56,8 +57,9 @@ function mcwallet_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_setting( 'button_border_radius', array(
-		'default'   => '0',
-		'transport' => 'postMessage',
+		'default'           => '0',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_text_field',
 	) );
 
 	$wp_customize->add_control( 'button_border_radius', array(
@@ -67,8 +69,9 @@ function mcwallet_customize_register( $wp_customize ) {
 	) );
 
 	$wp_customize->add_setting( 'main_component_border_radius', array(
-		'default'   => '0',
-		'transport' => 'postMessage',
+		'default'           => '0',
+		'transport'         => 'postMessage',
+		'sanitize_callback' => 'sanitize_text_field',
 	) );
 
 	$wp_customize->add_control( 'main_component_border_radius', array(
@@ -81,9 +84,10 @@ function mcwallet_customize_register( $wp_customize ) {
 
 		$wp_customize->add_setting( 'color_' . $name,
 			array(
-				'default'    => $scheme['default'],
-				'type'       => 'theme_mod',
-				'transport'  => 'postMessage',
+				'default'           => $scheme['default'],
+				'type'              => 'theme_mod',
+				'transport'         => 'postMessage',
+				'sanitize_callback' => 'sanitize_text_field',
 			)
 		);
 
@@ -99,9 +103,10 @@ function mcwallet_customize_register( $wp_customize ) {
 
 		$wp_customize->add_setting( 'color_' . $name . '_dark',
 			array(
-				'default'   => $scheme['dark'],
-				'type'      => 'theme_mod',
-				'transport' => 'postMessage',
+				'default'           => $scheme['dark'],
+				'type'              => 'theme_mod',
+				'transport'         => 'postMessage',
+				'sanitize_callback' => 'sanitize_text_field',
 			)
 		);
 
