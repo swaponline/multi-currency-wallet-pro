@@ -133,14 +133,16 @@ body {
 .show-on-fail-ls .btc-open-in-new-tab {
 	margin-top: 2em;
 }
-.show-on-fail-ls .btc-open-in-new-tab > A {
+
+.show-on-fail-ls .btc-open-in-new-tab > a {
 	color: #FFF;
 	text-decoration: none;
 }
 
-.show-on-fail-ls SPAN {
+.show-on-fail-ls span {
 	display: block;
 }
+
 @media (max-width: 767px) {
 	#swiper_banners {
 		margin: 0 25px;
