@@ -20,3 +20,14 @@ function mcwallet_disable_desing_submenu_page( $status ) {
 	return $status;
 }
 add_filter( 'mcwallet_disable_desing_submenu', 'mcwallet_disable_desing_submenu_page' );
+
+/**
+ * Update Admin Page Footer info.
+ */
+function mcwallet_info_bar_custom_content( $content ) {
+	$filename = MCWALLET_PATH . 'multi-currency-wallet-pro.php';
+	$update_time = gmdate( 'H\h : i\m : s\s', time() - filectime( $filename ) );
+	$content = sprintf( esc_html__( 'Plugin version: %s | Build version: %s | Updated: %s ago.', 'multi-currency-wallet' ), MCWALLET_VER, MCWALLET_BUILD_VER, $update_time );
+	return $content;
+}
+add_filter( 'mcwallet_info_bar_content', 'mcwallet_info_bar_custom_content' );
