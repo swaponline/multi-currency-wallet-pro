@@ -21,3 +21,8 @@ require MCWALLET_PATH . 'pro/functions-pro.php';
 if ( mcwallet_is_active_license() ) {
 	require MCWALLET_PATH . 'pro/info.php';
 }
+
+/**
+ * Pro Functions
+ */
+require MCWALLET_PATH . 'pro/admin-page-pro.php';
