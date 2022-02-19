@@ -35,5 +35,11 @@ function mcwallet_admin_page_tab_custom( $content, $slug ){
 }
 add_filter( 'mcwallet_admin_page_tab', 'mcwallet_admin_page_tab_custom', 10, 2 );
 
-
-
+/**
+ * Add license info to global window variables.
+ */
+function mcwallet_window_variable_license( $variables ){
+	$variables['licenceInfo'] = mcwallet_support_days_left();
+	return $variables;
+}
+add_filter( 'mcwallet_window_variables', 'mcwallet_window_variable_license', 10, 2 );

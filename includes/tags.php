@@ -1,10 +1,12 @@
 <?php
 /**
  * Template tags
+ * 
+ * @package Envato API Functions
  */
 
 /**
- * Register Post Type mcwallet_banner
+ * Admin page footer info markup.
  */
 function mcwallet_info_bar_markup() {
 	?>

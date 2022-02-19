@@ -1,5 +1,11 @@
 <?php
 /**
+ * Front Scripts
+ * 
+ * @package Envato API Functions
+ */
+
+/**
  * Enqueue Scripts
  */
 function mcwallet_enqueue_scripts() {
@@ -23,25 +29,8 @@ function mcwallet_enqueue_scripts() {
 	} else {
 		wp_register_script( 'mcwallet-vendor', MCWALLET_URL . 'vendors/swap/vendor.js', array( 'react-dom', 'swiper' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );
 	}
-	/*
-	$path = MCWALLET_PATH . 'vendors/swap/';
-	$chunks_files = scandir($path);
 
-	foreach($chunks_files as $fkey=>$file) {
-		$file_ext = explode('.', $file);
-		$file_ext = $file_ext[count($file_ext)-1];
-		if (strtolower($file_ext) === 'js') {
-			$is_chunk = explode('.', $file);
-			if ((count($is_chunk) === 4)
-				and ($is_chunk[0] === '1')
-				and ($is_chunk[2] === 'chunk')
-			) {
-				wp_register_script( 'mcwallet-vendor', MCWALLET_URL . 'vendors/swap/' . $file , array( 'react-dom', 'swiper' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );
-			}
-		}
-	}
-	*/
-	wp_register_script( 'mcwallet-app', MCWALLET_URL . 'includes/enqueue_scripts/load-app.php', array( 'mcwallet-vendor' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER . '-' . (($use_testnet) ? 'testnet' : 'mainnet'), true );
+	wp_register_script( 'mcwallet-app', MCWALLET_URL . 'includes/scripts/load-app.php', array( 'mcwallet-vendor' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER . '-' . (($use_testnet) ? 'testnet' : 'mainnet'), true );
 
 	wp_add_inline_script( 'mcwallet-vendor', mcwallet_inline_build_script(), 'before' );
 	wp_add_inline_script( 'mcwallet-vendor', mcwallet_inline_script(), 'before' );
@@ -55,7 +44,6 @@ function mcwallet_enqueue_scripts() {
 	);
 
 }
-//add_action( 'wp_loaded', 'mcwallet_enqueue_scripts' );
 add_action( 'wp_enqueue_scripts', 'mcwallet_enqueue_scripts' );
 
 /**
@@ -87,7 +75,6 @@ add_action( 'mcwallet_head', 'mcwallet_print_head_styles' );
 function mcwallet_print_scripts_widget_footer() {
 	wp_print_scripts( 'mcwallet-app' );
 	wp_print_scripts( 'mcwallet-customizer' );
-	
 }
 add_action( 'mcwallet_footer', 'mcwallet_print_scripts_widget_footer' );
 
@@ -108,11 +95,9 @@ function mcwallet_head_meta() {
  * Inline scripts
  */
 function mcwallet_inline_build_script() {
-  ob_start();
-  ?><script type="text/javascript"><?php
-  ob_clean();
-  ob_start();
-  ?>
+
+	ob_start();
+	?>
 	const getNavigatorLanguage = () => {
 		if (navigator.languages && navigator.languages.length) {
 			return navigator.languages[0];
@@ -207,38 +192,38 @@ function mcwallet_inline_build_script() {
 	document.body.setAttribute("data-scheme", "default");
 
 	const default_theme = "<?php echo get_theme_mod('color_scheme','light')?>";
-  const isDark = localStorage.getItem('isDark')
-  const isLight = localStorage.getItem('isLight')
-  const isSystemDark = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
-  if (!isDark && !isLight && (default_theme !== 'only_dark') && (default_theme !== 'only_light') && isSystemDark) {
-    document.body.setAttribute("data-scheme", "dark");
-    wrapper.classList.add("dark");
-    window.localStorage.setItem("isDark", "true");
-    window.localStorage.removeItem("isLight");
-  } else {
-    if ( isDark || default_theme === "only_dark") {
-      document.body.setAttribute("data-scheme", "dark");
-      wrapper.classList.add("dark");
-      window.localStorage.setItem("isDark", "true");
-      window.localStorage.removeItem("isLight");
-    } else {
-      if (window.localStorage.getItem("isLight")) {
-        wrapper.classList.remove("dark");
-        window.localStorage.removeItem("isDark");
-        window.localStorage.setItem("isLight", "true");
-      }
-    }
-    if ( isDark === null && isLight === null && default_theme === "dark") {
-      wrapper.classList.add("dark");
-      window.localStorage.setItem("isDark", "true");
-    }
-    if (default_theme === "only_light") {
-      document.body.setAttribute("data-scheme", "default");
-      wrapper.classList.remove("dark");
-      window.localStorage.removeItem("isDark");
-      window.localStorage.removeItem("isLight");
-    }
-  }
+	const isDark = localStorage.getItem('isDark')
+	const isLight = localStorage.getItem('isLight')
+	const isSystemDark = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+	if (!isDark && !isLight && (default_theme !== 'only_dark') && (default_theme !== 'only_light') && isSystemDark) {
+		document.body.setAttribute("data-scheme", "dark");
+		wrapper.classList.add("dark");
+		window.localStorage.setItem("isDark", "true");
+		window.localStorage.removeItem("isLight");
+	} else {
+		if ( isDark || default_theme === "only_dark") {
+			document.body.setAttribute("data-scheme", "dark");
+			wrapper.classList.add("dark");
+			window.localStorage.setItem("isDark", "true");
+			window.localStorage.removeItem("isLight");
+		} else {
+			if (window.localStorage.getItem("isLight")) {
+				wrapper.classList.remove("dark");
+				window.localStorage.removeItem("isDark");
+				window.localStorage.setItem("isLight", "true");
+			}
+		}
+		if ( isDark === null && isLight === null && default_theme === "dark") {
+			wrapper.classList.add("dark");
+			window.localStorage.setItem("isDark", "true");
+		}
+		if (default_theme === "only_light") {
+			document.body.setAttribute("data-scheme", "default");
+			wrapper.classList.remove("dark");
+			window.localStorage.removeItem("isDark");
+			window.localStorage.removeItem("isLight");
+		}
+	}
 
 	let lang = getCookie("mylang");
 	const defaultLanguage = "<?php echo get_option('default_language', 'en') ?>";
@@ -251,18 +236,15 @@ function mcwallet_inline_build_script() {
 	const locale = lang.toLowerCase();
 	const locationName = lang.toUpperCase();
 
-	advice.innerText = "<?php echo esc_html__( get_option( 'string_splash_loading', 'Loading...' ) ) ?>";
+	advice.innerText = "<?php echo get_option( 'string_splash_loading', esc_html__( 'Loading...' ) ); ?>";
 
 	var information = document.getElementById("usersInform");
 
 	if (localStorage.length === 0) {
-		information.innerText = "<?php echo esc_html__( get_option( 'string_splash_first_loading', 'Please wait while the application is loading,\n it may take one minute...' ) , 'multi-currency-wallet' ) ?>";
+		information.innerText = "<?php echo get_option( 'string_splash_first_loading', esc_html__( 'Please wait while the application is loading,\n it may take one minute...', 'multi-currency-wallet' ) ); ?>";
 	}
-  <?php
-  $script = ob_get_clean();
-  ob_start();
-  ?></script><?php
-  ob_clean();
+	<?php
+	$script = ob_get_clean();
 
 	return $script;
 }
@@ -380,7 +362,7 @@ function mcwallet_inline_script() {
 		'widgetName'                   => get_bloginfo(),
 		'STATISTICS_ENABLED'           => get_option( 'mcwallet_enable_stats', 'false' ),
 		'EXCHANGE_DISABLED'            => get_option( 'mcwallet_exchange_disabled', 'false' ),
-    	'SO_disableInternalWallet'     => get_option( 'mcwallet_disable_internal', 'false' ),
+		'SO_disableInternalWallet'     => get_option( 'mcwallet_disable_internal', 'false' ),
 		'CUR_GHOST_DISABLED'           => (get_option( 'mcwallet_ghost_enabled') == 'true') ? 'false' : 'true',
 		'CUR_NEXT_DISABLED'            => (get_option( 'mcwallet_next_enabled') == 'true') ? 'false' : 'true',
 		'hideServiceLinks'             => get_option( 'mcwallet_hide_service_links', 'false'),
@@ -391,24 +373,23 @@ function mcwallet_inline_script() {
 		'WPSO_selected_theme'          => get_theme_mod( 'color_scheme', 'light' ),
 		'zeroxFeePercent'              => get_option( 'zerox_fee_percent', '' ),
 		'pluginVersion'                => MCWALLET_VER,
-		'licenceInfo'                  => mcwallet_support_days_left(),
 	);
 
-  // Disabled chains
-  $supported_chains = mcwallet_supperted_chains();
-  foreach ($supported_chains as $chain=>$chain_title) {
-    $window_arr["CUR_" . strtoupper($chain) . "_DISABLED"] = get_option( "mcwallet_{$chain}_disabled", 'false' );
-  }
+	// Disabled chains
+	$supported_chains = mcwallet_supperted_chains();
+	foreach ($supported_chains as $chain=>$chain_title) {
+		$window_arr["CUR_" . strtoupper($chain) . "_DISABLED"] = get_option( "mcwallet_{$chain}_disabled", 'false' );
+	}
 
 	if ( get_current_user_id() ) {
 		$window_arr['setItemPlugin'] = "saveUserData";
 		$window_arr['WPuserUid'] = esc_html(get_current_user_id());
 		$window_arr['userDataPluginApi']  = admin_url( 'admin-ajax.php' ).'?action=mcwallet_update_user_meta';
 
-		// Нужно сгенерировать уникальный хеш из данных пользователя
-		// Нельзя передавать просто userId, это не безопастно
-		// Помимо userId в backend передаем его хеш, по которому проверяем,
-		// Действительно ли это отправил пользователь или злоумышлиник, обычным подбором userId
+		// Need to generate a unique hash from user data
+		// You can't just pass userId, it's not safe
+		// In addition to userId, we pass its hash to the backend, by which we check,
+		// Whether this was really sent by the user or the attacker, by the usual selection of userId
 		$userData = get_userdata(get_current_user_id())->data;
 		$userHashString = get_current_user_id().':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
 		$user_uniqhash = md5($userHashString);
@@ -416,10 +397,12 @@ function mcwallet_inline_script() {
 		$window_arr['WPuserHash'] = esc_html($user_uniqhash);
 		if ((get_option( 'mcwallet_remember_userwallet' ) == 'true') && (get_option( 'mcwallet_is_logged' ) == 'true')) {
 			$window_arr['backupPlugin'] = 'backupUserData';
-			$window_arr['backupUrl'] = admin_url( 'admin-ajax.php' ).'?action=mcwallet_backup_userwallet';
-			$window_arr['restoreUrl'] = admin_url( 'admin-ajax.php' ).'?action=mcwallet_restore_userwallet';
+			$window_arr['backupUrl']    = admin_url( 'admin-ajax.php' ).'?action=mcwallet_backup_userwallet';
+			$window_arr['restoreUrl']   = admin_url( 'admin-ajax.php' ).'?action=mcwallet_restore_userwallet';
 		}
 	}
+
+	$window_arr = apply_filters( 'mcwallet_window_variables', $window_arr );
 
 	foreach ( $window_arr as $var => $value ) {
 		if ( $value != 'true' && $value != 'false' && $value != '1' && 'false' && $value != '0' ) {
@@ -474,19 +457,19 @@ function mcwallet_inline_script() {
 
 	$script .= 'window.widgetERC20Comisions = ' . wp_json_encode( $fees, JSON_PRETTY_PRINT ) . ';' . "\n\n";
 
-  // faqs
-  $own_before_faqs = get_option( 'mcwallet_own_before_faqs' , array() );
-  $own_after_faqs = get_option( 'mcwallet_own_after_faqs', array() );
+	// faqs
+	$own_before_faqs = get_option( 'mcwallet_own_before_faqs' , array() );
+	$own_after_faqs = get_option( 'mcwallet_own_after_faqs', array() );
 
-  $script .= 'window.SO_FaqBeforeTabs = ' . wp_json_encode( $own_before_faqs , JSON_PRETTY_PRINT ) . ';' . "\n\n";
-  $script .= 'window.SO_FaqAfterTabs = ' . wp_json_encode( $own_after_faqs , JSON_PRETTY_PRINT ) . ';' . "\n\n";
+	$script .= 'window.SO_FaqBeforeTabs = ' . wp_json_encode( $own_before_faqs , JSON_PRETTY_PRINT ) . ';' . "\n\n";
+	$script .= 'window.SO_FaqAfterTabs = ' . wp_json_encode( $own_after_faqs , JSON_PRETTY_PRINT ) . ';' . "\n\n";
 
-  // menu items
-  $own_before_menus = get_option( 'mcwallet_own_before_menus' , array() );
-  $own_after_menus = get_option( 'mcwallet_own_after_menus', array() );
+	// menu items
+	$own_before_menus = get_option( 'mcwallet_own_before_menus' , array() );
+	$own_after_menus = get_option( 'mcwallet_own_after_menus', array() );
 
-  $script .= 'window.SO_MenuItemsBefore = ' . wp_json_encode( $own_before_menus , JSON_PRETTY_PRINT ) . ';' . "\n\n";
-  $script .= 'window.SO_MenuItemsAfter = ' . wp_json_encode( $own_after_menus , JSON_PRETTY_PRINT ) . ';' . "\n\n";
+	$script .= 'window.SO_MenuItemsBefore = ' . wp_json_encode( $own_before_menus , JSON_PRETTY_PRINT ) . ';' . "\n\n";
+	$script .= 'window.SO_MenuItemsAfter = ' . wp_json_encode( $own_after_menus , JSON_PRETTY_PRINT ) . ';' . "\n\n";
 
 	$args = array(
 		'post_type'      => 'mcwallet_banner',
