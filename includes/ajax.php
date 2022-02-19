@@ -387,7 +387,7 @@ function mcwallet_reorder_token() {
 
 	if ( $_POST['items'] ) {
 
-		$sorded_items = $_POST['items'];
+		$sorded_items = array_map( 'sanitize_text_field', $_POST['items'] );
 
 		$tokens = get_option( 'mcwallet_tokens' );
 		$tokens_ordered = array();
@@ -550,16 +550,17 @@ function mcwallet_update_options() {
 			$strings = $_POST['strings'];
 		}
 
-		$string_splash_first_loading = trim( esc_attr( wp_strip_all_tags( $_POST['string_splash_first_loading'] ) ) );
-		$string_splash_loading = trim( esc_attr( wp_strip_all_tags( $_POST['string_splash_loading'] ) ) );
+		$string_splash_first_loading = sanitize_text_field( $_POST['string_splash_first_loading'] );
+		$string_splash_loading = sanitize_text_field( $_POST['string_splash_loading'] );
 		update_option( 'string_splash_loading', $string_splash_loading );
 		update_option( 'string_splash_first_loading', $string_splash_first_loading );
+
 		if ( $strings ) {
 			foreach ( $strings as $string ) {
 				$id    = esc_attr( $string['name'] );
 				$value = $string['value'];
 				if ( $value ) {
-					$value                 = trim( esc_attr( wp_strip_all_tags( $value ) ) );
+					$value                 = sanitize_text_field( $value );
 					$replacements[ $id ][] = $value;
 				}
 			}
@@ -687,17 +688,11 @@ function mcwallet_update_options() {
 	flush_rewrite_rules();
 
 	/* clear cache */
-	if ( version_compare( PHP_VERSION, '7.0.0' ) >= 0) {
-		$path_levels = dirname( __FILE__, 5 ) . '/';
-	} else {
-		$path_levels = dirname( __FILE__ ) . '../../../../../';
-	}
-
-	$cache_dir = $path_levels . 'wp-content/uploads/';
-	$cache_dir_files = scandir($cache_dir);
+	$cache_dir       = trailingslashit( wp_upload_dir()['basedir'] );
+	$cache_dir_files = scandir( $cache_dir );
 	$cache_file_mark = 'swap-wallet-app-';
-	foreach($cache_dir_files as $fkey=>$file) {
-		$file_ext = explode('.', $file);
+	foreach( $cache_dir_files as $fkey => $file ) {
+		$file_ext = explode( '.', $file );
 		$file_ext = $file_ext[count($file_ext)-1];
 		$file_subname = substr($file,0, strlen($cache_file_mark));
 		if (($file_ext === 'js') and ($file_subname === $cache_file_mark)) {

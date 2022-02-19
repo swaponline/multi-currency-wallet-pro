@@ -112,7 +112,7 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 					?>
 					<select name="selected_quickswap_mode" id="selected_quickswap_mode" class="regular-text">
 						<?php foreach($quickswapModes as $key => $title) { ?>
-							<option value="<?php echo esc_attr( $key ); ?>" <?php echo ($key === $selected_quickswap_mode) ? 'selected' : ''?>><?php echo $title?></option>
+							<option value="<?php echo esc_attr( $key ); ?>" <?php echo ($key === $selected_quickswap_mode) ? 'selected' : ''?>><?php echo esc_html( $title ); ?></option>
 						<?php } ?>
 					</select>
 				</td>
@@ -201,7 +201,7 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 						<td>
 							<label for="mcwallet_<?php echo esc_attr( $key ); ?>_disabled">
 							<input name="<?php echo esc_attr( $key ); ?>_disabled" type="checkbox" data-option-target="disabled_wallet" data-chain="<?php echo esc_attr( $key ); ?>" id="mcwallet_<?php echo esc_attr( $key ); ?>_disabled" <?php checked( 'true', get_option( "mcwallet_{$key}_disabled" ) ); ?>>
-								<?php echo sprintf( esc_html__( 'Disable %s allet.', 'multi-currency-wallet' ), $title ); ?>
+								<?php echo sprintf( esc_html__( 'Disable %s wallet.', 'multi-currency-wallet' ), $title ); ?>
 							</label>
 						</td>
 					</tr>
@@ -378,7 +378,7 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 				<th scope="row"></th>
 				<td>
 					<label for="mcwallet_hide_service_links">
-						<input name="hide_service_links" type="checkbox" id="mcwallet_hide_service_linksr" <?php checked( 'true', get_option( 'mcwallet_hide_service_links' ) ); ?>>
+						<input name="hide_service_links" type="checkbox" id="mcwallet_hide_service_links" <?php checked( 'true', get_option( 'mcwallet_hide_service_links' ) ); ?>>
 						<?php esc_html_e( "Hide Service Links (In footer)", 'multi-currency-wallet' );?>
 					</label>
 				</td>
@@ -428,7 +428,7 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 						<label><?php esc_html_e( 'Demo', 'multi-currency-wallet' );?></label>
 					</th>
 					<td>
-						<a href="<?php echo mcwallet_thickbox_url();?>" class="button thickbox mcwallet-button-thickbox" title="<?php esc_attr_e( 'MCWallet Widget Demo', 'multi-currency-wallet' );?>"><?php esc_html_e( 'See Modal Widget Demo', 'mcwallet' );?></a>
+						<a href="<?php echo mcwallet_thickbox_url();?>" class="button thickbox mcwallet-button-thickbox" title="<?php esc_attr_e( 'MCWallet Widget Demo', 'multi-currency-wallet' );?>"><?php esc_html_e( 'See Modal Widget Demo', 'multi-currency-wallet' );?></a>
 						<a href="<?php echo mcwallet_page_url(); ?>" class="button mcwallet-button-url" target="_blank"><?php esc_html_e( 'View page', 'multi-currency-wallet' ); ?></a>
 					</td>
 				</tr>
