@@ -1,17 +1,67 @@
 <?php
 /**
  * Banners
+ * 
+ * @package Multi Currency Wallet
  */
+
+/**
+ * Add default banners
+ */
+function mcwallet_add_default_banners() {
+
+	if ( get_option( 'mcwallet_version' ) ) {
+		return;
+	}
+
+	$banners = get_posts( array( 'post_type'   => 'mcwallet_banner' ) );
+	if ( ! empty( $banners ) ) {
+		return;
+	}
+
+	$posts = array(
+		array(
+			'post_title'  => 'Try BTC/USDT AtomicSwap exchange',
+			'post_type'   => 'mcwallet_banner',
+			'post_status' => 'publish',
+			'post_author' => 1,
+			'meta_input'  => array(
+				'banner_text'  => 'Try BTC/USDT AtomicSwap exchange',
+				'banner_url'   => '/exchange/usdt-to-btc',
+				'banner_icon'  => 'https://screenshots.wpmix.net/chrome_MTTeS0mbkL3n2WjS0U6gL2x5l9iID93U.png',
+				'banner_image' => '',
+				'banner_color' => '#1f2d48',
+			),
+		),
+		array(
+			'post_title'  => 'Buy bitcoin using VISA/MC',
+			'post_type'   => 'mcwallet_banner',
+			'post_status' => 'publish',
+			'post_author' => 1,
+			'meta_input'  => array(
+				'banner_text'  => 'Deposit using VISA/MC',
+				'banner_url'   => 'https://buy.itez.com/swaponline',
+				'banner_icon'  => 'https://growup.wpmix.net/wp-content/uploads/2020/05/pngflow.com_.png',
+				'banner_image' => '',
+				'banner_color' => '#2aa2d6',
+			),
+		),
+	);
+
+	foreach ( $posts as $post ) {
+		wp_insert_post(  wp_slash( $post ) );
+	}
+
+}
+
+if ( apply_filters( 'mcwallet_disable_banner', false ) ) {
+	return;
+}
 
 /**
  * Register Post Type mcwallet_banner
  */
 function mcwallet_banner_post_type() {
-
-	$show_ui = true;
-	if ( ! get_option( 'mcwallet_purchase_code' ) ) {
-		$show_ui = false;
-	}
 
 	$labels = array(
 		'name'                  => esc_html__( 'Banners', 'multi-currency-wallet' ),
@@ -37,7 +87,7 @@ function mcwallet_banner_post_type() {
 		'supports'              => array( 'title' ),
 		'hierarchical'          => false,
 		'public'                => false,
-		'show_ui'               => $show_ui,
+		'show_ui'               => true,
 		'show_in_menu'          => false,
 		'show_in_admin_bar'     => false,
 		'show_in_nav_menus'     => false,
@@ -54,9 +104,6 @@ add_action( 'init', 'mcwallet_banner_post_type' );
  * Add page link to submenu
  */
 function mcwallet_banners_menu_page() {
-	if ( ! get_option( 'mcwallet_purchase_code' ) ) {
-		return;
-	}
 	add_submenu_page(
 		'mcwallet',
 		esc_html__( 'Banners', 'multi-currency-wallet' ),
@@ -238,52 +285,3 @@ class MCWallet_Banner_Meta_Box {
 }
 
 new MCWallet_Banner_Meta_Box;
-
-/**
- * Add default banners
- */
-function mcwallet_add_default_banners() {
-
-	if ( get_option( 'mcwallet_version' ) ) {
-		return;
-	}
-
-	$banners = get_posts( array( 'post_type'   => 'mcwallet_banner' ) );
-	if ( ! empty( $banners ) ) {
-		return;
-	}
-
-	$posts = [
-		[
-			'post_title'  => 'Try BTC/USDT AtomicSwap exchange',
-			'post_type'   => 'mcwallet_banner',
-			'post_status' => 'publish',
-			'post_author' => 1,
-			'meta_input'  => [
-				'banner_text' => 'Try BTC/USDT AtomicSwap exchange',
-				'banner_url' => '/exchange/usdt-to-btc',
-				'banner_icon' => 'https://screenshots.wpmix.net/chrome_MTTeS0mbkL3n2WjS0U6gL2x5l9iID93U.png',
-				'banner_image' => '',
-				'banner_color' => '#1f2d48',
-			],
-		],
-		[
-			'post_title'  => 'Buy bitcoin using VISA/MC',
-			'post_type'   => 'mcwallet_banner',
-			'post_status' => 'publish',
-			'post_author' => 1,
-			'meta_input'  => [
-				'banner_text' => 'Deposit using VISA/MC',
-				'banner_url' => 'https://buy.itez.com/swaponline',
-				'banner_icon' => 'https://growup.wpmix.net/wp-content/uploads/2020/05/pngflow.com_.png',
-				'banner_image' => '',
-				'banner_color' => '#2aa2d6',
-			],
-		],
-	];
-
-	foreach ( $posts as $post ) {
-		wp_insert_post(  wp_slash( $post ) );
-	}
-
-}
