@@ -71,9 +71,9 @@ require MCWALLET_PATH . 'includes/scripts/scripts.php';
 require MCWALLET_PATH . 'includes/actions.php';
 
 /**
- * Widget Shortcode
+ * Shortcode
  */
-require MCWALLET_PATH . 'includes/shortcode/shortcode.php';
+require MCWALLET_PATH . 'includes/shortcode.php';
 
 /**
  * Custom Tinymce

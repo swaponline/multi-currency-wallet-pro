@@ -1,6 +1,12 @@
 <?php
 /**
- * MCWallet Shortcode
+ * Shortcode
+ * 
+ * @package Envato API Functions
+ */
+
+/**
+ * Add Shortcode mcwallet_widget
  */
 function mcwallet_shortcode( $atts ){
 
