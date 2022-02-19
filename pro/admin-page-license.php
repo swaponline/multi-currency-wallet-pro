@@ -16,7 +16,7 @@ function mcwallet_license_submenu_page() {
 	//call register settings function
 	add_action( 'admin_init', 'mcwallet_register_settings_license' );
 }
-add_action('admin_menu', 'mcwallet_license_submenu_page');
+add_action('admin_menu', 'mcwallet_license_submenu_page', 11 );
 
 
 function mcwallet_register_settings_license() {
