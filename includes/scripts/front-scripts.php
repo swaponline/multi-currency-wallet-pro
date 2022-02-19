@@ -127,7 +127,7 @@ function mcwallet_inline_build_script() {
 		if (!window.jQuery) {
 			// inject jQuery for send request to counter for feedback
 			var jsScriptTag = document.createElement("SCRIPT");
-				jsScriptTag.src = "https://code.jquery.com/jquery-3.5.1.min.js";
+				jsScriptTag.src = "<?php echo esc_url( includes_url() . 'js/jquery/jquery.min.js' ); ?>";
 				console.log("jsScriptTag", jsScriptTag);
 			document.getElementsByTagName("BODY")[0].appendChild(jsScriptTag);
 			var waitJQLoad = function (onLoaded) {
@@ -191,7 +191,7 @@ function mcwallet_inline_build_script() {
 
 	document.body.setAttribute("data-scheme", "default");
 
-	const default_theme = "<?php echo get_theme_mod('color_scheme','light')?>";
+	const default_theme = "<?php echo esc_attr( get_theme_mod( 'color_scheme','light' ) ); ?>";
 	const isDark = localStorage.getItem('isDark')
 	const isLight = localStorage.getItem('isLight')
 	const isSystemDark = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
@@ -226,7 +226,7 @@ function mcwallet_inline_build_script() {
 	}
 
 	let lang = getCookie("mylang");
-	const defaultLanguage = "<?php echo get_option('default_language', 'en') ?>";
+	const defaultLanguage = "<?php echo esc_attr( get_option( 'default_language', 'en' ) ); ?>";
 
 	if (!lang) {
 		lang = defaultLanguage;

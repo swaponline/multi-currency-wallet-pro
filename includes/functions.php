@@ -364,25 +364,25 @@ function mcwallet_inline_scheme_colors(){
 	?>
 :root,
 [data-scheme="default"] {
-	--color: <?php echo mcwallet_get_color( 'text' ); ?>;
-	--color-page-background: <?php echo mcwallet_get_color( 'background' ); ?>;
-	--color-brand: <?php echo mcwallet_get_color( 'brand' ); ?>;
-	--color-brand-hover: <?php echo mcwallet_get_color( 'brand_hover' ); ?>;
-	--color-brand-background: <?php echo mcwallet_get_color( 'brand_background' ); ?>;
+	--color: <?php echo esc_html( mcwallet_get_color( 'text' ) ); ?>;
+	--color-page-background: <?php echo esc_html( mcwallet_get_color( 'background' ) ); ?>;
+	--color-brand: <?php echo esc_html( mcwallet_get_color( 'brand' ) ); ?>;
+	--color-brand-hover: <?php echo esc_html( mcwallet_get_color( 'brand_hover' ) ); ?>;
+	--color-brand-background: <?php echo esc_html( mcwallet_get_color( 'brand_background' ) ); ?>;
 }
 [data-scheme="dark"],
 .darkTheme {
-	--color: <?php echo mcwallet_get_color( 'text', 'dark' ); ?>;
-	--color-page-background: <?php echo mcwallet_get_color( 'background', 'dark' ); ?>;
-	--color-brand: <?php echo mcwallet_get_color( 'brand', 'dark' ); ?>;
-	--color-brand-hover: <?php echo mcwallet_get_color( 'brand_hover', 'dark' ); ?>;
-	--color-brand-background: <?php echo mcwallet_get_color( 'brand_background', 'dark' ); ?>;
+	--color: <?php echo esc_html( mcwallet_get_color( 'text', 'dark' ) ); ?>;
+	--color-page-background: <?php echo esc_html( mcwallet_get_color( 'background', 'dark' ) ); ?>;
+	--color-brand: <?php echo esc_html( mcwallet_get_color( 'brand', 'dark' ) ); ?>;
+	--color-brand-hover: <?php echo esc_html( mcwallet_get_color( 'brand_hover', 'dark' ) ); ?>;
+	--color-brand-background: <?php echo esc_html( mcwallet_get_color( 'brand_background', 'dark' ) ); ?>;
 }
 :root,
 [data-scheme="default"],
 [data-scheme="dark"] {
-  --button-border-radius: <?php echo get_theme_mod( 'button_border_radius', '0' );?>rem;
-  --main-component-border-radius: <?php echo get_theme_mod( 'main_component_border_radius', '0' );?>rem;
+  --button-border-radius: <?php echo esc_attr( get_theme_mod( 'button_border_radius', '0' ) ); ?>rem;
+  --main-component-border-radius: <?php echo esc_attr( get_theme_mod( 'main_component_border_radius', '0' ) ); ?>rem;
 }
 <?php
 }

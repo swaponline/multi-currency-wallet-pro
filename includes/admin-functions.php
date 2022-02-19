@@ -49,7 +49,7 @@ function mcwallet_render_faq_rows( $rows, $type ) {
 	}
 	?>
 	<tr class="<?php echo ( count( $rows) ) ? '-mc-hidden' : ''; ?>" data-mcwallet-role="empty-row">
-		<td colspan="3" align="center"><?php esc_html_e( 'Empty' ); ?></td>
+		<td colspan="3" align="center"><?php esc_html_e( 'Empty', 'multi-currency-wallet' ); ?></td>
 	</tr>
 	<?php
 }
@@ -82,7 +82,7 @@ function mcwallet_render_menu_rows( $rows, $type ) {
 	}
 	?>
 	<tr class="<?php echo ( count( $rows ) ) ? '-mc-hidden' : ''; ?>" data-mcwallet-role="empty-row">
-		<td colspan="4" align="center"><?php esc_html_e( 'Empty' ) ?></td>
+		<td colspan="4" align="center"><?php esc_html_e( 'Empty', 'multi-currency-wallet' ); ?></td>
 	</tr>
 	<?php
 }

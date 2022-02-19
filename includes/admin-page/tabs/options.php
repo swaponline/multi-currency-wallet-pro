@@ -331,7 +331,7 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 				<td>
 					<select type="text" name="fiat_currency" class="regular-text">
 						<?php foreach( mcwallet_get_valutes() as $key => $valute ) { ?>
-							<option value="<?php echo esc_attr( $key ); ?>" <?php selected( get_option( 'fiat_currency', 'USD' ), $key ); ?>><?php echo esc_attr( $valute ); ?></option>
+							<option value="<?php echo esc_attr( $key ); ?>" <?php selected( get_option( 'fiat_currency', 'USD' ), $key ); ?>><?php echo esc_html( $valute ); ?></option>
 						<?php } ?>
 					</select>
 				</td>
