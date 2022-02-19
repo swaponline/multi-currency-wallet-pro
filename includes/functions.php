@@ -32,7 +32,6 @@ if (!function_exists( 'wp_logout' ) ) {
 	}
 }
 
-
 /**
  * Default Page slug
  */
@@ -78,8 +77,8 @@ function mcwallet_dark_logo_url(){
 	if ( get_option( 'mcwallet_dark_logo' ) ) {
 		$logo_url = get_option( 'mcwallet_dark_logo' );
 	} elseif ( get_option( 'mcwallet_logo' ) ) {
-				$logo_url = get_option( 'mcwallet_logo' );
-		}
+		$logo_url = get_option( 'mcwallet_logo' );
+	}
 	return esc_url( $logo_url );
 }
 
@@ -158,7 +157,7 @@ add_filter( 'query_vars', function( $vars ){
  * Page template path
  */
 function mcwallet_template_path(){
-	$template = MCWALLET_PATH ."/template/template.php";
+	$template = MCWALLET_PATH . '/template/template.php';
 	return $template;
 }
 
@@ -189,11 +188,11 @@ function mcwallet_default_token() {
 			'bg'          => '',
 			'howdeposit'  => '',
 			'howwithdraw' => '',
-      'standard' => 'erc20',
+			'standard'    => 'erc20',
 			'order'       => 1,
 		),
-    'wmatic'      => array(
-      'name'        => 'WrappedMatic',
+		'wmatic'      => array(
+			'name'        => 'WrappedMatic',
 			'symbol'      => 'wmatic',
 			'address'     => '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270',
 			'decimals'    => '18',
@@ -202,7 +201,7 @@ function mcwallet_default_token() {
 			'bg'          => '',
 			'howdeposit'  => '',
 			'howwithdraw' => '',
-      'standard' => 'erc20matic',
+			'standard'    => 'erc20matic',
 			'order'       => 2,
 		)
 	);
@@ -614,7 +613,6 @@ function mcwallet_get_valutes() {
 		'ZAR' => esc_html__( 'South African rand', 'multi-currency-wallet' ),
 		'ZMW' => esc_html__( 'Zambian kwacha', 'multi-currency-wallet' ),
 		'ZWB' => esc_html__( 'Zimbabwean bonds', 'multi-currency-wallet' ),
-
 	);
 
 	return $valutes;
