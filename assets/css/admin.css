@@ -371,3 +371,10 @@
 .mcwallet-menu-list .-mc-hidden {
 	display: none;
 }
+
+/**
+ * Card
+ */
+.mcwallet-card {
+	max-width: initial;
+}
