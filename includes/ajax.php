@@ -534,9 +534,9 @@ function mcwallet_update_options() {
 		$fiat_currency    = sanitize_text_field( $_POST['fiatCurrency'] );
 		$fiat_gateway_url = sanitize_text_field( $_POST['fiatGatewayUrl'] );
 		$transak_api_key  = sanitize_text_field( $_POST['transakApiKey'] );
-		$code_head        = esc_html( wp_unslash( $_POST['codeHead'] ) );
-		$code_body        = esc_html( wp_unslash( $_POST['codeBody'] ) );
-		$code_footer      = esc_html( wp_unslash( $_POST['codeFooter'] ) );
+		$code_head        = sanitize_textarea_field( esc_html( wp_unslash( $_POST['codeHead'] ) ) );
+		$code_body        = sanitize_textarea_field( esc_html( wp_unslash( $_POST['codeBody'] ) ) );
+		$code_footer      = sanitize_textarea_field( esc_html( wp_unslash( $_POST['codeFooter'] ) ) );
 		$selected_exchange_mode = sanitize_text_field( $_POST['selected_exchange_mode'] );
 		$selected_quickswap_mode = sanitize_text_field( $_POST['selected_quickswap_mode'] );
 		$default_language = sanitize_text_field( $_POST['default_language'] );
