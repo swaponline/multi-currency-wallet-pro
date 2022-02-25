@@ -26,7 +26,7 @@ function mcwallet_service_url_poligon(){
 
 /* Service Url Fantom */
 function mcwallet_service_url_fantom(){
-	$service_url_mainnet = ( get_option( 'mcwallet_use_testnet' ) === 'true' ) ? 'api-testnet.bscscan.com/api' : 'api.bscscan.com/api';
+	$service_url_mainnet = ( get_option( 'mcwallet_use_testnet' ) === 'true' ) ? 'api-testnet.ftmscan.com/api' : 'api.ftmscan.com/api';
 	return esc_url( $service_url_mainnet, 'https' );
 }
 
