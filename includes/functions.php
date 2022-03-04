@@ -436,6 +436,7 @@ function mcwallet_supperted_chains() {
 		'bnb'      => 'BNB',
 		'matic'    => 'MATIC',
 		'ftm'      => 'FTM',
+		'avax'      => 'AVAX',
 		'arbitrum' => 'ARBITRUM',
 		'xdai'     => 'XDAI'
 	);

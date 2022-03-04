@@ -28,8 +28,9 @@ function mcwallet_do_settings_sections() {
 					<select name="standard" class="regular-text">
 						<option value="erc20" <?php selected( true, true ); ?>><?php esc_html_e( 'Ethereum (ERC-20)', 'multi-currency-wallet' ); ?></option>
 						<option value="bep20"><?php esc_html_e( 'Binance Smart chain (BEP-20)', 'multi-currency-wallet' ); ?></option>
-						<option value="erc20matic"><?php esc_html_e( 'Polygon ERC-20', 'multi-currency-wallet' ); ?></option>
-						<option value="erc20ftm"><?php esc_html_e( 'Fantom ERC-20', 'multi-currency-wallet' ); ?></option>
+						<option value="erc20matic"><?php esc_html_e( 'Polygon (ERC-20)', 'multi-currency-wallet' ); ?></option>
+						<option value="erc20ftm"><?php esc_html_e( 'Fantom (ERC-20)', 'multi-currency-wallet' ); ?></option>
+						<option value="erc20avax"><?php esc_html_e( 'Avalanche (ERC-20)', 'multi-currency-wallet' ); ?></option>
 					</select>
 				</td>
 			</tr>
