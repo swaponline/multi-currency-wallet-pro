@@ -236,6 +236,15 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 			<tr>
 				<th scope="row"></th>
 				<td>
+					<label for="mcwallet_show_all_enabled_wallets">
+						<input name="show_all_enabled_wallets" type="checkbox" id="mcwallet_show_all_enabled_wallets" <?php checked( 'true', get_option( 'mcwallet_show_all_enabled_wallets' ) ); ?>>
+						<?php esc_html_e( "Show all enabled wallets after save or restore seed phrase (12 words)", 'multi-currency-wallet' );?>
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td>
 					<label for="mcwallet_remember_userwallet">
 						<input name="remeber_userwallet" type="checkbox" id="mcwallet_remember_userwallet" <?php checked( 'true', get_option( 'mcwallet_remember_userwallet' ) ); ?>>
 						<?php esc_html_e( "Save private information (keys, etc..) in user's profile (Custodial mode)", 'multi-currency-wallet' );?>

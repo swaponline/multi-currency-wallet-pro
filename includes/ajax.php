@@ -645,6 +645,12 @@ function mcwallet_update_options() {
 			delete_option( 'mcwallet_invoice_enabled' );
 		}
 
+		if ( $_POST['SO_addAllEnabledWalletsAfterRestoreOrCreateSeedPhrase'] == 'true' ) {
+			update_option( 'mcwallet_show_all_enabled_wallets', sanitize_text_field( 'true' ) );
+		} else {
+			delete_option( 'mcwallet_show_all_enabled_wallets' );
+		}
+
 		if ( $_POST['ghostEnabled'] == 'true' ) {
 			update_option( 'mcwallet_ghost_enabled', sanitize_text_field( 'true' ) );
 		} else {
