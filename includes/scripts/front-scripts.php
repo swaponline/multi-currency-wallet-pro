@@ -373,6 +373,7 @@ function mcwallet_inline_script() {
 		'WPSO_selected_theme'          => get_theme_mod( 'color_scheme', 'light' ),
 		'zeroxFeePercent'              => get_option( 'zerox_fee_percent', '' ),
 		'pluginVersion'                => MCWALLET_VER,
+		'SO_addAllEnabledWalletsAfterRestoreOrCreateSeedPhrase' => get_option( 'mcwallet_show_all_enabled_wallets', 'false'),
 	);
 
 	// Disabled chains

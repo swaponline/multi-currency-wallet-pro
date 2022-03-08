@@ -230,6 +230,7 @@
 		var nextEnabled  	 = thisParent.find( '[name="next_enabled"]' );
 		var exchangeDisabled = thisParent.find( '[name="exchange_disabled"]' );
 		var invoiceEnabled	 = thisParent.find( '[name="invoice_enabled"]' );
+		var SO_addAllEnabledWalletsAfterRestoreOrCreateSeedPhrase = thisParent.find( '[name="show_all_enabled_wallets"]' );
 
 		var string_splash_first_loading = thisParent.find( '[name="string_splash_first_loading"]' ).val();
 		var string_splash_loading = thisParent.find( '[name="string_splash_loading"]' ).val();
@@ -257,6 +258,7 @@
 		default_language = default_language.val();
 		statisticEnabled = statisticEnabled.is(':checked') ? 'true' : 'false';
 		disableInternal = disableInternal.is(':checked') ? 'true' : 'false';
+		SO_addAllEnabledWalletsAfterRestoreOrCreateSeedPhrase = SO_addAllEnabledWalletsAfterRestoreOrCreateSeedPhrase.is(':checked') ? 'true' : 'false';
 		btcDisabled = btcDisabled.is(':checked') ? 'true' : 'false';
 		ethDisabled = ethDisabled.is(':checked') ? 'true' : 'false';
 		ghostEnabled = ghostEnabled.is(':checked') ? 'false' : 'true';
@@ -331,6 +333,7 @@
 			selected_quickswap_mode: selected_quickswap_mode,
 			default_language: default_language,
 			invoiceEnabled: invoiceEnabled,
+			SO_addAllEnabledWalletsAfterRestoreOrCreateSeedPhrase: SO_addAllEnabledWalletsAfterRestoreOrCreateSeedPhrase,
 
 			rememberUserWallet: rememberUserWallet,
 
