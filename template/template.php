@@ -16,13 +16,7 @@ do_action( 'mcwallet_before_template' );
 <html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
-<?php 
-ob_start();
-wp_head();
-$con = ob_get_clean();
-$con = str_replace( 'Blog - ', '', $con );
-echo $con;
-?>
+<?php wp_head(); ?>
 <?php mcwallet_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -39,7 +33,7 @@ echo $con;
 					<img id="loaderImg" class="logo-dark" src="<?php echo esc_url( mcwallet_dark_logo_url() ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
 				</div>
 				<div id="beforeJSTip" class="tips">
-					<?php echo get_option( 'string_splash_loading', esc_html__( 'Loading...', 'multi-currency-wallet' ) ); ?>
+					<?php echo esc_html( get_option( 'string_splash_loading', __( 'Loading...', 'multi-currency-wallet' ) ) ); ?>
 				</div>
 			</div>
 			<div class="mb-4 show-on-fail-ls d-none" id="onFailLocalStorageMessage">

@@ -227,8 +227,8 @@ function mcwallet_add_token() {
 			$icon         = sanitize_text_field( $_POST['icon'] );
 			$rate         = sanitize_text_field( $_POST['rate'] );
 			$icon_bg      = sanitize_hex_color( $_POST['bg'] );
-			$how_deposit  = esc_html( wp_kses_post( wp_unslash( $_POST['howdeposit'] ) ) );
-			$how_withdraw = esc_html( wp_kses_post( wp_unslash( $_POST['howwithdraw'] ) ) );
+			$how_deposit  = wp_kses_post( wp_unslash( $_POST['howdeposit'] ) );
+			$how_withdraw = wp_kses_post( wp_unslash( $_POST['howwithdraw'] ) );
 			$order        = intval( $_POST['order'] );
 
 			$img = '<span class="token-letter">' . mcwallet_token_letter( $name ) . '</span>';
