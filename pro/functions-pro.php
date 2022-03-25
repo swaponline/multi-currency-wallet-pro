@@ -87,3 +87,13 @@ function mcwallet_disable_if_no_license( $status ) {
 add_filter( 'mcwallet_disable_desing_submenu', 'mcwallet_disable_if_no_license' );
 add_filter( 'mcwallet_disable_banner', 'mcwallet_disable_if_no_license' );
 add_filter( 'mcwallet_disable_front_template', 'mcwallet_disable_if_no_license' );
+
+/**
+ * Remove Blog - from wp title
+ */
+function mcwallet_wp_title( $title ){
+	str_replace( 'Blog - ', '', $title );
+
+	return $title;
+}
+add_filter( 'wp_title', 'mcwallet_wp_title', 10, 3 );

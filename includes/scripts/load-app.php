@@ -53,6 +53,6 @@ if ( file_exists( $cache_file ) ) {
 	header("Expires: " . gmdate("D, d M Y H:i:s", time() + 60*60*24) . " GMT");
 	header( 'Content-Type: application/javascript; charset=UTF-8' );
 
-	echo $app;
+	echo file_get_contents( $cache_file );
 }
 exit;

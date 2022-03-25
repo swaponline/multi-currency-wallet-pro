@@ -23,7 +23,7 @@
 				</div>
 				<div class="mcwallet-string-col">
 					<input type="text" name="string_splash_loading" class="large-text" value="<?php
-						echo get_option( 'string_splash_loading', esc_html__( 'Loading...', 'multi-currency-wallet' ) );
+						echo esc_attr( get_option( 'string_splash_loading', __( 'Loading...', 'multi-currency-wallet' ) ) );
 					?>">
 				</div>
 				<div class="mcwallet-string-action">
@@ -38,7 +38,7 @@
 				</div>
 				<div class="mcwallet-string-col">
 					<input type="text" name="string_splash_first_loading" class="large-text" value="<?php
-						echo get_option( 'string_splash_first_loading', esc_html__( 'Please wait while the application is loading, it may take one minute...', 'multi-currency-wallet' ) );
+						echo esc_attr( get_option( 'string_splash_first_loading', __( 'Please wait while the application is loading, it may take one minute...', 'multi-currency-wallet' ) ) );
 					?>">
 				</div>
 				<div class="mcwallet-string-action">

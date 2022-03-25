@@ -236,12 +236,12 @@ function mcwallet_inline_build_script() {
 	const locale = lang.toLowerCase();
 	const locationName = lang.toUpperCase();
 
-	advice.innerText = "<?php echo get_option( 'string_splash_loading', esc_html__( 'Loading...', 'multi-currency-wallet' ) ); ?>";
+	advice.innerText = "<?php echo esc_attr( get_option( 'string_splash_loading', __( 'Loading...', 'multi-currency-wallet' ) ) ); ?>";
 
 	var information = document.getElementById("usersInform");
 
 	if (localStorage.length === 0) {
-		information.innerText = "<?php echo get_option( 'string_splash_first_loading', esc_html__( 'Please wait while the application is loading,\n it may take one minute...', 'multi-currency-wallet' ) ); ?>";
+		information.innerText = "<?php echo esc_attr( get_option( 'string_splash_first_loading', __( 'Please wait while the application is loading,\n it may take one minute...', 'multi-currency-wallet' ) ) ); ?>";
 	}
 	<?php
 	$script = ob_get_clean();
