@@ -30,9 +30,15 @@ function mcwallet_service_url_fantom(){
 	return esc_url( $service_url_mainnet, 'https' );
 }
 
-/* Service Url Fantom */
+/* Service Url Avalanche */
 function mcwallet_service_url_avalanche(){
 	$service_url_mainnet = ( get_option( 'mcwallet_use_testnet' ) === 'true' ) ? 'testnet.snowtrace.io/api' : 'snowtrace.io/api';
+	return esc_url( $service_url_mainnet, 'https' );
+}
+
+/* Service Url Moonriver */
+function mcwallet_service_url_moonriver(){
+	$service_url_mainnet = ( get_option( 'mcwallet_use_testnet' ) === 'true' ) ? 'api-moonbase.moonscan.io/api' : 'api-moonriver.moonscan.io/api';
 	return esc_url( $service_url_mainnet, 'https' );
 }
 
@@ -43,6 +49,7 @@ function mcwallet_service_api_token( $standart = 'erc20' ){
 	if ( 'erc20matic' === $standart ) $service_api_token = '8S2R45ZWG94HI7YK9RCXSK4VCASJ4XVA15';
 	if ( 'erc20ftm' === $standart ) $service_api_token = 'J39MXI2KQ7YWFR3JGYHPVYK1MIH132QSXP';
 	if ( 'erc20avax' === $standart ) $service_api_token = 'BEDYVGMKPM4HXIVD16B1Z66D5R75D9AHNC';
+	if ( 'erc20movr' === $standart ) $service_api_token = 'VHG8YAQMA78MAQKU7C73Z4UQ2A83S4IBGW';
 	return $service_api_token;
 }
 
@@ -94,6 +101,9 @@ function mcwallet_get_remote_url( $result = 'name', $address = '', $standart = '
 	}
 	if ( 'erc20avax' === $standart ) {
 		$url = mcwallet_service_url_avalanche();
+	}
+	if ( 'erc20movr' === $standart ) {
+		$url = mcwallet_service_url_moonriver();
 	}
 
 	$swap_remote_url = add_query_arg(
