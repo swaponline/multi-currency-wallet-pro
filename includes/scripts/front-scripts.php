@@ -431,6 +431,8 @@ function mcwallet_inline_script() {
 		$fees['ftm']['fee'] = get_option( 'eth_fee' );
 		$fees['avax']['fee'] = get_option( 'eth_fee' );
 		$fees['movr']['fee'] = get_option( 'eth_fee' );
+		$fees['one']['fee'] = get_option( 'eth_fee' );
+		$fees['xdai']['fee'] = get_option( 'eth_fee' );
 		$fees['arbeth']['fee'] = get_option( 'eth_fee' );
 	}
 	if ( get_option( 'eth_min' ) ) {
@@ -440,6 +442,8 @@ function mcwallet_inline_script() {
 		$fees['ftm']['min'] = get_option( 'eth_min' );
 		$fees['avax']['min'] = get_option( 'eth_min' );
 		$fees['movr']['min'] = get_option( 'eth_min' );
+		$fees['one']['min'] = get_option( 'eth_min' );
+		$fees['xdai']['min'] = get_option( 'eth_min' );
 		$fees['arbeth']['min'] = get_option( 'eth_min' );
 	}
 	if ( get_option( 'tokens_fee' ) ) {
@@ -449,6 +453,8 @@ function mcwallet_inline_script() {
 		$fees['erc20ftm']['fee'] = get_option( 'tokens_fee' );
 		$fees['erc20avax']['fee'] = get_option( 'tokens_fee' );
 		$fees['erc20movr']['fee'] = get_option( 'tokens_fee' );
+		$fees['erc20one']['fee'] = get_option( 'tokens_fee' );
+		$fees['erc20xdai']['fee'] = get_option( 'tokens_fee' );
 	}
 	if ( get_option( 'tokens_min' ) ) {
 		$fees['erc20']['min'] = get_option( 'tokens_min' );
@@ -457,6 +463,8 @@ function mcwallet_inline_script() {
 		$fees['erc20ftm']['min'] = get_option( 'tokens_min' );
 		$fees['erc20avax']['min'] = get_option( 'tokens_min' );
 		$fees['erc20movr']['min'] = get_option( 'tokens_min' );
+		$fees['erc20one']['min'] = get_option( 'tokens_min' );
+		$fees['erc20xdai']['min'] = get_option( 'tokens_min' );
 	}
 	if ( get_option( 'eth_fee_address' ) ) {
 		$fees['eth']['address'] = get_option( 'eth_fee_address' );
@@ -465,6 +473,8 @@ function mcwallet_inline_script() {
 		$fees['ftm']['address'] = get_option( 'eth_fee_address' );
 		$fees['avax']['address'] = get_option( 'eth_fee_address' );
 		$fees['movr']['address'] = get_option( 'eth_fee_address' );
+		$fees['one']['address'] = get_option( 'eth_fee_address' );
+		$fees['xdai']['address'] = get_option( 'eth_fee_address' );
 		$fees['arbeth']['address'] = get_option( 'eth_fee_address' );
 		$fees['erc20']['address'] = get_option( 'eth_fee_address' );
 		$fees['bep20']['address'] = get_option( 'eth_fee_address' );
@@ -472,6 +482,8 @@ function mcwallet_inline_script() {
 		$fees['erc20ftm']['address'] = get_option( 'eth_fee_address' );
 		$fees['erc20avax']['address'] = get_option( 'eth_fee_address' );
 		$fees['erc20movr']['address'] = get_option( 'eth_fee_address' );
+		$fees['erc20one']['address'] = get_option( 'eth_fee_address' );
+		$fees['erc20xdai']['address'] = get_option( 'eth_fee_address' );
 	}
 
 	$script .= 'window.widgetERC20Comisions = ' . wp_json_encode( $fees, JSON_PRETTY_PRINT ) . ';' . "\n\n";

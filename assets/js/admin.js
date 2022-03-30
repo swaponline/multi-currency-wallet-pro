@@ -226,6 +226,8 @@
 		var ftmDisabled  	 = thisParent.find( '[name="ftm_disabled"]' );
 		var avaxDisabled  	 = thisParent.find( '[name="avax_disabled"]' );
 		var movrDisabled  	 = thisParent.find( '[name="movr_disabled"]' );
+		var oneDisabled  	 = thisParent.find( '[name="one_disabled"]' );
+		var xdaiDisabled  	 = thisParent.find( '[name="xdai_disabled"]' );
 		var arbitrumDisabled = thisParent.find( '[name="arbitrum_disabled"]' );
 		var ghostEnabled  	 = thisParent.find( '[name="ghost_enabled"]' );
 		var nextEnabled  	 = thisParent.find( '[name="next_enabled"]' );
@@ -269,6 +271,8 @@
 		ftmDisabled = ftmDisabled.is(':checked') ? 'true' : 'false';
 		avaxDisabled = avaxDisabled.is(':checked') ? 'true' : 'false';
 		movrDisabled = movrDisabled.is(':checked') ? 'true' : 'false';
+		oneDisabled = oneDisabled.is(':checked') ? 'true' : 'false';
+		xdaiDisabled = xdaiDisabled.is(':checked') ? 'true' : 'false';
 		arbitrumDisabled = arbitrumDisabled.is(':checked') ? 'true' : 'false';
 
 		useTestnet = useTestnet.is(':checked') ? 'true' : 'false';
