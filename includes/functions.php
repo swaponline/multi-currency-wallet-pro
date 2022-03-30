@@ -438,6 +438,7 @@ function mcwallet_supperted_chains() {
 		'ftm'      => 'FTM',
 		'avax'     => 'AVAX',
 		'movr'     => 'MOVR',
+		'one'      => 'ONE',
 		'arbitrum' => 'ARBITRUM',
 		'xdai'     => 'XDAI'
 	);
