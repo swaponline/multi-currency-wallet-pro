@@ -133,6 +133,7 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 							'pl' => esc_html__( 'Polish', 'multi-currency-wallet' ),
 							'pt' => esc_html__( 'Portuguese', 'multi-currency-wallet' ),
 							'ko' => esc_html__( 'Korean', 'multi-currency-wallet' ),
+              'ar' => esc_html__( 'Arabic', 'multi-currency-wallet' ),
 						);
 						$default_language = get_option( 'default_language' );
 						$default_language = $default_language ? $default_language : 'en';
