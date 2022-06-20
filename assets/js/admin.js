@@ -230,6 +230,7 @@
 		var xdaiDisabled  	 = thisParent.find( '[name="xdai_disabled"]' );
 		var arbitrumDisabled = thisParent.find( '[name="arbitrum_disabled"]' );
 		var auroraDisabled = thisParent.find( '[name="aurora_disabled"]' );
+		var phiDisabled = thisParent.find( '[name="phi_disabled"]' );
 		var ghostEnabled  	 = thisParent.find( '[name="ghost_enabled"]' );
 		var nextEnabled  	 = thisParent.find( '[name="next_enabled"]' );
 		var exchangeDisabled = thisParent.find( '[name="exchange_disabled"]' );
@@ -276,6 +277,7 @@
 		xdaiDisabled = xdaiDisabled.is(':checked') ? 'true' : 'false';
 		arbitrumDisabled = arbitrumDisabled.is(':checked') ? 'true' : 'false';
 		auroraDisabled = auroraDisabled.is(':checked') ? 'true' : 'false';
+		phiDisabled = phiDisabled.is(':checked') ? 'true' : 'false';
 
 		useTestnet = useTestnet.is(':checked') ? 'true' : 'false';
 
