@@ -441,6 +441,7 @@ function mcwallet_supperted_chains() {
 		'one'      => 'ONE',
 		'arbitrum' => 'ARBITRUM',
 		'aurora'   => 'AURORA',
+		'phi'      => 'PHI',
 		'xdai'     => 'XDAI'
 	);
 	return apply_filters( 'mcwallet_supperted_chains', $supperted_chains );
