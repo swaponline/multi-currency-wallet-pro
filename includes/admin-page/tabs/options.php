@@ -190,6 +190,24 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 			<tr>
 				<th scope="row"></th>
 				<td>
+					<label for="mcwallet_show_all_enabled_wallets">
+						<input name="show_all_enabled_wallets" type="checkbox" id="mcwallet_show_all_enabled_wallets" <?php checked( 'true', get_option( 'mcwallet_show_all_enabled_wallets' ) ); ?>>
+						<?php esc_html_e( "Show all enabled wallets after save or restore seed phrase (12 words)", 'multi-currency-wallet' );?>
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td>
+					<label for="mcwallet_remember_userwallet">
+						<input name="remeber_userwallet" type="checkbox" id="mcwallet_remember_userwallet" <?php checked( 'true', get_option( 'mcwallet_remember_userwallet' ) ); ?>>
+						<?php esc_html_e( "Save private information (keys, etc..) in user's profile (Custodial mode)", 'multi-currency-wallet' );?>
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td>
 					<label for="mcwallet_disable_internal">
 						<input name="disable_internal" type="checkbox" id="mcwallet_disable_internal" <?php checked( 'true', get_option( 'mcwallet_disable_internal' ) ); ?>>
 						<?php esc_html_e( 'Disable ALL internal wallets. User will use metamask or walletconnect', 'multi-currency-wallet' );?>
@@ -231,24 +249,6 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 					<label for="mcwallet_invoice_enabled">
 						<input name="invoice_enabled" type="checkbox" id="mcwallet_invoice_enabled" <?php checked( 'true', get_option( 'mcwallet_invoice_enabled' ) ); ?>>
 						<?php esc_html_e( 'Enable Invoices', 'multi-currency-wallet' );?>
-					</label>
-				</td>
-			</tr>
-			<tr>
-				<th scope="row"></th>
-				<td>
-					<label for="mcwallet_show_all_enabled_wallets">
-						<input name="show_all_enabled_wallets" type="checkbox" id="mcwallet_show_all_enabled_wallets" <?php checked( 'true', get_option( 'mcwallet_show_all_enabled_wallets' ) ); ?>>
-						<?php esc_html_e( "Show all enabled wallets after save or restore seed phrase (12 words)", 'multi-currency-wallet' );?>
-					</label>
-				</td>
-			</tr>
-			<tr>
-				<th scope="row"></th>
-				<td>
-					<label for="mcwallet_remember_userwallet">
-						<input name="remeber_userwallet" type="checkbox" id="mcwallet_remember_userwallet" <?php checked( 'true', get_option( 'mcwallet_remember_userwallet' ) ); ?>>
-						<?php esc_html_e( "Save private information (keys, etc..) in user's profile (Custodial mode)", 'multi-currency-wallet' );?>
 					</label>
 				</td>
 			</tr>
