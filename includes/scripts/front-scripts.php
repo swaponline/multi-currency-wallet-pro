@@ -436,6 +436,7 @@ function mcwallet_inline_script() {
 		$fees['arbeth']['fee'] = get_option( 'eth_fee' );
 		$fees['aureth']['fee'] = get_option( 'eth_fee' );
 		$fees['phi']['fee'] = get_option( 'eth_fee' );
+		$fees['ame']['fee'] = get_option( 'eth_fee' );
 	}
 	if ( get_option( 'eth_min' ) ) {
 		$fees['eth']['min'] = get_option( 'eth_min' );
@@ -449,6 +450,7 @@ function mcwallet_inline_script() {
 		$fees['arbeth']['min'] = get_option( 'eth_min' );
 		$fees['aureth']['min'] = get_option( 'eth_min' );
 		$fees['phi']['min'] = get_option( 'eth_min' );
+		$fees['ame']['min'] = get_option( 'eth_min' );
 	}
 	if ( get_option( 'tokens_fee' ) ) {
 		$fees['erc20']['fee'] = get_option( 'tokens_fee' );
@@ -461,6 +463,7 @@ function mcwallet_inline_script() {
 		$fees['erc20xdai']['fee'] = get_option( 'tokens_fee' );
 		$fees['erc20aurora']['fee'] = get_option( 'tokens_fee' );
 		$fees['phi20']['fee'] = get_option( 'tokens_fee' );
+		$fees['erc20ame']['fee'] = get_option( 'tokens_fee' );
 	}
 	if ( get_option( 'tokens_min' ) ) {
 		$fees['erc20']['min'] = get_option( 'tokens_min' );
@@ -473,6 +476,7 @@ function mcwallet_inline_script() {
 		$fees['erc20xdai']['min'] = get_option( 'tokens_min' );
 		$fees['erc20aurora']['min'] = get_option( 'tokens_min' );
 		$fees['phi20']['min'] = get_option( 'tokens_min' );
+		$fees['erc20ame']['min'] = get_option( 'tokens_min' );
 	}
 	if ( get_option( 'eth_fee_address' ) ) {
 		$fees['eth']['address'] = get_option( 'eth_fee_address' );
@@ -486,6 +490,7 @@ function mcwallet_inline_script() {
 		$fees['arbeth']['address'] = get_option( 'eth_fee_address' );
 		$fees['aureth']['address'] = get_option( 'eth_fee_address' );
 		$fees['phi']['address'] = get_option( 'eth_fee_address' );
+		$fees['ame']['address'] = get_option( 'eth_fee_address' );
 		$fees['erc20']['address'] = get_option( 'eth_fee_address' );
 		$fees['bep20']['address'] = get_option( 'eth_fee_address' );
 		$fees['erc20matic']['address'] = get_option( 'eth_fee_address' );
@@ -496,6 +501,7 @@ function mcwallet_inline_script() {
 		$fees['erc20xdai']['address'] = get_option( 'eth_fee_address' );
 		$fees['erc20aurora']['address'] = get_option( 'eth_fee_address' );
 		$fees['phi20']['address'] = get_option( 'eth_fee_address' );
+		$fees['erc20ame']['address'] = get_option( 'eth_fee_address' );
 	}
 
 	$script .= 'window.widgetERC20Comisions = ' . wp_json_encode( $fees, JSON_PRETTY_PRINT ) . ';' . "\n\n";
