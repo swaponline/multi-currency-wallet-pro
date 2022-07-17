@@ -30,7 +30,6 @@
 					<span class="dashicons dashicons-trash" style="visibility: hidden"></span>
 				</div>
 			</div>
-			<?php var_dump(get_option( 'mcwallet_strings' ));?>
 			<div class="mcwallet-strings-row">
 				<div class="mcwallet-string-col">
 					<strong><?php esc_html_e( 'Splash Screen first loading', 'multi-currency-wallet' ); ?> &quot;</strong>
@@ -39,7 +38,7 @@
 				</div>
 				<div class="mcwallet-string-col">
 					<input type="text" name="string_splash_first_loading" class="large-text" value="<?php
-						echo esc_attr( get_option( 'string_splash_first_loading', __( 'Please wait while the application is loading, it may take one minute...', 'multi-currency-wallet' ) ) );
+						echo esc_attr( wp_unslash( get_option( 'string_splash_first_loading', __( 'Please wait while the application is loading, it may take one minute...', 'multi-currency-wallet' ) ) ) );
 					?>">
 				</div>
 				<div class="mcwallet-string-action">
