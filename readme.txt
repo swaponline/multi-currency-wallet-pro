@@ -1,19 +1,15 @@
-Warning! This is free version of the plugin https://wordpress.org/plugins/multi-currency-wallet/
-
-To activate premium features buy full version here https://codecanyon.net/item/multicurrency-crypto-wallet-and-exchange-widgets-for-wordpress/23532064 
-
-=== Multi Currency Wallet ===
+=== Bitcoin, Ethereum and ERC20 crypto wallets with exchange ===
 Contributors: noxonsu, burdianov
-Tags: adress generation, bitcoin, blockchain, crypto, cryptocurrency, eos, ethereum, exchange, shortcode, wallet, widget
+Tags: business, ERC20, ico, crowdfunding, wallet, send, money, deposit, withdraw, history, KYC, membership, bitcoin, blockchain, crypto, cryptocurrency
 Requires at least: 5.0
-Tested up to: 5.5
-Stable tag: 1.0.2
+Tested up to: 6.0
+Stable tag: 1.1.5
 Requires PHP: 5.6
-License: GNU General Public License version 3.0
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Simplest Multi-currency wallet for WordPress.
- 
+
 == Description ==
 
 Simplest Multi-currency wallet for WordPress. Check premium version https://codecanyon.net/item/multicurrency-crypto-wallet-and-exchange-widgets-for-wordpress/23532064
@@ -30,7 +26,6 @@ https://api.bitcore.io/api/BTC/mainnet - free bitcoin endpoint where we send a t
 https://next.swaponline.io/mainnet - NEXT blockchain node endpoint
 https://noxon.wpmix.net/currsAll.php - free cryptocurrency price feed
 
-
 == Usage ==
 
 Activate plugin, go to MCW options and enable "Use Multi Currency Wallet template as home page."
@@ -42,12 +37,25 @@ Activate plugin, go to MCW options and enable "Use Multi Currency Wallet templat
 Yes, you can!.
 
 == Screenshots ==
-
-1. https://growup.wpmix.net/swap-docs/screenshots/admin-1.jpg
-2. https://growup.wpmix.net/swap-docs/screenshots/admin-2.jpg
+1. Wallet Tokens List
+2. Wallet Options
+3. Example Exchange
+4. Example Multi Wallet
+5. Example Wallet
+6. Multi Wallet
 
 == Changelog ==
 
 = 1.0.0 =
 * Release
+
+
+
+
+
+
+ 
+
+
+
 

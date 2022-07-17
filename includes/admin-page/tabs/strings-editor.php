@@ -30,6 +30,7 @@
 					<span class="dashicons dashicons-trash" style="visibility: hidden"></span>
 				</div>
 			</div>
+			<?php var_dump(get_option( 'mcwallet_strings' ));?>
 			<div class="mcwallet-strings-row">
 				<div class="mcwallet-string-col">
 					<strong><?php esc_html_e( 'Splash Screen first loading', 'multi-currency-wallet' ); ?> &quot;</strong>
@@ -50,13 +51,15 @@
 
 			if ( $strings ) {
 				foreach ( $strings as $key => $string ) {
+					$string_search  = isset( $string[0] ) ? $string[0] : '';
+					$string_replace = isset( $string[1] ) ? $string[1] : '';
 				?>
 				<div class="mcwallet-strings-row">
 					<div class="mcwallet-string-col">
-						<input type="text" name="<?php echo esc_attr( $key ); ?>" class="large-text mcwallet-string-input" value="<?php echo esc_attr( $string[0] ); ?>">
+						<input type="text" name="<?php echo esc_attr( $key ); ?>" class="large-text mcwallet-string-input" value="<?php echo esc_attr( $string_search ); ?>">
 					</div>
 					<div class="mcwallet-string-col">
-						<input type="text" name="<?php echo esc_attr( $key ); ?>" class="large-text mcwallet-string-input" value="<?php echo esc_attr( $string[1] ); ?>">
+						<input type="text" name="<?php echo esc_attr( $key ); ?>" class="large-text mcwallet-string-input" value="<?php echo esc_attr( $string_replace ); ?>">
 					</div>
 					<div class="mcwallet-string-action">
 						<a href="#" class="button-link-delete mcwallet-remove-string"><span class="dashicons dashicons-trash"></span></a>
