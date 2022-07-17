@@ -249,7 +249,7 @@ function mcwallet_inline_build_script() {
 	var information = document.getElementById("usersInform");
 
 	if (localStorage.length === 0) {
-		information.innerText = "<?php echo esc_attr( get_option( 'string_splash_first_loading', __( 'Please wait while the application is loading,\n it may take one minute...', 'multi-currency-wallet' ) ) ); ?>";
+		information.innerText = "<?php echo esc_attr( get_option( 'string_splash_first_loading', __( 'Please wait while the application is loading, it may take one minute...', 'multi-currency-wallet' ) ) ); ?>";
 	}
 	<?php
 	$script = ob_get_clean();
