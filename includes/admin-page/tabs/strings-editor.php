@@ -55,10 +55,10 @@
 				?>
 				<div class="mcwallet-strings-row">
 					<div class="mcwallet-string-col">
-						<input type="text" name="<?php echo esc_attr( $key ); ?>" class="large-text mcwallet-string-input" value="<?php echo esc_attr( $string_search ); ?>">
+						<input type="text" name="<?php echo esc_attr( $key ); ?>" class="large-text mcwallet-string-input" value="<?php echo esc_attr( wp_unslash( $string_search ) ); ?>">
 					</div>
 					<div class="mcwallet-string-col">
-						<input type="text" name="<?php echo esc_attr( $key ); ?>" class="large-text mcwallet-string-input" value="<?php echo esc_attr( $string_replace ); ?>">
+						<input type="text" name="<?php echo esc_attr( $key ); ?>" class="large-text mcwallet-string-input" value="<?php echo esc_attr( wp_unslash( $string_replace ) ); ?>">
 					</div>
 					<div class="mcwallet-string-action">
 						<a href="#" class="button-link-delete mcwallet-remove-string"><span class="dashicons dashicons-trash"></span></a>
