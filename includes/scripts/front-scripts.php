@@ -257,6 +257,13 @@ function mcwallet_inline_build_script() {
 	return $script;
 }
 
+function mcwallet_fix_name($name, $used_names) {
+  while(in_array($name, $used_names)) {
+    $name = $name."*";
+  }
+  return $name;
+}
+
 /**
  * Inline scripts
  */
@@ -282,17 +289,24 @@ function mcwallet_inline_script() {
 			}
 		});
 
+    $used_names = array();
+
 		foreach ( $tokens as $name => $token ) {
 			$i++;
 			$separator = '';
 			if ( $count != $i ) {
 				$separator = ',';
 			}
-			$name     = strtolower( $name );
-			$standard = 'erc20';
+      $standard = 'erc20';
 			if ( isset( $token['standard'] ) ) {
 				$standard = $token['standard'];
 			}
+      if (!isset($used_names[$standard])) $used_names[$standard] = array();
+			$name     = strtolower( $token['symbol'] ); //strtolower( $name );
+      $name     = mcwallet_fix_name($name, $used_names[$standard]);
+      $used_names[$standard][] = $name;
+
+			
 			$address  = $token['address'];
 			$decimals = $token['decimals'];
 			$fullname = $token['name'];
@@ -319,7 +333,7 @@ function mcwallet_inline_script() {
 				$order = $token['order'];
 			};
 			$script .= "{
-				name: '". $symbol ."',
+				name: '". $name ."',
 				symbol: '". $symbol ."',
 				standard: '" . $standard . "',
 				address: '" . $address . "',
