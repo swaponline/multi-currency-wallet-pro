@@ -259,7 +259,7 @@ function mcwallet_inline_build_script() {
 
 function mcwallet_fix_name($name, $used_names) {
   while(in_array($name, $used_names)) {
-    $name = $name."_";
+    $name = $name."*";
   }
   return $name;
 }
