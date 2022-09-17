@@ -442,6 +442,7 @@ function mcwallet_supperted_chains() {
 		'arbitrum' => 'ARBITRUM',
 		'aurora'   => 'AURORA',
 		'phi'      => 'PHI',
+    'phi_v2'   => 'PHI-V2',
 		'ame'      => 'AME',
 		'xdai'     => 'XDAI'
 	);
