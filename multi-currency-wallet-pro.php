@@ -27,7 +27,9 @@ if ( ! defined( 'MCWALLET' ) ) {
 	define( 'MCWALLET_FILE', __FILE__ );
 	define( 'MCWALLET_VER', '1.1.1472' );
 	define( 'MCWALLET_BUILD_VER', '572ecb' );
-
+  
+  
+  define( 'MC_WALLET_USED_TOKEN_MODULE_STANDART' ,array('phi20_v2'));
 	/**
 	 * Plugin Init
 	 */
