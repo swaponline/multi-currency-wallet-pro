@@ -401,7 +401,8 @@ function mcwallet_scheme_attr() {
  *
  * @link http://www.jonasjohn.de/snippets/php/hex-string.htm
  */
-function mcwallet_hex_to_string( $hex ) { 
+function mcwallet_hex_to_string( $hex, $standart) { 
+  if (in_array($standart, MC_WALLET_USED_TOKEN_MODULE_STANDART)) return $hex;
 	$string = '';
 	$arr = explode("\n", trim( chunk_split( $hex, 2 ) ) );
 	foreach( $arr as $h) {
@@ -416,7 +417,8 @@ function mcwallet_hex_to_string( $hex ) {
  *
  * @link http://php.net/manual/ru/function.hexdec.php#97172
  */
-function mcwallet_hex_to_number( $hex ) {
+function mcwallet_hex_to_number( $hex, $standart ) {
+  if (in_array($standart, MC_WALLET_USED_TOKEN_MODULE_STANDART)) return $hex;
 	$hex = preg_replace( '/[^0-9A-Fa-f]/', '', $hex );
 	$dec = hexdec( $hex );
 	$max = pow(2, 4 * (strlen($hex) + (strlen($hex) % 2)));

@@ -5,6 +5,7 @@
  * @package Multi Currency Wallet
  */
 
+
 /* Service Url Mainnet */
 function mcwallet_service_url_mainnet(){
 	$service_url_mainnet = ( get_option( 'mcwallet_use_testnet' ) === 'true' ) ? 'api-rinkeby.etherscan.io/api' : 'api.etherscan.io/api';
@@ -48,6 +49,11 @@ function mcwallet_service_url_aurora(){
 	return esc_url( $service_url_mainnet, 'https' );
 }
 
+/* Service Phi-v2 */
+function mcwallet_service_url_phiv2() {
+  return esc_url( 'https://phiscan.com/api', 'https' );
+}
+
 /* Service Api Token */
 function mcwallet_service_api_token( $standart = 'erc20' ){
 	$service_api_token = 'X88AP9B52SENYPTR31W5SGRK5EGJZD2BJC';
@@ -57,6 +63,7 @@ function mcwallet_service_api_token( $standart = 'erc20' ){
 	if ( 'erc20avax' === $standart ) $service_api_token = 'BEDYVGMKPM4HXIVD16B1Z66D5R75D9AHNC';
 	if ( 'erc20movr' === $standart ) $service_api_token = 'VHG8YAQMA78MAQKU7C73Z4UQ2A83S4IBGW';
 	if ( 'erc20aurora' === $standart ) $service_api_token = 'J9ZZ9C6FI4YHJVISBI2VYRRJ1MTU3ID45Q';
+  if ( 'phi20_v2' === $standart) $service_api_token = '';
 	return $service_api_token;
 }
 
@@ -115,7 +122,9 @@ function mcwallet_get_remote_url( $result = 'name', $address = '', $standart = '
 	if ( 'erc20aurora' === $standart ) {
 		$url = mcwallet_service_url_aurora();
 	}
-
+  if ( 'phi20_v2' === $standart) {
+    $url = mcwallet_service_url_phiv2();
+  }
 	$swap_remote_url = add_query_arg(
 		$args,
 		$url
@@ -127,7 +136,34 @@ function mcwallet_get_remote_url( $result = 'name', $address = '', $standart = '
  * Is Address
  */
 function mcwallet_is_address( $address = '', $standart = 'erc20' ){
-
+  if (in_array($standart, MC_WALLET_USED_TOKEN_MODULE_STANDART)) {
+    $url = false;
+    switch ($standart) {
+      case 'phi20_v2':
+        $url = mcwallet_service_url_phiv2();
+        break;
+    }
+    if ($url !== false) {
+      $args = array(
+        'module' => 'token',
+        'action' => 'getToken',
+        'contractaddress' => $address
+      );
+      $swap_remote_url = add_query_arg(
+        $args,
+        $url
+      );
+      $response = wp_remote_get( $swap_remote_url );
+      if ( wp_remote_retrieve_response_code( $response ) === 200 ){
+        $response_body = wp_remote_retrieve_body( $response );
+        $body = json_decode( $response_body, true);
+        if (isset($body['message']) and ($body['message'] === 'OK')) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 	$url = mcwallet_get_remote_url( 'name', $address, $standart );
 	$response = wp_remote_get( $url );
 	if ( wp_remote_retrieve_response_code( $response ) === 200 ){
@@ -147,7 +183,41 @@ function mcwallet_is_address( $address = '', $standart = 'erc20' ){
  * Get Remote Result
  */
 function mcwallet_get_remote_result( $result = 'name', $address, $standart = 'erc20' ){
-	
+  if (in_array($standart, MC_WALLET_USED_TOKEN_MODULE_STANDART)) {
+    $url = false;
+    switch ($standart) {
+      case 'phi20_v2':
+        $url = mcwallet_service_url_phiv2();
+        break;
+    }
+    if ($url !== false) {
+      $args = array(
+        'module' => 'token',
+        'action' => 'getToken',
+        'contractaddress' => $address
+      );
+      $swap_remote_url = add_query_arg(
+        $args,
+        $url
+      );
+      $response = wp_remote_get( $swap_remote_url );
+      if ( wp_remote_retrieve_response_code( $response ) === 200 ){
+        $response_body = wp_remote_retrieve_body( $response );
+        $body = json_decode( $response_body, true);
+        if (isset($body['message']) and ($body['message'] === 'OK') and isset($body['result'])) {
+          switch($result) {
+            case 'name':
+              return $body['result']['name'];
+            case 'decimals':
+              return $body['result']['decimals'];
+            case 'symbol':
+              return $body['result']['symbol'];
+          }
+        }
+      }
+    }
+    return false;
+  }
 	$url = mcwallet_get_remote_url( $result, $address, $standart );
 	$response = wp_remote_get( $url );
 	if ( wp_remote_retrieve_response_code( $response ) === 200 ){

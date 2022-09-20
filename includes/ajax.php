@@ -211,18 +211,18 @@ function mcwallet_add_token() {
 		$custom_name = sanitize_text_field( $_POST['name'] );
 
 	$standard = 'erc20';
-	if (in_array($_POST['standard'], array('erc20','bep20','erc20matic','erc20ftm','erc20avax','erc20movr','erc20aurora'))) $standard = $_POST['standard'];
+	if (in_array($_POST['standard'], array('erc20','bep20','erc20matic','erc20ftm','erc20avax','erc20movr','erc20aurora','phi20_v2'))) $standard = $_POST['standard'];
 		if ( mcwallet_is_address( $address, $standard ) ) {
 
 			$status = 'success';
 
-			$name = mcwallet_hex_to_string( mcwallet_get_remote_result( 'name', $address, $standard) );
+			$name = mcwallet_hex_to_string( mcwallet_get_remote_result( 'name', $address, $standard), $standard );
 			$key  = strtolower( $name . '_' . $standard . '_' .$address);
 			if ( $custom_name ) {
 				$name = $custom_name;
 			}
-			$symbol       = mcwallet_hex_to_string( mcwallet_get_remote_result( 'symbol', $address, $standard ) );
-			$decimals     = mcwallet_hex_to_number( mcwallet_get_remote_result( 'decimals', $address, $standard ) );
+			$symbol       = mcwallet_hex_to_string( mcwallet_get_remote_result( 'symbol', $address, $standard ), $standard );
+			$decimals     = mcwallet_hex_to_number( mcwallet_get_remote_result( 'decimals', $address, $standard ), $standard );
 			$standard     = sanitize_text_field( $_POST['standard'] );
 			$icon         = sanitize_text_field( $_POST['icon'] );
 			$rate         = sanitize_text_field( $_POST['rate'] );
