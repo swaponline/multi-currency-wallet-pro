@@ -182,11 +182,32 @@
 	 * If user must be logged in - save user data
 	 */
 	$('.mcwallet-form-options [name="is_logged"]').on('change', function (e) {
+    $('.mcwallet-form-options #mcwallet_must-logged-in-on')[0].style.display = 'none'
+    $('.mcwallet-form-options #mcwallet-save_private_keys-on')[0].style.display = 'none'
+    $('.mcwallet-form-options #mcwallet-save_private_keys-off')[0].style.display = 'none'
 		if ($('.mcwallet-form-options [name="is_logged"]').is(':checked')) {
 			$('.mcwallet-form-options [name="remeber_userwallet"]').prop('checked', true)
-		}
+      $('.mcwallet-form-options #mcwallet-save_private_keys-on')[0].style.display = ''
+		} else {
+      if ($('.mcwallet-form-options [name="remeber_userwallet"]').is(':checked')) {
+        $('.mcwallet-form-options #mcwallet-save_private_keys-off')[0].style.display = ''
+      }
+      $('.mcwallet-form-options [name="remeber_userwallet"]').prop('checked', false)
+    }
 	})
-	
+	$('.mcwallet-form-options [name="remeber_userwallet"]').on('change', function (e) {
+    $('.mcwallet-form-options #mcwallet_must-logged-in-on')[0].style.display = 'none'
+    $('.mcwallet-form-options #mcwallet-save_private_keys-on')[0].style.display = 'none'
+    $('.mcwallet-form-options #mcwallet-save_private_keys-off')[0].style.display = 'none'
+    if ($('.mcwallet-form-options [name="remeber_userwallet"]').is(':checked')) {
+      if (!$('.mcwallet-form-options [name="is_logged"]').is(':checked')) {
+        $('.mcwallet-form-options #mcwallet_must-logged-in-on')[0].style.display = ''
+      }
+      $('.mcwallet-form-options [name="is_logged"]').prop('checked', true)
+      
+      
+    }
+  })
 	/**
 	 * Update Options
 	 */

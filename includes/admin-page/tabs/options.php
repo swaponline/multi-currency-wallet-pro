@@ -186,6 +186,15 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 						<input name="is_logged" type="checkbox" id="mcwallet_is_logged" value="true" <?php checked( 'true', get_option( 'mcwallet_is_logged' ) ); ?>>
 						<?php esc_html_e( 'Users must be registered and logged for access wallet.', 'multi-currency-wallet' );?>
 					</label>
+          <div class="desciption">
+            <?php esc_html_e( "Without this option, &quot;Save private information&quot; does not work." ); ?>
+          </div>
+          <p class="mcwallet-info-block" id="mcwallet-save_private_keys-off" style="display: none">
+            <?php esc_html_e( "&quot;Save private information&quot; option was turned off automatically", 'multi-currency-wallet' );?>
+          </p>
+          <p class="mcwallet-info-block" id="mcwallet-save_private_keys-on" style="display: none">
+            <?php esc_html_e( "&quot;Save private information&quot; option turned on automatically", 'multi-currency-wallet' );?>
+          </p>
 				</td>
 			</tr>
 			<tr>
@@ -204,10 +213,18 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 						<input name="remeber_userwallet" type="checkbox" id="mcwallet_remember_userwallet" <?php checked( 'true', get_option( 'mcwallet_remember_userwallet' ) ); ?>>
 						<?php esc_html_e( "Save private information (keys, etc..) in user's profile (Custodial mode)", 'multi-currency-wallet' );?>
 					</label>
+          <p class="desciption">
+            <?php esc_html_e( "For this setting to work, the &quot;Users must be registered and logged&quot; option must be enabled.", 'multi-currency-wallet' );?>
+          </p>
+          <p class="mcwallet-info-block" id="mcwallet_must-logged-in-on" style="display: none">
+            <?php esc_html_e( "&quot;Users must be registered and logged&quot; option turned on automatically", 'multi-currency-wallet' );?>
+          </p>
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"></th>
+				<th scope="row">
+          <label><?php esc_html_e( 'Native coins settings', 'multi-currency-wallet' );?></label>
+        </th>
 				<td>
 					<label for="mcwallet_disable_internal">
 						<input name="disable_internal" type="checkbox" id="mcwallet_disable_internal" <?php checked( 'true', get_option( 'mcwallet_disable_internal' ) ); ?>>
