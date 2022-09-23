@@ -189,10 +189,10 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
           <div class="desciption">
             <?php esc_html_e( "Without this option, &quot;Save private information&quot; does not work." ); ?>
           </div>
-          <p class="mcwallet-notice" id="mcwallet-save_private_keys-off" style="display: none">
+          <p class="mcwallet-info-block" id="mcwallet-save_private_keys-off" style="display: none">
             <?php esc_html_e( "&quot;Save private information&quot; option was turned off automatically", 'multi-currency-wallet' );?>
           </p>
-          <p class="mcwallet-notice" id="mcwallet-save_private_keys-on" style="display: none">
+          <p class="mcwallet-info-block" id="mcwallet-save_private_keys-on" style="display: none">
             <?php esc_html_e( "&quot;Save private information&quot; option turned on automatically", 'multi-currency-wallet' );?>
           </p>
 				</td>
@@ -216,7 +216,7 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
           <p class="desciption">
             <?php esc_html_e( "For this setting to work, the &quot;Users must be registered and logged&quot; option must be enabled.", 'multi-currency-wallet' );?>
           </p>
-          <p class="mcwallet-notice" id="mcwallet_must-logged-in-on" style="display: none">
+          <p class="mcwallet-info-block" id="mcwallet_must-logged-in-on" style="display: none">
             <?php esc_html_e( "&quot;Users must be registered and logged&quot; option turned on automatically", 'multi-currency-wallet' );?>
           </p>
 				</td>
