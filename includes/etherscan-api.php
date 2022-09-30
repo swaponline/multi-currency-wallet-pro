@@ -33,7 +33,7 @@ function mcwallet_service_url_fantom(){
 
 /* Service Url Avalanche */
 function mcwallet_service_url_avalanche(){
-	$service_url_mainnet = ( get_option( 'mcwallet_use_testnet' ) === 'true' ) ? 'testnet.snowtrace.io/api' : 'snowtrace.io/api';
+	$service_url_mainnet = ( get_option( 'mcwallet_use_testnet' ) === 'true' ) ? 'testnet.snowtrace.io/api' : 'api.snowtrace.io/api';
 	return esc_url( $service_url_mainnet, 'https' );
 }
 
