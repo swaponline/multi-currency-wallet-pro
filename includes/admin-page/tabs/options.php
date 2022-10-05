@@ -282,7 +282,7 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 					<label><?php esc_html_e( '0x swap fee', 'multi-currency-wallet' );?></label>
 				</th>
 				<td>
-					<input name="zerox_fee_percent" type="number" max="1" value="<?php echo esc_attr( get_option( 'zerox_fee_percent', '0' ) );?>" class="tiny-text textright" <?php disabled( true, $disable_fee ); ?>> %
+					<input name="zerox_fee_percent" type="number" min="0" max="1" value="<?php echo esc_attr( get_option( 'zerox_fee_percent', '0' ) );?>" class="tiny-text textright" <?php disabled( true, $disable_fee ); ?>> %
 					<p class="description"><?php esc_html_e( 'The percentage of the purchase amount that will be sent to the EVM address (Maximux 0x Fee is 1%)', 'multi-currency-wallet' );?></p>
 				</td>
 			</tr>
