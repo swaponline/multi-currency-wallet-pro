@@ -282,8 +282,8 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 					<label><?php esc_html_e( '0x swap fee', 'multi-currency-wallet' );?></label>
 				</th>
 				<td>
-					<input name="zerox_fee_percent" type="text" value="<?php echo esc_attr( get_option( 'zerox_fee_percent', '5' ) );?>" class="tiny-text textright" <?php disabled( true, $disable_fee ); ?>> %
-					<p class="description"><?php esc_html_e( 'The percentage of the purchase amount that will be sent to the EVM address', 'multi-currency-wallet' );?></p>
+					<input name="zerox_fee_percent" type="number" min="0" max="1" value="<?php echo esc_attr( get_option( 'zerox_fee_percent', '0' ) );?>" class="tiny-text textright" <?php disabled( true, $disable_fee ); ?>> %
+					<p class="description"><?php esc_html_e( 'The percentage of the purchase amount that will be sent to the EVM address (Maximux 0x Fee is 1%)', 'multi-currency-wallet' );?></p>
 				</td>
 			</tr>
 			<tr>
@@ -308,7 +308,7 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 					<label><?php esc_html_e( 'Bitcoin', 'multi-currency-wallet' );?></label>
 				</th>
 				<td>
-					<input name="btc_fee" type="text" value="<?php echo esc_attr( get_option( 'btc_fee', '5' ) );?>" class="tiny-text textright" <?php disabled( true, $disable_fee ); ?>> <?php esc_html_e( '%, no less than', 'multi-currency-wallet' ); ?> <input name="btc_min" type="text" value="<?php echo esc_attr( get_option('btc_min') );?>" size="7" class="textright" placeholder="<?php esc_attr_e( 'Enter Min. fee (ex. 0.0001)', 'multi-currency-wallet' ); ?>"> <?php esc_html_e( 'BTC', 'multi-currency-wallet' ); ?>
+					<input name="btc_fee" type="number" min="0" max="100" value="<?php echo esc_attr( get_option( 'btc_fee', '5' ) );?>" class="tiny-text textright" <?php disabled( true, $disable_fee ); ?>> <?php esc_html_e( '%, no less than', 'multi-currency-wallet' ); ?> <input name="btc_min" type="text" value="<?php echo esc_attr( get_option('btc_min') );?>" size="7" class="textright" placeholder="<?php esc_attr_e( 'Enter Min. fee (ex. 0.0001)', 'multi-currency-wallet' ); ?>"> <?php esc_html_e( 'BTC', 'multi-currency-wallet' ); ?>
 				</td>
 			</tr>
 			<tr>
@@ -324,7 +324,7 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 					<label><?php esc_html_e( 'EVM compatible (ETH, BSC, etc..)', 'multi-currency-wallet' );?></label>
 				</th>
 				<td>
-					<input name="eth_fee" type="text" value="<?php echo esc_attr( get_option( 'eth_fee', '5' ) );?>" class="tiny-text textright" <?php disabled( true, $disable_fee ); ?>> <?php esc_html_e( '%, no less than', 'multi-currency-wallet' ); ?> <input name="eth_min" type="text" value="<?php echo esc_attr( get_option('eth_min') );?>" size="7" class="textright" placeholder="<?php esc_attr_e( 'Enter Min. fee (ex. 0.0001)', 'multi-currency-wallet' ); ?>"> <?php esc_html_e( 'ETH', 'multi-currency-wallet' ); ?>
+					<input name="eth_fee" type="number" min="0" max="100" value="<?php echo esc_attr( get_option( 'eth_fee', '5' ) );?>" class="tiny-text textright" <?php disabled( true, $disable_fee ); ?>> <?php esc_html_e( '%, no less than', 'multi-currency-wallet' ); ?> <input name="eth_min" type="text" value="<?php echo esc_attr( get_option('eth_min') );?>" size="7" class="textright" placeholder="<?php esc_attr_e( 'Enter Min. fee (ex. 0.0001)', 'multi-currency-wallet' ); ?>"> <?php esc_html_e( 'ETH', 'multi-currency-wallet' ); ?>
 				</td>
 			</tr>
 			<tr>
@@ -340,7 +340,7 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 					<label><?php esc_html_e( 'Other tokens', 'multi-currency-wallet' );?></label>
 				</th>
 				<td>
-					<input name="tokens_fee" type="text" value="<?php echo esc_attr( get_option( 'tokens_fee', '5' ) );?>" class="tiny-text textright" <?php disabled( true, $disable_fee ); ?>> <?php esc_html_e( '%, no less than', 'multi-currency-wallet' ); ?> <input name="tokens_min" type="text" value="<?php echo esc_attr( get_option('tokens_min') );?>" size="7" class="textright" placeholder="<?php esc_attr_e( 'Enter Min. fee (ex. 0.0001)', 'multi-currency-wallet' ); ?>"> <?php esc_html_e( 'Tokens', 'multi-currency-wallet' ); ?>
+					<input name="tokens_fee" type="number" min="0" max="100" value="<?php echo esc_attr( get_option( 'tokens_fee', '5' ) );?>" class="tiny-text textright" <?php disabled( true, $disable_fee ); ?>> <?php esc_html_e( '%, no less than', 'multi-currency-wallet' ); ?> <input name="tokens_min" type="text" value="<?php echo esc_attr( get_option('tokens_min') );?>" size="7" class="textright" placeholder="<?php esc_attr_e( 'Enter Min. fee (ex. 0.0001)', 'multi-currency-wallet' ); ?>"> <?php esc_html_e( 'Tokens', 'multi-currency-wallet' ); ?>
 				</td>
 			</tr>
 			<tr>

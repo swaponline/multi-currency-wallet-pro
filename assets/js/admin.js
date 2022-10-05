@@ -178,6 +178,31 @@
 		}
 	});
 
+  /**
+   * INPUT[type="number"] on change fix min and max value
+   */
+  const inputNumberFix = (e) => {
+    const $target = $(e.target)
+    let min = $target.attr('min')
+    let max = $target.attr('max')
+    let def = $target.attr('default')
+    let value = $target.val()
+
+    if (min !== undefined) {
+      try {
+        min = parseFloat(min)
+        if (value<min) $target.val(min)
+      } catch (e) {}
+    }
+    if (max !== undefined) {
+      try {
+        max = parseFloat(max)
+        if (value>max) $target.val(max)
+      } catch (e) {}
+    }
+  }
+  $('.mcwallet-form-options INPUT[type="number"]').on('change', inputNumberFix)
+  $('.mcwallet-form-options INPUT[type="number"]').on('keyup', inputNumberFix)
 	/**
 	 * If user must be logged in - save user data
 	 */

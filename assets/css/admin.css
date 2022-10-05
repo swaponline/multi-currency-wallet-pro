@@ -392,3 +392,7 @@
   background: #e4ebab;
   border: 2px solid #055205;
 }
+
+INPUT.tiny-text[type="number"] {
+  width: 100px;
+}
