@@ -23,6 +23,17 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 					</label>
 				</td>
 			</tr>
+      <tr>
+        <th scope="row">
+          <?php esc_html_e( 'Enable multitab', 'multi-currency-wallet' ); ?>
+        </th>
+        <td>
+          <label for="mcwallet_enable_multitab">
+            <input name="mcwallet_enable_multitab" type="checkbox" id="mcwallet_enable_multitab" <?php checked( 'false', get_option( 'mcwallet_enable_multitab' ) ); ?>>
+            <?php esc_html_e( 'Allow to open wallet in multiple tabs' , 'multi-currency-wallet' ); ?>
+          </label>
+        </td>
+      </tr>
 			<tr>
 				<th scope="row">
 					<?php esc_html_e( 'Enable sending statistics to plugin developers', 'multi-currency-wallet' );?>
