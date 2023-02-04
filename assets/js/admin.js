@@ -294,6 +294,7 @@
 		var selected_quickswap_mode = thisParent.find( '[name="selected_quickswap_mode"]' );
 		var default_language = thisParent.find('[name="default_language"]');
 		var useTestnet = thisParent.find( '[name="use_testnet"]' );
+    var mcwallet_enable_multitab = thisParent.find( '[name="mcwallet_enable_multitab"]' );
 		// click handler
 
 		var strings = '';
@@ -327,6 +328,8 @@
 		phiDisabled = phiDisabled.is(':checked') ? 'true' : 'false';
 		ameDisabled = ameDisabled.is(':checked') ? 'true' : 'false';
 
+    mcwallet_enable_multitab = mcwallet_enable_multitab.is(':checked') ? 'true' : 'false';
+    
 		useTestnet = useTestnet.is(':checked') ? 'true' : 'false';
 
 		exchangeDisabled = exchangeDisabled.is(':checked') ? 'true' : 'false';
@@ -391,6 +394,7 @@
 			selected_quickswap_mode: selected_quickswap_mode,
 			default_language: default_language,
 			invoiceEnabled: invoiceEnabled,
+      mcwallet_enable_multitab: mcwallet_enable_multitab,
 			SO_addAllEnabledWalletsAfterRestoreOrCreateSeedPhrase: SO_addAllEnabledWalletsAfterRestoreOrCreateSeedPhrase,
 
 			rememberUserWallet: rememberUserWallet,
