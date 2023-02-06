@@ -396,6 +396,7 @@ function mcwallet_inline_script() {
 		'zeroxFeePercent'              => get_option( 'zerox_fee_percent', '' ),
 		'pluginVersion'                => MCWALLET_VER,
 		'SO_addAllEnabledWalletsAfterRestoreOrCreateSeedPhrase' => get_option( 'mcwallet_show_all_enabled_wallets', 'false'),
+    'SO_AllowMultiTab'             => get_option( 'mcwallet_enable_multitab', 'false')
 	);
 
 	// Disabled chains

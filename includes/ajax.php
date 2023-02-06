@@ -544,6 +544,8 @@ function mcwallet_update_options() {
 		$is_home          = 'false';
 		$is_logged        = 'false';
 
+    $mcwallet_enable_multitab = sanitize_text_field( $_POST['mcwallet_enable_multitab'] );
+    
 		$strings      = array();
 		$replacements = array();
 		if ( isset( $_POST['strings'] ) ) {
@@ -594,6 +596,8 @@ function mcwallet_update_options() {
 		update_option( 'selected_quickswap_mode', $selected_quickswap_mode );
 		update_option( 'default_language', $default_language );
 		update_option( 'mcwallet_strings', $replacements );
+    
+    update_option( 'mcwallet_enable_multitab', $mcwallet_enable_multitab );
 
 		if ( $_POST['hideServiceLinks'] == 'true' ) {
 			update_option( 'mcwallet_hide_service_links', sanitize_text_field( $_POST['hideServiceLinks'] ) );
