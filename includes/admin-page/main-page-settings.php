@@ -34,6 +34,7 @@ function mcwallet_do_settings_sections() {
 						<option value="erc20movr"><?php esc_html_e( 'Moonriver (ERC-20)', 'multi-currency-wallet' ); ?></option>
 						<option value="erc20aurora"><?php esc_html_e( 'Aurora (ERC-20)', 'multi-currency-wallet' ); ?></option>
             <option value="phi20_v2"><?php esc_html_e( 'PHIv2 (ERC-20)', 'multi-currency-wallet' ); ?></option>
+            <option value="fkw20"><?php esc_html_e( 'Forawa (FKW-20)', 'multi-currency-wallet' ); ?></option>
 						<!-- Uncommenting when add web3 php tokens info fetcher instead of etherscal-like
 							<option value="erc20one"></option>
 							<option value="erc20xdai"></option>

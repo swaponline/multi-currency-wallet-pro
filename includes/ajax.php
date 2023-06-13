@@ -211,7 +211,7 @@ function mcwallet_add_token() {
 		$custom_name = sanitize_text_field( $_POST['name'] );
 
 	$standard = 'erc20';
-	if (in_array($_POST['standard'], array('erc20','bep20','erc20matic','erc20ftm','erc20avax','erc20movr','erc20aurora','phi20_v2'))) $standard = $_POST['standard'];
+	if (in_array($_POST['standard'], array('erc20','bep20','erc20matic','erc20ftm','erc20avax','erc20movr','erc20aurora','phi20_v2','fkw20'))) $standard = $_POST['standard'];
 		if ( mcwallet_is_address( $address, $standard ) ) {
 
 			$status = 'success';

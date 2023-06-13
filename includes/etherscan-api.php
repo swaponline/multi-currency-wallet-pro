@@ -49,6 +49,11 @@ function mcwallet_service_url_aurora(){
 	return esc_url( $service_url_mainnet, 'https' );
 }
 
+/* Fokawa Url */
+function mcwallet_service_url_fkw() {
+  $service_url_mainnet = ( get_option( 'mcwallet_use_testnet' ) === 'true' ) ? '' : 'explorer.fokawa.com/api';
+	return esc_url( $service_url_mainnet, 'https' );
+}
 /* Service Phi-v2 */
 function mcwallet_service_url_phiv2() {
   return esc_url( 'https://phiscan.com/api', 'https' );
@@ -63,7 +68,8 @@ function mcwallet_service_api_token( $standart = 'erc20' ){
 	if ( 'erc20avax' === $standart ) $service_api_token = 'BEDYVGMKPM4HXIVD16B1Z66D5R75D9AHNC';
 	if ( 'erc20movr' === $standart ) $service_api_token = 'VHG8YAQMA78MAQKU7C73Z4UQ2A83S4IBGW';
 	if ( 'erc20aurora' === $standart ) $service_api_token = 'J9ZZ9C6FI4YHJVISBI2VYRRJ1MTU3ID45Q';
-  if ( 'phi20_v2' === $standart) $service_api_token = '';
+  if ( 'phi20_v2' === $standart ) $service_api_token = '';
+  if ( 'fkw20' === $standart ) $service_api_token = '';
 	return $service_api_token;
 }
 
@@ -125,6 +131,9 @@ function mcwallet_get_remote_url( $result = 'name', $address = '', $standart = '
   if ( 'phi20_v2' === $standart) {
     $url = mcwallet_service_url_phiv2();
   }
+  if ( 'fkw20' === $standart) {
+    $url = mcwallet_service_url_fkw();
+  }
 	$swap_remote_url = add_query_arg(
 		$args,
 		$url
@@ -141,6 +150,9 @@ function mcwallet_is_address( $address = '', $standart = 'erc20' ){
     switch ($standart) {
       case 'phi20_v2':
         $url = mcwallet_service_url_phiv2();
+        break;
+      case 'fkw20':
+        $url = mcwallet_service_url_fkw();
         break;
     }
     if ($url !== false) {
@@ -165,7 +177,8 @@ function mcwallet_is_address( $address = '', $standart = 'erc20' ){
     return false;
   }
 	$url = mcwallet_get_remote_url( 'name', $address, $standart );
-	$response = wp_remote_get( $url );
+  $response = wp_remote_get( $url );
+  print_r($response);
 	if ( wp_remote_retrieve_response_code( $response ) === 200 ){
 		$response_body = wp_remote_retrieve_body( $response );
 		$body = json_decode( $response_body );
@@ -188,6 +201,9 @@ function mcwallet_get_remote_result( $result = 'name', $address, $standart = 'er
     switch ($standart) {
       case 'phi20_v2':
         $url = mcwallet_service_url_phiv2();
+        break;
+      case 'fkw20':
+        $url = mcwallet_service_url_fkw();
         break;
     }
     if ($url !== false) {

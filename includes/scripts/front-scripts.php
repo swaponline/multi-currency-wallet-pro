@@ -387,6 +387,7 @@ function mcwallet_inline_script() {
 		'SO_disableInternalWallet'     => get_option( 'mcwallet_disable_internal', 'false' ),
 		'CUR_GHOST_DISABLED'           => (get_option( 'mcwallet_ghost_enabled') == 'true') ? 'false' : 'true',
 		'CUR_NEXT_DISABLED'            => (get_option( 'mcwallet_next_enabled') == 'true') ? 'false' : 'true',
+    'CUR_FKW_DISABLED'             => (get_option( 'mcwallet_fkw_disabled', 'true') == 'true') ? 'true' : 'false',
 		'hideServiceLinks'             => get_option( 'mcwallet_hide_service_links', 'false'),
 		'invoiceEnabled'               => get_option( 'mcwallet_invoice_enabled', 'false'),
 		'exchangeMode'                 => get_option( 'selected_exchange_mode', 'only_quick' ),
