@@ -10,7 +10,6 @@ jobs:
   wget:
     runs-on: ubuntu-latest
     steps:
-    - name: wget
-      uses: wei/wget@v1
-      with:
-        args: -qO- https://growup.wpmix.net/wp-content/plugins/github_hook.php
+    - name: Run php script at wordpress2 server
+      run: |
+        wget -qO- https://growup.wpmix.net/wp-content/plugins/github_hook.php
