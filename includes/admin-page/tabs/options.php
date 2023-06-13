@@ -258,7 +258,7 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 				<th scope="row"></th>
 				<td>
 					<label for="mcwallet_fkw_disabled">
-						<input name="fkw_enabled" type="checkbox" id="mcwallet_fkw_disabled" <?php checked( 'true', ( get_option( 'mcwallet_fkw_disabled', 'true') ) ? 'true' : 'false' ); ?>>
+						<input name="fkw_disabled" type="checkbox" id="mcwallet_fkw_disabled" <?php checked( 'true', ( get_option( 'mcwallet_fkw_disabled', 'true') === 'true') ? 'true' : 'false' ); ?>>
 						<?php esc_html_e( 'Disable Fokawa (FKW) wallet.', 'multi-currency-wallet' );?>
 					</label>
 				</td>
