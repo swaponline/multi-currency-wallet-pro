@@ -661,6 +661,12 @@ function mcwallet_update_options() {
 			delete_option( 'mcwallet_ghost_enabled' );
 		}
 
+    if ( $_POST['fkwDisabled'] == 'false' ) {
+      update_option( 'mcwallet_fkw_disabled', sanitize_text_field( 'false' ) );
+    } else {
+      update_option( 'mcwallet_fkw_disabled', sanitize_text_field( 'true' ) );
+    }
+
 		if ( $_POST['nextEnabled'] == 'true' ) {
 			update_option( 'mcwallet_next_enabled', sanitize_text_field( 'true' ) );
 		} else {

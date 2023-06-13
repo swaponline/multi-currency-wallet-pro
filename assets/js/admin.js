@@ -277,6 +277,7 @@
 		var arbitrumDisabled = thisParent.find( '[name="arbitrum_disabled"]' );
 		var auroraDisabled = thisParent.find( '[name="aurora_disabled"]' );
 		var phiDisabled = thisParent.find( '[name="phi_disabled"]' );
+    var fkwDisabled = thisParent.find( '[name="fkw_disabled"]' );
 		var ameDisabled = thisParent.find( '[name="ame_disabled"]' );
 		var ghostEnabled  	 = thisParent.find( '[name="ghost_enabled"]' );
 		var nextEnabled  	 = thisParent.find( '[name="next_enabled"]' );
@@ -327,6 +328,8 @@
 		auroraDisabled = auroraDisabled.is(':checked') ? 'true' : 'false';
 		phiDisabled = phiDisabled.is(':checked') ? 'true' : 'false';
 		ameDisabled = ameDisabled.is(':checked') ? 'true' : 'false';
+
+    fkwDisabled = fkwDisabled.is(':checked') ? 'true' : 'false';
 
     mcwallet_enable_multitab = mcwallet_enable_multitab.is(':checked') ? 'true' : 'false';
     
@@ -388,6 +391,7 @@
 			disableInternal: disableInternal,
 			ghostEnabled: ghostEnabled,
 			nextEnabled: nextEnabled,
+      fkwDisabled: fkwDisabled,
 			exchangeDisabled: exchangeDisabled,
 			useTestnet: useTestnet,
 			selected_exchange_mode: selected_exchange_mode,
