@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Simplest Multi-currency wallet for WordPress.
 
 == Description ==
- 
+  
 Simplest Multi-currency wallet for WordPress. Check premium version https://codecanyon.net/item/multicurrency-crypto-wallet-and-exchange-widgets-for-wordpress/23532064
 
 We use this 3rd party services:
