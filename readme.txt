@@ -44,6 +44,9 @@ Yes, you can!.
 5. Example Wallet
 6. Multi Wallet
 
+== devops
+To triger ci please commit to https://github.com/swaponline/MultiCurrencyWallet 
+
 == Changelog ==
 
 = 1.0.0 =
