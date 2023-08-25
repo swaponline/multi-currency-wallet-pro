@@ -407,6 +407,32 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 		</tbody>
 	</table><!-- .form-table -->
 
+  <h3><?php esc_html_e( 'WalletConnect Options', 'multi-currency-wallet' );?></h3>
+  <table class="form-table">
+		<tbody>
+      <tr>
+        <th scope="row">
+        </th>
+        <td>
+          <label for="mcwallet_wc_disabled">
+						<input name="mcwallet_wc_disabled" type="checkbox" id="mcwallet_wc_disabled" <?php checked( 'true', get_option( 'wc_disabled', 'false' ) ); ?>>
+						<?php esc_html_e( 'Disable WalletConnect', 'multi-currency-wallet' );?>
+					</label>
+        </td>
+      </tr>
+      <tr>
+				<th scope="row">
+					<label><?php esc_html_e( 'ProjectId', 'multi-currency-wallet' );?></label>
+				</th>
+				<td>
+					<label for="mcwallet_wc_projectid">
+						<input name="mcwallet_wc_projectid" type="text" class="large-text" id="mcwallet_wc_projectid" value="<?php echo esc_attr( get_option( 'wc_projectid', '') )?>" />
+						<span>Your Project ID can be obtained from <a href="https://walletconnect.com/" target="_blank">walletconnect.com</a>. Leave empty for use default </span>
+					</label>
+				</td>
+			</tr>
+    </tbody>
+  </table>
 	<h3><?php esc_html_e( 'Custom Options', 'multi-currency-wallet' );?></h3>
 
 	<table class="form-table">

@@ -400,6 +400,12 @@ function mcwallet_inline_script() {
     'SO_AllowMultiTab'             => get_option( 'mcwallet_enable_multitab', 'false')
 	);
 
+  if (get_option('wc_projectid', '') !== '') {
+    $window_arr['SO_WalletConnectProjectId'] = get_option('wc_projectid');
+  }
+  if (get_option('wc_disabled', 'false') === 'true') {
+    $window_arr['SO_WalletConnectDisabled'] = 'true';
+  }
 	// Disabled chains
 	$supported_chains = mcwallet_supperted_chains();
 	foreach ($supported_chains as $chain=>$chain_title) {
