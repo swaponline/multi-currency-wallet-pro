@@ -296,6 +296,10 @@
 		var default_language = thisParent.find('[name="default_language"]');
 		var useTestnet = thisParent.find( '[name="use_testnet"]' );
     var mcwallet_enable_multitab = thisParent.find( '[name="mcwallet_enable_multitab"]' );
+    
+    // wallect connect
+    var wc_projectid = thisParent.find('[name="mcwallet_wc_projectid"]' );
+    var wc_disabled = thisParent.find('[name="mcwallet_wc_disabled"]' );
 		// click handler
 
 		var strings = '';
@@ -343,6 +347,8 @@
 
 		hideServiceLinks = hideServiceLinks.is(':checked') ? 'true' : 'false';
 
+    wc_disabled = wc_disabled.is(':checked') ? 'true' : 'false';
+    wc_projectid = wc_projectid.val();
 		if ( pageHome.is(':checked') ) {
 			ishome = 'true';
 		}
@@ -404,6 +410,9 @@
 			rememberUserWallet: rememberUserWallet,
 
 			hideServiceLinks: hideServiceLinks,
+
+      wc_disabled: wc_disabled,
+      wc_projectid: wc_projectid,
 		};
 		
 		// Disabled chains

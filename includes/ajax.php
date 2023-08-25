@@ -545,6 +545,9 @@ function mcwallet_update_options() {
 		$is_logged        = 'false';
 
     $mcwallet_enable_multitab = sanitize_text_field( $_POST['mcwallet_enable_multitab'] );
+
+    $wc_disabled = sanitize_text_field( $_POST['wc_disabled'] );
+    $wc_projectid = sanitize_text_field( $_POST['wc_projectid'] );
     
 		$strings      = array();
 		$replacements = array();
@@ -572,6 +575,8 @@ function mcwallet_update_options() {
 			$slug = untrailingslashit( sanitize_title( $_POST['slug'] ) );
 		}
 
+    update_option( 'wc_disabled', $wc_disabled );
+    update_option( 'wc_projectid', $wc_projectid );
 		update_option( 'mcwallet_logo', $url );
 		update_option( 'mcwallet_dark_logo', $dark_logo_url );
 		update_option( 'mcwallet_logo_link', $logo_link );
