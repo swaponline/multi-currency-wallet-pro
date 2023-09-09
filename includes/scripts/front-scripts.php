@@ -300,8 +300,8 @@ function mcwallet_inline_script() {
       $standard = 'erc20';
 			if ( isset( $token['standard'] ) ) {
 				$standard = $token['standard'];
-        if ($token['standard'] === 'phi_v2') $standard = 'phi';
-        if ($token['standard'] === 'phi') $standard = 'phi_v1';
+        if ($token['standard'] === 'phi20_v2') $standard = 'phi20';
+        if ($token['standard'] === 'phi20') $standard = 'phi20_v1';
 			}
       
       if (!isset($used_names[$standard])) $used_names[$standard] = array();
