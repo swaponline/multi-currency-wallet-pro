@@ -56,7 +56,7 @@ function mcwallet_service_url_fkw() {
 }
 /* Service Phi-v2 */
 function mcwallet_service_url_phiv2() {
-  return esc_url( 'https://phiscan.com/api', 'https' );
+  return esc_url( 'https://phiscan.io/api', 'https' );
 }
 
 /* Service Api Token */
@@ -165,10 +165,13 @@ function mcwallet_is_address( $address = '', $standart = 'erc20' ){
         $args,
         $url
       );
+
       $response = wp_remote_get( $swap_remote_url );
+
       if ( wp_remote_retrieve_response_code( $response ) === 200 ){
         $response_body = wp_remote_retrieve_body( $response );
         $body = json_decode( $response_body, true);
+
         if (isset($body['message']) and ($body['message'] === 'OK')) {
           return true;
         }
@@ -178,12 +181,13 @@ function mcwallet_is_address( $address = '', $standart = 'erc20' ){
   }
 	$url = mcwallet_get_remote_url( 'name', $address, $standart );
   $response = wp_remote_get( $url );
-  print_r($response);
+
 	if ( wp_remote_retrieve_response_code( $response ) === 200 ){
 		$response_body = wp_remote_retrieve_body( $response );
 		$body = json_decode( $response_body );
 		if ( isset( $body->result ) ) {
 			if ( $body->result !== '0x' ) {
+        echo "OK";
 				return true;
 			}
 		}
@@ -217,6 +221,7 @@ function mcwallet_get_remote_result( $result = 'name', $address, $standart = 'er
         $url
       );
       $response = wp_remote_get( $swap_remote_url );
+
       if ( wp_remote_retrieve_response_code( $response ) === 200 ){
         $response_body = wp_remote_retrieve_body( $response );
         $body = json_decode( $response_body, true);
