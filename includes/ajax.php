@@ -213,11 +213,11 @@ function mcwallet_add_token() {
 	$standard = 'erc20';
 	if (in_array($_POST['standard'], array('erc20','bep20','erc20matic','erc20ftm','erc20avax','erc20movr','erc20aurora','phi20_v2','fkw20'))) $standard = $_POST['standard'];
 		if ( mcwallet_is_address( $address, $standard ) ) {
-
 			$status = 'success';
 
 			$name = mcwallet_hex_to_string( mcwallet_get_remote_result( 'name', $address, $standard), $standard );
 			$key  = strtolower( $name . '_' . $standard . '_' .$address);
+
 			if ( $custom_name ) {
 				$name = $custom_name;
 			}
