@@ -319,6 +319,10 @@ function mcwallet_inline_script() {
 			if ( isset( $token['rate'] ) ) {
 				$rate = $token['rate'];
 			}
+      $price    = '';
+      if ( isset( $token['price'] ) ) {
+        $price = $token['price'];
+      }
 			$icon_bg = '';
 			if ( isset( $token['bg'] ) ) {
 				$icon_bg = $token['bg'];
@@ -344,6 +348,7 @@ function mcwallet_inline_script() {
 				fullName: '" . $fullname . "',
 				icon: '" . $icon . "',
 				customExchangeRate: '" . $rate . "',
+        customFiatPrice: '" . $price . "',
 				iconBgColor: '" . $icon_bg . "',
 				howToDeposit: '" . wp_specialchars_decode( $how_deposit ) . "',
 				howToWithdraw: '" . wp_specialchars_decode( $how_withdraw ) . "',

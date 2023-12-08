@@ -71,6 +71,7 @@
 	 */
 	$('.mcwallet-add-token').on('click',function(e){
 		e.preventDefault();
+    console.log('>>> click')
 		var thisBtn = $(this);
 		var thisForm = $(this).parents('form');
 		var tokenAddress = thisForm.find('[name="address"]').val();
@@ -78,6 +79,7 @@
 		var tokenStandard = thisForm.find('[name="standard"]').val();
 		var tokenIcon = thisForm.find('[name="icon"]').val();
 		var tokenRate = thisForm.find('[name="rate"]').val();
+    var tokenPrice = thisForm.find('[name="price"]').val();
 		var iconBg = thisForm.find('.mcwallet-icon-bg').val();
 		var howDeposit = window.tinyMCE.get('howdeposit').getContent();
 		var howWithdraw = window.tinyMCE.get('howwithdraw').getContent();
@@ -94,12 +96,13 @@
 				standard: tokenStandard,
 				icon: tokenIcon,
 				rate: tokenRate,
+        price: tokenPrice,
 				bg: iconBg,
 				howdeposit: howDeposit,
 				howwithdraw: howWithdraw,
 				order: tokenOrder,
 			};
-
+console.log('>>> data', data)
 			$.post( mcwallet.ajaxurl, data, function(response) {
 
 				if( response.status == 'success') {

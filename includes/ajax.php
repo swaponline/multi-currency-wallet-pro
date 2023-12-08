@@ -212,7 +212,7 @@ function mcwallet_add_token() {
 
 	$standard = 'erc20';
 	if (in_array($_POST['standard'], array('erc20','bep20','erc20matic','erc20ftm','erc20avax','erc20movr','erc20aurora','phi20_v2','fkw20'))) $standard = $_POST['standard'];
-		if ( mcwallet_is_address( $address, $standard ) ) {
+    if ( mcwallet_is_address( $address, $standard ) ) {
 			$status = 'success';
 
 			$name = mcwallet_hex_to_string( mcwallet_get_remote_result( 'name', $address, $standard), $standard );
@@ -226,6 +226,7 @@ function mcwallet_add_token() {
 			$standard     = sanitize_text_field( $_POST['standard'] );
 			$icon         = sanitize_text_field( $_POST['icon'] );
 			$rate         = sanitize_text_field( $_POST['rate'] );
+      $price        = sanitize_text_field( $_POST['price'] );
 			$icon_bg      = sanitize_hex_color( $_POST['bg'] );
 			$how_deposit  = wp_kses_post( wp_unslash( $_POST['howdeposit'] ) );
 			$how_withdraw = wp_kses_post( wp_unslash( $_POST['howwithdraw'] ) );
@@ -278,6 +279,7 @@ function mcwallet_add_token() {
 				'standard'    => $standard,
 				'icon'        => $icon,
 				'rate'        => $rate,
+        'price'       => $price,
 				'bg'          => $icon_bg,
 				'howdeposit'  => $how_deposit,
 				'howwithdraw' => $how_withdraw,
@@ -301,6 +303,7 @@ function mcwallet_add_token() {
 					'standard'    => $standard,
 					'icon'        => $icon,
 					'rate'        => $rate,
+          'price'       => $price,
 					'bg'          => $icon_bg,
 					'howdeposit'  => $how_deposit,
 					'howwithdraw' => $how_withdraw,
