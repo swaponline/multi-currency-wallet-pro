@@ -60,6 +60,15 @@ function mcwallet_do_settings_sections() {
 					<p class="description"><?php esc_html_e( 'If the field is empty then the token name will be substituted automatically', 'multi-currency-wallet' );?></p>
 				</td>
 			</tr>
+      <tr>
+        <th scope="row">
+          <label><?php esc_html_e( 'Custom fiat price ('. get_option( 'fiat_currency', 'USD' ).')')?></label>
+        </th>
+        <td>
+          <input name="price" type="number" value="" size="7" class="textright" placeholder="" />
+          <p class="description"><?php esc_html_e( 'If a token does not have a price in open sources, you can indicate it yourself', 'multi-currency-wallet' );?></p>
+        </td>
+      </tr>
 			<tr>
 				<th scope="row">
 					<label><?php esc_html_e( 'Recommended exchange rate', 'multi-currency-wallet' );?></label>

@@ -187,7 +187,6 @@ function mcwallet_is_address( $address = '', $standart = 'erc20' ){
 		$body = json_decode( $response_body );
 		if ( isset( $body->result ) ) {
 			if ( $body->result !== '0x' ) {
-        echo "OK";
 				return true;
 			}
 		}

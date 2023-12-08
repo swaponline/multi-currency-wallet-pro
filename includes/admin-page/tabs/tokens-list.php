@@ -30,7 +30,7 @@
 					<span><?php esc_html_e( 'Contract address', 'multi-currency-wallet' ); ?></span>
 				</td>
 				<td class="item-echange-rate">
-					<span><?php esc_html_e( 'Exchange Rate', 'multi-currency-wallet' ); ?></span>
+					<span><?php esc_html_e( 'Exchange Rate / Price', 'multi-currency-wallet' ); ?></span>
 				</td>
 				<td class="item-action">
 					<span><?php esc_html_e( 'Action', 'multi-currency-wallet' ); ?></span>
@@ -59,6 +59,10 @@
 					if ( isset( $token['rate'] ) && $token['rate'] ) {
 						$token_rate = $token['rate'];
 					}
+          $token_price = '';
+          if ( isset( $token['price'] ) && $token['price'] ) {
+            $token_price = $token['price'];
+          }
 					if ( ! isset( $token['standard'] ) ) {
 						$token['standard'] = 'erc20';
 					}
@@ -94,7 +98,22 @@
 						<code><?php echo esc_html( $token['address'] );?></code>
 					</td>
 					<td class="item-exchange-rate">
-						<span><?php echo esc_html( $token_rate );?></span>
+            <?php
+              if ($token_rate !== '') {
+                ?>
+            <div>
+              <span>Rate: <?php echo esc_html( $token_rate );?></span>
+            </div>
+                <?php
+              }
+              if ($token_price !== '') {
+                ?>
+            <div>
+              <span>Price: <?php echo esc_html( $token_price );?> <?php echo esc_html(get_option( 'fiat_currency', 'USD' ))?></span>
+            </div>
+                <?php
+              }
+            ?>
 					</td>
 					<td class="item-action">
 						<a href="#" class="button-link-delete mcwallet-remove-token" data-name="<?php echo esc_html( $name );?>"><span class="dashicons dashicons-trash"></span></a>
@@ -131,7 +150,7 @@
 					<span><?php esc_html_e( 'Сontract address', 'multi-currency-wallet' );?></span>
 				</td>
 				<td class="item-echange-rate">
-					<span><?php esc_html_e( 'Exchange Rate', 'multi-currency-wallet' ); ?></span>
+					<span><?php esc_html_e( 'Exchange Rate / Price', 'multi-currency-wallet' ); ?></span>
 				</td>
 				<td class="item-action">
 					<span><?php esc_html_e( 'Action', 'multi-currency-wallet' );?></span>
