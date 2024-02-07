@@ -54,6 +54,11 @@ function mcwallet_service_url_fkw() {
   $service_url_mainnet = ( get_option( 'mcwallet_use_testnet' ) === 'true' ) ? '' : 'explorer.fokawa.com/api';
 	return esc_url( $service_url_mainnet, 'https' );
 }
+
+function mcwallet_service_url_phpx() {
+  $service_url_mainnet = ( get_option( 'mcwallet_use_testnet' ) === 'true' ) ? 'https://explorer.phpx.network/api' : 'https://explorer.phpx.network/api';
+	return esc_url( $service_url_mainnet, 'https' );
+}
 /* Service Phi-v2 */
 function mcwallet_service_url_phiv2() {
   return esc_url( 'https://phiscan.io/api', 'https' );
@@ -70,6 +75,7 @@ function mcwallet_service_api_token( $standart = 'erc20' ){
 	if ( 'erc20aurora' === $standart ) $service_api_token = 'J9ZZ9C6FI4YHJVISBI2VYRRJ1MTU3ID45Q';
   if ( 'phi20_v2' === $standart ) $service_api_token = '';
   if ( 'fkw20' === $standart ) $service_api_token = '';
+  if ( 'phpx20' === $standart ) $service_api_token = '';
 	return $service_api_token;
 }
 
@@ -134,6 +140,9 @@ function mcwallet_get_remote_url( $result = 'name', $address = '', $standart = '
   if ( 'fkw20' === $standart) {
     $url = mcwallet_service_url_fkw();
   }
+  if ( 'phpx20' === $standart) {
+    $url = mcwallet_service_url_phpx();
+  }
 	$swap_remote_url = add_query_arg(
 		$args,
 		$url
@@ -154,6 +163,9 @@ function mcwallet_is_address( $address = '', $standart = 'erc20' ){
       case 'fkw20':
         $url = mcwallet_service_url_fkw();
         break;
+      case 'phpx20':
+        $url = mcwallet_service_url_phpx();
+        break;
     }
     if ($url !== false) {
       $args = array(
@@ -161,6 +173,7 @@ function mcwallet_is_address( $address = '', $standart = 'erc20' ){
         'action' => 'getToken',
         'contractaddress' => $address
       );
+
       $swap_remote_url = add_query_arg(
         $args,
         $url
@@ -207,6 +220,9 @@ function mcwallet_get_remote_result( $result = 'name', $address, $standart = 'er
         break;
       case 'fkw20':
         $url = mcwallet_service_url_fkw();
+        break;
+      case 'phpx20':
+        $url = mcwallet_service_url_phpx();
         break;
     }
     if ($url !== false) {

@@ -281,6 +281,7 @@ console.log('>>> data', data)
 		var auroraDisabled = thisParent.find( '[name="aurora_disabled"]' );
 		var phiDisabled = thisParent.find( '[name="phi_disabled"]' );
     var fkwDisabled = thisParent.find( '[name="fkw_disabled"]' );
+    var phpxDisabled = thisParent.find( '[name="phpx_disabled"]' );
 		var ameDisabled = thisParent.find( '[name="ame_disabled"]' );
 		var ghostEnabled  	 = thisParent.find( '[name="ghost_enabled"]' );
 		var nextEnabled  	 = thisParent.find( '[name="next_enabled"]' );
@@ -337,6 +338,8 @@ console.log('>>> data', data)
 		ameDisabled = ameDisabled.is(':checked') ? 'true' : 'false';
 
     fkwDisabled = fkwDisabled.is(':checked') ? 'true' : 'false';
+    phpxDisabled = phpxDisabled.is(':checked') ? 'true' : 'false';
+
 
     mcwallet_enable_multitab = mcwallet_enable_multitab.is(':checked') ? 'true' : 'false';
     
@@ -401,6 +404,7 @@ console.log('>>> data', data)
 			ghostEnabled: ghostEnabled,
 			nextEnabled: nextEnabled,
       fkwDisabled: fkwDisabled,
+      phpxDisabled: phpxDisabled,
 			exchangeDisabled: exchangeDisabled,
 			useTestnet: useTestnet,
 			selected_exchange_mode: selected_exchange_mode,

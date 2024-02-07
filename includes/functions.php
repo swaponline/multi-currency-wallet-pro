@@ -446,7 +446,8 @@ function mcwallet_supperted_chains() {
 		'phi'      => 'PHI',
     'phi_v2'   => 'PHI-V2',
 		'ame'      => 'AME',
-		'xdai'     => 'XDAI'
+		'xdai'     => 'XDAI',
+    'phpx'     => 'PHPX'
 	);
 	return apply_filters( 'mcwallet_supperted_chains', $supperted_chains );
 }
