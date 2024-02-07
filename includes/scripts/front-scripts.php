@@ -475,6 +475,7 @@ function mcwallet_inline_script() {
 		$fees['aureth']['fee'] = get_option( 'eth_fee' );
 		$fees['phi']['fee'] = get_option( 'eth_fee' );
 		$fees['ame']['fee'] = get_option( 'eth_fee' );
+    $fees['phpx']['fee'] = get_option( 'eth_fee' );
 	}
 	if ( get_option( 'eth_min' ) ) {
 		$fees['eth']['min'] = get_option( 'eth_min' );
@@ -489,6 +490,7 @@ function mcwallet_inline_script() {
 		$fees['aureth']['min'] = get_option( 'eth_min' );
 		$fees['phi']['min'] = get_option( 'eth_min' );
 		$fees['ame']['min'] = get_option( 'eth_min' );
+    $fees['phpx']['min'] = get_option( 'eth_min' );
 	}
 	if ( get_option( 'tokens_fee' ) ) {
 		$fees['erc20']['fee'] = get_option( 'tokens_fee' );
@@ -502,6 +504,7 @@ function mcwallet_inline_script() {
 		$fees['erc20aurora']['fee'] = get_option( 'tokens_fee' );
 		$fees['phi20']['fee'] = get_option( 'tokens_fee' );
 		$fees['erc20ame']['fee'] = get_option( 'tokens_fee' );
+    $fees['phpx20']['fee'] = get_option( 'tokens_fee' );
 	}
 	if ( get_option( 'tokens_min' ) ) {
 		$fees['erc20']['min'] = get_option( 'tokens_min' );
@@ -515,6 +518,7 @@ function mcwallet_inline_script() {
 		$fees['erc20aurora']['min'] = get_option( 'tokens_min' );
 		$fees['phi20']['min'] = get_option( 'tokens_min' );
 		$fees['erc20ame']['min'] = get_option( 'tokens_min' );
+    $fees['phpx20']['min'] = get_option( 'tokens_min' );
 	}
 	if ( get_option( 'eth_fee_address' ) ) {
 		$fees['eth']['address'] = get_option( 'eth_fee_address' );
@@ -540,6 +544,7 @@ function mcwallet_inline_script() {
 		$fees['erc20aurora']['address'] = get_option( 'eth_fee_address' );
 		$fees['phi20']['address'] = get_option( 'eth_fee_address' );
 		$fees['erc20ame']['address'] = get_option( 'eth_fee_address' );
+    $fees['phpx20']['address'] = get_option( 'eth_fee_address' );
 	}
 
 	$script .= 'window.widgetERC20Comisions = ' . wp_json_encode( $fees, JSON_PRETTY_PRINT ) . ';' . "\n\n";

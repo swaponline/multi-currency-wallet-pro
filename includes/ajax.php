@@ -211,7 +211,7 @@ function mcwallet_add_token() {
 		$custom_name = sanitize_text_field( $_POST['name'] );
 
 	$standard = 'erc20';
-	if (in_array($_POST['standard'], array('erc20','bep20','erc20matic','erc20ftm','erc20avax','erc20movr','erc20aurora','phi20_v2','fkw20'))) $standard = $_POST['standard'];
+	if (in_array($_POST['standard'], array('erc20','bep20','erc20matic','erc20ftm','erc20avax','erc20movr','erc20aurora','phi20_v2','fkw20','phpx20'))) $standard = $_POST['standard'];
     if ( mcwallet_is_address( $address, $standard ) ) {
 			$status = 'success';
 
@@ -673,6 +673,12 @@ function mcwallet_update_options() {
       update_option( 'mcwallet_fkw_disabled', sanitize_text_field( 'false' ) );
     } else {
       update_option( 'mcwallet_fkw_disabled', sanitize_text_field( 'true' ) );
+    }
+
+    if ( $_POST['phpxDisabled'] == 'false' ) {
+      update_option( 'mcwallet_phpx_disabled', sanitize_text_field( 'false' ) );
+    } else {
+      update_option( 'mcwallet_phpx_disabled', sanitize_text_field( 'true' ) );
     }
 
 		if ( $_POST['nextEnabled'] == 'true' ) {

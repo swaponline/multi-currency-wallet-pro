@@ -263,6 +263,17 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 					</label>
 				</td>
 			</tr>
+      <!--
+      <tr>
+				<th scope="row"></th>
+				<td>
+					<label for="mcwallet_phpx_disabled">
+						<input name="phpx_disabled" type="checkbox" id="mcwallet_phpx_disabled" <?php checked( 'true', ( get_option( 'mcwallet_phpx_disabled', 'true') === 'true') ? 'true' : 'false' ); ?>>
+						<?php esc_html_e( 'Disable phpX wallet.', 'multi-currency-wallet' );?>
+					</label>
+				</td>
+			</tr>
+      -->
 			<tr>
 				<th scope="row"></th>
 				<td>
