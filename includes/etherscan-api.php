@@ -211,7 +211,7 @@ function mcwallet_is_address( $address = '', $standart = 'erc20' ){
 /**
  * Get Remote Result
  */
-function mcwallet_get_remote_result( $result = 'name', $address, $standart = 'erc20' ){
+function mcwallet_get_remote_result( $result = 'name', $address = '', $standart = 'erc20' ){
   if (in_array($standart, MC_WALLET_USED_TOKEN_MODULE_STANDART)) {
     $url = false;
     switch ($standart) {
