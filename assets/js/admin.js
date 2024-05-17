@@ -262,6 +262,7 @@ console.log('>>> data', data)
 		var fiatCurrency   	 = thisParent.find( '[name="fiat_currency"]' ).val();
 		var fiatGatewayUrl 	 = thisParent.find( '[name="fiat_gateway_url"]' ).val();
 		var transakApiKey 	 = thisParent.find( '[name="transak_api_key"]' ).val();
+		var zeroxApiKey 	   = thisParent.find( '[name="zerox_api_key"]' ).val();
 		var showHowitworks 	 = thisParent.find( '[name="show_howitworks"]' );
 		var codeHead       	 = thisParent.find( '[name="mcwallet_head_code"]' ).val();
 		var codeBody       	 = thisParent.find( '[name="mcwallet_body_code"]' ).val();
@@ -397,6 +398,7 @@ console.log('>>> data', data)
 			codeFooter: codeFooter,
 			fiatGatewayUrl: fiatGatewayUrl,
 			transakApiKey: transakApiKey,
+			zeroxApiKey: zeroxApiKey,
 			isHowitworks: isHowitworks,
 			strings: strings,
 			statisticEnabled: statisticEnabled,
