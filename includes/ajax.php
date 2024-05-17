@@ -537,6 +537,7 @@ function mcwallet_update_options() {
 		$fiat_currency    = sanitize_text_field( $_POST['fiatCurrency'] );
 		$fiat_gateway_url = sanitize_text_field( $_POST['fiatGatewayUrl'] );
 		$transak_api_key  = sanitize_text_field( $_POST['transakApiKey'] );
+		$zerox_api_key  = sanitize_text_field( $_POST['zeroxApiKey'] );
 		$code_head        = sanitize_textarea_field( esc_html( wp_unslash( $_POST['codeHead'] ) ) );
 		$code_body        = sanitize_textarea_field( esc_html( wp_unslash( $_POST['codeBody'] ) ) );
 		$code_footer      = sanitize_textarea_field( esc_html( wp_unslash( $_POST['codeFooter'] ) ) );

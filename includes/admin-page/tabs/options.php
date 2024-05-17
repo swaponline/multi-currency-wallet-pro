@@ -128,6 +128,18 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 					</select>
 				</td>
 			</tr>
+
+			<tr>
+				<th scope="row">
+					<label><?php esc_html_e( 'Quick swap API key', 'multi-currency-wallet' );?></label>
+					<p class="desciption">
+            <?php esc_html_e( "This type of exchange uses a 0x aggregator. Therefore you need to register and get an API key for it to work:", 'multi-currency-wallet' ); ?> <a target=_blank href="https://dashboard.0x.org/create-account">?</a>
+          </p>
+				</th>
+				<td>
+					<input name="zerox_api_key" type="text" class="large-text" value="<?php echo esc_attr( get_option( 'zerox_api_key', '') );?>">
+				</td>
+			</tr>
 			
 			<tr>
 				<th scope="row">
