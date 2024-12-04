@@ -456,6 +456,24 @@ $disable_fee = apply_filters( 'mcwallet_disable_fee', true );
 			</tr>
     </tbody>
   </table>
+  
+  <h3><?php esc_html_e( 'Infura API settings', 'multi-currency-wallet' );?></h3>
+  <table class="form-table">
+		<tbody>
+      <tr>
+				<th scope="row">
+					<label><?php esc_html_e( 'ApiKey', 'multi-currency-wallet' );?></label>
+				</th>
+				<td>
+					<label for="mcwallet_infura_api_key">
+						<input name="mcwallet_infura_api_key" type="text" class="large-text" id="mcwallet_infura_api_key" value="<?php echo esc_attr( get_option( 'infura_api_key', '') )?>" />
+						<span>Your Infura ApiKey can be obtained from <a href="https://www.infura.io/" target="_blank">infura.io</a>. Leave empty for use default </span>
+					</label>
+				</td>
+			</tr>
+    </tbody>
+  </table>
+  
 	<h3><?php esc_html_e( 'Custom Options', 'multi-currency-wallet' );?></h3>
 
 	<table class="form-table">
