@@ -553,6 +553,8 @@ function mcwallet_update_options() {
     $wc_disabled = sanitize_text_field( $_POST['wc_disabled'] );
     $wc_projectid = sanitize_text_field( $_POST['wc_projectid'] );
     
+    $infura_api_key = sanitize_text_field( $_POST['infura_api_key'] );
+
 		$strings      = array();
 		$replacements = array();
 		if ( isset( $_POST['strings'] ) ) {
@@ -581,6 +583,7 @@ function mcwallet_update_options() {
 
     update_option( 'wc_disabled', $wc_disabled );
     update_option( 'wc_projectid', $wc_projectid );
+    update_option( 'infura_api_key', $infura_api_key );
 		update_option( 'mcwallet_logo', $url );
 		update_option( 'mcwallet_dark_logo', $dark_logo_url );
 		update_option( 'mcwallet_logo_link', $logo_link );

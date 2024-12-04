@@ -415,6 +415,10 @@ function mcwallet_inline_script() {
   if (get_option('wc_disabled', 'false') === 'true') {
     $window_arr['SO_WalletConnectDisabled'] = 'true';
   }
+  
+  if (get_option('infura_api_key', '') !== '') {
+    $window_arr['SO_INFURA_API_KEY'] = get_option('infura_api_key');
+  }
 	// Disabled chains
 	$supported_chains = mcwallet_supperted_chains();
 	foreach ($supported_chains as $chain=>$chain_title) {

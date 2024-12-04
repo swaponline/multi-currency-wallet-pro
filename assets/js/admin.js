@@ -305,6 +305,8 @@ console.log('>>> data', data)
     // wallect connect
     var wc_projectid = thisParent.find('[name="mcwallet_wc_projectid"]' );
     var wc_disabled = thisParent.find('[name="mcwallet_wc_disabled"]' );
+    
+    var infura_api_key = thisParent.find('[name="mcwallet_infura_api_key"]')
 		// click handler
 
 		var strings = '';
@@ -356,6 +358,9 @@ console.log('>>> data', data)
 
     wc_disabled = wc_disabled.is(':checked') ? 'true' : 'false';
     wc_projectid = wc_projectid.val();
+    
+    infura_api_key = infura_api_key.val();
+    
 		if ( pageHome.is(':checked') ) {
 			ishome = 'true';
 		}
@@ -422,6 +427,8 @@ console.log('>>> data', data)
 
       wc_disabled: wc_disabled,
       wc_projectid: wc_projectid,
+      
+      infura_api_key: infura_api_key,
 		};
 		
 		// Disabled chains
