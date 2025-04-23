@@ -20,6 +20,7 @@ function mcwallet_admin_page_tabs( $tabs = array() ) {
 		'strings-editor' => esc_html__( 'Strings Editor', 'multi-currency-wallet' ),
 		'edit-faq'       => esc_html__( 'Edit FAQ', 'multi-currency-wallet' ),
 		'edit-menu'      => esc_html__( 'Edit Menu items', 'multi-currency-wallet' ),
+    'ref-system'     => esc_html__( 'Referal system', 'multi-currency-wallet' )
 	);
 	return apply_filters( 'mcwallet_admin_page_tabs', $tabs );
 }

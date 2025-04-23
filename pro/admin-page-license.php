@@ -3,6 +3,7 @@
  * Add License page to submenu
  */
 function mcwallet_license_submenu_page() {
+  /*
 	add_submenu_page(
 		'mcwallet',
 		esc_html__( 'License', 'multi-currency-wallet' ),
@@ -15,6 +16,7 @@ function mcwallet_license_submenu_page() {
 
 	//call register settings function
 	add_action( 'admin_init', 'mcwallet_register_settings_license' );
+  */
 }
 add_action('admin_menu', 'mcwallet_license_submenu_page', 11 );
 

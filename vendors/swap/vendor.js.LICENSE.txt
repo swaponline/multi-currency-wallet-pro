@@ -5,6 +5,12 @@
 */
 
 /*!
+  Copyright (c) 2015 Jed Watson.
+  Based on code that is Copyright 2013-2015, Facebook, Inc.
+  All rights reserved.
+*/
+
+/*!
  * Determine if an object is a Buffer
  *
  * @author   Feross Aboukhadijeh <https://feross.org>
@@ -41,6 +47,8 @@ PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
 /*! MIT License. Copyright 2015-2018 Richard Moore <me@ricmoo.com>. See LICENSE.txt. */
+
+/*! https://mths.be/punycode v1.3.2 by @mathias */
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 

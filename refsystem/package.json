@@ -1,0 +1,53 @@
+{
+  "name": "mcw-refsystem",
+  "version": "1.0.0",
+  "description": "MCW Referral System",
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "rollup -cw",
+    "build:refsystem": "rollup -c",
+    "build": "rimraf ./lib && npm run build:refsystem"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.7",
+    "@babel/plugin-transform-classes": "^7.7.4",
+    "@babel/plugin-transform-destructuring": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-typescript": "^7.7.7",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-inject": "^4.0.2",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^11.0.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^8.1.0",
+    "bignumber.js": "^9.0.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.1.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-circular-dependencies": "^1.1.2",
+    "rollup-plugin-polyfill-node": "^0.13.0",
+    "rollup-plugin-typescript2": "^0.26.0",
+    "rollup-plugin-uglify": "^6.0.4",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@metamask/detect-provider": "^1.2.0",
+    "@openzeppelin/contracts": "^3.4.0",
+    "bip32": "^2.0.6",
+    "bip39": "^3.0.2",
+    "crypto": "^1.0.1",
+    "ethereum-hdwallet": "^0.1.2",
+    "ethereumjs-wallet": "^1.0.1",
+    "human-standard-token-abi": "^2.0.0",
+    "js-sha256": "^0.9.0",
+    "solc": "^0.8.0"
+  }
+}

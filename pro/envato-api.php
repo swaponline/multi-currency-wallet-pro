@@ -142,6 +142,7 @@ function mcwallet_support_days_left() {
  * If Active License
  */
 function mcwallet_is_active_license() {
+  return true;
 	if ( get_option( 'mcwallet_purchase_code' ) ) {
 		if ( ! mcwallet_is_supported() ) {
 			return false;

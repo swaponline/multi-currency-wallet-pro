@@ -22,13 +22,23 @@ function mcwallet_admin_enqueue_scripts( $hook ) {
 
 		/* Register script */
 		wp_register_script( 'mcwallet-admin', MCWALLET_URL . 'assets/js/admin.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-sortable' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );
+    
+    wp_enqueue_style( 'mcwallet-refsystem-admin', MCWALLET_URL . 'assets/css/refsystem-admin.css', false, MCWALLET_VER . '-' . MCWALLET_BUILD_VER );
+    wp_enqueue_script( 'mcwallet-refsystem', MCWALLET_URL . 'refsystem/lib/refsystem.js', array(), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );
+    wp_enqueue_script( 'mcwallet-refsystem-admin', MCWALLET_URL . 'assets/js/refsystem-admin.js', array( 'mcwallet-refsystem' ), MCWALLET_VER . '-' . MCWALLET_BUILD_VER, true );
+    wp_localize_script('mcwallet-refsystem-admin', 'mcw_refsystem',
+      array(
+        'ajaxurl' => admin_url( 'admin-ajax.php' ),
+        'nonce'   => wp_create_nonce( 'mcw-refsystem-nonce' ),
+      )
+    );
 		/* Load media and thickbox */
 		wp_enqueue_media();
 		add_thickbox();
 		wp_enqueue_script( 'wp-color-picker' );
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_script( 'mcwallet-admin' );
-
+  
 		/* Translatable string */
 		wp_localize_script('mcwallet-admin', 'mcwallet',
 			array(

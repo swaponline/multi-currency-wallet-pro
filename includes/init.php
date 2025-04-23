@@ -21,6 +21,10 @@ require MCWALLET_PATH . 'includes/functions.php';
 require MCWALLET_PATH . 'includes/admin-functions.php';
 
 /**
+ * Referal system
+ */
+require MCWALLET_PATH . 'includes/ref-system-functions.php';
+/**
  * Customizer
  */
 require MCWALLET_PATH . 'includes/customizer/customizer.php';

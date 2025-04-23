@@ -34,6 +34,7 @@
   position: relative;
   user-select: none;
   overflow: hidden;
+  z-index: 1; /* Necessary for overflow: hidden to work correctly in Safari */
 }
 
 .react-loading-skeleton::after {
@@ -45,14 +46,11 @@
   right: 0;
   height: 100%;
   background-repeat: no-repeat;
-  background-image: var(
-    --custom-highlight-background,
-    linear-gradient(
-      90deg,
-      var(--base-color) 0%,
-      var(--highlight-color) 50%,
-      var(--base-color) 100%
-    )
+  background-image: linear-gradient(
+    90deg,
+    var(--base-color),
+    var(--highlight-color),
+    var(--base-color)
   );
   transform: translateX(-100%);
 

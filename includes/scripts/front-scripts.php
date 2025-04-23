@@ -373,7 +373,7 @@ function mcwallet_inline_script() {
 	if ( get_option( 'show_howitworks' ) ) {
 		$show_howitworks = 1;
 	}
-
+  
 	$window_arr = array(
 		'prerenderReady'               => 'false',
 		'CUSTOM_LOGO'                  => 'false',
@@ -409,6 +409,27 @@ function mcwallet_inline_script() {
     'SO_AllowMultiTab'             => get_option( 'mcwallet_enable_multitab', 'false')
 	);
 
+  // Referral program
+  $refsystem_info = [
+    'blockchain'      => get_option('mcwallet_refsystem_blockchain', ''),
+    'oracleMnemonic'  => get_option('mcwallet_refsystem_oracleMnemonic', ''),
+    'oracleAddress'   => get_option('mcwallet_refsystem_oracleAddress', ''),
+    'oraclePKey'      => get_option('mcwallet_refsystem_oraclePKey', ''),
+    'tokenAddress'    => get_option('mcwallet_refsystem_tokenAddress', ''),
+    'tokenDecimals'   => get_option('mcwallet_refsystem_tokenDecimals', ''),
+    'tokenSymbol'     => get_option('mcwallet_refsystem_tokenSymbol', ''),
+    'contractAddress' => get_option('mcwallet_refsystem_contractAddress', '')
+  ];
+
+  $refsystem_configured = true;
+  foreach ($refsystem_info as $key=>$value) {
+    if ($value == '') {
+      $refsystem_configured = false;
+      break;
+    }
+  }
+  
+  
   if (get_option('wc_projectid', '') !== '') {
     $window_arr['SO_WalletConnectProjectId'] = get_option('wc_projectid');
   }
@@ -444,6 +465,13 @@ function mcwallet_inline_script() {
 			$window_arr['backupUrl']    = admin_url( 'admin-ajax.php' ).'?action=mcwallet_backup_userwallet';
 			$window_arr['restoreUrl']   = admin_url( 'admin-ajax.php' ).'?action=mcwallet_restore_userwallet';
 		}
+    
+    // Referral system
+    if ($refsystem_configured and (get_option( 'mcwallet_enable_ref_system', 'false') == 'true')) {
+      $window_arr['SO_ReferralSystem_Enabled'] = 'true';
+      $window_arr['SO_ReferralSystem_StatisticUrl'] = admin_url( 'admin-ajax.php' ) . '?action=mcwallet_ref_system_info';
+      $window_arr['SO_ReferralSystem_GenerateLinkUrl'] = admin_url( 'admin-ajax.php' ) . '?action=mcwallet_ref_system_generate_link';
+    }
 	}
 
 	$window_arr = apply_filters( 'mcwallet_window_variables', $window_arr );

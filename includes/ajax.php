@@ -3,20 +3,22 @@
  * MCWallet Ajax
  */
 
+define("MCW_DEBUG", false);
+
 function mcwallet_backup_user() {
 	$data = json_decode( file_get_contents( 'php://input' ), true );
 
 	if (intval($data['WPuserUid']) !== get_current_user_id()) {
-		wp_die('Access deny', 403);
+		if (!MCW_DEBUG) wp_die('Access deny', 403);
 	}
 
-	$user_id        = get_current_user_id();
+	$user_id        = (MCW_DEBUG) ? intval($data['WPuserUid']) : get_current_user_id();
 	$userData       = get_userdata($user_id)->data;
 	$userHashString = $user_id.':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
 	$user_uniqhash  = md5( $userHashString );
 
 	if ($user_uniqhash != $data['WPuserHash']) {
-		wp_die('Access deny', 403);
+		if (!MCW_DEBUG) wp_die('Access deny', 403);
 	}
 
 	$backup = get_user_meta( $user_id, '_mcwallet_backup' );
@@ -80,16 +82,18 @@ function mcwallet_backup_user() {
 
 add_action( 'wp_ajax_mcwallet_backup_userwallet', 'mcwallet_backup_user' );
 // debug action - for allow request from http://localhost:9001/ with hardcore writed userid
-// add_action( 'wp_ajax_nopriv_mcwallet_backup_userwallet', 'mcwallet_backup_user' );
+if (MCW_DEBUG) {
+  add_action( 'wp_ajax_nopriv_mcwallet_backup_userwallet', 'mcwallet_backup_user' );
+}
 
 function mcwallet_restory_user() {
 	$data = json_decode( file_get_contents( 'php://input' ), true );
 
 	if (intval($data['WPuserUid']) !== get_current_user_id()) {
-		wp_die('Access deny', 403);
+		if (!MCW_DEBUG) wp_die('Access deny', 403);
 	}
 
-	$user_id        = get_current_user_id();
+	$user_id        = (MCW_DEBUG) ? intval($data['WPuserUid']) : get_current_user_id();
 	$userData       = get_userdata($user_id)->data;
 	$userHashString = $user_id.':'.$userData->user_login.':'.$userData->user_registered.':'.$userData->user_pass.':'.NONCE_SALT;
 	$user_uniqhash  = md5($userHashString);
@@ -140,7 +144,9 @@ function mcwallet_restory_user() {
 }
 add_action( 'wp_ajax_mcwallet_restore_userwallet', 'mcwallet_restory_user' );
 // debug action - for allow request from http://localhost:9001/ with hardcore writed userid
-// add_action( 'wp_ajax_nopriv_mcwallet_restore_userwallet', 'mcwallet_restory_user' );
+if (MCW_DEBUG) {
+  add_action( 'wp_ajax_nopriv_mcwallet_restore_userwallet', 'mcwallet_restory_user' );
+}
 
 
 function mcwallet_update_user_meta() {
@@ -155,13 +161,20 @@ function mcwallet_update_user_meta() {
 	$arr  = array_merge( $arr, mcwallet_santize_date_react( $data, 'usdt' ) );
 
 	if ( $arr ) {
-		update_user_meta( get_current_user_id(), '_mcwallet_data', $arr );
+		if (!MCW_DEBUG) {
+      update_user_meta( get_current_user_id(), '_mcwallet_data', $arr );
+    } else {
+      update_user_meta( 1, '_mcwallet_data', $arr );
+    }
 	}
 
 	wp_die( 2 );
 }
 add_action( 'wp_ajax_mcwallet_update_user_meta', 'mcwallet_update_user_meta' );
-
+// debug action - for allow request from http://localhost:9001/ with hardcore writed userid
+if (MCW_DEBUG) {
+  add_action( 'wp_ajax_nopriv_mcwallet_update_user_meta', 'mcwallet_update_user_meta' );
+}
 /**
  * @param $data
  * @param $name

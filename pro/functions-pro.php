@@ -9,11 +9,13 @@
  * Hide admin tabs if no license.
  */
 function mcwallet_admin_page_tabs_init( $tabs ){
+    /*
 	if ( ! get_option( 'mcwallet_purchase_code' ) ) {
 		$tabs = array(
 			'no-license' => esc_html__( 'No license', 'multi-currency-wallet' ),
 		);
 	}
+  */
 	return $tabs;
 }
 add_filter( 'mcwallet_admin_page_tabs', 'mcwallet_admin_page_tabs_init' );
@@ -22,6 +24,7 @@ add_filter( 'mcwallet_admin_page_tabs', 'mcwallet_admin_page_tabs_init' );
  * Add content to no license admin tab.
  */
 function mcwallet_admin_page_tab_custom( $content, $slug ){
+  /*
 	if ( 'no-license' === $slug ) {
 		$license_page_url = admin_url( 'admin.php?page=mcwallet-license' );
 		$content = '
@@ -31,6 +34,7 @@ function mcwallet_admin_page_tab_custom( $content, $slug ){
 			</div>
 		';
 	}
+  */
 	return $content;
 }
 add_filter( 'mcwallet_admin_page_tab', 'mcwallet_admin_page_tab_custom', 10, 2 );
@@ -39,11 +43,13 @@ add_filter( 'mcwallet_admin_page_tab', 'mcwallet_admin_page_tab_custom', 10, 2 )
  * Add content to no license front template.
  */
 function mcwallet_front_template_message(){
+  /*
 	if ( ! get_option( 'mcwallet_purchase_code' ) ) {
 		?>
 		<h1><center><?php esc_html_e( 'Please activate MCW plugin license', 'multi-currency-wallet' ); ?></center></h1>
 		<?php
 	}
+  */
 }
 add_action( 'mcwallet_footer', 'mcwallet_front_template_message' );
 
@@ -79,9 +85,11 @@ add_filter( 'mcwallet_disable_fee', 'mcwallet_disable_fee' );
  * Disable Design page if no license
  */
 function mcwallet_disable_if_no_license( $status ) {
+  /*
 	if ( ! get_option( 'mcwallet_purchase_code' ) ) {
 		$status = true;
 	}
+  */
 	return $status;
 }
 add_filter( 'mcwallet_disable_desing_submenu', 'mcwallet_disable_if_no_license' );
