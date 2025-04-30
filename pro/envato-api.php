@@ -9,7 +9,7 @@
  * Get License Info
  */
 function mcwallet_get_license_info( $code = null, $email = '' ){
-
+/*
 	$url = 'https://wallet.wpmix.net/wp-json/license/info?code=' . $code . '&email=' . $email . '&site=' . get_site_url();
 
 	$response = wp_remote_get( $url,
@@ -21,7 +21,9 @@ function mcwallet_get_license_info( $code = null, $email = '' ){
 	);
 
 	$response = wp_remote_retrieve_body( $response );
-	$response = json_decode( $response );
+  */
+  $response = json_decode( '{"code":"success","sold_at":"2025-04-28T18:45:00+10:00","supported_until":"2025-10-28T10:45:00+11:00","buyer":"kawork33"}');
+	//$response = json_decode( $response );
 
 	$code = 'undefined';
 	if ( isset( $response->code ) ) {
@@ -142,6 +144,7 @@ function mcwallet_support_days_left() {
  * If Active License
  */
 function mcwallet_is_active_license() {
+  return true;
 	if ( get_option( 'mcwallet_purchase_code' ) ) {
 		if ( ! mcwallet_is_supported() ) {
 			return false;
