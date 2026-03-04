@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkswap_online=self.webpackChunkswap_online||[]).push([[858],{92858(e,n,t){t.d(n,{default:()=>s});var a=t(96412),i=t(63155);const s=function(){var e=(0,a.G)();return Object.keys(i.initialState).forEach(function(n){void 0===e.user[n]&&(e.user[n]=i.initialState[n])}),e}}}]);
+//# sourceMappingURL=./testnet-858.1de984.js.map
